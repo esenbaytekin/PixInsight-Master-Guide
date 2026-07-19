@@ -1,0 +1,35 @@
+# Python önbelleği
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Sanal ortamlar
+.venv/
+venv/
+env/
+
+# MkDocs çıktısı
+site/
+
+# Büyük astro veri formatları
+*.xisf
+*.fit
+*.fits
+*.fts
+*.xosm
+*.xpsm
+*.drz
+
+# PixInsight geçici ve proje dosyaları
+*.xpsm
+*.xosm
+*.drz
+*.tmp
+*.bak
+.PixInsight/
+
+# Sistem ve editör
+.DS_Store
+.idea/
+.vscode/
+

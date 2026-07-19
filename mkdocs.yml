@@ -1,0 +1,149 @@
+site_name: PixInsight Master Guide
+site_description: PixInsight 1.9.3 ve RC Astro eklentileri için Türkçe monokrom astrofotoğraf işleme el kitabı
+theme:
+  name: material
+  language: tr
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search:
+      lang: tr
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+nav:
+  - "Başlangıç":
+    - "Ana Sayfa": index.md
+    - "Terimler Sözlüğü": glossary.md
+    - "Hızlı Referans": quick-reference.md
+  - "Temeller":
+    - "Temeller": 01-temeller/index.md
+    - "CMOS ve Monokrom Kamera": 01-temeller/cmos-ve-monokrom-kamera.md
+    - "Filtreler": 01-temeller/filtreler.md
+    - "SNR ve Dinamik Aralık": 01-temeller/snr-ve-dinamik-aralik.md
+    - "Çekim Planlama": 01-temeller/cekim-planlama.md
+  - "PixInsight Temelleri":
+    - "PixInsight Temelleri": 02-pixinsight-temelleri/index.md
+    - "Workspace": 02-pixinsight-temelleri/workspace.md
+    - "STF": 02-pixinsight-temelleri/stf.md
+    - "Histogram": 02-pixinsight-temelleri/histogram.md
+    - "Preview, Clone ve History": 02-pixinsight-temelleri/preview-clone-history.md
+    - "Process Icons": 02-pixinsight-temelleri/process-icons.md
+  - "Kalibrasyon":
+    - "Kalibrasyon": 03-kalibrasyon/index.md
+    - "Calibration Pipeline": 03-kalibrasyon/calibration-pipeline.md
+    - "WBPP": 03-kalibrasyon/wbpp.md
+    - "ImageCalibration": 03-kalibrasyon/image-calibration.md
+    - "CosmeticCorrection": 03-kalibrasyon/cosmetic-correction.md
+    - "StarAlignment": 03-kalibrasyon/star-alignment.md
+    - "ImageIntegration": 03-kalibrasyon/image-integration.md
+  - "Gradient":
+    - "Gradient": 04-gradient/index.md
+    - "ABE": 04-gradient/abe.md
+    - "DBE": 04-gradient/dbe.md
+    - "GradientCorrection": 04-gradient/gradient-correction.md
+    - "Graxpert": 04-gradient/graxpert.md
+  - "Renk Kalibrasyonu":
+    - "Renk Kalibrasyonu": 05-renk-kalibrasyonu/index.md
+    - "SPCC": 05-renk-kalibrasyonu/spcc.md
+    - "PCC": 05-renk-kalibrasyonu/pcc.md
+    - "BackgroundNeutralization": 05-renk-kalibrasyonu/background-neutralization.md
+  - "AI Eklentileri":
+    - "AI Eklentileri": 06-ai-eklentileri/index.md
+    - "BlurXTerminator": 06-ai-eklentileri/blurxterminator.md
+    - "NoiseXTerminator": 06-ai-eklentileri/noisexterminator.md
+    - "StarXTerminator": 06-ai-eklentileri/starxterminator.md
+  - "Stretch":
+    - "Stretch": 07-stretch/index.md
+    - "HistogramTransformation": 07-stretch/histogram-transformation.md
+    - "Generalized Hyperbolic Stretch": 07-stretch/generalized-hyperbolic-stretch.md
+    - "MaskedStretch": 07-stretch/masked-stretch.md
+    - "ArcsinhStretch": 07-stretch/arcsinh-stretch.md
+  - "LRGB":
+    - "LRGB": 08-lrgb/index.md
+    - "ChannelCombination": 08-lrgb/channel-combination.md
+    - "Luminance Hazırlama": 08-lrgb/luminance-hazirlama.md
+    - "LRGBCombination": 08-lrgb/lrgb-combination.md
+    - "PixelMath ile LRGB": 08-lrgb/pixelmath-lrgb.md
+  - "Narrowband":
+    - "Narrowband": 09-narrowband/index.md
+    - "Hargb": 09-narrowband/hargb.md
+    - "HOO": 09-narrowband/hoo.md
+    - "SHO": 09-narrowband/sho.md
+    - "Foraxx": 09-narrowband/foraxx.md
+    - "Natural SHO": 09-narrowband/natural-sho.md
+  - "PixelMath":
+    - "PixelMath": 10-pixelmath/index.md
+    - "Temeller": 10-pixelmath/temeller.md
+    - "Koşullar ve Fonksiyonlar": 10-pixelmath/kosullar-ve-fonksiyonlar.md
+    - "Kanal Karışımları": 10-pixelmath/kanal-karisimlari.md
+    - "Hata Ayıklama": 10-pixelmath/hata-ayiklama.md
+  - "Maskeler":
+    - "Maskeler": 11-maskeler/index.md
+    - "RangeMask": 11-maskeler/range-mask.md
+    - "StarMask": 11-maskeler/star-mask.md
+    - "Luminance Mask": 11-maskeler/luminance-mask.md
+    - "ColorMask": 11-maskeler/color-mask.md
+    - "Maske Mantığı": 11-maskeler/maske-mantigi.md
+  - "Detay ve Kontrast":
+    - "Detay ve Kontrast": 12-detay-ve-kontrast/index.md
+    - "HDRMultiscaleTransform": 12-detay-ve-kontrast/hdr-multiscale-transform.md
+    - "LocalHistogramEqualization": 12-detay-ve-kontrast/local-histogram-equalization.md
+    - "MultiscaleMedianTransform": 12-detay-ve-kontrast/multiscale-median-transform.md
+    - "DarkStructureEnhance": 12-detay-ve-kontrast/dark-structure-enhance.md
+  - "Final":
+    - "Final": 13-final/index.md
+    - "CurvesTransformation": 13-final/curves-transformation.md
+    - "SCNR": 13-final/scnr.md
+    - "Saturation": 13-final/saturation.md
+    - "Export": 13-final/export.md
+  - "Hata Kütüphanesi":
+    - "Hata Kütüphanesi": 14-hata-kutuphanesi/index.md
+    - "DBE: Less Than Three Samples": 14-hata-kutuphanesi/dbe-less-than-three-samples.md
+    - "ChannelCombination RGB Hatası": 14-hata-kutuphanesi/channel-combination-rgb-error.md
+    - "LRGB Source Image Not Found": 14-hata-kutuphanesi/lrgb-source-image-not-found.md
+    - "OIII Kaybolması": 14-hata-kutuphanesi/oiii-kaybolmasi.md
+    - "Maske Tüm Görüntüyü Kaplıyor": 14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md
+  - "Uygulamalar":
+    - "Uygulamalar": 20-uygulamalar/index.md
+    - "M31 LRGB + Ha":
+      - "M31 LRGB + Ha": 20-uygulamalar/m31-lrgb-ha/index.md
+      - "Veri ve Hedef": 20-uygulamalar/m31-lrgb-ha/01-veri-ve-hedef.md
+      - "WBPP": 20-uygulamalar/m31-lrgb-ha/02-wbpp.md
+      - "DBE ve SPCC": 20-uygulamalar/m31-lrgb-ha/03-dbe-spcc.md
+      - "BlurX ve NoiseX": 20-uygulamalar/m31-lrgb-ha/04-blurx-noisex.md
+      - "Stretch": 20-uygulamalar/m31-lrgb-ha/05-stretch.md
+      - "LRGB": 20-uygulamalar/m31-lrgb-ha/06-lrgb.md
+      - "Ha Entegrasyonu": 20-uygulamalar/m31-lrgb-ha/07-ha-entegrasyonu.md
+      - "Final": 20-uygulamalar/m31-lrgb-ha/08-final.md
+    - "NGC 6888 SHO":
+      - "NGC 6888 SHO": 20-uygulamalar/ngc6888-sho/index.md
+      - "Veri ve Hedef": 20-uygulamalar/ngc6888-sho/01-veri-ve-hedef.md
+      - "Kanal Hazırlama": 20-uygulamalar/ngc6888-sho/02-kanal-hazirlama.md
+      - "SHO Kombinasyonu": 20-uygulamalar/ngc6888-sho/03-sho-kombinasyonu.md
+      - "Maskeler": 20-uygulamalar/ngc6888-sho/04-maskeler.md
+      - "OIII Koruma": 20-uygulamalar/ngc6888-sho/05-oiii-koruma.md
+      - "Final": 20-uygulamalar/ngc6888-sho/06-final.md
