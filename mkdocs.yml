@@ -65,6 +65,9 @@ nav:
     - "Gradient Teorisi": 04-gradient/gradient-theory.md
     - "AutomaticBackgroundExtractor": 04-gradient/abe.md
     - "DynamicBackgroundExtraction": 04-gradient/dbe.md
+    - "DBE Sample Yerleşimi": 04-gradient/sample-placement.md
+    - "Subtraction ve Division": 04-gradient/division-vs-subtraction.md
+    - "Gradient Diagnostics": 04-gradient/gradient-diagnostics.md
     - "GradientCorrection": 04-gradient/gradient-correction.md
     - "Graxpert": 04-gradient/graxpert.md
   - "Renk Kalibrasyonu":

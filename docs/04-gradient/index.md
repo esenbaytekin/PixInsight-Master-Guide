@@ -48,7 +48,7 @@ flowchart LR
 - Yalnız estetik olarak daha koyu bir arka plan üretmek için
 
 !!! info "Okuma sırası"
-    Önce [Gradient Teorisi](gradient-theory.md), sonra hızlı otomatik model için [ABE](abe.md), son olarak kontrollü sample yerleşimi için [DBE](dbe.md) okunmalıdır.
+    [Gradient Teorisi](gradient-theory.md) → [Gradient Diagnostics](gradient-diagnostics.md) → [ABE](abe.md) veya [DBE](dbe.md) → [Sample Yerleşimi](sample-placement.md) → [Subtraction ve Division](division-vs-subtraction.md) sırası önerilir.
 
 ## Menü yolu
 
@@ -132,6 +132,9 @@ Tam menü grupları: **Doğrulama bekliyor**.
     - [ ] [Gradient Teorisi](gradient-theory.md): additive/multiplicative ve model sınırları
     - [ ] [ABE](abe.md): otomatik, hızlı başlangıç modeli
     - [ ] [DBE](dbe.md): kontrollü sample tabanlı model
+    - [ ] [Sample Yerleşimi](sample-placement.md): sample kalitesi ve coverage
+    - [ ] [Subtraction ve Division](division-vs-subtraction.md): correction kabul testi
+    - [ ] [Gradient Diagnostics](gradient-diagnostics.md): kök neden ayrımı
     - [ ] Calibration ve flat zinciri doğrulandı
     - [ ] Image lineer
     - [ ] Model image gerçek sinyal içermiyor

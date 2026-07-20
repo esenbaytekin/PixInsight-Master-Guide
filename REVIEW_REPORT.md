@@ -543,3 +543,56 @@ Dört içerik dosyasında standart başlıklar, en az beş SSS, Quick Reference,
 | gradient-theory.md | Hazır | Birincil kaynak bekliyor | Teori diyagramları hazır | Teknik doğrulama bekliyor |
 | abe.md | Hazır | UI ve DOC doğrulaması bekliyor | ABE ekranları eksik | Teknik doğrulama bekliyor |
 | dbe.md | Hazır | UI, DOC ve DATA doğrulaması bekliyor | Altı kritik görsel eksik | Görsel doğrulama bekliyor |
++
+---
+
+# Sprint 2.2 Teknik Review Özeti
+
+## İncelenen Dosyalar
+
+- `sample-placement.md`
+- `division-vs-subtraction.md`
+- `gradient-diagnostics.md`
+- `index.md`
+- `mkdocs.yml`
+
+## Yapısal Durum
+
+Üç yeni sayfa ortak belge standardını, minimum SSS sayısını, Quick Reference, Decision Tree ve teknik doğrulama tablosunu içeriyor. Toplam yedi yeni Mermaid diyagramı reçete değil değerlendirme akışı sunuyor.
+
+## Teknik Riskler
+
+- DBE `Radius`, `Tolerance`, `Shadows Relaxation` ve `Minimum sample weight` davranışları PixInsight 1.9.3 üzerinde doğrulanmalıdır.
+- Sample placement önerileri gerçek galaxy, nebula, narrowband, wide-field ve mosaic dataset’lerinde test edilmemiştir.
+- Subtraction ve Division saf fiziksel kaynak teşhisi değildir; gerçek image’larda etkiler karışabilir.
+- Rotate/flip, filter ve night karşılaştırmaları tek başına kesin kök neden kanıtı değildir.
+- Artefact sınıfları gerçek ekran görüntüleri ve acquisition metadata ile doğrulanmayı bekliyor.
+
+## Doğrulama Matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-2.01 | sample-placement.md | Radius ve Tolerance controls | UI-1 | Yüksek | DBE 1.9.3 interface/tooltip | Bekliyor |
+| UI-2.02 | sample-placement.md | Shadows Relaxation ve Minimum sample weight | UI-1 | Yüksek | DBE 1.9.3 interface/tooltip | Bekliyor |
+| UI-2.03 | division-vs-subtraction.md | Correction ve Normalize controls | UI-1 | Yüksek | DBE/ABE interface | Bekliyor |
+| DOC-2.01 | sample-placement.md | Sample acceptance algoritması | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
+| DOC-2.02 | sample-placement.md | Sample weight ve Radius etkisi | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
+| DOC-2.03 | division-vs-subtraction.md | Subtraction implementation | DOC-1 | Yüksek | Resmî process documentation | Bekliyor |
+| DOC-2.04 | division-vs-subtraction.md | Division/normalization implementation | DOC-1 | Yüksek | Resmî process documentation | Bekliyor |
+| DATA-2.01 | sample-placement.md | Galaxy halo sample testi | DATA-1 | Yüksek | Açıklamalı galaxy dataset | Bekliyor |
+| DATA-2.02 | sample-placement.md | Nebula/OIII sample testi | DATA-1 | Yüksek | Ha/OIII dataset | Bekliyor |
+| DATA-2.03 | sample-placement.md | Wide-field/mosaic coverage | DATA-1 | Orta | Panel dataset karşılaştırması | Bekliyor |
+| DATA-2.04 | division-vs-subtraction.md | Aynı modelde iki correction | DATA-1 | Yüksek | Clone/STF/histogram ölçümü | Bekliyor |
+| DATA-2.05 | gradient-diagnostics.md | Raw/calibrated ve rotate/filter/night testleri | DATA-1 | Yüksek | Kontrollü frame seti | Bekliyor |
+| IMG-2.01 | sample-placement.md | Hatalı/doğru sample alanları | IMG-1 | Yüksek | DBE ekran görüntüsü | Bekliyor |
+| IMG-2.02 | sample-placement.md | Less than three samples hatası | IMG-1 | Yüksek | 1.9.3 error ekranı | Bekliyor |
+| IMG-2.03 | division-vs-subtraction.md | STF/histogram comparison | IMG-1 | Yüksek | Before/after ekranları | Bekliyor |
+| IMG-2.04 | gradient-diagnostics.md | Gradient ve flat artefact sınıfları | IMG-1 | Yüksek | Raw/calibrated örnekler | Bekliyor |
+
+## Dosya Bazlı Yayın Durumu
+
+| Dosya | Yapısal Durum | Teknik Durum | Görsel Durum | Yayına Hazırlık |
+| --- | --- | --- | --- | --- |
+| sample-placement.md | Hazır | UI/DOC/DATA bekliyor | Kritik örnekler eksik | Teknik doğrulama bekliyor |
+| division-vs-subtraction.md | Hazır | DOC/DATA bekliyor | Karşılaştırma eksik | Teknik doğrulama bekliyor |
+| gradient-diagnostics.md | Hazır | DATA doğrulaması bekliyor | Artefact atlası eksik | Görsel doğrulama bekliyor |

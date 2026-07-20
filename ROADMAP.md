@@ -17,6 +17,16 @@
   - [ ] Sprint 2.1: Gerçek veri testi
   - [ ] Sprint 2.1: Görsel entegrasyonu
   - [ ] Sprint 2.1: Teknik editör onayı
+  - [x] Sprint 2.2: DBE sample placement ilk içerik
+  - [x] Sprint 2.2: Subtraction ve Division ilk içerik
+  - [x] Sprint 2.2: Gradient diagnostics ilk içerik
+  - [x] Sprint 2.2: MkDocs navigation entegrasyonu
+  - [x] Sprint 2.2: Yapısal ve teknik risk kontrolü
+  - [ ] Sprint 2.2: PixInsight 1.9.3 ekran doğrulaması
+  - [ ] Sprint 2.2: Birincil kaynak doğrulaması
+  - [ ] Sprint 2.2: Gerçek veri karşılaştırmaları
+  - [ ] Sprint 2.2: Görsel entegrasyonu
+  - [ ] Sprint 2.2: Teknik editör onayı
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor
