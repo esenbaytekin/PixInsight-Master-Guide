@@ -113,6 +113,45 @@
       - [ ] Gerçek veri testleri
       - [ ] Görsel entegrasyonu
       - [ ] Teknik editör onayı
+  - Sprint 3.2 — SpectrophotometricColorCalibration:
+    - [x] SPCC ana referans içeriği
+    - [x] SPCC ön koşulları
+    - [x] Broadband iş akışı
+    - [x] Narrowband kapsamı
+    - [x] SPCC sorun giderme
+    - [x] Navigation entegrasyonu
+    - [x] Yapısal kontrol
+    - [ ] PixInsight 1.9.3 SPCC UI doğrulaması
+    - [ ] SPCC process davranış doğrulaması
+    - [ ] Birincil kaynak doğrulaması
+    - [ ] Broadband OSC gerçek veri testi
+    - [ ] Mono LRGB gerçek veri testi
+    - [ ] M31 gerçek veri testi
+    - [ ] Narrowband gerçek veri testleri
+    - [ ] Görsel entegrasyonu
+    - [ ] Mermaid bağımsız render testi
+    - [ ] Teknik editör onayı
+    - Revizyon 1 — SPCC konsolidasyonu ve eski dizin denetimi:
+      - [x] Eski Color Calibration dizini envanteri çıkarıldı
+      - [x] Canonical dizin `docs/05-color-calibration/` olarak doğrulandı
+      - [x] Eski index ve SPCC sayfaları yönlendirmeye dönüştürüldü
+      - [x] PCC ve BackgroundNeutralization benzersiz taslakları korundu
+      - [x] Eski dizine gelen iç bağlantılar canonical hedeflere taşındı
+      - [x] SPCC dosya görevleri ayrıştırıldı
+      - [x] Tekrarlar azaltıldı
+      - [x] Broadband ve narrowband sınırları denetlendi
+      - [x] Luminance kapsamı netleştirildi
+      - [x] Background neutralization kapsamı netleştirildi
+      - [x] SPCC/PCC karşılaştırması gözden geçirildi
+      - [x] Hata kartları denetlendi
+      - [x] Test matrisleri denetlendi
+      - [x] UI doğrulama matrisi revize edildi
+      - [x] Navigation ve kırık bağlantı kontrolü tamamlandı
+      - [ ] PixInsight 1.9.3 SPCC UI doğrulaması
+      - [ ] Birincil kaynak doğrulaması
+      - [ ] Gerçek veri testleri
+      - [ ] Görsel entegrasyonu
+      - [ ] Teknik editör onayı
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor
 - [ ] Faz 6: M31 tam uygulama — Bekliyor

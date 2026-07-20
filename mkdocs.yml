@@ -85,8 +85,11 @@ nav:
     - "Photometric Calibration Teorisi": 05-color-calibration/photometric-calibration-theory.md
     - "Background Neutrality": 05-color-calibration/background-neutrality.md
     - "Color Calibration Diagnostics": 05-color-calibration/color-calibration-diagnostics.md
-    - "Renk Kalibrasyonu Eski Giriş": 05-renk-kalibrasyonu/index.md
-    - "SPCC": 05-renk-kalibrasyonu/spcc.md
+    - "SPCC": 05-color-calibration/spcc.md
+    - "SPCC Ön Koşulları": 05-color-calibration/spcc-prerequisites.md
+    - "SPCC Broadband İş Akışı": 05-color-calibration/spcc-broadband.md
+    - "SPCC Narrowband Kapsamı": 05-color-calibration/spcc-narrowband.md
+    - "SPCC Sorun Giderme": 05-color-calibration/spcc-troubleshooting.md
     - "PCC": 05-renk-kalibrasyonu/pcc.md
     - "BackgroundNeutralization": 05-renk-kalibrasyonu/background-neutralization.md
   - "AI Eklentileri":

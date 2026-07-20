@@ -64,7 +64,5 @@ Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul �
 ## İlgili bölümler
 
 - [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Renk Kalibrasyonu](index.md)
-- [SPCC](spcc.md)
-
+- [Color Calibration Giriş](../05-color-calibration/index.md)
+- [SPCC Ana Referans](../05-color-calibration/spcc.md)

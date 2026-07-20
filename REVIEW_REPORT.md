@@ -968,3 +968,150 @@ Eski UI-5/DOC-5/DATA-5/IMG-5 kimlikleri korunmuştur. Aşağıdaki kayıtlar Rev
 | Diagnostics satırı güncellemesi | 26 |
 
 **Revizyon 1 sonrası karar:** Sprint 3.1 yapısal ve kavramsal olarak teknik incelemeye hazırdır. Sekiz kritik process/UI/DOC kaydı kapanmadan genel teknik yayına hazır değildir.
+
+---
+
+# Sprint 3.2 — SpectrophotometricColorCalibration Teknik Review
+
+## Doğrulama matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| UI-6.01 | spcc.md | SPCC 1.9.3 menu location | UI-6 | Kritik | Kritik | Gerçek 1.9.3 ekranı | Bekliyor |
+| UI-6.02 | spcc.md | Exact linear/nonlinear behavior | UI-6 | Kritik | Kritik | UI + process documentation | Bekliyor |
+| UI-6.03 | spcc.md | Catalog ve white reference options | UI-6 | Kritik | Kritik | UI + clean instance | Bekliyor |
+| UI-6.04 | spcc.md | Sensor database behavior | UI-6 | Kritik | Kritik | UI + controlled lookup | Bekliyor |
+| UI-6.05 | spcc.md | Filter database behavior | UI-6 | Kritik | Kritik | UI + controlled lookup | Bekliyor |
+| UI-6.06 | spcc.md | Background neutralization controls | UI-6 | Yüksek | Kısmi | UI + output test | Bekliyor |
+| UI-6.07 | spcc-narrowband.md | Narrowband controls/models | UI-6 | Kritik | Kritik | UI + primary source | Bekliyor |
+| UI-6.08 | spcc.md | Star rejection controls | UI-6 | Yüksek | Kısmi | UI + log | Bekliyor |
+| DOC-6.01 | spcc.md | Response estimation model | DOC-6 | Kritik | Kritik | Primary process documentation | Bekliyor |
+| DOC-6.02 | spcc-troubleshooting.md | Star detection/rejection behavior | DOC-6 | Kritik | Kritik | Documentation + controlled log | Bekliyor |
+| DOC-6.03 | spcc-prerequisites.md | Metadata fallback behavior | DOC-6 | Kritik | Kritik | Documentation + solve tests | Bekliyor |
+| DOC-6.04 | spcc.md | Log and output behavior | DOC-6 | Yüksek | Kısmi | Full logs + output test | Bekliyor |
+| DATA-6.01 | spcc-broadband.md | Sekiz broadband scenario | DATA-6 | Yüksek | Kısmi | Controlled datasets | Bekliyor |
+| DATA-6.02 | spcc-narrowband.md | Sekiz narrowband scenario | DATA-6 | Yüksek | Kısmi | Controlled datasets | Bekliyor |
+| IMG-6.01 | spcc.md | Main UI ve control groups | IMG-6 | Yüksek | Kısmi | 1.9.3 screenshots | Bekliyor |
+| IMG-6.02 | spcc-prerequisites.md | WCS ve profiles | IMG-6 | Yüksek | Kısmi | UI/metadata screens | Bekliyor |
+| IMG-6.03 | spcc-broadband.md | LRGB/OSC/M31 outputs | IMG-6 | Yüksek | Kısmi | Before/after/log | Bekliyor |
+| IMG-6.04 | spcc-narrowband.md | Narrowband scope | IMG-6 | Yüksek | Kısmi | UI/scenario comparison | Bekliyor |
+| IMG-6.05 | spcc-troubleshooting.md | Error/log atlas | IMG-6 | Yüksek | Kısmi | Real error screens | Bekliyor |
+
+## Gerçek veri test envanteri
+
+| Test ID | Veri türü | Target | Senaryo | Kanıtlanacak konu | Gereken çıktılar | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| SPCC-BB-OSC-01 | Broadband | OSC field | Controlled SPCC test | CFA/profile response | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-LRGB-01 | Broadband | Mono LRGB | Controlled SPCC test | Filter/channel response | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-M31-01 | Broadband | M31 | Controlled SPCC test | Galaxy color preservation | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-STARFIELD-01 | Broadband | Star field | Controlled SPCC test | Star sample diversity | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-GRADIENT-01 | Broadband | Gradient set | Controlled SPCC test | Gradient/SPCC ayrımı | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-SATURATION-01 | Broadband | Saturated field | Controlled SPCC test | Saturation/rejection | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-METADATA-01 | Broadband | WCS variants | Controlled SPCC test | Metadata fallback | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-BB-REFERENCE-01 | Broadband | Reference variants | Controlled SPCC test | Reference sensitivity | Original/Output/Log/Statistics | Gerçek veri bekliyor |
+| SPCC-NB-HA-01 | Narrowband | Ha target | Controlled scope test | Ha mode/profile scope | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-OIII-01 | Narrowband | OIII target | Controlled scope test | OIII faint signal | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-SHO-01 | Narrowband | SHO nebula | Controlled scope test | SHO palette ayrımı | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-HOO-01 | Narrowband | HOO nebula | Controlled scope test | HOO mapping ayrımı | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-RGBSTARS-01 | Narrowband | RGB stars + NB | Controlled scope test | Star reconstruction | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-STARLESS-01 | Narrowband | Starless nebula | Controlled scope test | Starless behavior | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-HA-RGB-01 | Narrowband | HaRGB galaxy | Controlled scope test | Galaxy blend preservation | Original/Output/Log/Channels | Gerçek veri bekliyor |
+| SPCC-NB-DUALBAND-01 | Narrowband | Dual-band OSC | Controlled scope test | CFA/profile scope | Original/Output/Log/Channels | Gerçek veri bekliyor |
+
+## Görsel envanteri
+
+On sekiz açıklamalı placeholder beş SPCC sayfasına dağıtıldı: main UI; astrometry/WCS; catalog/reference; sensor profile; filter profile; white reference; background controls; narrowband controls; success/error logs; catalog match; saturated rejection; mono LRGB; OSC; M31 preservation; narrowband scope; starless error; metadata/WCS. Her kayıt 1.9.3 sürümü, target/data, ekran/output, kanıt noktası ve dosya adı içerir.
+
+## Dosya yayın durumu
+
+| Dosya | Yapısal durum | UI durumu | Kaynak durumu | Veri durumu | Görsel durumu | Yayına hazırlık |
+| --- | --- | --- | --- | --- | --- | --- |
+| spcc.md | Hazır | Bekliyor | Bekliyor | Bekliyor | Bekliyor | Teknik doğrulama bekliyor |
+| spcc-prerequisites.md | Hazır | Bekliyor | Bekliyor | Bekliyor | Bekliyor | Teknik doğrulama bekliyor |
+| spcc-broadband.md | Hazır | Kısmi | Bekliyor | 8 test bekliyor | Bekliyor | Gerçek veri bekliyor |
+| spcc-narrowband.md | Hazır | Bekliyor | Bekliyor | 8 test bekliyor | Bekliyor | Teknik doğrulama bekliyor |
+| spcc-troubleshooting.md | Hazır | Bekliyor | Bekliyor | 30 kart testi bekliyor | Bekliyor | Teknik doğrulama bekliyor |
+
+**Sprint 3.2 yapısal olarak teknik incelemeye hazırdır. SPCC 1.9.3 UI, response/rejection/fallback/log davranışı, 16 gerçek veri testi ve görseller doğrulanmadan genel teknik yayına hazır değildir.**
+
+## Sprint 3.2 Revizyon 1 — Canonical dizin ve legacy envanteri
+
+Canonical Color Calibration dizini `docs/05-color-calibration/` olarak belirlenmiştir. `mkdocs.yml` bölüm girişi ve SPCC sayfaları için yalnız bu ağacı kullanır. Eski Türkçe dizin aktif ikinci bir index/SPCC ağacı değildir.
+
+| Eski dosya | Yeni karşılığı | İçerik durumu | Gelen bağlantı var mı? | Önerilen işlem |
+| --- | --- | --- | --- | --- |
+| `05-renk-kalibrasyonu/index.md` | `05-color-calibration/index.md` | Tam karşılığı mevcut; eski taslak | Repository içi bağlantı canonical'a taşındı; geçmiş URL olası | Canonical dosyaya yönlendirilmelidir |
+| `05-renk-kalibrasyonu/spcc.md` | `05-color-calibration/spcc.md` | Tam karşılığı mevcut; eski taslak | Repository içi bağlantı canonical'a taşındı; geçmiş URL olası | Canonical dosyaya yönlendirilmelidir |
+| `05-renk-kalibrasyonu/pcc.md` | Sprint 3.3 canonical PCC bekliyor | Benzersiz içerik içeriyor; taslak | Evet; navigation ve Color Calibration sayfaları | Korunmalı |
+| `05-renk-kalibrasyonu/background-neutralization.md` | `background-neutrality.md` yalnız teori karşılığıdır; process rehberi değildir | Benzersiz içerik içeriyor; taslak | Evet; navigation ve Color Calibration sayfaları | Korunmalı |
+
+### Uygulanan işlem
+
+- Eski `index.md` ve `spcc.md`, geçmiş URL'leri koruyan kısa yönlendirme sayfalarına dönüştürüldü; silinmedi.
+- Eski PCC ve BackgroundNeutralization sayfalarındaki index/SPCC bağlantıları canonical dizine taşındı.
+- Yeni temel sayfalardaki eski SPCC bağlantıları `05-color-calibration/spcc.md` hedefine güncellendi.
+- PCC ve BackgroundNeutralization yeni process sayfaları oluşana kadar navigation içinde korunur; teorik `background-neutrality.md`, `BackgroundNeutralization` process rehberinin eşdeğeri sayılmaz.
+- Beş SPCC sayfasında uzun birebir cümle tekrarı bulunmadı. Prerequisite, broadband, narrowband ve troubleshooting kapsamları ana referansa bağlantılı fakat ayrı sorumluluklardadır.
+
+### Canonical yayın kararı
+
+SPCC için tek canonical sayfa `docs/05-color-calibration/spcc.md`, Color Calibration bölüm girişi için tek canonical sayfa `docs/05-color-calibration/index.md` dosyasıdır. Legacy yönlendirmeler navigation'a eklenmez. Sprint 3.2'nin UI/DOC/DATA/IMG yayın engelleri önceki tabloda geçerliliğini korur.
+
+### Revizyon 1 UI doğrulama özeti
+
+Eski UI-6 kayıtları silinmemiştir. Aşağıdaki kayıtlar on iki UI konusunu ayrı ayrı konsolide eder.
+
+| ID | Konu | İlgili dosyalar | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| UI-6-R1.01 | Menu location | spcc.md | UI-6 | Kritik | Kritik | 1.9.3 menu screenshot | Bekliyor |
+| UI-6-R1.02 | Process section names | spcc.md | UI-6 | Kritik | Kritik | Full 1.9.3 UI capture | Bekliyor |
+| UI-6-R1.03 | Catalog controls | spcc.md | UI-6 | Kritik | Kritik | UI, documentation ve query log | Bekliyor |
+| UI-6-R1.04 | White reference controls | spcc.md | UI-6 | Kritik | Kritik | UI ve controlled output test | Bekliyor |
+| UI-6-R1.05 | Sensor profile controls | spcc.md, prerequisites | UI-6 | Kritik | Kritik | UI ve database lookup test | Bekliyor |
+| UI-6-R1.06 | Filter profile controls | spcc.md, prerequisites | UI-6 | Kritik | Kritik | UI ve database lookup test | Bekliyor |
+| UI-6-R1.07 | Background controls | spcc.md, background-neutrality.md | UI-6 | Yüksek | Kritik | UI ve reference/output test | Bekliyor |
+| UI-6-R1.08 | Narrowband controls | spcc-narrowband.md | UI-6 | Kritik | Kritik | UI ve birincil kaynak | Bekliyor |
+| UI-6-R1.09 | Star sample/rejection controls | spcc.md, troubleshooting | UI-6 | Kritik | Kritik | UI ve rejection log | Bekliyor |
+| UI-6-R1.10 | Log and output controls | spcc.md, troubleshooting | UI-6 | Yüksek | Kritik | UI ve tam success/error logları | Bekliyor |
+| UI-6-R1.11 | Default values | spcc.md | UI-6 | Kritik | Kritik | Temiz 1.9.3 process instance | Bekliyor |
+| UI-6-R1.12 | Exact linear/nonlinear behavior | spcc.md, prerequisites | UI-6 | Kritik | Kritik | Documentation ve controlled input test | Bekliyor |
+
+Bu kayıtlar kritiktir; yanlış UI, default, input kabulü veya mode bilgisi kullanıcıyı yanlış process yapılandırmasına yönlendirebilir. Ek before/after görseli ve bağımsız Mermaid render testi tek başına kritik değildir.
+
+### Revizyon 1 konsolide gerçek veri testleri
+
+#### Broadband
+
+| Test ID | Veri türü | Girdi durumu | SPCC senaryosu | Karşılaştırılacak çıktılar | Gözlenecek kanıt | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| SPCC-BB-OSC-01 | Broadband OSC | Linear, debayered, stars included, unclipped; valid WCS; CFA/profile recorded | OSC response | Original, output, log, statistics, metadata | Star diversity, clipping, cast ve metadata behavior | Gerçek veri bekliyor |
+| SPCC-BB-LRGB-01 | Mono RGB | Linear aligned RGB before L integration; valid WCS/profiles | Mono RGB response | Original, output, log, channel statistics | Channel relationship without Luminance assumption | Gerçek veri bekliyor |
+| SPCC-BB-M31-01 | M31 RGB | Linear RGB before L integration; valid WCS/profiles | Galaxy field | Original, output, log, core/disk/halo regions | Galaxy structures ve background behavior | Gerçek veri bekliyor |
+| SPCC-BB-STARFIELD-01 | Star field | Linear unclipped star-rich image; valid WCS/profiles | Star samples | Original, output, match/rejection log, cutouts | Sample population ve color diversity | Gerçek veri bekliyor |
+| SPCC-BB-GRADIENT-01 | Gradient pair | Linear matched images with/without residual gradient | Scope A-B | Inputs, outputs, logs, background maps | SPCC ile spatial correction ayrımı | Gerçek veri bekliyor |
+| SPCC-BB-SATURATION-01 | Saturation pair | Linear saturated/unclipped variants; same WCS/profiles | Rejection A-B | Inputs, outputs, logs, readouts | Saturation/rejection relationship | Gerçek veri bekliyor |
+| SPCC-BB-METADATA-01 | WCS variants | Linear same image with valid/missing/stale WCS | Fallback | Inputs, solve/query logs, outputs | Acceptance/fallback/error behavior | Gerçek veri bekliyor |
+| SPCC-BB-REFERENCE-01 | Reference variants | Linear same image; fixed WCS/profiles; references recorded | Reference sensitivity | Original, outputs, logs, statistics | White/background sensitivity without winner claim | Gerçek veri bekliyor |
+
+#### Narrowband
+
+| Test ID | Veri türü | Girdi durumu | SPCC senaryosu | Karşılaştırılacak çıktılar | Gözlenecek kanıt | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| SPCC-NB-HA-01 | Ha mono | Linear Ha with stars; WCS/filter context recorded | Ha scope | Original, output/error, log | Actual mode/input behavior | Gerçek veri bekliyor |
+| SPCC-NB-OIII-01 | OIII mono | Linear faint OIII with stars; WCS/profile recorded | OIII scope | Original, output/error, log, signal regions | Faint signal ve sample behavior | Gerçek veri bekliyor |
+| SPCC-NB-SHO-01 | SHO | Linear combination; mapping history/WCS/profiles recorded | SHO scope | Channels, combination, output/error, log | Calibration ile palette mapping ayrımı | Gerçek veri bekliyor |
+| SPCC-NB-HOO-01 | HOO | Linear combination; mapping history/WCS/profiles recorded | HOO scope | Ha/OIII, combination, output/error, log | Red dominance, gradient ve scope ayrımı | Gerçek veri bekliyor |
+| SPCC-NB-RGBSTARS-01 | RGB stars + NB | Linear separated layers; WCS/profiles recorded | Layered workflow | Layers, blend, output/error, logs | Star calibration ile nebula palette ayrımı | Gerçek veri bekliyor |
+| SPCC-NB-STARLESS-01 | Starless NB | Linear starless + stars-included reference; WCS/profile recorded | Starless behavior | Inputs, output/error, full logs | Actual star-sample requirement | Gerçek veri bekliyor |
+| SPCC-NB-HA-RGB-01 | HaRGB galaxy | Linear RGB/Ha before blend; WCS/profiles recorded | HaRGB blend | RGB, Ha, blends, outputs, logs | Broadband color ile Ha contribution ayrımı | Gerçek veri bekliyor |
+| SPCC-NB-DUALBAND-01 | Dual-band OSC | Linear debayered data; WCS/CFA/filter context recorded | Dual-band scope | Original, output/error, log, statistics | Standard OSC broadband'den farklı profile behavior | Gerçek veri bekliyor |
+
+Her test input state, astrometry, profile context, outputs ve gözlenebilir kanıtı tanımlar; sonuç iddiası içermez. Broadband ve narrowband testleri ayrı kalır.
+
+### Revizyon 1 dosya görevleri
+
+- `spcc.md`: genel teori, ana zincir, yüksek seviyeli UI grupları, SPCC/PCC karşılaştırması ve yönlendirme.
+- `spcc-prerequisites.md`: image state, WCS/metadata, profiles ve reference suitability.
+- `spcc-broadband.md`: OSC/mono RGB, Luminance sınırı, broadband tests ve output validation.
+- `spcc-narrowband.md`: SHO/HOO/mixed/starless/dual-band scope ve tests.
+- `spcc-troubleshooting.md`: yalnız kart bazlı symptom, root cause, first check, intervention, validation ve links.

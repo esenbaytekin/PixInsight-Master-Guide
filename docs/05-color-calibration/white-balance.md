@@ -142,5 +142,5 @@ flowchart TD
 - [Astronomik Renk Teorisi](color-theory.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [Background Neutrality](background-neutrality.md)
-- [SPCC](../05-renk-kalibrasyonu/spcc.md)
+- [SPCC](spcc.md)
 - [PCC](../05-renk-kalibrasyonu/pcc.md)

@@ -32,7 +32,8 @@ Color calibration, saturation artırma veya color grading değildir. Kalibrasyon
 3. [Photometric Calibration Teorisi](photometric-calibration-theory.md): plate solving, catalog matching ve response estimation.
 4. [Background Neutrality](background-neutrality.md): neutral reference ile gradient ayrımı.
 5. [Color Calibration Diagnostics](color-calibration-diagnostics.md): belirti, kök neden ve ilk kontroller.
-6. [SPCC](../05-renk-kalibrasyonu/spcc.md), [PCC](../05-renk-kalibrasyonu/pcc.md) ve [BackgroundNeutralization](../05-renk-kalibrasyonu/background-neutralization.md): sonraki process sayfaları.
+6. [SPCC Ana Referans](spcc.md), [Ön Koşullar](spcc-prerequisites.md), [Broadband](spcc-broadband.md), [Narrowband](spcc-narrowband.md) ve [Sorun Giderme](spcc-troubleshooting.md): Sprint 3.2 process rehberi.
+7. [PCC](../05-renk-kalibrasyonu/pcc.md) ve [BackgroundNeutralization](../05-renk-kalibrasyonu/background-neutralization.md): sonraki process sayfaları.
 
 ```mermaid
 flowchart LR
@@ -53,6 +54,8 @@ flowchart LR
 | Background siyah mı olmalı? | [Background Neutrality](background-neutrality.md) |
 | Green cast veya clipping nasıl teşhis edilir? | [Color Calibration Diagnostics](color-calibration-diagnostics.md) |
 | Gradient önce neden incelenir? | [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) |
+| SPCC hangi veride nasıl değerlendirilir? | [SPCC Ana Referans](spcc.md) |
+| SPCC neden çalışmadı? | [SPCC Sorun Giderme](spcc-troubleshooting.md) |
 
 ## Teknik doğrulama durumu
 

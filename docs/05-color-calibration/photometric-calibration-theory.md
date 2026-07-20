@@ -184,5 +184,5 @@ flowchart TD
 - [Astronomik Renk Teorisi](color-theory.md)
 - [White Balance](white-balance.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
-- [SPCC](../05-renk-kalibrasyonu/spcc.md)
+- [SPCC](spcc.md)
 - [PCC](../05-renk-kalibrasyonu/pcc.md)

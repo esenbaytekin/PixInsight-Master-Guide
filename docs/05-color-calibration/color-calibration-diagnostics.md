@@ -183,6 +183,6 @@ flowchart TD
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [Background Neutrality](background-neutrality.md)
 - [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
-- [SPCC](../05-renk-kalibrasyonu/spcc.md)
+- [SPCC](spcc.md)
 - [PCC](../05-renk-kalibrasyonu/pcc.md)
 - [BackgroundNeutralization](../05-renk-kalibrasyonu/background-neutralization.md)
