@@ -11,16 +11,27 @@ Master Bias, Master Dark ve Master Flat ile calibration’ı; dark scaling, pede
 
 ## Teori
 
-Basit modelde bias/dark bileşeni çıkarılır, flat-field yanıtı normalize edilerek bölünür. Aynı bias bileşenini iki kez çıkarmamak gerekir.\n\n| Öğe | Kullanım | Kullanılmama / risk | Avantaj | Dezavantaj |\n| --- | --- | --- | --- | --- |\n| Master Bias | Offset modeli ve uygun flat/dark zinciri | Tekrar bias çıkarımı | Çok frame ile düşük gürültü | CMOS pattern değişebilir |\n| Master Dark | Thermal signal, amp glow ve sabit dark yapı | Uyumsuz metadata | Sistematik dark düzeltir | Matching ister |\n| Master Flat | Pixel response, vignetting, dust | Değişmiş optical train | Alan yanıtını düzeltir | Doğru calibration ister |\n| Optimize Master Dark / Dark Scaling | Dark yapısı ölçeklenebiliyorsa | Amp glow gibi ölçeklenmeyen yapı | Exposure farkını modelleyebilir | Artefact riski |\n| Pedestal | Negatif/clipping riskini yönetmek | Siyah nokta aracı olarak | Sayısal pay | Background etkisi |\n| Overscan | Gerçek overscan region varsa | Crop edilmiş data | Frame bias ölçümü | Geometry şart |\n| CFA | Gerçek mosaic data | Mono/debayer edilmiş data | Pattern-aware | Yanlış pattern hatalı |\n| Superbias | Uygun bias yapısı doğrulanmışsa | Evrensel CMOS çözümü olarak | Model avantajı olabilir | Sensör testi gerekir |
+Basit modelde bias/dark bileşeni çıkarılır, flat-field yanıtı normalize edilerek bölünür. Aynı bias bileşenini iki kez çıkarmamak gerekir.
+
+| Öğe | Kullanım | Kullanılmama / risk | Avantaj | Dezavantaj |
+| --- | --- | --- | --- | --- |
+| Master Bias | Offset modeli ve uygun flat/dark zinciri | Tekrar bias çıkarımı | Çok frame ile düşük gürültü | CMOS pattern değişebilir |
+| Master Dark | Thermal signal, amp glow ve sabit dark yapı | Uyumsuz metadata | Sistematik dark düzeltir | Matching ister |
+| Master Flat | Pixel response, vignetting, dust | Değişmiş optical train | Alan yanıtını düzeltir | Doğru calibration ister |
+| Optimize Master Dark / Dark Scaling | Dark yapısı ölçeklenebiliyorsa | Amp glow gibi ölçeklenmeyen yapı | Exposure farkını modelleyebilir | Artefact riski |
+| Pedestal | Negatif/clipping riskini yönetmek | Siyah nokta aracı olarak | Sayısal pay | Background etkisi |
+| Overscan | Gerçek overscan region varsa | Crop edilmiş data | Frame bias ölçümü | Geometry şart |
+| CFA | Gerçek mosaic data | Mono/debayer edilmiş data | Pattern-aware | Yanlış pattern hatalı |
+| Superbias | Uygun bias yapısı doğrulanmışsa | Evrensel CMOS çözümü olarak | Model avantajı olabilir | Sensör testi gerekir |
 
 ```mermaid
 flowchart LR
- RAW["RAW"] --> CAL["Calibration"]
- CAL --> CC["Cosmetic Correction"]
- CC --> SA["Star Alignment"]
- SA --> LN["Local Normalization"]
- LN --> II["Image Integration"]
- II --> MASTER["Master Image"]
+    light["Light frame"] --> subtract["Bias ve dark düzeltmesi"]
+    bias["Master Bias veya Overscan"] --> subtract
+    dark["Master Dark"] --> subtract
+    subtract --> flatfield["Flat-field düzeltmesi"]
+    flat["Master Flat"] --> flatfield
+    flatfield --> calibrated["Calibrated light"]
 ```
 
 !!! info "Lineer veri"
@@ -39,6 +50,19 @@ flowchart LR
 
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
+
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Dark ve flat frame’lerin sistematik sensör/optik bileşenleri modellemesi. | Kalabilir. |
+| B | Calibrate, Optimize, Pedestal, Overscan ve CFA kontrollerinin kesin 1.9.3 davranışı. | Doğrulama bekliyor. |
+| C | Gain, sıcaklık, exposure ve sensöre göre Master Dark/Flat seçimi. | Kamera ve veri setine bağlıdır. |
+| D | Dark Scaling, Superbias ve calibration formülünün uygulama ayrıntıları. | Birincil kaynak ve ölçümlü test gerekir. |
+
 
 ## Menü yolu
 
@@ -129,7 +153,12 @@ Bias/dark/flat sistematikleri düzeltilmiş lineer light frames.
 
 ```mermaid
 flowchart TD
- A[Calibration kötü] --> B{Flat izi mi?}\n B -- Evet --> C[Master Flat zinciri]\n B -- Hayır --> D{Amp glow mu?}\n D -- Evet --> E[Matching Dark ve Optimize kontrolü]\n D -- Hayır --> F{Clipping mi?}\n F -- Evet --> G[Pedestal ve double subtraction]
+    start["Calibration sonucu sorunlu"] --> flatq{"Flat izi var mı?"}
+    flatq -- "Evet" --> flatcheck["Master Flat zincirini kontrol et"]
+    flatq -- "Hayır" --> darkq{"Dark veya amp glow izi var mı?"}
+    darkq -- "Evet" --> darkcheck["Master Dark eşleşmesini ve Optimize durumunu kontrol et"]
+    darkq -- "Hayır" --> clipq{"Clipping var mı?"}
+    clipq -- "Evet" --> clipcheck["Pedestal ve tekrar subtraction riskini kontrol et"]
 ```
 
 ## İlgili bölümler
@@ -137,4 +166,3 @@ flowchart TD
 - [Pipeline](calibration-pipeline.md)
 - [WBPP](wbpp.md)
 - [CosmeticCorrection](cosmetic-correction.md)
-

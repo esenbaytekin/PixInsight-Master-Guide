@@ -15,12 +15,11 @@ Hot pixel komşularına göre yüksek, cold pixel düşük yanıtlı sabit kusur
 
 ```mermaid
 flowchart LR
- RAW["RAW"] --> CAL["Calibration"]
- CAL --> CC["Cosmetic Correction"]
- CC --> SA["Star Alignment"]
- SA --> LN["Local Normalization"]
- LN --> II["Image Integration"]
- II --> MASTER["Master Image"]
+    calibrated["Calibrated frame"] --> sourceq{"Defect bilgisi nasıl elde edildi?"}
+    sourceq -- "İstatistiksel aday" --> auto["Auto Detect ve Sigma"]
+    sourceq -- "Bilinen koordinat" --> list["Defect List"]
+    auto --> corrected["Corrected frame"]
+    list --> corrected
 ```
 
 !!! info "Lineer veri"
@@ -39,6 +38,19 @@ flowchart LR
 
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
+
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Sabit hot/cold pixel ile transient outlier ayrımı. | Kalabilir. |
+| B | Auto Detect, Sigma, Master Dark ve Defect List’in kesin 1.9.3 davranışı. | Doğrulama bekliyor. |
+| C | Sigma seçimi. | Frame statistics ve gerçek defect örneğine bağlıdır. |
+| D | Sigma yönü ve kullanılan detection/interpolation algoritması. | Birincil kaynak doğrulaması gerekir. |
+
 
 ## Menü yolu
 
@@ -124,7 +136,13 @@ Sabit yerel defect’leri azaltılmış lineer calibrated frames.
 
 ```mermaid
 flowchart TD
- A[Defect kaldı] --> B{Aynı koordinatta tekrarlı mı?}\n B -- Hayır --> C[Integration rejection]\n B -- Evet --> D{Row veya column mı?}\n D -- Evet --> E[Defect List]\n D -- Hayır --> F[Auto Detect test]\n F --> G{Yıldız etkileniyor mu?}\n G -- Evet --> H[Sigma/list düzelt]
+    start["Defect kaldı"] --> repeatq{"Aynı sensör koordinatında tekrarlı mı?"}
+    repeatq -- "Hayır" --> transient["Transient outlier olarak integration rejection'ı değerlendir"]
+    repeatq -- "Evet" --> lineq{"Row veya column defect mi?"}
+    lineq -- "Evet" --> list["Defect List kullan"]
+    lineq -- "Hayır" --> auto["Auto Detect ayarını test et"]
+    auto --> starq{"Gerçek yıldız etkileniyor mu?"}
+    starq -- "Evet" --> revise["Sigma veya Defect List yaklaşımını düzelt"]
 ```
 
 ## İlgili bölümler
@@ -132,4 +150,3 @@ flowchart TD
 - [Pipeline](calibration-pipeline.md)
 - [ImageCalibration](image-calibration.md)
 - [StarAlignment](star-alignment.md)
-
