@@ -1,6 +1,6 @@
 # Gradient Düzeltme
 
-**Durum: Teknik incelemeye hazır — Sprint 2.1**
+**Durum: Yapısal incelemeye hazır — Sprint 2.3**
 
 ## Amaç
 
@@ -48,7 +48,7 @@ flowchart LR
 - Yalnız estetik olarak daha koyu bir arka plan üretmek için
 
 !!! info "Okuma sırası"
-    [Gradient Teorisi](gradient-theory.md) → [Gradient Diagnostics](gradient-diagnostics.md) → [ABE](abe.md) veya [DBE](dbe.md) → [Sample Yerleşimi](sample-placement.md) → [Subtraction ve Division](division-vs-subtraction.md) sırası önerilir.
+    Önce [Gradient Teorisi](gradient-theory.md), [Gradient Diagnostics](gradient-diagnostics.md) ve [Flat-field ile Gradient Ayrımı](flat-field-vs-gradient.md) ile kök nedeni sınıflandırın. Ardından [ABE](abe.md), [DBE](dbe.md), [GradientCorrection](gradient-correction.md) veya [GraXpert](graxpert.md) yaklaşımını değerlendirin. Çevresel tanı için [Ay Işığı](moonlight-gradients.md) ve [Işık Kirliliği](light-pollution-gradients.md) sayfalarını kullanın.
 
 ## Menü yolu
 
@@ -135,6 +135,11 @@ Tam menü grupları: **Doğrulama bekliyor**.
     - [ ] [Sample Yerleşimi](sample-placement.md): sample kalitesi ve coverage
     - [ ] [Subtraction ve Division](division-vs-subtraction.md): correction kabul testi
     - [ ] [Gradient Diagnostics](gradient-diagnostics.md): kök neden ayrımı
+    - [ ] [GradientCorrection](gradient-correction.md): sürüm doğrulaması gereken otomatik model yaklaşımı
+    - [ ] [GraXpert](graxpert.md): haricî araç ve round-trip kontrolü
+    - [ ] [Ay Işığı Gradientleri](moonlight-gradients.md): zaman, yön ve atmosfer tanısı
+    - [ ] [Işık Kirliliği Gradientleri](light-pollution-gradients.md): şehir, horizon ve kanal tanısı
+    - [ ] [Flat-field ve Gradient](flat-field-vs-gradient.md): calibration artefact ayrımı
     - [ ] Calibration ve flat zinciri doğrulandı
     - [ ] Image lineer
     - [ ] Model image gerçek sinyal içermiyor

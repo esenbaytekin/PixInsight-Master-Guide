@@ -27,6 +27,20 @@
   - [ ] Sprint 2.2: Gerçek veri karşılaştırmaları
   - [ ] Sprint 2.2: Görsel entegrasyonu
   - [ ] Sprint 2.2: Teknik editör onayı
+  - [x] Sprint 2.3: GradientCorrection ilk içerik
+  - [x] Sprint 2.3: GraXpert ilk içerik
+  - [x] Sprint 2.3: Ay ışığı gradientleri ilk içerik
+  - [x] Sprint 2.3: Işık kirliliği gradientleri ilk içerik
+  - [x] Sprint 2.3: Flat-field ve gradient ayrımı ilk içerik
+  - [x] Sprint 2.3: Navigation entegrasyonu
+  - [x] Sprint 2.3: Yapısal kontrol
+  - [ ] Sprint 2.3: PixInsight 1.9.3 GradientCorrection sürüm doğrulaması
+  - [ ] Sprint 2.3: GraXpert güncel sürüm ve arayüz doğrulaması
+  - [ ] Sprint 2.3: Birincil kaynak doğrulaması
+  - [ ] Sprint 2.3: Gerçek broadband veri testi
+  - [ ] Sprint 2.3: Gerçek narrowband veri testi
+  - [ ] Sprint 2.3: Görsel entegrasyonu
+  - [ ] Sprint 2.3: Teknik editör onayı
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor

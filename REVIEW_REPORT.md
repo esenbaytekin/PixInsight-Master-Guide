@@ -543,7 +543,6 @@ Dört içerik dosyasında standart başlıklar, en az beş SSS, Quick Reference,
 | gradient-theory.md | Hazır | Birincil kaynak bekliyor | Teori diyagramları hazır | Teknik doğrulama bekliyor |
 | abe.md | Hazır | UI ve DOC doğrulaması bekliyor | ABE ekranları eksik | Teknik doğrulama bekliyor |
 | dbe.md | Hazır | UI, DOC ve DATA doğrulaması bekliyor | Altı kritik görsel eksik | Görsel doğrulama bekliyor |
-+
 ---
 
 # Sprint 2.2 Teknik Review Özeti
@@ -596,3 +595,80 @@ Dört içerik dosyasında standart başlıklar, en az beş SSS, Quick Reference,
 | sample-placement.md | Hazır | UI/DOC/DATA bekliyor | Kritik örnekler eksik | Teknik doğrulama bekliyor |
 | division-vs-subtraction.md | Hazır | DOC/DATA bekliyor | Karşılaştırma eksik | Teknik doğrulama bekliyor |
 | gradient-diagnostics.md | Hazır | DATA doğrulaması bekliyor | Artefact atlası eksik | Görsel doğrulama bekliyor |
+
+---
+
+# Sprint 2.3 Teknik Review Özeti
+
+## İncelenen dosyalar
+
+- `gradient-correction.md`
+- `graxpert.md`
+- `moonlight-gradients.md`
+- `light-pollution-gradients.md`
+- `flat-field-vs-gradient.md`
+- `index.md`
+- `mkdocs.yml`
+
+## Yapısal durum
+
+Beş içerik sayfası ortak başlıkları, en az beş SSS'yi, Quick Reference ve gerçek karar akışı içeren Decision Tree'yi kapsıyor. `GradientCorrection` parametreleri ve menü yolu PixInsight 1.9.3 kurulumu görülmeden ayrıntılandırılmadı. GraXpert sürümü, AI model adı ve değişebilir arayüz alanları sabitlenmedi. Görsel placeholder'ları, ileride eklenecek kanıtın neyi göstermesi gerektiğini tanımlıyor.
+
+## Teknik riskler
+
+- `GradientCorrection` processinin PixInsight 1.9.3 içindeki varlığı, menü yolu ve kontrolleri gerçek kurulumla doğrulanmadı.
+- GraXpert'in güncel arayüzü, dosya formatı seçenekleri ve model davranışı kullanılan sürümde doğrulanmalı.
+- Ay ışığı, ışık kirliliği, airglow, haze ve ince bulut tek bir görüntüden kesin olarak ayrılamayabilir.
+- Broadband/narrowband ve renkli/mono çalışma kararları açıklamalı gerçek veri seti gerektiriyor.
+- Flat-field artefact ile sky gradient aynı görüntüde birlikte bulunabilir; karar matrisi tek başına fiziksel kanıt değildir.
+- Forum iletileri yalnız geliştirici açıklaması açıkça tanımlanabildiğinde teknik bağlam sağlar; üçüncü taraf pratik yorumlar algoritmik gerçek kaynağı sayılmadı.
+
+## Doğrulama matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-3.01 | gradient-correction.md | 1.9.3 process varlığı ve menü yolu | UI-3 | Yüksek | PixInsight 1.9.3 kurulum ekranı | Bekliyor |
+| DOC-3.01 | gradient-correction.md | Background model ve output davranışı | DOC-3 | Yüksek | Resmî process documentation | Bekliyor |
+| DATA-3.01 | gradient-correction.md | Renkli/mono ve ABE/DBE karşılaştırması | DATA-3 | Yüksek | Açıklamalı gerçek veri A/B testi | Bekliyor |
+| IMG-3.01 | gradient-correction.md | Arayüz, model ve residual | IMG-3 | Yüksek | 1.9.3 ekran görüntüsü | Bekliyor |
+| UI-3.02 | graxpert.md | Güncel sürüm ve arayüz alanları | UI-3 | Yüksek | Resmî release ve kurulu uygulama | Bekliyor |
+| DOC-3.02 | graxpert.md | Klasik/AI yöntem ve format desteği | DOC-3 | Yüksek | Resmî dokümantasyon ve release notes | Bekliyor |
+| DATA-3.02 | graxpert.md | Floating-point round-trip ve DBE kıyası | DATA-3 | Yüksek | FITS/XISF/TIFF kontrollü test | Bekliyor |
+| IMG-3.02 | graxpert.md | Arayüz, model, corrected image ve DBE kıyası | IMG-3 | Yüksek | Karşılaştırmalı ekranlar | Bekliyor |
+| UI-3.03 | moonlight-gradients.md | İlgili process kontrolleri | UI-3 | Orta | 1.9.3 arayüz doğrulaması | Bekliyor |
+| DOC-3.03 | moonlight-gradients.md | LocalNormalization ve correction kapsamı | DOC-3 | Yüksek | Resmî process documentation | Bekliyor |
+| DATA-3.03 | moonlight-gradients.md | Ay açısı, haze, filtre ve zaman serisi | DATA-3 | Yüksek | Metadata'lı subframe seti | Bekliyor |
+| IMG-3.03 | moonlight-gradients.md | Ay gradient'i ve haze karşılaştırması | IMG-3 | Yüksek | Zaman/yön açıklamalı görseller | Bekliyor |
+| UI-3.04 | light-pollution-gradients.md | Model processlerinin 1.9.3 arayüzleri | UI-3 | Orta | Kurulu process ekranları | Bekliyor |
+| DOC-3.04 | light-pollution-gradients.md | Color calibration ve extraction ayrımı | DOC-3 | Yüksek | Resmî process documentation | Bekliyor |
+| DATA-3.04 | light-pollution-gradients.md | Broadband/narrowband ve gece farkları | DATA-3 | Yüksek | Aynı alanın çok geceli veri seti | Bekliyor |
+| IMG-3.04 | light-pollution-gradients.md | Şehir, horizon ve kanal gradient'i | IMG-3 | Yüksek | Yön açıklamalı karşılaştırma | Bekliyor |
+| UI-3.05 | flat-field-vs-gradient.md | ImageCalibration menü ve kontrolleri | UI-3 | Yüksek | PixInsight 1.9.3 ekranı | Bekliyor |
+| DOC-3.05 | flat-field-vs-gradient.md | Flat calibration ve Division sınırları | DOC-3 | Yüksek | Resmî calibration/DBE documentation | Bekliyor |
+| DATA-3.05 | flat-field-vs-gradient.md | Flat mismatch, dust, vignetting ve mosaic seam | DATA-3 | Yüksek | Raw/flat/calibrated kontrollü set | Bekliyor |
+| IMG-3.05 | flat-field-vs-gradient.md | Doğru/yanlış flat ve sky gradient ayrımı | IMG-3 | Yüksek | Sensör/gökyüzü koordinat karşılaştırması | Bekliyor |
+
+## Kaynak tablosu
+
+| Kaynak ID | Kaynak türü | Desteklediği iddia | Birincil kaynak mı? | Durum |
+| --- | --- | --- | --- | --- |
+| SRC-3.01 | GraXpert resmî GitHub deposu — https://github.com/Steffenhir/GraXpert/ | Bağımsız açık kaynak proje; klasik interpolation ve AI yaklaşımı | Evet | Kullanıldı; sürüm sabitlenmedi |
+| SRC-3.02 | GraXpert resmî sitesi — https://graxpert.com/ | Haricî gradient removal uygulaması | Evet | Kullanıldı |
+| SRC-3.03 | GraXpert resmî dokümantasyonu — https://graxpert.com/docs/ | Sürüm ve arayüz doğrulaması için hedef kaynak | Evet | Sürüm bazlı inceleme bekliyor |
+| SRC-3.04 | PixInsight geliştirici forumu — https://pixinsight.com/forum/index.php?threads/another-question-about-when-to-use-gradientcorrection.22947/ | Renkli ve mono/kanal bazlı değerlendirmenin veri bağlamına bağlılığı | Evet, geliştirici açıklaması | Kavramsal bağlam kullanıldı |
+| SRC-3.05 | PixInsight geliştirici forumu — https://pixinsight.com/forum/index.php?threads/dbe-symmetries.3065/ | Vignetting'in doğru flat frame'lerle düzeltilmesi gereği | Evet, geliştirici açıklaması | Kavramsal sınır kullanıldı |
+| SRC-3.06 | PixInsight geliştirici forumu — https://pixinsight.com/forum/index.php?threads/if-gradient-correction-diverges-across-your-masters-what-parameters-do-you-tweak-first-to-get-it-to-work.23888/ | GradientCorrection için resmî eğitim serisinin varlığı | Evet, geliştirici açıklaması | 1.9.3 UI kanıtı değildir |
+
+## Dosya bazlı yayın durumu
+
+| Dosya | Yapısal durum | Teknik durum | Görsel durum | Yayına hazırlık |
+| --- | --- | --- | --- | --- |
+| gradient-correction.md | Hazır | 1.9.3 UI ve DOC bekliyor | Arayüz/model eksik | Teknik doğrulama bekliyor |
+| graxpert.md | Hazır | Sürüm, format ve round-trip testi bekliyor | Dört karşılaştırma eksik | Teknik doğrulama bekliyor |
+| moonlight-gradients.md | Hazır | DATA doğrulaması bekliyor | Ay ve haze örnekleri eksik | Gerçek veri bekliyor |
+| light-pollution-gradients.md | Hazır | DOC ve DATA doğrulaması bekliyor | Şehir/horizon örneği eksik | Gerçek veri bekliyor |
+| flat-field-vs-gradient.md | Hazır | DOC ve DATA doğrulaması bekliyor | Flat/dust/vignetting örnekleri eksik | Gerçek veri bekliyor |
+
+## Yayın kararı
+
+Sprint 2.3 sayfaları yapısal olarak teknik incelemeye hazırdır; PixInsight 1.9.3 `GradientCorrection` doğrulaması, GraXpert sürüm/arayüz testi, gerçek broadband/narrowband veri testleri ve planlanan görseller tamamlanmadan “tam teknik doğrulandı” veya nihai yayına hazır olarak işaretlenmemelidir.
