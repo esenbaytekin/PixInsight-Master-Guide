@@ -80,6 +80,39 @@
     - [ ] Teknik editör onayı
     - [ ] Faz 2 yayın onayı
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor
+  - Sprint 3.1 — Color Calibration Foundations:
+    - [x] Color Calibration bölüm girişi
+    - [x] Astronomik renk teorisi
+    - [x] White Balance teorisi
+    - [x] Photometric calibration teorisi
+    - [x] Background neutrality
+    - [x] Color calibration diagnostics
+    - [x] Navigation entegrasyonu
+    - [x] Yapısal kontrol
+    - [ ] PixInsight 1.9.3 UI doğrulaması
+    - [ ] Birincil kaynak doğrulaması
+    - [ ] Broadband gerçek veri testi
+    - [ ] Mono LRGB gerçek veri testi
+    - [ ] OSC gerçek veri testi
+    - [ ] Görsel entegrasyonu
+    - [ ] Mermaid bağımsız render testi
+    - [ ] Teknik editör onayı
+    - Revizyon 1 — Teknik kesinlik ve kavramsal ayrımlar:
+      - [x] Linear image ifadeleri ayrıştırıldı
+      - [x] Process gereksinimi ile önerilen iş akışı ayrıldı
+      - [x] Photometric algoritma kesinlikleri gözden geçirildi
+      - [x] Metadata gereksinimleri sınıflandırıldı
+      - [x] Background neutrality kavramı netleştirildi
+      - [x] Doğru renk terminolojisi ayrıştırıldı
+      - [x] Broadband ve narrowband kapsamları ayrıldı
+      - [x] Diagnostics kök neden yaklaşımı gözden geçirildi
+      - [x] Tekrarlar azaltıldı
+      - [x] Doğrulama matrisi revize edildi
+      - [ ] PixInsight 1.9.3 UI doğrulaması
+      - [ ] Birincil kaynak doğrulaması
+      - [ ] Gerçek veri testleri
+      - [ ] Görsel entegrasyonu
+      - [ ] Teknik editör onayı
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor
 - [ ] Faz 6: M31 tam uygulama — Bekliyor

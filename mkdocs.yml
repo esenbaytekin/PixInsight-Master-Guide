@@ -79,7 +79,13 @@ nav:
     - "Gradient Hata Kartları": 04-gradient/error-cards.md
     - "Gradient Quick Reference": 04-gradient/gradient-quick-reference.md
   - "Renk Kalibrasyonu":
-    - "Renk Kalibrasyonu": 05-renk-kalibrasyonu/index.md
+    - "Color Calibration Giriş": 05-color-calibration/index.md
+    - "Astronomik Renk Teorisi": 05-color-calibration/color-theory.md
+    - "White Balance": 05-color-calibration/white-balance.md
+    - "Photometric Calibration Teorisi": 05-color-calibration/photometric-calibration-theory.md
+    - "Background Neutrality": 05-color-calibration/background-neutrality.md
+    - "Color Calibration Diagnostics": 05-color-calibration/color-calibration-diagnostics.md
+    - "Renk Kalibrasyonu Eski Giriş": 05-renk-kalibrasyonu/index.md
     - "SPCC": 05-renk-kalibrasyonu/spcc.md
     - "PCC": 05-renk-kalibrasyonu/pcc.md
     - "BackgroundNeutralization": 05-renk-kalibrasyonu/background-neutralization.md

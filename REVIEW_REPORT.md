@@ -863,3 +863,108 @@ On altı test gereklidir; birebir yinelenen test yoktur. Kanal testleri model da
 ## Faz 2 genel kararı
 
 **Faz 2 teknik doğrulama bekliyor.** İçerik ve bölüm mimarisi tamamlanmıştır; beş kritik doğrulama engeli nedeniyle genel yayına hazır değildir. Faz 3 içerik çalışması paralel başlayabilir, ancak Faz 2 UI/DOC doğrulama kayıtları kapatılmadan Gradient bölümü “teknik olarak doğrulandı” etiketi almamalıdır.
+
+---
+
+# Sprint 3.1 — Color Calibration Foundations Teknik Review
+
+## Kapsam ve yayın durumu
+
+Altı yeni temel sayfa, mevcut `SPCC`, `PCC` ve `BackgroundNeutralization` taslakları korunarak bunların önüne yerleştirildi. Bu sprint process parametre rehberi değildir. Sabit RGB/background değeri, estetik renk garantisi veya gerçek test sonucu verilmedi.
+
+## Doğrulama matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-5.01 | color-theory.md | Linear/nonlinear ve STF örnek ekranları | UI-5 | Orta | PixInsight 1.9.3 ekranı | Bekliyor |
+| UI-5.02 | white-balance.md | Kamera/OSC ve channel workflow karşılığı | UI-5 | Orta | 1.9.3 ve acquisition metadata | Bekliyor |
+| UI-5.03 | photometric-calibration-theory.md | Solve, catalog ve response alanları | UI-5 | Yüksek | PixInsight 1.9.3 process ekranı/logu | Bekliyor |
+| UI-5.04 | background-neutrality.md | Preview ve neutrality process alanları | UI-5 | Yüksek | 1.9.3 ekranı ve output testi | Bekliyor |
+| UI-5.05 | color-calibration-diagnostics.md | SPCC/PCC hata ve log ekranları | UI-5 | Yüksek | 1.9.3 gerçek hata ekranları | Bekliyor |
+| DOC-5.01 | photometric-calibration-theory.md | Response estimation yaklaşımı | DOC-5 | Kritik | Resmî process documentation | Bekliyor |
+| DOC-5.02 | photometric-calibration-theory.md | Stellar color index kullanımı | DOC-5 | Yüksek | Resmî documentation/catalog tanımı | Bekliyor |
+| DOC-5.03 | white-balance.md | Channel scaling mantığı | DOC-5 | Yüksek | Resmî color calibration documentation | Bekliyor |
+| DOC-5.04 | background-neutrality.md | Background neutrality statistic yaklaşımı | DOC-5 | Kritik | Resmî process documentation | Bekliyor |
+| DOC-5.05 | color-theory.md | Atmospheric extinction ve instrument response | DOC-5 | Yüksek | Akademik/birincil teknik kaynak | Bekliyor |
+| DOC-5.06 | index.md | PixInsight color calibration için linear image gereksinimi | DOC-5 | Kritik | PixInsight 1.9.3 process documentation | Bekliyor |
+| DOC-5.07 | photometric-calibration-theory.md | Plate solving metadata gereksinimleri | DOC-5 | Kritik | 1.9.3 documentation ve solve testi | Bekliyor |
+| DOC-5.08 | photometric-calibration-theory.md | Narrowband photometric calibration sınırı | DOC-5 | Yüksek | Resmî passband/model documentation | Bekliyor |
+| DATA-5.01 | color-theory.md | Mono LRGB ve OSC response zinciri | DATA-5 | Yüksek | Açıklamalı iki acquisition seti | Bekliyor |
+| DATA-5.02 | white-balance.md | Kamera/star/background/photometric referans kıyası | DATA-5 | Yüksek | Aynı broadband master A/B testi | Bekliyor |
+| DATA-5.03 | photometric-calibration-theory.md | Solve, catalog match ve response | DATA-5 | Yüksek | Broadband star field + logs | Bekliyor |
+| DATA-5.04 | background-neutrality.md | Galaxy halo ve diffuse nebula reference | DATA-5 | Yüksek | İki gerçek target ve Preview statistics | Bekliyor |
+| DATA-5.05 | color-calibration-diagnostics.md | Belirti matrisi yeniden üretimi | DATA-5 | Orta | LRGB/OSC/narrowband tanı setleri | Bekliyor |
+| IMG-5.01 | color-theory.md | Spectrum, mono, OSC ve linear/nonlinear | IMG-5 | Yüksek | Dört açıklamalı görsel | Bekliyor |
+| IMG-5.02 | white-balance.md | Referans yaklaşımı özeti | IMG-5 | Düşük | Karşılaştırmalı workflow görseli | Opsiyonel |
+| IMG-5.03 | photometric-calibration-theory.md | Zincir, catalog match ve solve tanısı | IMG-5 | Yüksek | Üç açıklamalı görsel | Bekliyor |
+| IMG-5.04 | background-neutrality.md | Reference, halo, nebula ve black/neutral | IMG-5 | Yüksek | Dört açıklamalı görsel | Bekliyor |
+| IMG-5.05 | color-calibration-diagnostics.md | Clipping ve color cast | IMG-5 | Yüksek | İki açıklamalı görsel | Bekliyor |
+
+## Kritik doğrulanamayan iddialar
+
+- PixInsight 1.9.3 color calibration processlerinin exact lineer image gereksinimi.
+- Photometric response estimation, star rejection ve channel scaling algoritmaları.
+- Plate solving için gerekli/zorunlu metadata alanları ve fallback davranışı.
+- Background neutrality için kullanılan exact statistics ve reference uygulaması.
+- Narrowband passband'lerinin PixInsight photometric modelindeki exact kapsamı.
+
+## Dosya bazlı yayın durumu
+
+| Dosya | Yapısal durum | Teknik durum | Veri/görsel | Yayın hazırlığı |
+| --- | --- | --- | --- | --- |
+| index.md | Hazır | DOC-5 bekliyor | Navigation hazır | Uyarıyla yayımlanabilir |
+| color-theory.md | Hazır | DOC-5 bekliyor | Mono/OSC ve dört görsel bekliyor | Teknik doğrulama bekliyor |
+| white-balance.md | Hazır | DOC/DATA bekliyor | Gerçek kıyas bekliyor | Teknik doğrulama bekliyor |
+| photometric-calibration-theory.md | Hazır | UI/DOC kritik kayıtları bekliyor | Solve/catalog görselleri bekliyor | Teknik doğrulama bekliyor |
+| background-neutrality.md | Hazır | UI/DOC kritik kayıtları bekliyor | Reference testleri bekliyor | Teknik doğrulama bekliyor |
+| color-calibration-diagnostics.md | Hazır | UI/DOC bekliyor | Tanı setleri bekliyor | Gerçek veri bekliyor |
+
+**Sprint 3.1 yapısal olarak teknik incelemeye hazırdır; birincil kaynak, PixInsight 1.9.3 UI, gerçek broadband/LRGB/OSC veri ve görsel doğrulaması tamamlanmadan genel teknik yayına hazır değildir.**
+
+## Sprint 3.1 Revizyon 1 — Teknik kesinlik sonucu
+
+Linear-stage ifadeleri genel astrophotography workflow önerisi olarak yeniden yazıldı; exact gereksinimler dört PixInsight processi için ayrı kaydedildi. Photometric zincir astrometric tanım, source detection, catalog matching, star sample değerlendirmesi, response tahmini, color correction ve doğrulama düzeyinde tutuldu. Algoritmik iç matematik veya rejection kuralı doğrulanmış gibi anlatılmadı.
+
+Metadata; sky position/WCS, image scale ve observation/system context olarak üçe ayrıldı. Geçerli astrometric solution'ın bazı acquisition alanlarından daha doğrudan olabileceği, yanlış metadata'nın eksik metadata'dan daha yanıltıcı olabileceği ve fallback davranışının process/sürüm bağımlı olduğu belirtildi.
+
+`background neutrality` genel kavramı ile `BackgroundNeutralization` processi ayrıldı. Channel medians/robust statistics genel candidate karşılaştırma yöntemleri olarak tutuldu; process algoritması sayılmadı. Broadband stellar color calibration; narrowband normalization, palette mapping, star color reconstruction ve artistic mixing'den ayrıldı.
+
+### Revize konsolide doğrulama tablosu
+
+Eski UI-5/DOC-5/DATA-5/IMG-5 kimlikleri korunmuştur. Aşağıdaki kayıtlar Revizyon 1'in process-bazlı ayrımlarını konsolide eder.
+
+| ID | Ana konu | İlgili dosyalar | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| UI-5-R1.01 | SPCC exact linear-image requirement | index.md, color-calibration-diagnostics.md, spcc.md | UI-5 | Kritik | Kritik | PixInsight 1.9.3 UI ve process documentation | Bekliyor |
+| UI-5-R1.02 | PCC exact linear-image requirement | index.md, color-calibration-diagnostics.md, pcc.md | UI-5 | Kritik | Kritik | PixInsight 1.9.3 UI ve process documentation | Bekliyor |
+| UI-5-R1.03 | ColorCalibration exact linear-image requirement | index.md, white-balance.md | UI-5 | Kritik | Kritik | PixInsight 1.9.3 UI ve process documentation | Bekliyor |
+| UI-5-R1.04 | BackgroundNeutralization exact linear-image requirement | index.md, background-neutrality.md | UI-5 | Kritik | Kritik | PixInsight 1.9.3 UI ve process documentation | Bekliyor |
+| DOC-5-R1.01 | Photometric response estimation | photometric-calibration-theory.md | DOC-5 | Kritik | Kritik | Birincil process documentation | Bekliyor |
+| DOC-5-R1.02 | Source detection, selection ve rejection behavior | photometric-calibration-theory.md | DOC-5 | Kritik | Kritik | Birincil process documentation ve log | Bekliyor |
+| DOC-5-R1.03 | Metadata requirements ve fallback | photometric-calibration-theory.md, color-calibration-diagnostics.md | DOC-5 | Kritik | Kritik | 1.9.3 process documentation ve kontrollü solve | Bekliyor |
+| DOC-5-R1.04 | Background reference statistics | background-neutrality.md | DOC-5 | Kritik | Kritik | BackgroundNeutralization documentation | Bekliyor |
+| DOC-5-R1.05 | Narrowband photometric scope | index.md, white-balance.md, photometric-calibration-theory.md | DOC-5 | Yüksek | Kısmi | SPCC 1.9.3 UI ve passband/model documentation | Bekliyor |
+| DOC-5-R1.06 | Color index interpretation | photometric-calibration-theory.md | DOC-5 | Yüksek | Kısmi | Catalog tanımı ve birincil process documentation | Bekliyor |
+
+### Revizyon yayın engeli özeti
+
+| Sınıf | Sayı | Durum |
+| --- | ---: | --- |
+| Kritik | 8 | Process-bazlı UI ve algoritma doğrulaması bekliyor |
+| Kısmi | 2 | Narrowband kapsamı ve color index yorumu görünür uyarıyla kullanılabilir |
+| Hayır | 0 | Bu konsolide tablo yalnız teknik doğrulama açıklarını içerir |
+
+### Revizyon değişiklik sayımları
+
+| Değişiklik | Sayı |
+| --- | ---: |
+| Azaltılan uzun tekrar | 3 |
+| Değiştirilen linear-image kesinlik/workflow ifadesi | 5 |
+| Bağlamlandırılan “doğru renk” ifadesi | 2 |
+| Düzeltilen background neutrality/gradient veya process karışıklığı | 3 |
+| Düzeltilen metadata zorunluluğu ifadesi | 4 |
+| Yumuşatılan algoritmik kesinlik | 6 |
+| Narrowband kapsam düzeltmesi | 6 |
+| Diagnostics satırı güncellemesi | 26 |
+
+**Revizyon 1 sonrası karar:** Sprint 3.1 yapısal ve kavramsal olarak teknik incelemeye hazırdır. Sekiz kritik process/UI/DOC kaydı kapanmadan genel teknik yayına hazır değildir.
