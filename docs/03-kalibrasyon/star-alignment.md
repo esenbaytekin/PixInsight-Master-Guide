@@ -15,12 +15,12 @@ Registration, target ve reference yıldızlarını eşleştirir, geometrik model
 
 ```mermaid
 flowchart LR
- RAW["RAW"] --> CAL["Calibration"]
- CAL --> CC["Cosmetic Correction"]
- CC --> SA["Star Alignment"]
- SA --> LN["Local Normalization"]
- LN --> II["Image Integration"]
- II --> MASTER["Master Image"]
+    target["Target stars"] --> matching["Star matching"]
+    reference["Reference Image stars"] --> matching
+    matching --> model["Geometric model"]
+    model --> resampling["Interpolation ve resampling"]
+    resampling --> registered["Registered frame"]
+    model --> drizzle["İsteğe bağlı drizzle data"]
 ```
 
 !!! info "Lineer veri"
@@ -39,6 +39,19 @@ flowchart LR
 
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
+
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Registration ortak koordinat sistemine geometrik eşleme yapar. | Kalabilir. |
+| B | Registration model, Interpolation, Distortion Correction ve Generate drizzle data seçeneklerinin 1.9.3 davranışı. | Doğrulama bekliyor. |
+| C | Reference Image ve interpolation seçimi. | Veri setine ve örneklemeye bağlıdır. |
+| D | Distortion modelinin ve interpolation kernel’larının etkisi. | Birincil kaynak ve residual testi gerekir. |
+
 
 ## Menü yolu
 
@@ -128,7 +141,13 @@ Reference geometry’sine resample edilmiş lineer frames ve isteğe bağlı dri
 
 ```mermaid
 flowchart TD
- A[Registration kötü] --> B{Yıldız eşleşmesi var mı?}\n B -- Hayır --> C[Reference ve detection]\n B -- Evet --> D{Köşe residual sistematik mi?}\n D -- Evet --> E{Farklı optik veya mosaic mi?}\n E -- Evet --> F[Distortion Correction test]\n E -- Hayır --> G[Model/interpolation kontrolü]
+    start["Registration sorunlu"] --> matchq{"Yıldız eşleşmesi var mı?"}
+    matchq -- "Hayır" --> detection["Reference Image ve star detection koşullarını incele"]
+    matchq -- "Evet" --> cornerq{"Köşe residual'ları sistematik mi?"}
+    cornerq -- "Evet" --> opticsq{"Farklı optik veya mosaic durumu var mı?"}
+    opticsq -- "Evet" --> distortion["Distortion Correction seçeneğini kontrollü test et"]
+    opticsq -- "Hayır" --> modelcheck["Registration model ve Interpolation seçimini incele"]
+    cornerq -- "Hayır" --> residual["Reference kalitesi ve residual'ları incele"]
 ```
 
 ## İlgili bölümler
@@ -136,4 +155,3 @@ flowchart TD
 - [Pipeline](calibration-pipeline.md)
 - [CosmeticCorrection](cosmetic-correction.md)
 - [ImageIntegration](image-integration.md)
-

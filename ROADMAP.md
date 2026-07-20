@@ -3,6 +3,7 @@
 - [x] Faz 0: Repository ve dokümantasyon altyapısı — Tamamlandı
 - [x] Faz 1A: PixInsight Temelleri — Tamamlandı
 - [x] Faz 1B: Image Calibration Pipeline — Tamamlandı
+  - [x] Revizyon 1: Yapısal temizlik, render düzeltmeleri ve teknik doğrulama ayrıştırması
 - [ ] Faz 1: WBPP, DBE, SPCC — Bekliyor
 - [ ] Faz 2: BlurX, NoiseX, Stretch — Bekliyor
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor

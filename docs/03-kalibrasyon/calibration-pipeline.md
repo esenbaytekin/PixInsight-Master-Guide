@@ -11,7 +11,24 @@ Ham frame’den lineer master image’a uzanan yaşam döngüsünü ana referans
 
 ## Teori
 
-### Calibration Pipeline Nedir?\n\nCalibration Pipeline; acquisition kaynaklı sistematik bileşenleri düzeltir, kusurları giderir, frame’leri ortak geometry’ye taşır ve istatistiksel olarak birleştirir.\n\n### Lineer veri kavramı\n\nLineer data’da sinyal nonlinear stretch ile değiştirilmemiştir. ScreenTransferFunction yalnız display’i etkiler.\n\n### Ham görüntünün yaşam döngüsü\n\n| Aşama | Amaç | Girdi | Çıktı | Sonraki adım |\n| --- | --- | --- | --- | --- |\n| RAW | Ölçümü korumak | Light ve calibration frames | Gruplandırılmış data | Metadata calibration’ı belirler |\n| Calibration | Bias, dark ve flat düzeltmesi | RAW + masters | Calibrated lights | Kusur kontrolü |\n| Cosmetic Correction | Kalan defect’leri düzeltmek | Calibrated lights | Cosmetized lights | Star detection |\n| Star Alignment | Ortak geometry | Cosmetized lights | Registered lights | Pixel stacks |\n| Local Normalization | Frame uyumluluğu | Registered lights | Normalization data | Rejection |\n| Image Integration | SNR ve outlier rejection | Registered stack | Master + maps | Post-processing |
+### Calibration Pipeline Nedir?
+
+Calibration Pipeline; acquisition kaynaklı sistematik bileşenleri düzeltir, kusurları giderir, frame’leri ortak geometry’ye taşır ve istatistiksel olarak birleştirir.
+
+### Lineer veri kavramı
+
+Lineer data’da sinyal nonlinear stretch ile değiştirilmemiştir. ScreenTransferFunction yalnız display’i etkiler.
+
+### Ham görüntünün yaşam döngüsü
+
+| Aşama | Amaç | Girdi | Çıktı | Sonraki adım |
+| --- | --- | --- | --- | --- |
+| RAW | Ölçümü korumak | Light ve calibration frames | Gruplandırılmış data | Metadata calibration’ı belirler |
+| Calibration | Bias, dark ve flat düzeltmesi | RAW + masters | Calibrated lights | Kusur kontrolü |
+| Cosmetic Correction | Kalan defect’leri düzeltmek | Calibrated lights | Cosmetized lights | Star detection |
+| Star Alignment | Ortak geometry | Cosmetized lights | Registered lights | Pixel stacks |
+| Local Normalization | Frame uyumluluğu | Registered lights | Normalization data | Rejection |
+| Image Integration | SNR ve outlier rejection | Registered stack | Master + maps | Post-processing |
 
 ```mermaid
 flowchart LR
@@ -39,6 +56,19 @@ flowchart LR
 
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
+
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Registration ortak geometry oluşturur; pipeline lineer kalır. | Kalabilir. |
+| B | LocalNormalization ve drizzle yardımcılarının 1.9.3 üretim davranışı. | Doğrulama bekliyor. |
+| C | LN kullanım kararı ve reference seçimi. | Veri setine bağlıdır. |
+| D | Normalization’ın rejection üzerindeki etkisi. | Birincil kaynak ve gerçek veri testi gerekir. |
+
 
 ## Menü yolu
 
@@ -124,7 +154,16 @@ Lineer Master Image, rejection maps, loglar ve seçime bağlı normalization/dri
 
 ```mermaid
 flowchart TD
- A[RAW] --> B[ImageCalibration]\n B --> C{Sabit defect kaldı mı?}\n C -- Evet --> D[CosmeticCorrection]\n C -- Hayır --> E[StarAlignment]\n D --> E\n E --> F{LN gerekli mi?}\n F -- Evet --> G[LocalNormalization]\n F -- Hayır --> H[ImageIntegration]\n G --> H\n H --> I[Linear Master Image]
+    raw["RAW frames"] --> cal["ImageCalibration"]
+    cal --> defect{"Sabit defect kaldı mı?"}
+    defect -- "Evet" --> cosmetic["CosmeticCorrection"]
+    defect -- "Hayır" --> align["StarAlignment"]
+    cosmetic --> align
+    align --> lnq{"LocalNormalization gerekli mi?"}
+    lnq -- "Evet" --> ln["LocalNormalization"]
+    lnq -- "Hayır" --> integrate["ImageIntegration"]
+    ln --> integrate
+    integrate --> master["Lineer Master Image"]
 ```
 
 ## İlgili bölümler
@@ -134,4 +173,3 @@ flowchart TD
 - [ImageCalibration](image-calibration.md)
 - [StarAlignment](star-alignment.md)
 - [ImageIntegration](image-integration.md)
-

@@ -11,16 +11,24 @@ Registered frames’i combination, normalization, weighting ve pixel rejection i
 
 ## Teori
 
-Her output koordinatında pixel stack kurulur; normalization ve weights sonrası outlier rejection uygulanır.\n\n| Yöntem | Rol | Sınır |\n| --- | --- | --- |\n| Average | Verimli birleşim | Outlier rejection gerekir |\n| Median | Robust merkez | Average kadar SNR verimli değildir |\n| Winsorized Sigma Clipping | Uç etkisini sınırlar ve sigma clipping yapar | Yeterli frame ve threshold QA |\n| Linear Fit Clipping | Linear fit tabanlı rejection | Stack uygunluğu gerekir |\n| ESD / Generalized ESD | Extreme outlier istatistik testi | 1.9.3 implementation help ile doğrulanmalı |\n| Percentile Clipping | Sıralı uç yüzdeleri reddeder | Küçük sette veri kaybı |
+Her output koordinatında pixel stack kurulur; normalization ve weights sonrası outlier rejection uygulanır.
+
+| Yöntem | Rol | Sınır |
+| --- | --- | --- |
+| Average | Verimli birleşim | Outlier rejection gerekir |
+| Median | Robust merkez | Average kadar SNR verimli değildir |
+| Winsorized Sigma Clipping | Uç etkisini sınırlar ve sigma clipping yapar | Yeterli frame ve threshold QA |
+| Linear Fit Clipping | Linear fit tabanlı rejection | Stack uygunluğu gerekir |
+| ESD / Generalized ESD | Extreme outlier istatistik testi | 1.9.3 implementation help ile doğrulanmalı |
+| Percentile Clipping | Sıralı uç yüzdeleri reddeder | Küçük sette veri kaybı |
 
 ```mermaid
 flowchart LR
- RAW["RAW"] --> CAL["Calibration"]
- CAL --> CC["Cosmetic Correction"]
- CC --> SA["Star Alignment"]
- SA --> LN["Local Normalization"]
- LN --> II["Image Integration"]
- II --> MASTER["Master Image"]
+    frames["Registered frames"] --> normalization["Normalization"]
+    normalization --> weighting["Weighting"]
+    weighting --> rejection["Pixel rejection"]
+    rejection --> combination["Combination"]
+    combination --> outputs["Master ve rejection maps"]
 ```
 
 !!! info "Lineer veri"
@@ -39,6 +47,19 @@ flowchart LR
 
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
+
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Integration register edilmiş pixel stack’leri birleştirir. | Kalabilir. |
+| B | Algoritma adları, seçenekleri, varsayılanları ve output maps’in 1.9.3 davranışı. | Doğrulama bekliyor. |
+| C | Frame sayısına göre rejection/weight seçimi. | Veri setine bağlıdır; kesin eşik verilmez. |
+| D | Average–Median verim farkı ve rejection algoritmalarının istatistiksel davranışı. | Birincil kaynak ve kontrollü test gerekir. |
+
 
 ## Menü yolu
 
@@ -131,7 +152,13 @@ Lineer integrated master; low/high rejection maps; seçime bağlı weight/slope/
 
 ```mermaid
 flowchart TD
- A[Master kötü] --> B{Map gerçek sinyal içeriyor mu?}\n B -- Evet --> C[Normalization, alignment ve thresholds]\n B -- Hayır --> D{Outlier kaldı mı?}\n D -- Evet --> E[Rejection algoritmasını test et]\n D -- Hayır --> F{SNR düşük mü?}\n F -- Evet --> G[Inputs ve weights]\n F -- Hayır --> H[Master kabul]
+    start["Master sorunlu"] --> signalq{"Rejection map gerçek sinyal içeriyor mu?"}
+    signalq -- "Evet" --> signalcheck["Normalization, alignment ve eşikleri kontrol et"]
+    signalq -- "Hayır" --> outlierq{"Master içinde outlier kaldı mı?"}
+    outlierq -- "Evet" --> rejectcheck["Rejection yöntemini veri setinde test et"]
+    outlierq -- "Hayır" --> snrq{"SNR beklenenden düşük mü?"}
+    snrq -- "Evet" --> weightcheck["Input kalite ve weights değerlerini kontrol et"]
+    snrq -- "Hayır" --> accept["Master kabul kontrolüne geç"]
 ```
 
 ## İlgili bölümler
@@ -140,4 +167,3 @@ flowchart TD
 - [WBPP](wbpp.md)
 - [StarAlignment](star-alignment.md)
 - [DBE](../04-gradient/dbe.md)
-

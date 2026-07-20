@@ -4,6 +4,9 @@
 - [ ] Teknik iddialar yerleşik documentation, güvenilir kaynak veya test ile doğrulandı.
 - [ ] Kamera/veri setine özgü öneri genellenmedi.
 - [ ] Belirsiz ayrıntılar **Doğrulama bekliyor**.
+- [ ] İddialar A, B, C veya D sınıfına ayrıldı.
+- [ ] Önemli B ve D iddialarının yakınında doğrulama kutusu var.
+- [ ] Kaynaksız kesin parameter değeri, gain, sıcaklık veya exposure önerisi yok.
 
 ## PixInsight 1.9.3 uyumu
 - [ ] Process/parameter adları 1.9.3 arayüzüyle karşılaştırıldı.
@@ -15,6 +18,8 @@
 
 ## Mermaid
 - [ ] Diyagram anlamlı, syntax katı build’de geçerli.
+- [ ] Node kimlikleri benzersiz ASCII ve etiketler tırnaklı.
+- [ ] Literal kaçış veya HTML satır sonu yok.
 
 ## Quick Reference
 - [ ] Sonda kontrol listesi var ve yalnız doğrulanmış bilgiyi özetliyor.
@@ -41,4 +46,4 @@
 ## Son kabul
 - [ ] `mkdocs build --strict` başarılı.
 - [ ] Kırık bağlantı ve eksik standart bölüm sayısı sıfır.
-
+- [ ] Normal Markdown, tablo, admonition ve Mermaid alanlarında literal satır sonu kaçışı yok.

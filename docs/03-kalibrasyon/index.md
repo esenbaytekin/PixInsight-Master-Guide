@@ -40,6 +40,19 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
++!!! warning "Doğrulama durumu"
+    Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
+
+### Teknik doğrulama sınıflandırması
+
+| Sınıf | İfade grubu | İnceleme işlemi |
+| --- | --- | --- |
+| A | Calibration, registration ve integration farklı işlem amaçlarıdır. | Kalabilir. |
+| B | Tam menü yolları ve LocalNormalization arayüz davranışı. | Doğrulama bekliyor. |
+| C | Kamera ayarı veya exposure tavsiyesi. | Bu sayfada kesin değer verilmez. |
+| D | Sistematik hatanın integration ile giderilemeyeceği. | Kavramsal ifade; kaynak incelemesinde işaretli. |
+
+
 ## Menü yolu
 
 Process arama alanında `Image`; WBPP için `Script > Batch Processing > WeightedBatchPreprocessing`. Kesin menü grubu kurulu 1.9.3 arayüzünden doğrulanmalıdır.
@@ -123,7 +136,11 @@ Her kanal için doğrulanmış lineer master image ve denetim çıktıları.
 
 ```mermaid
 flowchart TD
- A[Master sorunlu] --> B{Tek frame'lerde de var mı?}\n B -- Evet --> C[Calibration veya CosmeticCorrection]\n B -- Hayır --> D{Rejection map temiz mi?}\n D -- Hayır --> E[ImageIntegration ayarlarına dön]\n D -- Evet --> F[LocalNormalization ve gradient kontrolü]
+    start["Master sorunlu"] --> frameq{"Sorun tek frame'lerde de var mı?"}
+    frameq -- "Evet" --> early["ImageCalibration veya CosmeticCorrection aşamasını incele"]
+    frameq -- "Hayır" --> mapq{"Rejection map temiz mi?"}
+    mapq -- "Hayır" --> integration["ImageIntegration ayarlarını incele"]
+    mapq -- "Evet" --> background["LocalNormalization ve gradient ayrımını incele"]
 ```
 
 ## İlgili bölümler
@@ -134,4 +151,3 @@ flowchart TD
 - [CosmeticCorrection](cosmetic-correction.md)
 - [StarAlignment](star-alignment.md)
 - [ImageIntegration](image-integration.md)
-
