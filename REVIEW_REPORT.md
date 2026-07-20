@@ -977,21 +977,21 @@ Eski UI-5/DOC-5/DATA-5/IMG-5 kimlikleri korunmuştur. Aşağıdaki kayıtlar Rev
 
 | ID | Dosya | Konu | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| UI-6.01 | spcc.md | SPCC 1.9.3 menu location | UI-6 | Kritik | Kritik | Gerçek 1.9.3 ekranı | Bekliyor |
+| UI-6.01 | spcc.md | SPCC menu location | UI-6 | Kritik | Kritik | Menü ekranı; sürüm kimliği ayrıca doğrulanmalı | Kısmen doğrulandı |
 | UI-6.02 | spcc.md | Exact linear/nonlinear behavior | UI-6 | Kritik | Kritik | UI + process documentation | Bekliyor |
-| UI-6.03 | spcc.md | Catalog ve white reference options | UI-6 | Kritik | Kritik | UI + clean instance | Bekliyor |
+| UI-6.03 | spcc.md | Catalog ve white reference options | UI-6 | Kritik | Kritik | Etiket/seçim görüldü; açık listeler + clean instance gerekli | Kısmen doğrulandı |
 | UI-6.04 | spcc.md | Sensor database behavior | UI-6 | Kritik | Kritik | UI + controlled lookup | Bekliyor |
-| UI-6.05 | spcc.md | Filter database behavior | UI-6 | Kritik | Kritik | UI + controlled lookup | Bekliyor |
-| UI-6.06 | spcc.md | Background neutralization controls | UI-6 | Yüksek | Kısmi | UI + output test | Bekliyor |
-| UI-6.07 | spcc-narrowband.md | Narrowband controls/models | UI-6 | Kritik | Kritik | UI + primary source | Bekliyor |
-| UI-6.08 | spcc.md | Star rejection controls | UI-6 | Yüksek | Kısmi | UI + log | Bekliyor |
+| UI-6.05 | spcc.md | Filter database behavior | UI-6 | Kritik | Kritik | Filter etiket/seçimleri görüldü; controlled lookup gerekli | Kısmen doğrulandı |
+| UI-6.06 | spcc.md | Background neutralization controls | UI-6 | Yüksek | Kısmi | Section/etiketler görüldü; output testi gerekli | Kısmen doğrulandı |
+| UI-6.07 | spcc-narrowband.md | Narrowband controls/models | UI-6 | Kritik | Kritik | Checkbox etiketi/durumu görüldü; primary source + test gerekli | Kısmen doğrulandı |
+| UI-6.08 | spcc.md | Star rejection controls | UI-6 | Yüksek | Kısmi | Signal Evaluation etiketleri görüldü; log gerekli | Kısmen doğrulandı |
 | DOC-6.01 | spcc.md | Response estimation model | DOC-6 | Kritik | Kritik | Primary process documentation | Bekliyor |
 | DOC-6.02 | spcc-troubleshooting.md | Star detection/rejection behavior | DOC-6 | Kritik | Kritik | Documentation + controlled log | Bekliyor |
 | DOC-6.03 | spcc-prerequisites.md | Metadata fallback behavior | DOC-6 | Kritik | Kritik | Documentation + solve tests | Bekliyor |
 | DOC-6.04 | spcc.md | Log and output behavior | DOC-6 | Yüksek | Kısmi | Full logs + output test | Bekliyor |
 | DATA-6.01 | spcc-broadband.md | Sekiz broadband scenario | DATA-6 | Yüksek | Kısmi | Controlled datasets | Bekliyor |
 | DATA-6.02 | spcc-narrowband.md | Sekiz narrowband scenario | DATA-6 | Yüksek | Kısmi | Controlled datasets | Bekliyor |
-| IMG-6.01 | spcc.md | Main UI ve control groups | IMG-6 | Yüksek | Kısmi | 1.9.3 screenshots | Bekliyor |
+| IMG-6.01 | spcc.md | Main UI ve control groups | IMG-6 | Yüksek | Kısmi | Beş okunabilir UI ekranı | Doğrulandı |
 | IMG-6.02 | spcc-prerequisites.md | WCS ve profiles | IMG-6 | Yüksek | Kısmi | UI/metadata screens | Bekliyor |
 | IMG-6.03 | spcc-broadband.md | LRGB/OSC/M31 outputs | IMG-6 | Yüksek | Kısmi | Before/after/log | Bekliyor |
 | IMG-6.04 | spcc-narrowband.md | Narrowband scope | IMG-6 | Yüksek | Kısmi | UI/scenario comparison | Bekliyor |
@@ -1063,16 +1063,16 @@ Eski UI-6 kayıtları silinmemiştir. Aşağıdaki kayıtlar on iki UI konusunu 
 
 | ID | Konu | İlgili dosyalar | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| UI-6-R1.01 | Menu location | spcc.md | UI-6 | Kritik | Kritik | 1.9.3 menu screenshot | Bekliyor |
-| UI-6-R1.02 | Process section names | spcc.md | UI-6 | Kritik | Kritik | Full 1.9.3 UI capture | Bekliyor |
-| UI-6-R1.03 | Catalog controls | spcc.md | UI-6 | Kritik | Kritik | UI, documentation ve query log | Bekliyor |
-| UI-6-R1.04 | White reference controls | spcc.md | UI-6 | Kritik | Kritik | UI ve controlled output test | Bekliyor |
+| UI-6-R1.01 | Menu location | spcc.md | UI-6 | Kritik | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/07-spcc-process-menu-location.png` | Doğrulandı |
+| UI-6-R1.02 | Process section names | spcc.md | UI-6 | Kritik | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/01-spcc-full-interface.png` | Doğrulandı |
+| UI-6-R1.03 | Catalog controls | spcc.md | UI-6 | Kritik | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/03-spcc-middle-section.png`; query davranışı bekliyor | Kısmen doğrulandı |
+| UI-6-R1.04 | White reference controls | spcc.md | UI-6 | Kritik | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/02-spcc-upper-section.png`; seçenek/anlam bekliyor | Kısmen doğrulandı |
 | UI-6-R1.05 | Sensor profile controls | spcc.md, prerequisites | UI-6 | Kritik | Kritik | UI ve database lookup test | Bekliyor |
-| UI-6-R1.06 | Filter profile controls | spcc.md, prerequisites | UI-6 | Kritik | Kritik | UI ve database lookup test | Bekliyor |
-| UI-6-R1.07 | Background controls | spcc.md, background-neutrality.md | UI-6 | Yüksek | Kritik | UI ve reference/output test | Bekliyor |
-| UI-6-R1.08 | Narrowband controls | spcc-narrowband.md | UI-6 | Kritik | Kritik | UI ve birincil kaynak | Bekliyor |
-| UI-6-R1.09 | Star sample/rejection controls | spcc.md, troubleshooting | UI-6 | Kritik | Kritik | UI ve rejection log | Bekliyor |
-| UI-6-R1.10 | Log and output controls | spcc.md, troubleshooting | UI-6 | Yüksek | Kritik | UI ve tam success/error logları | Bekliyor |
+| UI-6-R1.06 | Filter profile controls | spcc.md, prerequisites | UI-6 | Kritik | Kritik | Etiket/seçimler görüldü; database lookup testi bekliyor | Kısmen doğrulandı |
+| UI-6-R1.07 | Background controls | spcc.md, background-neutrality.md | UI-6 | Yüksek | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/04-spcc-lower-section.png`; output test bekliyor | Kısmen doğrulandı |
+| UI-6-R1.08 | Narrowband controls | spcc-narrowband.md | UI-6 | Kritik | Kritik | Etiket/durum görüldü; birincil kaynak ve test bekliyor | Kısmen doğrulandı |
+| UI-6-R1.09 | Star sample/rejection controls | spcc.md, troubleshooting | UI-6 | Kritik | Kritik | `validation/ui/pi-1.9.3/spcc/screenshots/03-spcc-middle-section.png`; rejection log bekliyor | Kısmen doğrulandı |
+| UI-6-R1.10 | Log and output controls | spcc.md, troubleshooting | UI-6 | Yüksek | Kritik | Output etiketleri görüldü; success/error logları bekliyor | Kısmen doğrulandı |
 | UI-6-R1.11 | Default values | spcc.md | UI-6 | Kritik | Kritik | Temiz 1.9.3 process instance | Bekliyor |
 | UI-6-R1.12 | Exact linear/nonlinear behavior | spcc.md, prerequisites | UI-6 | Kritik | Kritik | Documentation ve controlled input test | Bekliyor |
 
@@ -1220,3 +1220,35 @@ PCC için tek canonical sayfa `docs/05-color-calibration/pcc.md`, bağımsız Ba
 ### Sprint 3.3 yayın kararı
 
 Yapısal entegrasyon tamamlandı. UI-7, DOC-7, DATA-7 ve IMG-7 kayıtları kapanmadan process sayfaları teknik olarak doğrulanmış yayın statüsünde değildir.
+
+## Faz 4.1A — SPCC görsel kanıt doğrulaması
+
+Beş okunabilir ekran görüntüsü `validation/ui/pi-1.9.3/spcc/spcc-evidence-matrix.md` içinde 83 tekil kanıt satırına ayrıldı. Görünen seçimler ve checkbox durumları UI-OBSERVED olarak tutuldu; yeni/resetlenmiş instance kanıtı olmadığı için hiçbir değer default sayılmadı.
+
+| ID | Konu | Eski durum | Yeni durum | Kanıt | Not |
+|---|---|---|---|---|---|
+| UI-6-R1.01 | Menu location | Bekliyor | Doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/07-spcc-process-menu-location.png` | Process → ColorCalibration → SpectrophotometricColorCalibration okunuyor |
+| UI-6-R1.02 | Process section names | Bekliyor | Doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/01-spcc-full-interface.png` | Beş section okunuyor |
+| UI-6-R1.03 | Catalog controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/03-spcc-middle-section.png` | Etiket ve mevcut seçim görülüyor; seçenek listesi/query davranışı bekliyor |
+| UI-6-R1.04 | White reference controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/02-spcc-upper-section.png` | Etiket ve mevcut seçim görülüyor; tüm seçenekler/anlam bekliyor |
+| UI-6-R1.05 | Sensor profile controls | Bekliyor | Bekliyor | Üst section ekranı | Görünen seçimler profile database/fallback davranışını kanıtlamaz |
+| UI-6-R1.06 | Filter profile controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/02-spcc-upper-section.png` | Etiket ve mevcut seçimler görülüyor; database davranışı bekliyor |
+| UI-6-R1.07 | Background controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/04-spcc-lower-section.png` | Section ve etiketler doğrulandı; output testi gerekli |
+| UI-6-R1.08 | Narrowband controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/02-spcc-upper-section.png` | Checkbox etiketi/durumu görülüyor; kapsam/sonuç için kaynak ve veri gerekli |
+| UI-6-R1.09 | Star sample/rejection controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/03-spcc-middle-section.png` | Signal Evaluation etiketleri doğrulandı; rejection log gerekli |
+| UI-6-R1.10 | Log and output controls | Bekliyor | Kısmen doğrulandı | `validation/ui/pi-1.9.3/spcc/screenshots/02-spcc-upper-section.png` | Output etiketleri doğrulandı; console/log yok |
+| UI-6-R1.11 | Default values | Bekliyor | Bekliyor | Beş görselin tamamı | Reset/yeni instance kanıtı yok; doğrulanan default sayısı 0 |
+| UI-6-R1.12 | Exact linear/nonlinear behavior | Bekliyor | Gerçek veri testi gerekli; birincil kaynak gerekli | Görsel kanıt yetersiz | Ekran görüntüsünden davranış çıkarılmadı |
+
+### Kanıt sınıfı özeti
+
+| Sınıf | Kayıt sayısı | Yayın anlamı |
+|---|---:|---|
+| UI-VERIFIED | 41 | Etiket, section, process adı, menü yolu veya kontrol tipi doğrudan okunuyor |
+| UI-PARTIAL | 1 | Sürüm yalnız klasör sınıflandırmasında; ekran içinde görünmüyor |
+| UI-OBSERVED | 35 | Ekran anındaki seçim/değer; default veya davranış değildir |
+| UI-UNVERIFIED | 4 | Default, açık dropdown seçenekleri, tooltip ve console kanıtı yok |
+| DATA-REQUIRED | 1 | Process output/davranışı gerçek veri testi gerektiriyor |
+| DOC-REQUIRED | 1 | Default/algoritmik kontrol anlamları birincil kaynak gerektiriyor |
+
+**Hazırlık kararı:** Process adı, menü yolu, section ve görünür kontrol etiketleri dokümana taşınabilir. Sürüm kimliği, default değerler, dropdown seçeneklerinin tamamı, tooltip, console, linear/nonlinear davranış, fallback ve algoritmik etkiler beklemektedir.

@@ -143,7 +143,7 @@
     - [x] SPCC sorun giderme
     - [x] Navigation entegrasyonu
     - [x] Yapısal kontrol
-    - [ ] PixInsight 1.9.3 SPCC UI doğrulaması
+    - [ ] PixInsight 1.9.3 SPCC UI doğrulaması — menü, section ve görünen etiketler doğrulandı; sürüm/default/davranış bekliyor
     - [ ] SPCC process davranış doğrulaması
     - [ ] Birincil kaynak doğrulaması
     - [ ] Broadband OSC gerçek veri testi
@@ -174,6 +174,18 @@
       - [ ] Gerçek veri testleri
       - [ ] Görsel entegrasyonu
       - [ ] Teknik editör onayı
+    - Faz 4.1A — SPCC görsel kanıt doğrulaması:
+      - [x] Beş SPCC görseli okunabilirlik kontrolünden geçti
+      - [x] SPCC kanıt matrisi oluşturuldu
+      - [x] Process adı ve menü yolu doğrulandı
+      - [x] Section ve kontrol etiketleri doğrulandı
+      - [x] Görülen değerler default değerlerden ayrıldı
+      - [x] UI doğrulama checklist'i güncellendi
+      - [ ] Ekran içi PixInsight 1.9.3 sürüm kanıtı
+      - [ ] Temiz/resetlenmiş instance default kanıtı
+      - [ ] Açılmış dropdown seçenekleri
+      - [ ] Console/log ve kontrollü gerçek veri testleri
+      - [ ] Birincil kaynak doğrulaması
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor
 - [ ] Faz 6: M31 tam uygulama — Bekliyor
