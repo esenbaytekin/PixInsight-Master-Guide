@@ -33,7 +33,8 @@ Color calibration, saturation artırma veya color grading değildir. Kalibrasyon
 4. [Background Neutrality](background-neutrality.md): neutral reference ile gradient ayrımı.
 5. [Color Calibration Diagnostics](color-calibration-diagnostics.md): belirti, kök neden ve ilk kontroller.
 6. [SPCC Ana Referans](spcc.md), [Ön Koşullar](spcc-prerequisites.md), [Broadband](spcc-broadband.md), [Narrowband](spcc-narrowband.md) ve [Sorun Giderme](spcc-troubleshooting.md): Sprint 3.2 process rehberi.
-7. [PCC](../05-renk-kalibrasyonu/pcc.md) ve [BackgroundNeutralization](../05-renk-kalibrasyonu/background-neutralization.md): sonraki process sayfaları.
+7. [PCC](pcc.md): legacy photometric alternatif ve SPCC ile kontrollü karşılaştırma.
+8. [BackgroundNeutralization](background-neutralization-process.md): genel background neutrality kavramından ayrı, gradient correction yerine geçmeyen ve reference seçimi kritik olan process.
 
 ```mermaid
 flowchart LR
@@ -56,6 +57,8 @@ flowchart LR
 | Gradient önce neden incelenir? | [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) |
 | SPCC hangi veride nasıl değerlendirilir? | [SPCC Ana Referans](spcc.md) |
 | SPCC neden çalışmadı? | [SPCC Sorun Giderme](spcc-troubleshooting.md) |
+| PCC hangi legacy ve karşılaştırmalı bağlamda değerlendirilir? | [PCC](pcc.md) |
+| Background reference nasıl seçilir? | [BackgroundNeutralization](background-neutralization-process.md) |
 
 ## Teknik doğrulama durumu
 

@@ -185,4 +185,4 @@ flowchart TD
 - [White Balance](white-balance.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
 - [SPCC](spcc.md)
-- [PCC](../05-renk-kalibrasyonu/pcc.md)
+- [PCC](pcc.md)

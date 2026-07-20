@@ -177,4 +177,4 @@ flowchart TD
 - [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
 - [White Balance](white-balance.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
-- [BackgroundNeutralization](../05-renk-kalibrasyonu/background-neutralization.md)
+- [BackgroundNeutralization](background-neutralization-process.md)

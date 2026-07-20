@@ -1042,15 +1042,15 @@ Canonical Color Calibration dizini `docs/05-color-calibration/` olarak belirlenm
 | --- | --- | --- | --- | --- |
 | `05-renk-kalibrasyonu/index.md` | `05-color-calibration/index.md` | Tam karşılığı mevcut; eski taslak | Repository içi bağlantı canonical'a taşındı; geçmiş URL olası | Canonical dosyaya yönlendirilmelidir |
 | `05-renk-kalibrasyonu/spcc.md` | `05-color-calibration/spcc.md` | Tam karşılığı mevcut; eski taslak | Repository içi bağlantı canonical'a taşındı; geçmiş URL olası | Canonical dosyaya yönlendirilmelidir |
-| `05-renk-kalibrasyonu/pcc.md` | Sprint 3.3 canonical PCC bekliyor | Benzersiz içerik içeriyor; taslak | Evet; navigation ve Color Calibration sayfaları | Korunmalı |
-| `05-renk-kalibrasyonu/background-neutralization.md` | `background-neutrality.md` yalnız teori karşılığıdır; process rehberi değildir | Benzersiz içerik içeriyor; taslak | Evet; navigation ve Color Calibration sayfaları | Korunmalı |
+| `05-renk-kalibrasyonu/pcc.md` | `05-color-calibration/pcc.md` | Tam karşılığı mevcut; yönlendirme | Hayır; yalnız geçmiş URL olası | Canonical dosyaya yönlendirilmiştir |
+| `05-renk-kalibrasyonu/background-neutralization.md` | `05-color-calibration/background-neutralization-process.md` | Tam karşılığı mevcut; yönlendirme | Hayır; yalnız geçmiş URL olası | Canonical dosyaya yönlendirilmiştir |
 
 ### Uygulanan işlem
 
 - Eski `index.md` ve `spcc.md`, geçmiş URL'leri koruyan kısa yönlendirme sayfalarına dönüştürüldü; silinmedi.
-- Eski PCC ve BackgroundNeutralization sayfalarındaki index/SPCC bağlantıları canonical dizine taşındı.
+- Eski PCC ve BackgroundNeutralization taslakları Sprint 3.3'te canonical rehberlere taşındı; legacy sayfalar yönlendirmeye dönüştürüldü.
 - Yeni temel sayfalardaki eski SPCC bağlantıları `05-color-calibration/spcc.md` hedefine güncellendi.
-- PCC ve BackgroundNeutralization yeni process sayfaları oluşana kadar navigation içinde korunur; teorik `background-neutrality.md`, `BackgroundNeutralization` process rehberinin eşdeğeri sayılmaz.
+- PCC ve BackgroundNeutralization navigation hedefleri canonical sayfalardır; teorik `background-neutrality.md`, `BackgroundNeutralization` process rehberinin eşdeğeri sayılmaz.
 - Beş SPCC sayfasında uzun birebir cümle tekrarı bulunmadı. Prerequisite, broadband, narrowband ve troubleshooting kapsamları ana referansa bağlantılı fakat ayrı sorumluluklardadır.
 
 ### Canonical yayın kararı
@@ -1115,3 +1115,108 @@ Her test input state, astrometry, profile context, outputs ve gözlenebilir kan�
 - `spcc-broadband.md`: OSC/mono RGB, Luminance sınırı, broadband tests ve output validation.
 - `spcc-narrowband.md`: SHO/HOO/mixed/starless/dual-band scope ve tests.
 - `spcc-troubleshooting.md`: yalnız kart bazlı symptom, root cause, first check, intervention, validation ve links.
+
+## Sprint 3.3 — PCC ve BackgroundNeutralization incelemesi
+
+### Canonical yayın kararı
+
+PCC için tek canonical sayfa `docs/05-color-calibration/pcc.md`, bağımsız BackgroundNeutralization processi için tek canonical sayfa `docs/05-color-calibration/background-neutralization-process.md` dosyasıdır. `docs/05-renk-kalibrasyonu/` altındaki karşılıklar yalnız geçmiş URL yönlendirmesidir ve navigation dışında tutulur. Background neutrality kavram sayfası process rehberinin ikinci kopyası değildir.
+
+### Ana doğrulama matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Yayın engeli | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| UI-7.PCC.01 | pcc.md | process menu location | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.02 | pcc.md | section names | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.03 | pcc.md | exact linear/nonlinear behavior | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.04 | pcc.md | catalog options | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.05 | pcc.md | white reference controls | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.06 | pcc.md | background controls | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.07 | pcc.md | source detection | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.08 | pcc.md | star rejection | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.09 | pcc.md | metadata fallback | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.10 | pcc.md | default values | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.11 | pcc.md | log/output behavior | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.PCC.12 | pcc.md | PCC/SPCC algorithmic distinction | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.01 | background-neutralization-process.md | process menu location | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.02 | background-neutralization-process.md | section names | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.03 | background-neutralization-process.md | reference controls | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.04 | background-neutralization-process.md | lower/upper range behavior | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.05 | background-neutralization-process.md | target background behavior | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.06 | background-neutralization-process.md | statistics method | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.07 | background-neutralization-process.md | clipping behavior | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.08 | background-neutralization-process.md | exact linear/nonlinear behavior | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.09 | background-neutralization-process.md | default values | UI-7 | Kritik | Kritik | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| UI-7.BN.10 | background-neutralization-process.md | log/output behavior | UI-7 | Yüksek | Kısmi | 1.9.3 UI, log ve kontrollü test | Bekliyor |
+| DOC-7.01 | pcc.md | PCC/SPCC algoritmik ayrımı ve reference model | DOC-7 | Kritik | Kritik | Birincil process dokümantasyonu | Bekliyor |
+| DOC-7.02 | background-neutralization-process.md | İstatistik, range ve channel dönüşümü | DOC-7 | Kritik | Kritik | Birincil process dokümantasyonu | Bekliyor |
+| DATA-7.01 | pcc.md | 10 PCC gerçek veri testi | DATA-7 | Yüksek | Kısmi | Kontrollü test setleri ve loglar | Bekliyor |
+| DATA-7.02 | background-neutralization-process.md | 10 BN gerçek veri testi | DATA-7 | Yüksek | Kısmi | Kontrollü test setleri ve ölçümler | Bekliyor |
+| IMG-7.01 | pcc.md | 11 PCC UI/çıktı görseli | IMG-7 | Yüksek | Kısmi | 1.9.3 ekranları ve test çıktıları | Bekliyor |
+| IMG-7.02 | background-neutralization-process.md | 11 BN UI/çıktı görseli | IMG-7 | Yüksek | Kısmi | 1.9.3 ekranları ve test çıktıları | Bekliyor |
+
+### Gerçek veri test envanteri
+
+| Test ID | Process | Durum |
+| --- | --- | --- |
+| PCC-BB-OSC-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-RGB-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-LRGB-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-M31-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-STARFIELD-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-REFLECTION-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-LOWSTAR-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-GRADIENT-01 | PCC | Gerçek veri bekliyor |
+| PCC-BB-METADATA-01 | PCC | Gerçek veri bekliyor |
+| PCC-COMP-SPCC-01 | PCC | Gerçek veri bekliyor |
+| BN-BB-EMPTYFIELD-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-M31-HALO-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-CIRRUS-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-NEBULA-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-GRADIENT-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-STARFIELD-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-CLIPPING-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-REFLECTION-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-BB-MOONLIGHT-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+| BN-COMP-SPCC-PCC-01 | BackgroundNeutralization | Gerçek veri bekliyor |
+
+### Görsel envanteri
+
+| Görsel ID | Process | Kanıt | Durum |
+| --- | --- | --- | --- |
+| IMG-7.PCC.01 | PCC | PCC ana arayüzü | Görsel eklenecek |
+| IMG-7.PCC.02 | PCC | Astrometry bölümü | Görsel eklenecek |
+| IMG-7.PCC.03 | PCC | Catalog controls | Görsel eklenecek |
+| IMG-7.PCC.04 | PCC | White reference controls | Görsel eklenecek |
+| IMG-7.PCC.05 | PCC | Background controls | Görsel eklenecek |
+| IMG-7.PCC.06 | PCC | Source detection controls | Görsel eklenecek |
+| IMG-7.PCC.07 | PCC | Process log başarı | Görsel eklenecek |
+| IMG-7.PCC.08 | PCC | Process log hata | Görsel eklenecek |
+| IMG-7.PCC.09 | PCC | PCC mono RGB before/after | Görsel eklenecek |
+| IMG-7.PCC.10 | PCC | PCC OSC before/after | Görsel eklenecek |
+| IMG-7.PCC.11 | PCC | PCC ve SPCC karşılaştırması | Görsel eklenecek |
+| IMG-7.BN.01 | BackgroundNeutralization | Process ana arayüzü | Görsel eklenecek |
+| IMG-7.BN.02 | BackgroundNeutralization | Doğru reference preview | Görsel eklenecek |
+| IMG-7.BN.03 | BackgroundNeutralization | Galaxy halo içeren yanlış preview | Görsel eklenecek |
+| IMG-7.BN.04 | BackgroundNeutralization | Cirrus içeren yanlış preview | Görsel eklenecek |
+| IMG-7.BN.05 | BackgroundNeutralization | Nebula içeren yanlış preview | Görsel eklenecek |
+| IMG-7.BN.06 | BackgroundNeutralization | Star halo contamination | Görsel eklenecek |
+| IMG-7.BN.07 | BackgroundNeutralization | Residual gradient | Görsel eklenecek |
+| IMG-7.BN.08 | BackgroundNeutralization | Before/after histogram | Görsel eklenecek |
+| IMG-7.BN.09 | BackgroundNeutralization | Over-neutralization | Görsel eklenecek |
+| IMG-7.BN.10 | BackgroundNeutralization | Clipping örneği | Görsel eklenecek |
+| IMG-7.BN.11 | BackgroundNeutralization | PCC/SPCC öncesi ve sonrası karşılaştırma | Görsel eklenecek |
+
+### Dosya yayın durumu
+
+| Dosya | Yapısal durum | UI durumu | Kaynak durumu | Veri durumu | Görsel durumu | Yayına hazırlık |
+| --- | --- | --- | --- | --- | --- | --- |
+| pcc.md | Hazır | Bekliyor | Bekliyor | 10 test bekliyor | 11 görsel bekliyor | Teknik doğrulama bekliyor |
+| background-neutralization-process.md | Hazır | Bekliyor | Bekliyor | 10 test bekliyor | 11 görsel bekliyor | Teknik doğrulama bekliyor |
+| index.md | Hazır | Uygulanamaz | İç bağlantılar hazır | Uygulanamaz | Uygulanamaz | Yapısal olarak hazır |
+| legacy pcc.md | Yönlendirme | Uygulanamaz | Uygulanamaz | Uygulanamaz | Uygulanamaz | Navigation dışında |
+| legacy background-neutralization.md | Yönlendirme | Uygulanamaz | Uygulanamaz | Uygulanamaz | Uygulanamaz | Navigation dışında |
+
+### Sprint 3.3 yayın kararı
+
+Yapısal entegrasyon tamamlandı. UI-7, DOC-7, DATA-7 ve IMG-7 kayıtları kapanmadan process sayfaları teknik olarak doğrulanmış yayın statüsünde değildir.

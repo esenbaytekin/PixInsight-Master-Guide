@@ -113,6 +113,28 @@
       - [ ] Gerçek veri testleri
       - [ ] Görsel entegrasyonu
       - [ ] Teknik editör onayı
+  - Sprint 3.3 — PhotometricColorCalibration ve BackgroundNeutralization:
+    - [x] PCC legacy taslağı canonical yapıya taşındı
+    - [x] BackgroundNeutralization legacy taslağı canonical yapıya taşındı
+    - [x] Legacy yönlendirme sayfaları oluşturuldu
+    - [x] PCC ana referans içeriği
+    - [x] PCC/SPCC karşılaştırması
+    - [x] PCC troubleshooting
+    - [x] BackgroundNeutralization ana referans içeriği
+    - [x] Background reference seçim rehberi
+    - [x] BackgroundNeutralization troubleshooting
+    - [x] Gerçek veri test matrisleri
+    - [x] Navigation entegrasyonu
+    - [x] Yapısal kontrol
+    - [ ] PixInsight 1.9.3 PCC UI doğrulaması
+    - [ ] PixInsight 1.9.3 BackgroundNeutralization UI doğrulaması
+    - [ ] Birincil kaynak doğrulaması
+    - [ ] PCC gerçek veri testleri
+    - [ ] BackgroundNeutralization gerçek veri testleri
+    - [ ] SPCC/PCC karşılaştırma testi
+    - [ ] Görsel entegrasyonu
+    - [ ] Mermaid bağımsız render testi
+    - [ ] Teknik editör onayı
   - Sprint 3.2 — SpectrophotometricColorCalibration:
     - [x] SPCC ana referans içeriği
     - [x] SPCC ön koşulları

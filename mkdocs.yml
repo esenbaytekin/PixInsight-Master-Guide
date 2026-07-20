@@ -90,8 +90,8 @@ nav:
     - "SPCC Broadband İş Akışı": 05-color-calibration/spcc-broadband.md
     - "SPCC Narrowband Kapsamı": 05-color-calibration/spcc-narrowband.md
     - "SPCC Sorun Giderme": 05-color-calibration/spcc-troubleshooting.md
-    - "PCC": 05-renk-kalibrasyonu/pcc.md
-    - "BackgroundNeutralization": 05-renk-kalibrasyonu/background-neutralization.md
+    - "PCC": 05-color-calibration/pcc.md
+    - "BackgroundNeutralization": 05-color-calibration/background-neutralization-process.md
   - "AI Eklentileri":
     - "AI Eklentileri": 06-ai-eklentileri/index.md
     - "BlurXTerminator": 06-ai-eklentileri/blurxterminator.md

@@ -20,7 +20,7 @@ flowchart LR
     calibration --> validation["Log ve image doğrulama"]
 ```
 
-SPCC ile PCC aynı photometric bağlamı paylaşabilir; SPCC instrument/filter/sensor response ilişkisini daha kapsamlı modellemeyi amaçlayabilir. Exact farklar sürüm documentation'ıyla doğrulanmalıdır. PCC “geçersiz” veya SPCC “üstün” kabul edilmez; PCC ayrıntıları Sprint 3.3 kapsamındadır.
+SPCC ile PCC aynı photometric bağlamı paylaşabilir; SPCC instrument/filter/sensor response ilişkisini daha kapsamlı modellemeyi amaçlayabilir. Exact farklar sürüm documentation'ıyla doğrulanmalıdır. PCC “geçersiz” veya SPCC “üstün” kabul edilmez; ayrıntılı ve tarafsız karşılaştırma [PCC rehberindedir](pcc.md).
 
 Astrometric solution, catalog query ve star detection/matching referans örneklerini kurmaya yardımcı olabilir. Saturated stars, clipping, düşük star density, crowded field, dust extinction, galaxy/nebula dominance ve metadata hatası sonucu sınırlayabilir. Log ve diagnostic mesajları kabul/ret kararının parçasıdır.
 
