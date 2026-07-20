@@ -1,70 +1,181 @@
-# ABE
+# AutomaticBackgroundExtractor (ABE)
 
-**Durum: Taslak**
+**Durum: Teknik incelemeye hazır — Sprint 2.1**
 
 ## Amaç
 
-Bu bölüm, ABE konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+AutomaticBackgroundExtractor ile otomatik background modeli üretmenin çalışma mantığını, avantajlarını, sınırlarını ve farklı hedef türlerinde neden bağlama bağlı değerlendirme gerektiğini açıklamak.
+
+!!! note "Temel yaklaşım"
+    ABE sample yerleşimini kullanıcıya tek tek göstermeden otomatik bir background modeli üretir. Hızlı bir ilk test sağlar; modelin doğru olduğu varsayılmaz.
+
+## Teori
+
+ABE, image içinden otomatik bir background modeli üretmeyi amaçlar ve seçilen `Correction` türüyle bu modeli hedefe uygulayabilir. Otomatik ölçüm ve model üretiminin kesin PixInsight 1.9.3 algoritması **Doğrulama bekliyor**. Gerçek diffuse signal alanın büyük kısmını kapladığında background ile hedef ayrımı zorlaşır.
+
+```mermaid
+flowchart LR
+    image["Lineer image"] --> automatic["Otomatik background ölçümü"]
+    automatic --> function["Function Degree ve smoothing"]
+    function --> model["Model Image"]
+    model --> review{"Model gerçek sinyal içeriyor mu?"}
+    review -- "Evet" --> reject["Modeli reddet veya DBE'ye geç"]
+    review -- "Hayır" --> correction["Correction türünü kontrollü uygula"]
+```
+
+### Avantajları
+
+- Hızlı ilk model ve karşılaştırma sağlar.
+- Otomatik modelin Model Image üzerinden doğrulanabildiği bazı veri setlerinde yeterli olabilir.
+- Model Image ile otomatik tahminin kapsamı incelenebilir.
+- Birçok image üzerinde tutarlı başlangıç testi sunabilir.
+
+### Dezavantajları
+
+- Background ölçümlerinin konumu doğrudan denetlenmez.
+- Galaxy halo, emission/reflection nebula ve IFN gerçek sinyal olarak korunamayabilir.
+- Karmaşık veya lokal gradient’i uygun modellemeyebilir.
+- Function Degree yükseltmek gerçek sinyali modelleme riskini artırabilir.
+- Aynı ayar narrowband ve broadband data’da aynı anlamı taşımayabilir.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Otomatik modelin hızlı ve geri çevrilebilir biçimde sınanacağı ilk testte
+- Background alanı geniş ve gerçek diffuse signal’dan görece ayrılabiliyorsa
+- Model Image açıkça incelenecekse
+- DBE’ye geçmeden önce model karmaşıklığı hakkında fikir edinmek için
+
+### Hedef türüne göre genel yaklaşım
+
+| Hedef/veri | ABE değerlendirmesi | Ana risk |
+| --- | --- | --- |
+| Galaxy | Çevrede geniş gerçek background varsa ilk test olabilir | Dış halo ve tidal yapı |
+| Emission Nebula | Background ayrımı zorsa dikkatli | Zayıf emission’ın modellenmesi |
+| Reflection Nebula | Renkli diffuse yapıda dikkatli | Gerçek yansıma sinyalinin çıkarılması |
+| Narrowband | Kanal başına model değişebilir | Alanı dolduran zayıf emission |
+| Geniş alan | Basit gradient’te test edilebilir | Karmaşık sky structure ve vignetting residual |
+| Küçük gradient | Otomatik model test edilebilir | Modelin gerçek signal’a uyumu |
+| Karmaşık gradient | ABE yine test edilebilir; kabul Model Image’a bağlıdır | Underfitting/yanlış yüzey |
+
+!!! info "Bağlama bağlı seçim"
+    Bu tablo kesin reçete değildir. Kabul kararı Model Image, residual ve gerçek sinyal korunumu üzerinden verilir.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Background’un nerede olduğunu güvenilir biçimde belirlemek mümkün değilse
+- Alanı galaxy halo, emission/reflection nebula veya IFN dolduruyorsa
+- Flat-field calibration hatasını örtmek için
+- Otomatik model incelenmeden batch sonucu üretmek için
+- Karmaşık lokal yansıma veya düzensiz gradient için tek çözüm olarak
 
-## Ön koşullar
+## Menü yolu
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Process adı: `AutomaticBackgroundExtractor`
 
-## PixInsight menü yolu
-
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
 
 ## Parametreler
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+| Parametre | Amaç | Değişiklikte gözlenecek risk |
+| --- | --- | --- |
+| `Correction` | Modelin Subtraction veya Division yaklaşımıyla uygulanması | Yanlış fiziksel model |
+| `Function Degree` | Model esnekliğini etkileyen kontrol | Kesin algoritmik etkisi 1.9.3’te doğrulanmalı; Model Image ile değerlendirilir |
+| `Smoothing Factor` | Model smoothness davranışını etkileyen kontrol | Kesin etkisi 1.9.3’te doğrulanmalı; residual ve gerçek signal korunumu incelenir |
+| `Model Image` | Tahmin edilen background’u ayrı image olarak üretmek | Devre dışıysa model QA kaybolur |
+| `Replace Target` | Düzeltilmiş sonucu target’a yazmak | Orijinal karşılaştırma dalı kaybolabilir |
+| `Replace Background` | Background çıktısının nasıl ele alındığına ilişkin kontrol | Kesin 1.9.3 davranışı doğrulanmalı |
 
-## Uygulama adımları
+!!! warning "Doğrulama durumu"
+    `Smoothing Factor`, `Replace Target` ve `Replace Background` kontrollerinin tam 1.9.3 anlamı ve birbirleriyle etkileşimi yerleşik process documentation ile doğrulanmayı bekliyor.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Adım adım kullanım
 
-## Beklenen sonuç
+1. Calibrated lineer image’ın bir clone’unu oluşturun.
+2. STF ile gradient yönünü ve gerçek diffuse signal bölgelerini belirleyin.
+3. ABE’yi düşük varsayım yüküyle bir başlangıç modeli üretmek amacıyla yapılandırın.
+4. `Model Image` üretimini etkin tutun.
+5. İlk çalışmada orijinal target’ın korunmasını sağlayın.
+6. Model Image’ı yüksek STF ile galaxy halo, nebula ve yıldız çevreleri açısından inceleyin.
+7. Subtraction/Division hipotezini [Gradient Teorisi](gradient-theory.md) ile karşılaştırın; ayrıntılı yöntem karşılaştırmasını Sprint 2.2’ye bırakın.
+8. Düzeltme sonrası STF’yi yeniden hesaplayın.
+9. Model hedef sinyal içeriyorsa sonucu reddedin ve [DBE](dbe.md) değerlendirin.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Gerçek kullanım senaryosu
+
+!!! example "Basit broadband gradient"
+    Küçük bir galaxy’nin çevresinde geniş gerçek background bulunan image’da arka plan değişimi görülür. ABE ile ilk model üretilir. Model Image galaxy’nin dış halosunu içermiyorsa correction clone üzerinde değerlendirilir. Bu senaryo başka galaxy alanlarına otomatik preset oluşturmaz.
 
 ## Sık yapılan hatalar
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+1. ABE sonucunu Model Image incelemeden kabul etmek.
+2. `Function Degree` yükselince sonucun otomatik iyileşeceğini sanmak.
+3. Emission veya reflection nebulosity’yi gradient olarak modellemek.
+4. `Correction` türünü gradient’in kaynağını düşünmeden seçmek.
+5. Replace seçenekleriyle orijinal karşılaştırma görüntüsünü kaybetmek.
+6. Düzeltme sonrası eski STF’yi kullanmak.
 
 ## Sorun giderme
 
-| Belirti | Olası neden | İlk kontrol |
+| Belirti | Olası neden | Eylem |
 | --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Model galaxy halo içeriyor | Otomatik background ayrımı başarısız | Sonucu reddedin; DBE/sample kontrollü yaklaşım |
+| Model nebula içeriyor | Gerçek diffuse signal alanı dolduruyor | ABE’yi kullanmama seçeneğini değerlendirin |
+| Gradient kısmen kaldı | Model complexity yetersiz veya gradient karmaşık | Function Degree’i körlemesine artırmadan model ailesini inceleyin |
+| Yeni koyu/parlak bölgeler | Yanlış correction veya overfitting | Model Image ve correction hipotezine dönün |
+| Sonuç aşırı farklı görünüyor | STF yeniden hesaplanmadı | STF’yi resetleyip yeniden uygulayın |
 
-## Hızlı referans
+## SSS
 
-| Konu | Durum |
+??? question "ABE hangi durumda yeterlidir?"
+    Otomatik modelin Model Image, histogram ve residual üzerinden doğrulanabildiği veri setlerinde yeterli olabilir.
+
+??? question "ABE hangi durumda başarısız olur?"
+    Gerçek diffuse signal alanı doldurduğunda, gradient karmaşık/lokal olduğunda veya otomatik background ayrımı yanlış olduğunda.
+
+??? question "Function Degree için doğru değer nedir?"
+    Evrensel değer yoktur. En basit yeterli model, Model Image ve residual üzerinden değerlendirilir.
+
+??? question "Smoothing Factor noise reduction mıdır?"
+    Background modelinin smoothness kontrolüdür; image noise reduction process’i olarak kullanılmamalıdır. Kesin davranış doğrulanmayı bekliyor.
+
+??? question "Narrowband image’da ABE kullanılabilir mi?"
+    Kullanılabilir; fakat zayıf emission’ın background sanılması riski kanal ve hedefe göre incelenmelidir.
+
+??? question "ABE sonrası DBE yapılır mı?"
+    Otomatik bir sıra kuralı yoktur. ABE modeli reddedilirse DBE bağımsız ve kontrollü alternatif olarak denenebilir.
+
+## Quick Reference
+
+!!! tip "Tek sayfalık kontrol listesi"
+    - [ ] Image lineer ve calibrated
+    - [ ] Otomatik modelin sınanabileceği background alanı var
+    - [ ] Gerçek diffuse signal bölgeleri belirlendi
+    - [ ] En basit yeterli Function Degree
+    - [ ] Model Image üretildi
+    - [ ] Model gerçek sinyal içermiyor
+    - [ ] Correction hipotezi gerekçeli
+    - [ ] STF yeniden hesaplandı
+
+## Decision Tree
+
+```mermaid
+flowchart TD
+    start["Gradient düzeltme gerekiyor"] --> backgroundq{"Yeterli gerçek background var mı?"}
+    backgroundq -- "Hayır" --> uncertain["ABE sonucunu güvenilir kabul etme"]
+    backgroundq -- "Evet" --> model["ABE ile Model Image üret"]
+    model --> signalq{"Model gerçek sinyal içeriyor mu?"}
+    signalq -- "Evet" --> reject["Sonucu reddet ve kontrollü yönteme geç"]
+    signalq -- "Hayır" --> correction["Correction sonucunu clone üzerinde doğrula"]
+```
+
+## Teknik doğrulama durumu
+
+| Sınıf | Durum |
 | --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+| A | Otomatik background model ve overfitting riski sürümden bağımsız |
+| B | Process yolu ve control davranışları **Doğrulama bekliyor** |
+| C | Hedef türlerine kesin preset verilmedi |
+| D | Polynomial ve smoothing uygulama ayrıntıları birincil kaynak gerektirir |
 
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Gradient](index.md)
-- [DBE](dbe.md)
-
+!!! warning "Doğrulama durumu"
+    ABE parametrelerinin kesin PixInsight 1.9.3 tooltip açıklamaları, varsayılan değerleri ve Replace seçeneklerinin output davranışı doğrulanmayı bekliyor.

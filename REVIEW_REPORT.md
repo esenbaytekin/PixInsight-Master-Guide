@@ -428,3 +428,118 @@ FAZ 1B dokümanları kapsam iskeleti ve kavramsal yönlendirme bakımından kull
 4. Kamera metadata’sı açıklanmış en az bir mono ve tercihen bir CFA sample dataset.
 5. Ara frame, statistics, rejection map ve residual karşılaştırmaları.
 6. Markdown ve Mermaid render düzeltmeleri tamamlandı; yeniden oluşmasını önlemek için checklist uygulanması.
+
+---
+
+# Sprint 2.1 Teknik Review Özeti
+
+Sprint 2.1 içerikleri yapısal olarak tamamlanmış; PixInsight 1.9.3 arayüzü, birincil kaynaklar, gerçek veri ve görseller açısından doğrulama kuyruğundadır. Sprint tamamen yayıma hazır değildir.
+
+## İncelenen Dosyalar
+
+- `docs/04-gradient/index.md`
+- `docs/04-gradient/gradient-theory.md`
+- `docs/04-gradient/abe.md`
+- `docs/04-gradient/dbe.md`
+- `mkdocs.yml`
+
+## Yapısal Durum
+
+Dört içerik dosyasında standart başlıklar, en az beş SSS, Quick Reference, Decision Tree ve teknik doğrulama durumu vardır. Dokuz Mermaid bloğu içerikle karşılaştırılmış; karar sonuçları kesin reçete yerine inceleme eylemine yönlendirilmiştir. Giriş sayfasındaki teori tekrarı kısaltılmış, kavramsal temel Gradient Teorisi’ne taşınmıştır.
+
+## Navigation Durumu
+
+`gradient-theory.md`, Gradient navigasyonuna giriş sayfasından sonra eklendi. Sıra: Gradient Bölümüne Giriş, Gradient Teorisi, AutomaticBackgroundExtractor, DynamicBackgroundExtraction ve mevcut diğer gradient sayfaları.
+
+## Teknik Riskler
+
+- Additive ve multiplicative gösterimler kavramsaldır; PixInsight correction algoritmasının eksiksiz tanımı değildir.
+- ABE’nin otomatik background ölçüm ve model üretim algoritması birincil kaynakla doğrulanmalıdır.
+- ABE/DBE control adları, varsayılanları ve etkileşimleri PixInsight 1.9.3 ekranında doğrulanmalıdır.
+- ABE “basit”, DBE “karmaşık” gradient şeklinde mutlak ayrılmamıştır; kabul Model Image ve veri kanıtına bağlıdır.
+- DBE samples gerçek diffuse signal içerirse background model hedef sinyali kaldırabilir.
+- Subtraction ve Division ayrıntılı karşılaştırması Sprint 2.2’ye bırakılmıştır.
+- “Less than three samples were generated” için hiçbir tekil parametre değişikliği garanti çözüm olarak sunulmamıştır.
+
+## Doğrulama Matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-1.01 | index.md | ABE/DBE tam menü yolları | UI-1 | Orta | PixInsight 1.9.3 menü ekranı | Bekliyor |
+| UI-1.02 | abe.md | Function Degree ve Smoothing Factor etiketleri | UI-1 | Yüksek | ABE interface + tooltip | Bekliyor |
+| UI-1.03 | abe.md | Model Image, Replace Target, Replace Background | UI-1 | Yüksek | ABE interface + output testi | Bekliyor |
+| UI-1.04 | dbe.md | Tolerance, Radius, Shadows Relaxation | UI-1 | Yüksek | DBE interface + tooltip | Bekliyor |
+| UI-1.05 | dbe.md | Discard Model, Normalize, Replace Target | UI-1 | Yüksek | DBE interface + output testi | Bekliyor |
+| UI-1.06 | dbe.md | Polynomial Degree, Interpolation ve Correction seçenekleri | UI-1 | Yüksek | DBE interface + process documentation | Bekliyor |
+| DOC-1.01 | gradient-theory.md | Additive ve multiplicative model sınırları | DOC-1 | Yüksek | Resmî background extraction documentation | Bekliyor |
+| DOC-1.02 | gradient-theory.md | Polynomial modelin PixInsight uygulaması | DOC-1 | Yüksek | Resmî ABE/DBE documentation | Bekliyor |
+| DOC-1.03 | gradient-theory.md | Interpolation ve sınır davranışı | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
+| DOC-1.04 | abe.md | Otomatik background ölçüm/model üretimi | DOC-1 | Yüksek | Resmî ABE documentation | Bekliyor |
+| DOC-1.05 | abe.md | Function Degree ve Smoothing Factor algoritmik etkisi | DOC-1 | Yüksek | Resmî ABE documentation | Bekliyor |
+| DOC-1.06 | dbe.md | Sample acceptance ve Tolerance algoritması | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
+| DOC-1.07 | dbe.md | Shadows Relaxation ve Normalize davranışı | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
+| DATA-1.01 | abe.md | Galaxy halo korunumu | DATA-1 | Yüksek | Açıklamalı galaxy dataset A/B testi | Bekliyor |
+| DATA-1.02 | abe.md | Emission/reflection nebula model contamination | DATA-1 | Yüksek | Nebula dataset + Model Image | Bekliyor |
+| DATA-1.03 | abe.md | Narrowband kanal davranışı | DATA-1 | Orta | Ha/OIII/SII ayrı testleri | Bekliyor |
+| DATA-1.04 | dbe.md | Sample coverage ve density etkisi | DATA-1 | Yüksek | Aynı image üzerinde kontrollü sample setleri | Bekliyor |
+| DATA-1.05 | dbe.md | Subtraction ve Division sonuçları | DATA-1 | Yüksek | Clone, STF, histogram ve model karşılaştırması | Sprint 2.2 |
+| DATA-1.06 | dbe.md | Residual gradient ve signal preservation | DATA-1 | Yüksek | Before/after residual ölçümü | Bekliyor |
+| IMG-1.01 | dbe.md | Less than three samples hata mesajı | IMG-1 | Yüksek | 1.9.3 ekran görüntüsü | Bekliyor |
+| IMG-1.02 | dbe.md | Hatalı ve kontrollü sample yerleşimi | IMG-1 | Yüksek | Karşılaştırmalı ekran görüntüsü | Bekliyor |
+| IMG-1.03 | dbe.md | Nebulaya benzeyen Background model | IMG-1 | Yüksek | Target/Model Image yan yana | Bekliyor |
+| IMG-1.04 | dbe.md | Division sonrası aşırı parlama | IMG-1 | Orta | STF + histogram ekranları | Bekliyor |
+| IMG-1.05 | dbe.md | Subtraction sonrası siyah arka plan | IMG-1 | Orta | Eski/yeni STF + histogram | Bekliyor |
+| IMG-1.06 | dbe.md | Residual gradient | IMG-1 | Orta | Before/after/model görüntüleri | Bekliyor |
+
+## Birincil Kaynak Gerektiren İddialar
+
+1. ABE’nin otomatik background ölçümlerini nasıl seçtiği.
+2. ABE `Function Degree` kontrolünün kesin matematiksel etkisi.
+3. ABE `Smoothing Factor` kontrolünün kesin matematiksel etkisi.
+4. DBE `Tolerance` kontrolünün sample acceptance üzerindeki kesin yönü.
+5. DBE `Radius` ölçümünün statistics ve contamination davranışı.
+6. DBE `Shadows Relaxation` kontrolünün algoritmik işlevi.
+7. DBE `Normalize` seçeneğinin target ve kanal seviyelerine etkisi.
+8. DBE `Discard Model` ve `Replace Target` output etkileşimi.
+9. DBE `Polynomial Degree` ve `Interpolation` seçeneklerinin uygulaması.
+10. “Less than three samples were generated” hatasının kesin tetikleme koşulu ve process’in sunduğu öneriler.
+
+## PixInsight 1.9.3 Ekran Doğrulaması Gereken Alanlar
+
+- AutomaticBackgroundExtractor ve DynamicBackgroundExtraction menü yolları
+- ABE parametre etiketleri, varsayılanları ve output seçenekleri
+- DBE sample generation ve model parameter panelleri
+- Tolerance, Radius, Shadows Relaxation, Normalize ve Discard Model tooltip’leri
+- Correction, Polynomial Degree, Interpolation ve Replace Target seçenekleri
+- “Less than three samples were generated” hata metni ve önerileri
+
+## Gerçek Veri Testleri
+
+- Galaxy dış halo korunumu
+- Emission ve reflection nebula contamination
+- Narrowband kanal bazlı ABE modeli
+- Wide-field gradient ve background erişimi
+- DBE sample coverage/density karşılaştırması
+- Subtraction–Division clone karşılaştırması
+- Residual gradient ve gerçek signal preservation
+- ABE ile DBE’nin aynı dataset üzerindeki çelişkisiz kabul testi
+
+## Ekran Görüntüsü Listesi
+
+1. ABE ana arayüzü ve Model Image output’u
+2. DBE ana arayüzü ve sample controls
+3. “Less than three samples were generated” mesajı
+4. Hatalı ve kontrollü sample dağılımı
+5. Nebulaya benzeyen Background model
+6. Division sonrası aşırı parlama
+7. Subtraction sonrası siyah arka plan
+8. Residual gradient before/after/model karşılaştırması
+
+## Dosya Bazlı Yayın Durumu
+
+| Dosya | Yapısal Durum | Teknik Durum | Görsel Durum | Yayına Hazırlık |
+| --- | --- | --- | --- | --- |
+| index.md | Hazır | Genel kavramlar ayrıştırıldı | Yönlendirme görseli opsiyonel | Kısmen hazır |
+| gradient-theory.md | Hazır | Birincil kaynak bekliyor | Teori diyagramları hazır | Teknik doğrulama bekliyor |
+| abe.md | Hazır | UI ve DOC doğrulaması bekliyor | ABE ekranları eksik | Teknik doğrulama bekliyor |
+| dbe.md | Hazır | UI, DOC ve DATA doğrulaması bekliyor | Altı kritik görsel eksik | Görsel doğrulama bekliyor |

@@ -6,6 +6,17 @@
   - [x] Revizyon 1: Yapısal temizlik, render düzeltmeleri ve teknik doğrulama ayrıştırması
 - [ ] Faz 1: WBPP, DBE, SPCC — Bekliyor
 - [ ] Faz 2: BlurX, NoiseX, Stretch — Bekliyor
+  - [x] Sprint 2.1: Gradient Theory ilk içerik
+  - [x] Sprint 2.1: ABE ilk içerik
+  - [x] Sprint 2.1: DBE ilk içerik
+  - [x] Sprint 2.1: Yapısal kontrol
+  - [x] Sprint 2.1: MkDocs navigation entegrasyonu
+  - [x] Sprint 2.1: Teknik risk sınıflandırması
+  - [ ] Sprint 2.1: PixInsight 1.9.3 ekran doğrulaması
+  - [ ] Sprint 2.1: Birincil kaynak doğrulaması
+  - [ ] Sprint 2.1: Gerçek veri testi
+  - [ ] Sprint 2.1: Görsel entegrasyonu
+  - [ ] Sprint 2.1: Teknik editör onayı
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor

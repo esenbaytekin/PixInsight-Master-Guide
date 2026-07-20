@@ -61,9 +61,10 @@ nav:
     - "StarAlignment": 03-kalibrasyon/star-alignment.md
     - "ImageIntegration": 03-kalibrasyon/image-integration.md
   - "Gradient":
-    - "Gradient": 04-gradient/index.md
-    - "ABE": 04-gradient/abe.md
-    - "DBE": 04-gradient/dbe.md
+    - "Gradient Bölümüne Giriş": 04-gradient/index.md
+    - "Gradient Teorisi": 04-gradient/gradient-theory.md
+    - "AutomaticBackgroundExtractor": 04-gradient/abe.md
+    - "DynamicBackgroundExtraction": 04-gradient/dbe.md
     - "GradientCorrection": 04-gradient/gradient-correction.md
     - "Graxpert": 04-gradient/graxpert.md
   - "Renk Kalibrasyonu":
