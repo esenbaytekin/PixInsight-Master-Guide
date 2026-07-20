@@ -4,14 +4,14 @@
 
 ## Amaç
 
-AutomaticBackgroundExtractor ile otomatik background modeli üretmenin çalışma mantığını, avantajlarını, sınırlarını ve farklı hedef türlerinde neden bağlama bağlı değerlendirme gerektiğini açıklamak.
+AutomaticBackgroundExtractor ile otomatik background model üretmenin çalışma mantığını, avantajlarını, sınırlarını ve farklı hedef türlerinde neden bağlama bağlı değerlendirme gerektiğini açıklamak.
 
 !!! note "Temel yaklaşım"
-    ABE sample yerleşimini kullanıcıya tek tek göstermeden otomatik bir background modeli üretir. Hızlı bir ilk test sağlar; modelin doğru olduğu varsayılmaz.
+    ABE sample yerleşimini kullanıcıya tek tek göstermeden otomatik bir background model üretir. Hızlı bir ilk test sağlar; modelin doğru olduğu varsayılmaz.
 
 ## Teori
 
-ABE, image içinden otomatik bir background modeli üretmeyi amaçlar ve seçilen `Correction` türüyle bu modeli hedefe uygulayabilir. Otomatik ölçüm ve model üretiminin kesin PixInsight 1.9.3 algoritması **Doğrulama bekliyor**. Gerçek diffuse signal alanın büyük kısmını kapladığında background ile hedef ayrımı zorlaşır.
+ABE, image içinden otomatik bir background model üretmeyi amaçlar ve seçilen `Correction` türüyle bu modeli hedefe uygulayabilir. Otomatik ölçüm ve model üretiminin kesin PixInsight 1.9.3 algoritması **Doğrulama bekliyor**. Gerçek diffuse signal alanın büyük kısmını kapladığında background ile hedef ayrımı zorlaşır.
 
 ```mermaid
 flowchart LR
@@ -58,7 +58,7 @@ flowchart LR
 | Karmaşık gradient | ABE yine test edilebilir; kabul Model Image’a bağlıdır | Underfitting/yanlış yüzey |
 
 !!! info "Bağlama bağlı seçim"
-    Bu tablo kesin reçete değildir. Kabul kararı Model Image, residual ve gerçek sinyal korunumu üzerinden verilir.
+    Bu tablo kesin reçete değildir. Kabul kararı Model Image, residual ve signal preservation üzerinden verilir.
 
 ## Ne zaman kullanılmaz?
 

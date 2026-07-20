@@ -30,11 +30,11 @@ flowchart LR
     estimate --> corrected["Düzeltilmiş image"]
 ```
 
-### Arka plan modeli nedir?
+### Background model nedir?
 
-Arka plan modeli, gerçek hedef yapısı olmadığı varsayılan ölçümlerden tahmin edilen düzgün veya interpolated yüzeydir. Model, gradient’in kendisiyle aynı olmak zorunda değildir; yalnız verinin ve model varsayımlarının izin verdiği bir tahmindir.
+Background model, gerçek hedef yapısı olmadığı varsayılan ölçümlerden tahmin edilen düzgün veya interpolated yüzeydir. Model, gradient’in kendisiyle aynı olmak zorunda değildir; yalnız verinin ve model varsayımlarının izin verdiği bir tahmindir.
 
-### Gerçek sinyal ve arka plan modeli
+### Gerçek sinyal ve background model
 
 Background sample içine nebula, galaksi halosunun zayıf uzantısı, IFN veya reflection nebulosity girerse model bu gerçek sinyali background sanabilir. Model image’ın hedefe benzemesi bu riskin en güçlü görsel uyarılarındandır.
 

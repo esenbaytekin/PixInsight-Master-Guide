@@ -68,7 +68,7 @@ Bu bir tanı konusudur; tek bir process menü yolu yoktur. Olası modeller için
 
 ## Gerçek kullanım senaryosu
 
-İki gecelik RGB veride ilk gecenin kırmızı kanalında şehir yönüne doğru artış, ikinci gecede ise pusla yayılmış daha geniş bir eğim görülür. Geceler ve kanallar ayrı modellenir; model galaksi halosunu içeriyorsa reddedilir. Birleştirme kararı residual ve gerçek sinyal korumasıyla verilir.
+İki gecelik RGB veride ilk gecenin kırmızı kanalında şehir yönüne doğru artış, ikinci gecede ise pusla yayılmış daha geniş bir eğim görülür. Geceler ve kanallar ayrı modellenir; model galaksi halosunu içeriyorsa reddedilir. Birleştirme kararı residual ve signal preservation kontrolüyle verilir.
 
 ## Sık yapılan hatalar
 
@@ -141,4 +141,3 @@ flowchart TD
 - [Ay Işığı Gradientleri](moonlight-gradients.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
-

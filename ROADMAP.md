@@ -41,6 +41,44 @@
   - [ ] Sprint 2.3: Gerçek narrowband veri testi
   - [ ] Sprint 2.3: Görsel entegrasyonu
   - [ ] Sprint 2.3: Teknik editör onayı
+  - [x] Sprint 2.4: Gerçek iş akışı altyapısı
+  - [x] Sprint 2.4: M31 gradient iş akışı taslağı
+  - [x] Sprint 2.4: NGC 6888 gradient iş akışı taslağı
+  - [x] Sprint 2.4: Gradient hata kartları
+  - [x] Sprint 2.4: Gradient Quick Reference
+  - [x] Sprint 2.4: Navigation entegrasyonu
+  - [x] Sprint 2.4: Yapısal kontrol
+  - [ ] Sprint 2.4: M31 gerçek veri entegrasyonu
+  - [ ] Sprint 2.4: NGC 6888 gerçek veri entegrasyonu
+  - [ ] Sprint 2.4: PixInsight 1.9.3 ekran görüntüleri
+  - [ ] Sprint 2.4: GradientCorrection sürüm doğrulaması
+  - [ ] Sprint 2.4: GraXpert uygulama doğrulaması
+  - [ ] Sprint 2.4: Birincil kaynak doğrulaması
+  - [ ] Sprint 2.4: Mermaid bağımsız render testi
+  - [ ] Sprint 2.4: Teknik editör onayı
+  - [ ] Sprint 2.4: Faz 2 yayın onayı
+  - Faz 2 kapanış incelemesi:
+    - [x] Sprint 2.1 içerik
+    - [x] Sprint 2.2 içerik
+    - [x] Sprint 2.3 içerik
+    - [x] Sprint 2.4 içerik
+    - [x] Navigation tamamlandı
+    - [x] Yapısal inceleme tamamlandı
+    - [x] Terminoloji incelemesi tamamlandı
+    - [x] Sprintler arası çelişki kontrolü tamamlandı
+    - [x] Faz 2 doğrulama matrisi konsolide edildi
+    - [x] Hata kartları denetlendi
+    - [x] Quick Reference denetlendi
+    - [ ] PixInsight 1.9.3 UI doğrulaması
+    - [ ] GradientCorrection sürüm doğrulaması
+    - [ ] GraXpert uygulama doğrulaması
+    - [ ] Birincil kaynak doğrulaması
+    - [ ] M31 gerçek veri testleri
+    - [ ] NGC 6888 gerçek veri testleri
+    - [ ] Görsel entegrasyonu
+    - [ ] Mermaid bağımsız render testi
+    - [ ] Teknik editör onayı
+    - [ ] Faz 2 yayın onayı
 - [ ] Faz 3: LRGB ve HaRGB — Bekliyor
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor

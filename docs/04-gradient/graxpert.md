@@ -90,10 +90,10 @@ flowchart TD
     GraXpert Background model eklenecek; görsel, star halo, galaxy halo veya nebula sinyalinin modele girip girmediğini gösterecek.
 
 !!! example "Görsel eklenecek"
-    GraXpert corrected image eklenecek; görsel, residual gradient, clipping ve gerçek sinyal korumasının nasıl denetlendiğini gösterecek.
+    GraXpert corrected image eklenecek; görsel, residual gradient, clipping ve signal preservation kontrolünün nasıl yapıldığını gösterecek.
 
 !!! example "Görsel eklenecek"
-    Aynı master'ın GraXpert ve DBE sonuçları eklenecek; görsel, araç kazananı değil residual ve sinyal koruma farkını gösterecek.
+    Aynı master'ın GraXpert ve DBE sonuçları eklenecek; görsel, araç kazananı değil residual ve signal preservation farkını gösterecek.
 
 ## Gerçek kullanım senaryosu
 

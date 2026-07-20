@@ -62,7 +62,7 @@ PixInsight 1.9.3 arayüzü görülmeden kontrol etiketleri, varsayılanlar veya 
 | Sample yönetimi | Doğrulama bekliyor | Kullanıcı tek tek sample yerleştirmez | Sample'lar görünür ve düzenlenebilir |
 | Model denetimi | Çıktı olanakları doğrulanmalı | Model Image ile denetlenir | Model görüntüsüyle denetlenir |
 | Kullanım hızı | Veri ve ayara bağlı | Genellikle hızlı başlangıç | Yerleşim nedeniyle daha fazla emek isteyebilir |
-| Karmaşık hedef sinyalinde risk | Model mutlaka denetlenmeli | Otomasyon gerçek sinyali seçebilir | Yanlış sample gerçek sinyali seçebilir |
+| Karmaşık hedef sinyalinde risk | Model kontrolü kritik | Otomasyon gerçek sinyali seçebilir | Yanlış sample gerçek sinyali seçebilir |
 | Tekrarlanabilirlik | Process instance ve sürüme bağlı | Ayarlar kaydedilirse izlenebilir | Sample geometrisi kaydedilirse izlenebilir |
 | Sürüm bağımlılığı | Yüksek; 1.9.3 doğrulanmadı | Arayüz ayrıntıları doğrulanmalı | Arayüz ayrıntıları doğrulanmalı |
 | Gerçek veri doğrulama ihtiyacı | Zorunlu | Zorunlu | Zorunlu |
@@ -160,4 +160,3 @@ flowchart TD
 - [ABE](abe.md)
 - [DBE](dbe.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
-

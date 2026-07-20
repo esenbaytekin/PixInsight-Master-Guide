@@ -672,3 +672,194 @@ Beş içerik sayfası ortak başlıkları, en az beş SSS'yi, Quick Reference ve
 ## Yayın kararı
 
 Sprint 2.3 sayfaları yapısal olarak teknik incelemeye hazırdır; PixInsight 1.9.3 `GradientCorrection` doğrulaması, GraXpert sürüm/arayüz testi, gerçek broadband/narrowband veri testleri ve planlanan görseller tamamlanmadan “tam teknik doğrulandı” veya nihai yayına hazır olarak işaretlenmemelidir.
+
+---
+
+# Sprint 2.4 Teknik Review Özeti
+
+## Yapısal durum
+
+Beş yeni içerik sayfası gerçek veri üretilmiş izlenimi vermeden iş akışı, test prosedürü ve kanıt planı sunuyor. M31 ve NGC 6888 için sekizer test, başlangıçta “Gerçek veri bekliyor” durumundadır. Hata kütüphanesi 30 karttan, Quick Reference bağımsız yazdırılabilir kontrol sayfasından oluşur.
+
+## Doğrulama matrisi
+
+| ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-4.01 | real-workflows.md | Araç ekranları ve model output | UI-4 | Yüksek | PixInsight 1.9.3 ve GraXpert ekranları | Bekliyor |
+| DOC-4.01 | real-workflows.md | Araç seçimi ve correction davranışları | DOC-4 | Yüksek | Birincil process documentation | Bekliyor |
+| DATA-4.01 | real-workflows.md | Uçtan uca workflow karşılaştırması | DATA-4 | Yüksek | Açıklamalı master setleri | Bekliyor |
+| IMG-4.01 | real-workflows.md | Original/Model/Corrected planı | IMG-4 | Yüksek | Eş gösterimli ekranlar | Bekliyor |
+| UI-4.02 | m31-gradient-workflow.md | LRGB process ekranları | UI-4 | Orta | PixInsight 1.9.3 ekranları | Bekliyor |
+| DOC-4.02 | m31-gradient-workflow.md | Kanal/birleşim sırası riskleri | DOC-4 | Yüksek | Birincil kaynak ve kontrollü test | Bekliyor |
+| DATA-4.02 | m31-gradient-workflow.md | Sekiz M31 testi | DATA-4 | Yüksek | Lineer LRGB master seti | Bekliyor |
+| IMG-4.02 | m31-gradient-workflow.md | Sample haritası ve halo kanıtı | IMG-4 | Yüksek | Katmanlı ekran görüntüsü | Bekliyor |
+| UI-4.03 | ngc6888-gradient-workflow.md | DBE/ABE narrowband ekranları | UI-4 | Yüksek | PixInsight 1.9.3 ekranları | Bekliyor |
+| DOC-4.03 | ngc6888-gradient-workflow.md | Subtraction/Division ve sample davranışı | DOC-4 | Yüksek | Birincil process documentation | Bekliyor |
+| DATA-4.03 | ngc6888-gradient-workflow.md | Sekiz NGC 6888 testi | DATA-4 | Yüksek | Lineer Ha/OIII master seti | Bekliyor |
+| IMG-4.03 | ngc6888-gradient-workflow.md | Sample haritası ve OIII koruma | IMG-4 | Yüksek | Katmanlı ekran görüntüsü | Bekliyor |
+| UI-4.04 | error-cards.md | Hata metinleri ve ilgili kontroller | UI-4 | Yüksek | 1.9.3 hata ekranları | Bekliyor |
+| DOC-4.04 | error-cards.md | Kartlardaki neden/eylem ilişkileri | DOC-4 | Yüksek | Birincil dokümantasyon | Bekliyor |
+| DATA-4.04 | error-cards.md | Otuz hata kartı yeniden üretimi | DATA-4 | Yüksek | Kontrollü hata veri setleri | Bekliyor |
+| IMG-4.04 | error-cards.md | Hata atlası | IMG-4 | Yüksek | Belirti/model/correction ekranları | Bekliyor |
+| UI-4.05 | gradient-quick-reference.md | Araç adları ve 1.9.3 karşılığı | UI-4 | Orta | Kurulu arayüz kontrolü | Bekliyor |
+| DOC-4.05 | gradient-quick-reference.md | Kısa karar tabloları | DOC-4 | Yüksek | Önceki DOC-1–DOC-4 kayıtları | Bekliyor |
+| DATA-4.05 | gradient-quick-reference.md | Kontrol listesinin saha testi | DATA-4 | Orta | M31/NGC 6888 uygulaması | Bekliyor |
+| IMG-4.05 | gradient-quick-reference.md | A4 render ve okunabilirlik | IMG-4 | Orta | PDF/print preview | Bekliyor |
+
+## Gerçek veri test envanteri
+
+| Test ID | Target | Kanal | Araç | Kanıtlanacak konu | Gereken dosyalar | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| M31-L-01 | M31 | L | Karşılaştırmalı model | L gradient ve halo | Original/Model/Corrected | Gerçek veri bekliyor |
+| M31-R-01 | M31 | R | Kanal modeli | Red background ve disk | Original/Model/Corrected | Gerçek veri bekliyor |
+| M31-G-01 | M31 | G | Kanal modeli | Green background ve disk | Original/Model/Corrected | Gerçek veri bekliyor |
+| M31-B-01 | M31 | B | Kanal modeli | Blue gradient/reflection | Original/Model/Corrected | Gerçek veri bekliyor |
+| M31-LRGB-01 | M31 | LRGB | Sıra karşılaştırması | Kanal dengesi | İki workflow çıktısı | Gerçek veri bekliyor |
+| M31-HALO-01 | M31 | L/LRGB | Signal preservation | Outer halo | Original/fark/profile | Gerçek veri bekliyor |
+| M31-FLAT-01 | M31 | Raw/flat | Calibration tanısı | Flat ile halo ayrımı | Raw/Flat/Calibrated | Gerçek veri bekliyor |
+| M31-MODEL-01 | M31 | LRGB | Model denetimi | Spiral/disk contamination | Model atlası | Gerçek veri bekliyor |
+| N6888-HA-01 | NGC 6888 | Ha | Kanal modeli | Diffuse Ha | Original/Model/Corrected | Gerçek veri bekliyor |
+| N6888-OIII-01 | NGC 6888 | OIII | Kanal modeli | Zayıf dış kabuk | Original/Model/Corrected | Gerçek veri bekliyor |
+| N6888-SAMPLE-01 | NGC 6888 | Ha/OIII | DBE sample | Filament contamination | Sample haritaları | Gerçek veri bekliyor |
+| N6888-MODEL-01 | NGC 6888 | Ha/OIII | Model denetimi | Nebulaya benzeyen model | Model atlası | Gerçek veri bekliyor |
+| N6888-SUB-01 | NGC 6888 | OIII | Subtraction | Clipping/residual | Original/Model/Corrected/statistics | Gerçek veri bekliyor |
+| N6888-DIV-01 | NGC 6888 | OIII | Division | Parlaklık/noise | Original/Model/Corrected/statistics | Gerçek veri bekliyor |
+| N6888-HOO-01 | NGC 6888 | HOO | Sıra karşılaştırması | Color gradient | İki workflow çıktısı | Gerçek veri bekliyor |
+| N6888-OIII-SIGNAL-01 | NGC 6888 | OIII | Signal preservation | Faint OIII halo | Original/fark/profile | Gerçek veri bekliyor |
+
+## Görsel envanteri
+
+| Görsel ID | Dosya | Açıklama | Gerekli ekran | Önerilen dosya adı | Durum |
+| --- | --- | --- | --- | --- | --- |
+| IMG4-WF-01 | real-workflows.md | Uçtan uca araç karşılaştırması | Original/Model/Corrected | `gradient-real-workflow-comparison-01` | Bekliyor |
+| IMG4-M31-01 | m31-gradient-workflow.md | M31 sample ve koruma katmanları | LRGB sample overlay | `m31-sample-map-01` | Bekliyor |
+| IMG4-M31-02 | m31-gradient-workflow.md | Outer halo signal preservation | Model/fark/profile | `m31-lrgb-gradient-signal-preservation-01` | Bekliyor |
+| IMG4-N68-01 | ngc6888-gradient-workflow.md | Ha/OIII sample katmanları | Ha/OIII overlay | `ngc6888-sample-map-01` | Bekliyor |
+| IMG4-N68-02 | ngc6888-gradient-workflow.md | Faint OIII koruma testi | Original/Model/Corrected | `ngc6888-oiii-dbe-signal-preservation-01` | Bekliyor |
+| IMG4-ERR-01 | error-cards.md | Otuz kart için hata atlası | Belirti/model/ölçüm | `gradient-error-card-atlas-01` | Bekliyor |
+| IMG4-QR-01 | gradient-quick-reference.md | A4 yazdırma kontrolü | Print preview | `gradient-quick-reference-a4-01` | Bekliyor |
+
+## Faz 2 yayın durumu
+
+| Sprint | Yapısal durum | Teknik doğrulama | Veri doğrulaması | Görseller | Durum |
+| --- | --- | --- | --- | --- | --- |
+| Sprint 2.1 | Hazır | UI/DOC bekliyor | Bekliyor | Eksik | Teknik inceleme bekliyor |
+| Sprint 2.2 | Hazır | UI/DOC bekliyor | Bekliyor | Eksik | Teknik inceleme bekliyor |
+| Sprint 2.3 | Hazır | UI/DOC bekliyor | Bekliyor | Eksik | Teknik inceleme bekliyor |
+| Sprint 2.4 | Hazır | UI/DOC bekliyor | 16 test bekliyor | 7 envanter kaydı bekliyor | Yapısal incelemeye hazır |
+
+Faz 2 tamamen yayıma hazır değildir. PixInsight 1.9.3 ekran doğrulaması, birincil kaynak denetimi, 16 gerçek veri testi, görsel entegrasyonu, bağımsız Mermaid render testi ve teknik editör/yayın onayı beklemektedir.
+
+---
+
+# Faz 2 — Gradient Removal Kapanış İncelemesi
+
+## Mimari, terminoloji ve çelişki sonucu
+
+- On yedi Gradient sayfası teori → araçlar → diagnostics → çevresel/calibration ayrımı → gerçek iş akışları → hata kartları → Quick Reference sırasıyla tutarlıdır.
+- `index.md` amacı tüm bölüm kapsamını yansıtacak biçimde genişletildi; navigation içindeki 17 sayfanın tamamına Quick Navigation bağlantısı vardır.
+- Eski “Sprint 2.2’de ele alınacaktır” yönlendirmesi güncel Subtraction/Division bağlantısıyla değiştirildi.
+- `background model`, `Background Model`, `Model Image` ve `signal preservation` yazımları kullanım bağlamına göre standardize edildi. `Background Model`/`Model Image` görünür process çıktısını, lowercase `background model` genel kavramı ifade eder.
+- Hata kartı 4 düşük seviyeli residual belirsizliğine, kart 5 belirgin ve aynı geometrili correction residual'ına ayrıldı.
+- ABE yalnız basit gradient aracı, DBE her zaman üstün veya GraXpert/GradientCorrection doğrulanmış üstün araç olarak sunulmuyor.
+- Subtraction/Division seçimi bağlama ve model kanıtına bağlıdır; Division hiçbir sayfada doğru flat-field calibration'ın eşdeğeri değildir.
+- Doğrudan teknik çelişki bulunmadı. Bir riskli kesinlik ifadesi (`mutlaka`) bağlamsal dile çevrildi.
+- Gerçek M31/NGC 6888 sonucu üretilmiş izlenimi veya hata kartlarında sayısal parametre reçetesi bulunmadı.
+
+## Konsolide doğrulama ve yayın engelleri
+
+Eski UI-1…UI-4, DOC-1…DOC-4, DATA-1…DATA-4 ve IMG-1…IMG-4 kayıtları tarihçe olarak korunmuştur. Aşağıdaki kayıtlar aynı konuları Faz 2 düzeyinde birleştirir.
+
+| ID | Konu | İlgili dosyalar | Öncelik | Doğrulama yöntemi | Yayın engeli mi? | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| UI-GRAD-001 | ABE/DBE kontrol adları, tooltip ve menü yolları | abe.md, dbe.md, sample-placement.md, division-vs-subtraction.md | Kritik | PixInsight 1.9.3 kurulum ekranı ve process documentation | Evet | Bekliyor |
+| UI-GRAD-002 | GradientCorrection varlığı, arayüzü ve parametreleri | gradient-correction.md | Kritik | PixInsight 1.9.3 gerçek kurulum | Evet | Bekliyor |
+| UI-GRAD-003 | GraXpert sürümü, arayüzü ve format seçenekleri | graxpert.md | Yüksek | Güncel resmî release ve kurulu uygulama | Kısmi | Bekliyor |
+| DOC-GRAD-001 | ABE/DBE sample, model ve interpolation davranışı | gradient-theory.md, abe.md, dbe.md, sample-placement.md | Kritik | Resmî process documentation | Evet | Bekliyor |
+| DOC-GRAD-002 | Subtraction, Division, Normalize ve correction uygulaması | division-vs-subtraction.md, dbe.md | Kritik | Resmî process documentation ve kontrollü numeric test | Evet | Bekliyor |
+| DOC-GRAD-003 | Flat-field calibration ile extraction sınırı | flat-field-vs-gradient.md, gradient-diagnostics.md | Kritik | ImageCalibration/DBE resmî dokümantasyonu | Evet | Bekliyor |
+| DOC-GRAD-004 | GradientCorrection, GraXpert ve çevresel tanı kapsamı | gradient-correction.md, graxpert.md, moonlight-gradients.md, light-pollution-gradients.md | Yüksek | Birincil kaynak ve sürüm notları | Kısmi | Bekliyor |
+| DATA-GRAD-001 | M31 LRGB model ve signal preservation | m31-gradient-workflow.md | Yüksek | Sekiz açıklamalı M31 testi | Kısmi | Bekliyor |
+| DATA-GRAD-002 | NGC 6888 Ha/OIII model ve signal preservation | ngc6888-gradient-workflow.md | Yüksek | Sekiz açıklamalı NGC 6888 testi | Kısmi | Bekliyor |
+| DATA-GRAD-003 | Araç/correction karşılaştırması | real-workflows.md, gradient-quick-reference.md | Yüksek | Aynı master üzerinde Original/Model/Corrected | Kısmi | Bekliyor |
+| DATA-GRAD-004 | Calibration, çevresel ve optik artefact ayrımı | gradient-diagnostics.md, flat-field-vs-gradient.md, moonlight-gradients.md | Yüksek | Raw/flat/calibrated ve zaman/yön serileri | Kısmi | Bekliyor |
+| IMG-GRAD-001 | PixInsight 1.9.3 ve GraXpert UI kanıtı | araç sayfaları | Yüksek | Sürüm görünür ekran görüntüleri | Kısmi | Bekliyor |
+| IMG-GRAD-002 | M31/NGC 6888 sample ve model görselleri | iki hedef workflow'u | Yüksek | Katmanlı sample ve üçlü çıktı | Kısmi | Bekliyor |
+| IMG-GRAD-003 | Hata kartı atlası | error-cards.md | Orta | Belirti/model/ölçüm ekranları | Hayır | Bekliyor |
+| IMG-GRAD-004 | Quick Reference A4 görünümü | gradient-quick-reference.md | Düşük | Print preview | Hayır | Bekliyor |
+
+### Yayın engeli özeti
+
+| Sınıf | Sayı | Açıklama |
+| --- | ---: | --- |
+| Kritik yayın engeli | 5 | UI/algoritma/calibration sınırı doğrulanmadan teknik olarak doğrulandı etiketi verilemez |
+| Kısmi yayın engeli | 8 | Görünür uyarıyla taslak/kısmi yayın mümkündür; sürüm, veri veya görsel kanıt bekler |
+| Yayın engeli olmayan eksik | 2 | Hata atlası ve A4 print preview kalite iyileştirmesidir |
+
+## Konsolide gerçek veri testleri
+
+| Test ID | Target | Kanal | Girdi | Yöntem | Kanıtlanacak nokta | Başarı ölçütü | Durum |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| M31-L-01 | M31 | L | Lineer L master | Model karşılaştırması | L gradient ve outer halo ayrımı | Modelde disk/halo izi görülmemesi; residual ile birlikte değerlendirme | Gerçek veri bekliyor |
+| M31-R-01 | M31 | R | Lineer R master | Kanal modeli | Red background ve disk ayrımı | Modelde disk yapısı olmaması; clipping gözlenmemesi | Gerçek veri bekliyor |
+| M31-G-01 | M31 | G | Lineer G master | Kanal modeli | Green background ve disk ayrımı | Model/Corrected kıyasında galaxy yapısının çıkarılmaması | Gerçek veri bekliyor |
+| M31-B-01 | M31 | B | Lineer B master | Kanal modeli | Blue gradient ve reflection ayrımı | Reflection/halo ile geniş gradient geometrisinin ayrılması | Gerçek veri bekliyor |
+| M31-LRGB-01 | M31 | LRGB | Dört kanal ve birleşik master | Sıra karşılaştırması | Kanal bazlı/birleşik model riski | Yeni kanal uyumsuzluğu oluşturmadan residual davranışının belgelenmesi | Gerçek veri bekliyor |
+| M31-HALO-01 | M31 | L/LRGB | Original ve corrected | Fark/profile | Outer halo signal preservation | Farkta halo geometrisi görülmemesi; profile değişiminin kaydı | Gerçek veri bekliyor |
+| M31-FLAT-01 | M31 | Raw/flat/calibrated | Eşleşmiş frame seti | Koordinat tanısı | Flat artefact ile halo ayrımı | Sensör ve gökyüzü koordinatı davranışının ayrılması | Gerçek veri bekliyor |
+| M31-MODEL-01 | M31 | LRGB | Tüm Background Model çıktıları | Model atlası | Spiral/disk contamination | Modellerde spiral, disk ve companion izi görülmemesi | Gerçek veri bekliyor |
+| N6888-HA-01 | NGC 6888 | Ha | Lineer Ha master | Kanal modeli | Diffuse Ha ayrımı | Modelde filament/diffuse Ha görünmemesi | Gerçek veri bekliyor |
+| N6888-OIII-01 | NGC 6888 | OIII | Lineer OIII master | Kanal modeli | Zayıf dış kabuk | Modelde dış kabuk izi görülmemesi; clipping gözlenmemesi | Gerçek veri bekliyor |
+| N6888-SAMPLE-01 | NGC 6888 | Ha/OIII | Sample overlay ve master | Sample seti karşılaştırması | Filament contamination | Sample'ların işaretli gerçek sinyal bölgelerine girmemesi | Gerçek veri bekliyor |
+| N6888-MODEL-01 | NGC 6888 | Ha/OIII | Background Model setleri | Model atlası | Nebulaya benzeyen model | Modelin kabuk/filament geometrisini izlememesi | Gerçek veri bekliyor |
+| N6888-SUB-01 | NGC 6888 | OIII | Original/Model/Corrected | Subtraction testi | Clipping ve residual | Clipping gözlenmeden residual değişiminin ölçülmesi | Gerçek veri bekliyor |
+| N6888-DIV-01 | NGC 6888 | OIII | Original/Model/Corrected | Division testi | Parlaklık ve noise davranışı | Aynı ROI'de noise/parlaklık değişiminin belgelenmesi | Gerçek veri bekliyor |
+| N6888-HOO-01 | NGC 6888 | HOO | Kanal ve birleşik çıktılar | Sıra karşılaştırması | Color gradient ile kanal dengesi | Yeni color gradient oluşup oluşmadığının kanal modelleriyle ayrılması | Gerçek veri bekliyor |
+| N6888-OIII-SIGNAL-01 | NGC 6888 | OIII | Original/corrected/fark/profile | Signal preservation | Faint OIII halo | Fark/profile içinde dış OIII yapısının kayıp belirtisi göstermemesi | Gerçek veri bekliyor |
+
+On altı test gereklidir; birebir yinelenen test yoktur. Kanal testleri model davranışını, HALO/OIII-SIGNAL testleri signal preservation'ı, FLAT testi kök neden ayrımını ve MODEL testleri toplu contamination denetimini kapsar.
+
+## Konsolide görsel envanteri
+
+| Görsel ID | Konu | İlgili dosya | Kanıtlanacak nokta | Gerekli görüntüler | Öncelik | Durum |
+| --- | --- | --- | --- | --- | --- | --- |
+| VIS-GRAD-001 | ABE arayüz ve output | abe.md | 1.9.3 kontrol adları ve Model Image | UI + Original/Model | Kritik | Bekliyor |
+| VIS-GRAD-002 | DBE arayüz ve samples | dbe.md, sample-placement.md | Sample controls ve model ilişkisi | UI + sample overlay + Model | Kritik | Bekliyor |
+| VIS-GRAD-003 | Subtraction/Division | division-vs-subtraction.md | Clipping, parlaklık ve noise kıyası | Original/Model/iki Corrected/statistics | Yüksek | Bekliyor |
+| VIS-GRAD-004 | GradientCorrection | gradient-correction.md | 1.9.3 process varlığı ve gerçek kontroller | Sürüm + UI + output | Kritik | Bekliyor |
+| VIS-GRAD-005 | GraXpert round-trip | graxpert.md | UI, Background, Corrected ve metadata | GraXpert/PixInsight ekranları | Yüksek | Bekliyor |
+| VIS-GRAD-006 | Ay/haze zaman serisi | moonlight-gradients.md | Yön ve zaman değişimi | Subframe serisi + metadata | Orta | Bekliyor |
+| VIS-GRAD-007 | Işık kirliliği | light-pollution-gradients.md | Şehir/horizon ve kanal davranışı | Yön işaretli RGB/kanallar | Orta | Bekliyor |
+| VIS-GRAD-008 | Flat/dust/vignetting | flat-field-vs-gradient.md | Sensör koordinatı ile sky gradient ayrımı | Raw/Flat/Calibrated/rotated | Kritik | Bekliyor |
+| VIS-GRAD-009 | M31 sample haritası | m31-gradient-workflow.md | Disk, halo ve güvenilir background | Katmanlı sample overlay | Yüksek | Bekliyor |
+| VIS-GRAD-010 | M31 halo testi | m31-gradient-workflow.md | Outer halo signal preservation | Original/Model/Corrected/fark | Yüksek | Bekliyor |
+| VIS-GRAD-011 | NGC 6888 sample haritası | ngc6888-gradient-workflow.md | Ha/OIII gerçek sinyal bölgeleri | İki kanal overlay | Yüksek | Bekliyor |
+| VIS-GRAD-012 | NGC 6888 OIII testi | ngc6888-gradient-workflow.md | Faint OIII signal preservation | Original/Model/Corrected/profile | Yüksek | Bekliyor |
+| VIS-GRAD-013 | Hata kartı atlası | error-cards.md | Belirti ile neden ayrımı | Kart bazlı ekran seti | Orta | Bekliyor |
+| VIS-GRAD-014 | Quick Reference A4 | gradient-quick-reference.md | Tek başına okunabilirlik | Print preview | Düşük | Bekliyor |
+
+## Dosya bazlı Faz 2 yayın durumu
+
+| Dosya | Yapısal durum | Teknik doğruluk riski | UI doğrulaması | Kaynak doğrulaması | Veri testi | Görsel durumu | Yayın kararı |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| index.md | Hazır | Düşük | Kısmi | Kısmi | Gerekli değil | Diyagram mevcut | Uyarıyla yayımlanabilir |
+| gradient-theory.md | Hazır | Orta | Gerekli değil | Bekliyor | Kısmi | Teori diyagramı mevcut | Teknik doğrulama bekliyor |
+| abe.md | Hazır | Yüksek | Bekliyor | Bekliyor | Bekliyor | UI/model eksik | Teknik doğrulama bekliyor |
+| dbe.md | Hazır | Yüksek | Bekliyor | Bekliyor | Bekliyor | UI/sample eksik | Teknik doğrulama bekliyor |
+| sample-placement.md | Hazır | Yüksek | Bekliyor | Bekliyor | Bekliyor | Sample setleri eksik | Teknik doğrulama bekliyor |
+| division-vs-subtraction.md | Hazır | Yüksek | Bekliyor | Bekliyor | Bekliyor | Numeric kıyas eksik | Teknik doğrulama bekliyor |
+| gradient-diagnostics.md | Hazır | Orta | Kısmi | Bekliyor | Bekliyor | Artefact atlası eksik | Gerçek veri bekliyor |
+| gradient-correction.md | Hazır | Yüksek | Bekliyor | Bekliyor | Bekliyor | UI/output eksik | Teknik doğrulama bekliyor |
+| graxpert.md | Hazır | Orta | Bekliyor | Kısmi | Bekliyor | Round-trip eksik | Uyarıyla yayımlanabilir |
+| moonlight-gradients.md | Hazır | Orta | Gerekli değil | Bekliyor | Bekliyor | Zaman serisi eksik | Gerçek veri bekliyor |
+| light-pollution-gradients.md | Hazır | Orta | Gerekli değil | Bekliyor | Bekliyor | Yön/kanal örneği eksik | Gerçek veri bekliyor |
+| flat-field-vs-gradient.md | Hazır | Yüksek | Kısmi | Bekliyor | Bekliyor | Calibration seti eksik | Teknik doğrulama bekliyor |
+| real-workflows.md | Hazır | Orta | Kısmi | Bekliyor | Bekliyor | Üçlü kıyas eksik | Gerçek veri bekliyor |
+| m31-gradient-workflow.md | Hazır | Düşük | Gerekli değil | Kısmi | Sekiz test bekliyor | M31 seti eksik | Gerçek veri bekliyor |
+| ngc6888-gradient-workflow.md | Hazır | Düşük | Gerekli değil | Kısmi | Sekiz test bekliyor | Ha/OIII seti eksik | Gerçek veri bekliyor |
+| error-cards.md | Hazır | Orta | Kısmi | Bekliyor | Bekliyor | Hata atlası eksik | Uyarıyla yayımlanabilir |
+| gradient-quick-reference.md | Hazır | Orta | Kısmi | Bekliyor | Bekliyor | A4 kontrolü eksik | Uyarıyla yayımlanabilir |
+
+## Faz 2 genel kararı
+
+**Faz 2 teknik doğrulama bekliyor.** İçerik ve bölüm mimarisi tamamlanmıştır; beş kritik doğrulama engeli nedeniyle genel yayına hazır değildir. Faz 3 içerik çalışması paralel başlayabilir, ancak Faz 2 UI/DOC doğrulama kayıtları kapatılmadan Gradient bölümü “teknik olarak doğrulandı” etiketi almamalıdır.

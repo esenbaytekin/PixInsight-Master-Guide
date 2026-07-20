@@ -94,7 +94,7 @@ Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
 13. Residual gradient, clipping, noise amplification ve signal preservation kontrolü yapın.
 
 !!! info "Sprint kapsamı"
-    Subtraction ve Division yöntemlerinin ayrıntılı karşılaştırması Sprint 2.2’de ele alınacaktır. Bu sprintte seçim; STF, Background model ve histogram ile yapılan temel kabul kontrolüyle sınırlandırılır.
+    Subtraction ve Division yöntemlerinin ayrıntılı karşılaştırması [Subtraction ve Division](division-vs-subtraction.md) sayfasındadır. Seçim; STF, Background Model, histogram ve gerçek veri kabul kontrolüyle değerlendirilir.
 
 ## Gerçek kullanım senaryosu
 

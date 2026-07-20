@@ -1,10 +1,10 @@
 # Gradient Düzeltme
 
-**Durum: Yapısal incelemeye hazır — Sprint 2.3**
+**Durum: Yapısal incelemeye hazır — Sprint 2.4**
 
 ## Amaç
 
-Gradient kavramını flat-field hatasından ayırmak, arka plan modellemenin sınırlarını tanıtmak ve [AutomaticBackgroundExtractor](abe.md) ile [DynamicBackgroundExtraction](dbe.md) arasında bilinçli bir başlangıç seçimi sağlamaktır.
+Gradient kavramını calibration artefact'tan ayırmak; background modellemenin sınırlarını, araç seçeneklerini, diagnostics yaklaşımını ve gerçek iş akışı test planlarını tek okuma yolu içinde sunmaktır.
 
 !!! note "Bölüm kapsamı"
     Bu bölüm PixInsight 1.9.3’ü hedefler. Kesin process kontrolleri, varsayılanlar ve arayüz davranışları kurulu sürümün process documentation’ı ile ayrıca doğrulanmalıdır.
@@ -38,7 +38,7 @@ flowchart LR
 - Lineer master image üzerinde geniş ölçekli arka plan değişimi görüldüğünde
 - Flat-field calibration doğrulandıktan sonra residual gradient kaldığında
 - ABE ve DBE modellerinin kontrol düzeyi, background erişimi ve hedef yapısına göre karşılaştırılması gerektiğinde
-- Model image üzerinden gerçek sinyal kaybı denetlenirken
+- Model Image üzerinden gerçek sinyal kaybı denetlenirken
 
 ## Ne zaman kullanılmaz?
 
@@ -66,10 +66,10 @@ Tam menü grupları: **Doğrulama bekliyor**.
 | Sorunun türü | Additive gradient mi, multiplicative calibration residual’ı mı? | [Gradient Teorisi](gradient-theory.md) |
 | Otomatik model | Otomatik tahmin Model Image ile doğrulanabiliyor mu? | [ABE](abe.md) |
 | Kontrollü model | Background sample’ları elle denetlenmeli mi? | [DBE](dbe.md) |
-| Kabul testi | Model image gerçek sinyale benziyor mu? | [DBE](dbe.md#model-goruntusunun-nebulaya-benzemesi) |
+| Kabul testi | Model Image gerçek sinyale benziyor mu? | [DBE](dbe.md#model-goruntusunun-nebulaya-benzemesi) |
 
 !!! tip "İlk kontrol"
-    Her düzeltmeden önce orijinal image, düzeltilmiş image ve model image aynı inceleme planında karşılaştırılmalıdır.
+    Her düzeltmeden önce orijinal image, düzeltilmiş image ve Model Image aynı inceleme planında karşılaştırılmalıdır.
 
 ## Adım adım kullanım
 
@@ -79,7 +79,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
 4. [Gradient Teorisi](gradient-theory.md) içindeki additive/multiplicative model ayrımını uygulayın.
 5. Basit bir ilk model gerekiyorsa ABE’yi kontrollü test edin.
 6. Sample konumlarını denetlemek gerekiyorsa DBE’ye geçin.
-7. Model image içinde gerçek hedef yapısı bulunup bulunmadığını kontrol edin.
+7. Model Image içinde gerçek hedef yapısı bulunup bulunmadığını kontrol edin.
 8. Düzeltme sonrası STF’yi yeniden hesaplayın; eski STF ile görsel kıyas yapmayın.
 
 ## Gerçek kullanım senaryosu
@@ -90,7 +90,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
 ## Sık yapılan hatalar
 
 1. Gradient ile flat-field sorununu aynı kabul etmek.
-2. Model image’ı incelemeden Replace Target kullanmak.
+2. Model Image’ı incelemeden Replace Target kullanmak.
 3. Nebula veya galaksi halosunu background saymak.
 4. Düzeltme sonrası eski STF ile sonucu yorumlamak.
 5. Her image için aynı correction ve model karmaşıklığını kullanmak.
@@ -120,7 +120,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
 ??? question "Gradient düzeltme lineer image’da mı yapılır?"
     Bu bölüm lineer iş akışını temel alır. Kesin sıra, tüm pipeline ve veri özellikleriyle doğrulanmalıdır.
 
-??? question "Model image neden önemlidir?"
+??? question "Model Image neden önemlidir?"
     Process’in background sandığı yapıyı gösterir; gerçek sinyal modeldeyse overcorrection riski vardır.
 
 ??? question "Gradient tamamen kaybolmalı mı?"
@@ -140,9 +140,14 @@ Tam menü grupları: **Doğrulama bekliyor**.
     - [ ] [Ay Işığı Gradientleri](moonlight-gradients.md): zaman, yön ve atmosfer tanısı
     - [ ] [Işık Kirliliği Gradientleri](light-pollution-gradients.md): şehir, horizon ve kanal tanısı
     - [ ] [Flat-field ve Gradient](flat-field-vs-gradient.md): calibration artefact ayrımı
+    - [ ] [Gerçek İş Akışları](real-workflows.md): modelden karar kaydına üst seviye akış
+    - [ ] [M31 Gradient İş Akışı](m31-gradient-workflow.md): LRGB test ve kanıt planı
+    - [ ] [NGC 6888 Gradient İş Akışı](ngc6888-gradient-workflow.md): Ha/OIII test ve kanıt planı
+    - [ ] [Gradient Hata Kartları](error-cards.md): 30 hızlı teşhis kartı
+    - [ ] [Gradient Quick Reference](gradient-quick-reference.md): yazdırılabilir kontrol sayfası
     - [ ] Calibration ve flat zinciri doğrulandı
     - [ ] Image lineer
-    - [ ] Model image gerçek sinyal içermiyor
+    - [ ] Model Image gerçek sinyal içermiyor
     - [ ] Düzeltme sonrası STF yeniden hesaplandı
 
 ## Decision Tree
@@ -156,7 +161,7 @@ flowchart TD
     signalq -- "Hayır" --> controlq{"Otomatik model güvenilir biçimde denetlenebilir mi?"}
     controlq -- "Evet" --> abe["ABE ile Model Image üret ve incele"]
     controlq -- "Hayır" --> dbe["DBE ile sample kontrollü model değerlendir"]
-    abe --> inspect["Model image'ı incele"]
+    abe --> inspect["Model Image'ı incele"]
     dbe --> inspect
 ```
 

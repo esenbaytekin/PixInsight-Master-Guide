@@ -73,6 +73,11 @@ nav:
     - "Ay Işığı Gradientleri": 04-gradient/moonlight-gradients.md
     - "Işık Kirliliği Gradientleri": 04-gradient/light-pollution-gradients.md
     - "Flat-Field ve Gradient Ayrımı": 04-gradient/flat-field-vs-gradient.md
+    - "Gerçek İş Akışları": 04-gradient/real-workflows.md
+    - "M31 Gradient İş Akışı": 04-gradient/m31-gradient-workflow.md
+    - "NGC 6888 Gradient İş Akışı": 04-gradient/ngc6888-gradient-workflow.md
+    - "Gradient Hata Kartları": 04-gradient/error-cards.md
+    - "Gradient Quick Reference": 04-gradient/gradient-quick-reference.md
   - "Renk Kalibrasyonu":
     - "Renk Kalibrasyonu": 05-renk-kalibrasyonu/index.md
     - "SPCC": 05-renk-kalibrasyonu/spcc.md
