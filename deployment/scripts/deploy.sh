@@ -30,7 +30,7 @@ current_branch="$(git branch --show-current)"
 [[ "$current_branch" == "main" ]] || fail "Deployment checkout main branch üzerinde olmalıdır."
 
 log "origin/main güncelleniyor."
-git fetch --prune origin main
+git fetch --prune --tags origin main
 
 [[ -f .env ]] || log "Uyarı: .env yok; Compose varsayılan certificate resolver değerini kullanacak."
 
