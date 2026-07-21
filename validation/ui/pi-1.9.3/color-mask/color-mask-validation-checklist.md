@@ -18,6 +18,6 @@
 ## Son doğrulama
 
 - [x] Canonical UI notu evidence matrix’e bağlandı.
-- [ ] `mkdocs build --strict` final toplu kontrolde çalıştırılacak.
-- [ ] `git diff --check` final toplu kontrolde çalıştırılacak.
+- [x] `mkdocs build --strict` GitHub Actions ve production Docker build içinde başarılı.
+- [x] `git diff --check` başarılı.
 - [x] Commit ve push yapılmadı.
