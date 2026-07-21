@@ -103,7 +103,7 @@ flowchart TD
 - Amp glow yanlış calibration nedeniyle kalmışsa
 - Flat hatası yalnız DBE ile çözülmeye çalışılıyorsa
 
-!!! example "Görsel eklenecek"
+!!! example "Görsel doğrulama ölçütü"
     Bu bölüm gerçek PixInsight 1.9.3 ekran görüntüsü ve örnek veri ile doğrulanacaktır.
 
 ## Ne zaman kullanılır?
@@ -140,6 +140,20 @@ flowchart TD
 
 !!! example "Calibration sonrası parlak köşe"
     Raw light’ta koyu vignetting görülürken calibrated light’ta parlak köşe oluşuyorsa önce Master Flat eşleşmesi ve calibration zinciri araştırılır. DBE ile parlak köşeyi azaltmak kök nedeni çözmüş sayılmaz.
+
+## Ölçüm planı ve çıktı kabulü
+
+Tanı tek bir stretched görünümle yapılmaz. Aynı STF altında görsel inceleme; köşe/merkez statistics, kanal profilleri, subframe zaman sırası ve calibration master kontrolüyle desteklenmelidir.
+
+| Belirti | İlk hipotez | Ayırıcı test |
+|---|---|---|
+| Sabit dust donut | Flat mismatch | Tek tek calibrated frame ve master flat |
+| Zamanla yön değiştiren parlaklık | Ay ışığı/sky gradient | Zaman, meridian ve Ay yönü dizisi |
+| Registration yönünde çizgili doku | Walking noise | Dither ve frame sırası |
+| Kanalda farklı büyük ölçekli yapı | Filtre/sky response | Kanal bazlı model ve subframe karşılaştırması |
+| Master'da seam | Normalization/mosaic | Alt kümeleri ayrı integrate etme |
+
+Tanı çıktısı “gradient var” cümlesi değil; kaynak hipotezi, onu destekleyen ölçüm, dışlanan alternatifler ve seçilecek correction türüdür.
 
 ## Sık yapılan hatalar
 
@@ -222,4 +236,3 @@ flowchart TD
 - [Sample Yerleşimi](sample-placement.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
 - [ImageCalibration](../03-kalibrasyon/image-calibration.md)
-

@@ -89,11 +89,30 @@ Kanıt dizini: `validation/ui/pi-1.9.3/gradient-correction/screenshots/`. Ayrın
 7. Sonucu ABE, DBE veya işlem görmemiş kopyayla aynı gösterim koşulunda karşılaştırın.
 
 !!! example "UI kanıtı eklendi"
-    Ana process arayüzü ve menü konumu validation dizininde kayıtlıdır. Model/output sonucu ve gerçek veri karşılaştırması hâlâ eklenecektir.
+    Ana process arayüzü ve menü konumu validation dizininde kayıtlıdır. Model/output sonucu ve gerçek veri karşılaştırması hâlâ kayıt altında bulunmalıdırtir.
 
 ## Gerçek kullanım senaryosu
 
 Geniş alan renkli bir master'da calibration sonrası şehir yönüne doğru parlaklık ve renk eğimi kalır. Model görüntüsü galaktik cirrus içeriyorsa sonuç reddedilir; daha korumacı bir model veya kontrollü DBE testi yapılır. Kabul ölçütü arka planın koyuluğu değil, hedef sinyalinin korunması ve residual eğimin azalmasıdır.
+
+## Girdi, çıktı ve değerlendirme matrisi
+
+GradientCorrection, lineer ve calibration bütünlüğü doğrulanmış master üzerinde denenmelidir. Otomatik sonuç, model incelemesi olmadan kabul edilmez.
+
+| Kontrol | Kabul | Red işareti |
+|---|---|---|
+| Model | Yavaş değişen background yapısı | Nebula, galaxy halo veya yıldız izi |
+| Corrected target | Residual azalması ve sinyal korunumu | Siyah clipping veya halo kaybı |
+| Kanal ilişkisi | Açıklanabilir background dengesi | Yeni renk lekeleri veya kanal ayrışması |
+| Tekrarlanabilirlik | Ayar ve çıktı kaydı mevcut | Sonucun hangi ayarla üretildiği belirsiz |
+
+## Önerilen ayar yaklaşımı ve performans
+
+Önce en az müdahaleli model denenir. Model karmaşıklığını yalnız residual gradient ölçümü gerekçelendiriyorsa artırın. ABE, DBE ve GradientCorrection sonuçlarını “daha düz” görünümle değil, model contamination, residual ve signal preservation ölçütleriyle karşılaştırın. Process hızlı çalışsa bile farklı ayarları aynı hedef üzerine art arda uygulamayın; her deneme orijinal lineer master'dan başlamalıdır.
+
+## Workflow position ve ilgili süreçler
+
+[Gradient Diagnostics](gradient-diagnostics.md) sonrasında, color calibration öncesindeki lineer aşamada değerlendirilir. Sample kontrolü gerekiyorsa [DBE](dbe.md), basit otomatik model için [ABE](abe.md), dış uygulama karşılaştırması için [GraXpert](graxpert.md) kullanılabilir.
 
 ## Sık yapılan hatalar
 

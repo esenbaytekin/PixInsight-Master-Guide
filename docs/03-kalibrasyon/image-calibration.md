@@ -54,7 +54,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -100,6 +100,37 @@ Process arama alanında `ImageCalibration`; WBPP için `Script > Batch Processin
 
 !!! example "Saha örneği"
     Regulated mono CMOS setinde aynı gain/offset/binning/temperature/exposure Master Dark kullanılır. Amp glow nedeniyle Optimize kapalı test edilir. Her filter doğru calibrated Master Flat ile eşleştirilir.
+
+## Girdi gereksinimleri ve master frame stratejisi
+
+| Girdi | Eşleşmesi gereken özellikler | Kontrol |
+|---|---|---|
+| Light | Kamera modu, gain/offset, binning, geometri | Metadata ve dimensions |
+| Master Dark | Sensör modu, sıcaklık ve mümkünse poz süresi | Glow ve residual karşılaştırması |
+| Master Flat | Filtre, kamera açısı, fokus/optik tren ve geometri | Dust shadow ve köşe profili |
+| Master Bias | Okuma modu, gain/offset, binning | Master istatistiği ve pattern incelemesi |
+
+Flat optik throughput değişimini oranlar; dark sensör kaynaklı additive bileşenleri modellemeye çalışır. Bu görevleri birbirine devretmek, daha sonra background extraction ile gizlenmeye çalışılan yapısal hatalar üretir.
+
+## Ayar kararları ve tipik değer yaklaşımı
+
+Evrensel sayısal değer yoktur. `Pedestal`, dark optimization ve overscan histogramı estetik göstermek için değil, acquisition zincirindeki doğrulanmış bir koşulu karşılamak için etkinleştirilmelidir.
+
+| Durum | Yaklaşım | Neden |
+|---|---|---|
+| Poz süresi eşleşen, glow içeren dark | Önce doğrudan eşleşmeyi test et | Scaling glow yapısını doğru ölçeklemeyebilir |
+| Poz süresi eşleşmeyen dark | Optimize sonucunu örneklerle karşılaştır | İstatistiksel uyum fiziksel eşleşme değildir |
+| Overscan bölgesi mevcut | Kamera geometrisi doğrulanmışsa kullan | Yanlış koordinat crop/model hatası üretir |
+| Negatif veya clipped sonuç | Pedestal öncesi master ve offset zincirini denetle | Pedestal kök nedeni gizlememelidir |
+
+## Çıktı kabul ölçütleri, performans ve kaynaklar
+
+- Dust shadow ve vignetting azalmalı; yeni halka veya köşe terslenmesi oluşmamalıdır.
+- Amp glow kalıntısı eşleşen dark'a göre beklenmedik yönde artmamalıdır.
+- Kanal ve köşe istatistiklerinde clipping olmamalıdır.
+- CFA veri, debayer öncesi doğru mosaic düzenini korumalıdır.
+- Küçük bir light örneğini doğruladıktan sonra tüm seti çalıştırın.
+- Birincil başvurular: [Master Calibration Frames](https://pixinsight.com/tutorials/master-frames/index.html) ve [Dark Calibration Tutorial](https://pixinsight.com/doc/docs/DC_tutorial/DC_tutorial.pdf).
 
 ## Beklenen çıktı
 

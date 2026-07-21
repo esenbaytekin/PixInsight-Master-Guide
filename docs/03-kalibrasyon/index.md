@@ -40,7 +40,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -83,6 +83,19 @@ Process arama alanında `Image`; WBPP için `Script > Batch Processing > Weighte
 
 !!! example "Saha örneği"
     LRGB setinde her filter doğru Master Flat ile eşleştirilir; matching Master Dark kullanılır. Her kanal ayrı register ve integrate edilir. Master kabulünden önce calibrated örnekler ve rejection maps incelenir.
+
+## Profesyonel okuma ve uygulama sırası
+
+1. [Calibration Pipeline](calibration-pipeline.md) ile aşama kapılarını kurun.
+2. [WBPP](wbpp.md) gruplamasını denetleyin.
+3. Master eşleşmesini [ImageCalibration](image-calibration.md) ile doğrulayın.
+4. Yalnız persistent kusurlar için [CosmeticCorrection](cosmetic-correction.md) uygulayın.
+5. Geometrik kaliteyi [StarAlignment](star-alignment.md) ile kabul edin.
+6. Weighting, normalization ve rejection'ı [ImageIntegration](image-integration.md) maps ile doğrulayın.
+7. Ancak bundan sonra [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) aşamasına geçin.
+
+!!! warning "Pipeline sınırı"
+    Gradient removal, hatalı flat, dark mismatch, registration kusuru veya walking noise için düzeltme katmanı değildir. Kök neden önce calibration/integration aşamasında çözülmelidir.
 
 ## Beklenen çıktı
 

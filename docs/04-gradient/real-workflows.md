@@ -75,6 +75,17 @@ flowchart LR
 | Son karar | |
 | Görsel referansı | |
 
+## Neden temelli uygulama örnekleri
+
+| Hedef/veri | İlk karar | Neden |
+|---|---|---|
+| M31 gibi geniş halo | Kontrollü model karşılaştırması | Halo sınırı background ile karışır |
+| NGC 6888 gibi zayıf OIII çevresi | Kanal bazlı sample denetimi | Faint diffuse signal modele girebilir |
+| Ay ışıklı çok geceli set | Önce zaman alt kümeleri | Tek model değişken kaynağı açıklamayabilir |
+| Şehir ışığına bakan geniş alan | Kamera/sky koordinatı testi | Flat ile sky gradient ayrılır |
+
+Her workflow'da araçtan önce hangi fiziksel veya işlemsel etkinin modellendiğini gösteren ölçüm yazılır. Ayrıntılar: [M31](m31-gradient-workflow.md), [NGC 6888](ngc6888-gradient-workflow.md), [Ay ışığı](moonlight-gradients.md) ve [ışık kirliliği](light-pollution-gradients.md).
+
 ## Model kontrolü
 
 ```mermaid
@@ -173,4 +184,3 @@ flowchart TD
 - [M31 Gradient İş Akışı](m31-gradient-workflow.md)
 - [NGC 6888 Gradient İş Akışı](ngc6888-gradient-workflow.md)
 - [Gradient Hata Kartları](error-cards.md)
-

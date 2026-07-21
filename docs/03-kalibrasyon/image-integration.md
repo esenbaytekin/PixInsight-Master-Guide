@@ -48,7 +48,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -103,6 +103,40 @@ UI kanıtı `Input Images`, `Format Hints`, `Image Integration`, `Pixel Rejectio
 
 !!! example "Saha örneği"
     Otuz Ha frame Average ve ölçüm temelli weights ile birleştirilir. Winsorized Sigma Clipping high map’te uydu izlerini göstermeli, nebula filamentlerini sistematik reddetmemelidir.
+
+## Girdi gereksinimleri ve Subframe quality
+
+Geometrik registration entegrasyona kabul için tek başına yeterli değildir. Her frame; background, noise, FWHM, eccentricity, star count, clipping ve geçerli görüntü alanı açısından incelenmelidir. Sınır dışı bir frame'i çok düşük weight ile saklamak yerine aykırılığın nedeni anlaşılmalıdır.
+
+## Normalization ve weighting karar matrisi
+
+| Veri durumu | İncelenecek karar | Neden |
+|---|---|---|
+| Aynı gece, kararlı gökyüzü | Basit normalization yeterli mi? | Gereksiz karmaşıklığı önler |
+| Çok geceli değişken background | Local normalization yararlı mı? | Büyük ölçekli seviye farklarını denetler |
+| Çözünürlük öncelikli | FWHM/eccentricity ağırlığı | Kötü yıldız geometrisinin etkisini sınırlar |
+| Zayıf sinyal öncelikli | SNR/noise temelli ağırlık | Daha temiz frame katkısını artırır |
+
+Weighting frame katkısını, normalization karşılaştırılabilir ölçeği, rejection ise aykırı pixel örneklerini belirler. Birindeki hata diğerinin haritasında belirti verebilir.
+
+## Rejection algoritmaları
+
+| Yöntem | Güçlü yanı | Risk veya koşul |
+|---|---|---|
+| Average, rejection yok | Gürültü azaltımı verimlidir | Uydu, kozmik ışın ve defect kalır |
+| Median | Aykırılara dayanıklıdır | Average kadar verimli olmayabilir |
+| Winsorized Sigma Clipping | Yeterli frame sayısında robust yaklaşım | Gerçek yıldız çekirdeği reddedilebilir |
+| Linear Fit Clipping | Frame ölçek farklarını ele alabilir | Fit kalitesi denetlenmelidir |
+| ESD | Aykırı örnek tespitini istatistiksel ele alır | 1.9.3 ayrıntıları process docs ile doğrulanmalıdır |
+| Percentile Clipping | Küçük kümelerde değerlendirilebilir | Dağılıma ve veri miktarına duyarlıdır |
+
+Hiçbir yöntem her veri setinde en iyi değildir. Frame sayısı, aykırı türü ve rejection map sonucu kararı belirler.
+
+## Satellite rejection, artifacts ve performans
+
+Uydu izi için amaç tüm parlak çizgiyi maskelemek değil, ilgili pixel örneklerini reddetmektir. Rejection map'te iz görünürken master'da kalıntı olmaması beklenir. Yıldız çekirdekleri veya nebula liflerinin geniş alanlar halinde map'e girmesi aşırı rejection göstergesidir.
+
+Walking noise için daha sert clipping öncesinde dither, calibration kalıntısı, frame sayısı ve normalization değerlendirilmelidir. Drizzle, maps ve normalization yardımcıları disk/bellek kullanımını artırır. Process log, weight tablosu ve maps master ile saklanmalıdır. Örnek iş akışı: [PixInsight M31 H-alpha](https://www.pixinsight.com/examples/M31-Ha/).
 
 ## Beklenen çıktı
 

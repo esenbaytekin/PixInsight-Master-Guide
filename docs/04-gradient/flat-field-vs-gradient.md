@@ -90,24 +90,36 @@ flowchart TD
 !!! warning "Kritik sınır"
     `DBE`, `ABE`, `GradientCorrection` veya GraXpert hatalı Master Flat'in yerine geçmez. Görsel olarak düzleşen sonuç, response kalibrasyonunun doğru olduğu kanıtı değildir.
 
-!!! example "Görsel eklenecek"
-    Doğru Master Flat ve onunla calibrated light eklenecek; görsel, eşleşen response modelinin dust ve vignetting paternini nasıl azalttığını gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Doğru Master Flat ve onunla calibrated light kayıt altında bulunmalıdır; görsel, eşleşen response modelinin dust ve vignetting paternini nasıl azalttığını gösterecek.
 
-!!! example "Görsel eklenecek"
-    Hatalı veya eşleşmeyen Master Flat ile calibrated aynı light eklenecek; görsel, yanlış response modelinin nasıl residual ürettiğini ya da paterni güçlendirdiğini gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Hatalı veya eşleşmeyen Master Flat ile calibrated aynı light kayıt altında bulunmalıdır; görsel, yanlış response modelinin nasıl residual ürettiğini ya da paterni güçlendirdiğini gösterecek.
 
-!!! example "Görsel eklenecek"
-    Dust shadow'ın light ve Master Flat üzerindeki eş konumu eklenecek; görsel, sensör/optik koordinatında sabitliği kanıtlayacak.
+!!! example "Görsel doğrulama ölçütü"
+    Dust shadow'ın light ve Master Flat üzerindeki eş konumu kayıt altında bulunmalıdır; görsel, sensör/optik koordinatında sabitliği kanıtlayacak.
 
-!!! example "Görsel eklenecek"
-    Vignetting ve yönlü sky gradient yan yana eklenecek; görsel, merkez-köşe simetrisi ile gökyüzü yönü farkını gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Vignetting ve yönlü sky gradient yan yana kayıt altında bulunmalıdır; görsel, merkez-köşe simetrisi ile gökyüzü yönü farkını gösterecek.
 
-!!! example "Görsel eklenecek"
-    Flat sonrası kalan çevresel gradient modeli eklenecek; görsel, multiplicative düzeltme ile residual background modelinin ayrı aşamalar olduğunu gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Flat sonrası kalan çevresel gradient modeli kayıt altında bulunmalıdır; görsel, multiplicative düzeltme ile residual background modelinin ayrı aşamalar olduğunu gösterecek.
 
 ## Gerçek kullanım senaryosu
 
 Bir RGB master'da köşeler koyu, sol kenar parlaktır. Tek DBE modeli uygulamak yerine her filter flat'i ve calibrated subframe incelenir. Köşe paterni sensör koordinatında sabit kaldığı için flat eşleşmesi düzeltilir; ardından sol kenardaki gece boyunca değişen residual şehir gradient'i ayrı modellenir.
+
+## Tanı matrisi ve workflow position
+
+| Davranış | Flat/calibration şüphesi | Sky gradient şüphesi |
+|---|---|---|
+| Kamera koordinatında sabit | Güçlü | Zayıf |
+| Meridian/zamanla yön değiştiriyor | Zayıf | Güçlü |
+| Dust donut veya vignetting profili | Güçlü | Zayıf |
+| Filtre/gece/ufuk yönüne bağlı | Orta | Güçlü |
+| Tek master'da, subframe'de yok | Integration/normalization incele | Integration sonrası model incele |
+
+Flat hatası varsa önce [ImageCalibration](../03-kalibrasyon/image-calibration.md) ve master stratejisi düzeltilir. Gradient correction, calibration kusurunu kalıcı olarak onarmaz; yalnız görünümünü maskeleyebilir.
 
 ## Sık yapılan hatalar
 

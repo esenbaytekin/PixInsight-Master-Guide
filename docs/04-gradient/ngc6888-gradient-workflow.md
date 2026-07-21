@@ -39,8 +39,17 @@ flowchart LR
 11. HOO birleşiminden önce kanal dengesini kaydedin.
 12. HOO sonrasında residual color gradient kontrolü planlayın.
 
-!!! example "NGC 6888 sample haritası eklenecek"
+!!! example "NGC 6888 sample haritası kayıt altında bulunmalıdır"
     Görsel; parlak kabuk, diffuse Ha alanı, zayıf OIII dış yapıları, yıldız haloları ve güvenilir background bölgelerini göstermelidir.
+
+## Karar matrisi
+
+| Gözlem | Eylem | Neden |
+|---|---|---|
+| Modelde faint OIII izi | Sample/modeli reddet | Gerçek diffuse signal kaybı riski vardır |
+| Kanallar farklı residual gösteriyor | Kanal bazlı modelle | Tek model spektral farkı açıklamayabilir |
+| Yönlü çizgili doku | Walking noise tanısına dön | Gradient modeli kök nedeni çözmez |
+| Filament sınırı korunuyor | Aday sonucu ölç | Signal preservation koşulu sağlanabilir |
 
 ## Model kontrolü
 

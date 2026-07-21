@@ -40,8 +40,17 @@ flowchart LR
 
 LRGB öncesi kanal bazlı çalışma, kanala özgü gradient'i görmeyi kolaylaştırabilir; fakat bağımsız modeller yeni kanal uyumsuzluğu yaratabilir. Birleşim sonrası çalışma renk ve yoğunluk modelini birlikte değerlendirebilir; fakat kanal özgü kök nedeni gizleyebilir. Hiçbiri zorunlu sıra değildir.
 
-!!! example "M31 sample haritası eklenecek"
+!!! example "M31 sample haritası kayıt altında bulunmalıdır"
     Görsel; galaxy diski, dış halo için korunacak bölge, M32, M110, parlak yıldız haloları ve güvenilir background bölgelerini ayrı katmanlarla göstermelidir.
+
+## Karar matrisi
+
+| Gözlem | Eylem | Neden |
+|---|---|---|
+| Modelde dış halo izi | Modeli reddet | Galaxy sinyali background olarak öğrenilmiştir |
+| Yalnız köşelerde düzgün eğim | Seyrek sample/model testi | Halo çevresine müdahaleyi azaltır |
+| Dust donut veya sabit vignetting | Calibration'a dön | DBE flat hatasının yerine geçmez |
+| Residual az, halo sabit | Aday sonucu sakla | Correction amacıyla uyumludur |
 
 ## Model kontrolü
 

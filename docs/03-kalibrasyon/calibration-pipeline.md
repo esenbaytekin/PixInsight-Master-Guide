@@ -57,7 +57,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -101,6 +101,33 @@ Process arama alanında `Calibration`; WBPP için `Script > Batch Processing > W
 
 !!! example "Saha örneği"
     Üç gecelik Ha seti matching masters ile calibrate edilir. Sabit defect’ler düzeltilir, tek kaliteli reference’a register edilir. Geceler arası arka plan farkı LN ile modellenir ve rejection maps temizse master kabul edilir.
+
+## Aşama kapıları ve veri kabulü
+
+Her aşama yalnız dosya ürettiği için değil, ölçülebilir kabul koşullarını sağladığı için tamamlanmış sayılır.
+
+```mermaid
+flowchart LR
+    raw["RAW ve metadata"] --> cal{"Calibration temiz mi?"}
+    cal -- "Hayır" --> masters["Master eşleşmesini düzelt"]
+    cal -- "Evet" --> reg{"Registration residual kabul mü?"}
+    reg -- "Hayır" --> reference["Reference ve modeli gözden geçir"]
+    reg -- "Evet" --> integ{"Maps ve weights temiz mi?"}
+    integ -- "Hayır" --> reject["Normalization ve rejection revizyonu"]
+    integ -- "Evet" --> master["Kabul edilmiş lineer master"]
+```
+
+| Kapı | Ölçüm | Sonraki adıma geçmeme nedeni |
+|---|---|---|
+| Calibration | Köşe profili, glow, dust shadow, clipping | Master mismatch veya flat artefact |
+| Cosmetic correction | Defect map ve blink | Gerçek sinyalin değiştirilmesi |
+| Registration | Merkez/köşe residual ve valid area | Çift yıldız veya geometri hatası |
+| Normalization | Reference uyumu ve lokal sapmalar | Gerçek diffuse signal'ın modellenmesi |
+| Integration | Weights, low/high rejection maps | Satellite kalıntısı veya hedef reddi |
+
+## Performans ve kayıt disiplini
+
+Pipeline'ı küçük temsilî veri alt kümesiyle doğrulamak, yanlış master veya reference ile saatler süren yeniden çalıştırmayı önler. Process log'ları, master kimlikleri, reference dosyası, normalization ve drizzle yardımcıları final master ile aynı proje kaydında tutulmalıdır.
 
 ## Beklenen çıktı
 

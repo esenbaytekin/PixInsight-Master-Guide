@@ -105,8 +105,19 @@ Master Flat acquisition sırasında optical train ve pixel response’u ölçer.
 !!! example "Vignetting benzeri köşe kararması"
     Önce Master Flat ve raw/calibrated frame kıyaslanır. Flat zinciri sorunluysa DBE Division “çözüm” kabul edilmez. Calibration doğru görünüyorsa iki correction clone üzerinde denenir; kabul yalnız model, histogram ve signal preservation ile yapılır.
 
-!!! example "Görsel eklenecek"
+!!! example "Görsel doğrulama ölçütü"
     Bu bölüm gerçek PixInsight 1.9.3 ekran görüntüsü ve örnek veri ile doğrulanacaktır.
+
+## Karar kanıtı ve performans
+
+| Kanıt | Subtraction lehine | Division lehine |
+|---|---|---|
+| Background farkı | Yaklaşık sabit ek ofset/yüzey | Sinyalle orantılı alan tepkisi |
+| Calibration geçmişi | Flat doğru, sky glow kalmış | Multiplicative model için bağımsız kanıt var |
+| Model düşük değerleri | Çıkarma sonrası clipping riski | Bölme sonrası büyütme/noise riski |
+| Corrected sonuç | Seviye dengeleniyor | Oransal response dengeleniyor |
+
+Her iki correction, orijinal lineer master'dan ayrı dallar halinde test edilmelidir. Arka arkaya uygulama kök neden yorumunu bozar. Büyük model görüntüleriyle çalışma maliyeti genellikle integration'a göre düşük olsa da iterasyon sayısı süreç kaydını zorlaştırır; her denemenin modelini ve istatistiğini saklayın.
 
 ## Sık yapılan hatalar
 
@@ -200,4 +211,3 @@ flowchart LR
 - [Sample Yerleşimi](sample-placement.md)
 - [DBE](dbe.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
-

@@ -105,6 +105,28 @@ Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
 !!! example "Basit broadband gradient"
     Küçük bir galaxy’nin çevresinde geniş gerçek background bulunan image’da arka plan değişimi görülür. ABE ile ilk model üretilir. Model Image galaxy’nin dış halosunu içermiyorsa correction clone üzerinde değerlendirilir. Bu senaryo başka galaxy alanlarına otomatik preset oluşturmaz.
 
+## Girdi, çıktı ve karar matrisi
+
+ABE lineer, calibration artefact'ları ayrıştırılmış ve gerçek background bölgeleri içeren bir görüntüde değerlendirilmelidir. İlk denemede corrected target'tan önce `Model Image` incelenir; model hedef morfolojisini kopyalıyorsa sonuç reddedilir.
+
+| Veri karakteri | ABE'nin rolü | Neden |
+|---|---|---|
+| Küçük, düzgün, geniş ölçekli gradient | Hızlı ilk model | Otomatik model için yeterli temiz alan olabilir |
+| Geniş galaxy halo | Kontrollü test | Halo/background ayrımı belirsizdir |
+| Alanı dolduran emission/reflection nebula | Genellikle ilk tercih değil | Otomatik model gerçek sinyali öğrenebilir |
+| Kanal bazlı narrowband | Her kanalı ayrı değerlendir | Gerçek sinyal ve gradient morfolojisi kanala göre değişir |
+| Karmaşık veya keskin yön değiştiren yapı | DBE/tanıya dön | Düşük karmaşıklıklı otomatik yüzey yetersiz kalabilir |
+
+## Önerilen ayar yaklaşımı ve performans
+
+`Function Degree` gradient şiddetini değil model esnekliğini değiştirir. En düşük yeterli karmaşıklıkla başlayın; degree artışını yalnız residual yapının ölçülebilir ve gerçek sinyalden ayrı olduğu durumda gerekçelendirin. `Smoothing Factor` modeldeki küçük ölçekli değişimi yönetmek için test edilir; detay kaybını düzeltmek amacıyla körlemesine artırılmaz.
+
+ABE hızlıdır ve tekrar üretimi kolaydır; ancak otomasyon denetim ihtiyacını azaltmaz. Aynı STF, histogram istatistiği ve model görünümüyle önce/sonra karşılaştırması kaydedilmelidir.
+
+## Workflow position ve ilgili süreçler
+
+Calibration ve integration denetiminden sonra, color calibration öncesinde kullanılması yaygın bir iş akışıdır; fakat sıra veri amacına göre doğrulanmalıdır. Karmaşık alanlarda [DBE](dbe.md), kök neden ayrımında [Gradient Diagnostics](gradient-diagnostics.md), correction türünde [Subtraction ve Division](division-vs-subtraction.md) kullanın.
+
 ## Sık yapılan hatalar
 
 1. ABE sonucunu Model Image incelemeden kabul etmek.

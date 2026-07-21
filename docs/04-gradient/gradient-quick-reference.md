@@ -14,6 +14,8 @@ Yazdırılabilir kontrol sayfası. Sabit parametre reçetesi içermez; kararlar 
 - [ ] Orijinal çalışma kopyası korundu mu?
 - [ ] Model output alınabilecek mi?
 - [ ] Kabul ve ret kanıtı önceden tanımlandı mı?
+- [ ] Registration ve rejection maps aynı yapıyı artefact olarak gösteriyor mu?
+- [ ] Histogram, Statistics ve STF karşılaştırma koşulu kaydedildi mi?
 
 ```mermaid
 flowchart LR
@@ -86,6 +88,10 @@ flowchart LR
 | Narrowband | Ha/OIII ayrı model, faint halo, noise ve clipping |
 
 ## İşlem sonrasında
+
+- [ ] Model, corrected target ve process instance birlikte saklandı mı?
+- [ ] Clipping ve residual ölçümleri kabul sınırında mı?
+- [ ] Color calibration'a geçmeden signal preservation belgelendi mi?
 
 - [ ] STF sıfırlandı ve yeniden hesaplandı.
 - [ ] Original/Model/Corrected birlikte incelendi.
