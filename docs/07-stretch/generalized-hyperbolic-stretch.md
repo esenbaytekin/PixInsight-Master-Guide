@@ -1,72 +1,108 @@
 # Generalized Hyperbolic Stretch
 
-!!! info "PixInsight 1.9.3 UI doğrulaması"
-    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/generalized-hyperbolic-stretch/generalized-hyperbolic-stretch-evidence-matrix.md`.
+## Purpose
 
-**Durum: Taslak**
+Global transfer curve’ün hangi tonal bölgede en fazla contrast üreteceğini ve shadows/highlights sıkıştırmasını HT’den daha esnek parametrelerle yönetmektir.
 
-## Amaç
+## Theory, scientific background ve intuition
 
-Bu bölüm, Generalized Hyperbolic Stretch konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+GHS ailesi monoton intensity transformations kullanarak pixel sırasını korurken tonal aralıkları farklı oranlarda genişletir veya sıkıştırır. `Stretch factor`, `Local intensity` ve `Symmetry Point` birlikte curve şeklini belirler. Burada yayımlanmamış formül veya kontrol davranışı türetilmez; kurulu process sürümünün resmi dokümantasyonu esas alınır.
+
+`Symmetry Point`, etkinin merkezlendiği tonal bölgeyi; stretch gücü dönüşümün büyüklüğünü; local intensity ise curve’ün bu bölge çevresindeki karakterini etkiler. Bir parametreyi tek başına “daha fazla detay” kontrolü saymak yanlıştır.
+
+## Input requirements ve workflow position
+
+Lineer veya kontrollü nonlinear image, geçerli histogram, unclipped channels ve mask durumu gerekir. BXT/NXT ve SPCC kararları başlangıçtan önce tamamlanmalıdır. GHS global bir process’tir; LHE gibi local contrast aracının yerine geçmez.
+
+## PixInsight menu path
+
+Kurulu process module için `Process → IntensityTransformations → GeneralizedHyperbolicStretch`. Script ve process sürümleri aynı UI/parametre seti varsayılmamalıdır.
+
+!!! warning "Global transform sınırı"
+    GHS object-aware bir local enhancement aracı değildir. Symmetry Point’i hedef üzerine koymak yalnız tonal aralığı seçer; nesneyi semantik olarak korumaz.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Galaxy core ile faint halo arasında kontrollü compression gerektiğinde
+- SHO/HOO veya starless nebula’da belirli tonal bölgeye contrast ayrılacağında
+- HT’nin tek midtones kontrolü hedef dağılımı için yetersiz kaldığında
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Parametre ilişkisi histogram/curve üzerinde okunamıyorsa
+- Lokal yapıyı global curve ile kurtarmaya çalışırken
+- Gradient, clipping veya low-SNR eksikliğini gizlemek için
+- Basit HT’nin aynı sonucu daha açık ve tekrarlanabilir verdiği durumda
 
-## Ön koşullar
+## Parameters ve tuning strategy
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Parametre/kavram | İşlev | Ayarlama gerekçesi | Yanlış kullanım |
+|---|---|---|---|
+| Transformation type | Curve ailesini seçer | Tonal hedefe uygun davranış | İsim üzerinden üstünlük varsaymak |
+| Stretch factor | Dönüşüm gücü | Signal görünürlüğü yetersiz | Noise/star bloat |
+| Local intensity | Curve şekli/yerel eğim etkisi | Contrast dağılımı yanlış | Sert geçiş veya flat tonlar |
+| Symmetry Point | Etki odağını konumlandırır | Hedef tonal bölge farklı | Background/core yanlış bölgeye taşınır |
+| Shadow/highlight protection | Uç bölgeleri sınırlar | Clipping/compression riski | Aşırı düz görünüm |
+| Colour blend/RGB working space | Renk uygulamasını yönetir | Hue/saturation korunumu | Renk kayması |
 
-## PixInsight menü yolu
+Tipik strateji: histogramdan hedef tonal bölgeyi seç → küçük stretch factor → symmetry/local intensity etkileşimini preview’da karşılaştır → clipping yoksa uygula → yeni histogramla tekrar değerlendir.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## GHS vs HT
 
-## Parametreler
+| Koşul | GHS | HT |
+|---|---|---|
+| Esnek tonal odak | Güçlü | Daha sınırlı |
+| Basit tekrar üretim | Daha çok parametre | Güçlü |
+| Galaxy core–halo | İnce ayar avantajı olabilir | Küçük adımlarla güvenilir |
+| Black point kontrolü | Curve bağlamında | Doğrudan ve açık |
+| Öğrenme/denetim yükü | Yüksek | Düşük |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Practical Decision Guide
 
-## Uygulama adımları
+| Situation | Recommended Process | Why |
+|---|---|---|
+| SHO/HOO starless | GHS | Emission tonal bölgelerine kontrollü contrast |
+| Galaxy core + faint halo | GHS veya iterative HT | Dinamik compression ihtiyacına göre |
+| Basit broadband | HT | Daha az parametre, açık histogram kontrolü |
+| Bright-star wide field | MaskedStretch | Iterative highlight protection |
+| Color-critical OSC | Arcsinh + GHS/HT | Color başlangıcıyla tonal kontrol ayrılır |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Application ve output
 
-## Beklenen sonuç
+1. Clone üzerinde linear histogram ve target readout’larını kaydedin.
+2. Transformation type’ı hedefe göre seçin; küçük strength ile başlayın.
+3. Symmetry Point’i background’a değil korunacak/geliştirilecek tonal aralığa göre test edin.
+4. Real-Time Preview’da background, target, core ve stars’ı ayrı kontrol edin.
+5. Uygulama sonrası clipping, saturation ve noise’u ölçün.
+6. İkinci adım gerekiyorsa yeni histogram üzerinden karar verin.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Beklenen çıktı, hedef tonal aralıkta contrast artarken shadow/highlight continuity’nin korunmasıdır. “Daha dramatik” görünüm tek başına başarı değildir.
 
-## Sık yapılan hatalar
+## Troubleshooting
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Belirti | Neden | Verification | Corrective workflow |
+|---|---|---|---|
+| Flat image | Compression fazla/geniş | Curve slope ve histogram | Etkiyi daralt veya HT kullan |
+| Excessive contrast | Strength/local intensity fazla | Before/after readout | Parametreyi azalt, küçük adımlar |
+| Lost faint nebula | SP/black region yanlış | Lineer STF kıyası | SP’yi yeniden seç, shadow protection |
+| Harsh halo/stars | Highlight davranışı agresif | Star profile | Stars ayrı veya maskeli stretch |
+| Noisy background | Background eğimi fazla | Background Preview | Etki odağını taşı, NXT geçmişini kontrol et |
 
-## Sorun giderme
+## Performance, limitations ve best practices
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+Preview histogramı mask etkisini her durumda tam temsil etmeyebilir; resmi GHS dokümantasyonu bu sınıra dikkat çeker. Global curve local contrast veya denoise üretmez. Parametre log’unu ve process instance’ı saklayın; aynı hedefe art arda kontrolsüz curve uygulamayın.
 
-## Hızlı referans
+## Common mistakes
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+- Symmetry Point’i object selection sanmak
+- Strength ile local intensity’yi bağımsız değerlendirmek
+- Preview mask tahminini kesin output histogramı saymak
+- Basit HT yeterliyken gereksiz parametre karmaşıklığı eklemek
+- Noise veya gradient’i contrast ile bastırmaya çalışmak
 
-## İlgili bölümler
+## Related processes ve references
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Stretch](index.md)
+- [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)
+- [GHS process documentation](https://www.ghsastro.co.uk/doc/tools/GeneralizedHyperbolicStretch/GeneralizedHyperbolicStretch.html)
+- [GHS primer](https://www.ghsastro.co.uk/doc/scripts/GeneralisedHyperbolicStretch/GeneralisedHyperbolicStretch.html)

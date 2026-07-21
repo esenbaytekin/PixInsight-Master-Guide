@@ -1,72 +1,112 @@
 # ArcsinhStretch
 
-!!! info "PixInsight 1.9.3 UI doğrulaması"
-    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/arcsinh-stretch/arcsinh-stretch-evidence-matrix.md`.
+## Purpose
 
-**Durum: Taslak**
+Faint color ve star color görünürlüğünü artırırken channel ratios ve highlights üzerinde klasik güçlü MTF stretch’e göre farklı bir ödünleşim sunan nonlinear başlangıç transformudur.
 
-## Amaç
+## Theory, scientific background ve intuition
 
-Bu bölüm, ArcsinhStretch konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Inverse hyperbolic sine ailesi düşük değerlerde yaklaşık lineer, daha yüksek değerlerde giderek sıkıştırıcı davranır. Astronomik görüntüde amaç faint signal’ı açarken bright structures’ın büyümesini sınırlamaktır. PixInsight processinin exact normalization ve parameter implementation’ı kurulu sürüm belgeleriyle doğrulanmalıdır.
+
+Color preservation mutlak değildir: black point, clipping, channel calibration ve sonraki Curves/SCNR işlemleri hue/saturation’ı değiştirebilir.
+
+## Input requirements ve workflow position
+
+Girdi lineer, SPCC/BackgroundNeutralization tamamlanmış, gradient-free ve unclipped RGB/OSC olmalıdır. Mono image’da color preservation avantajı anlamlı değildir; tonal davranış için HT/GHS ile karşılaştırılır.
+
+## PixInsight menu path
+
+Kurulu PixInsight dağıtımında `Process → IntensityTransformations → ArcsinhStretch` yolu doğrulanmalıdır; process/script varyantları karıştırılmamalıdır.
+
+!!! warning "Color preservation sınırı"
+    Arcsinh transformu yanlış white balance, residual color gradient veya channel clipping’i düzeltmez.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- OSC veya broadband RGB’de star color öncelikliyse
+- Galaxy star field ve faint chroma birlikte açılacaksa
+- Arcsinh başlangıcı HT/GHS ile tamamlanacaksa
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Channel calibration/gradient sorunu devam ederken
+- Black point clipping ile background gizlemek için
+- Mono görüntüde yalnız “color preserving” gerekçesiyle
+- Bright core ve local contrast tek global transformla çözülemiyorsa
 
-## Ön koşullar
+## Parameters
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Kontrol/kavram | Amaç | Artırma gerekçesi | Risk |
+|---|---|---|---|
+| Stretch factor | Nonlinear görünürlük | Faint color/signal yetersiz | Gray background, noise ve flat highlights |
+| Black point | Alt sınır yönetimi | Gerçek boş headroom | Faint signal/color clipping |
+| Protect highlights | Bright structures’ı sınırlama | Star/core headroom azalıyor | Aşırı flat görünüm |
+| Color/channel mode | Renk ilişkisini yönetme | RGB hedefi | Channel cast veya saturation sapması |
 
-## PixInsight menü yolu
+Typical settings sayısal reçete değildir. Küçük başlangıç strength’i, sıfır clipping ve HT/GHS ile final contrast yaygın test stratejisidir.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## HT ve Arcsinh karşılaştırması
 
-## Parametreler
+| Konu | Arcsinh | HT |
+|---|---|---|
+| Star color | Koruma eğilimi güçlü olabilir | Midtones/clip kararına duyarlı |
+| Black point | Sınırlı/uygulamaya bağlı | Açık ve doğrudan |
+| Galaxy core | Compression sağlayabilir | Küçük adımla açık kontrol |
+| Mono workflow | Özel color avantajı yok | Daha sade seçim |
+| Final contrast | Genellikle ek HT/GHS/Curves gerekir | Tek başına yeterli olabilir |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Practical Decision Guide
 
-## Uygulama adımları
+| Situation | Recommended Process | Why |
+|---|---|---|
+| OSC star color | Arcsinh + HT | Color başlangıcı ve tonal final ayrılır |
+| Broadband galaxy | Arcsinh A/B HT | Star color ile core davranışı karşılaştırılır |
+| Reflection nebula | Konservatif Arcsinh | Faint chroma ve yumuşak geçiş korunabilir |
+| Mono L | HT veya GHS | Color preservation avantajı yoktur |
+| SHO/HOO starless | GHS | Palette tonal kontrolü daha doğrudandır |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Application ve output expectations
 
-## Beklenen sonuç
+1. Linear color-calibrated clone ve karşılaştırma Preview’ları hazırlayın.
+2. Küçük stretch factor ile başlayın; black point clipping yapmayın.
+3. Star colors, galaxy/nebula faint color ve background noise’u inceleyin.
+4. Histogram/right-tail ile highlight headroom’u kontrol edin.
+5. Final black point/contrast için HT veya GHS’ye geçin.
+6. CurvesTransformation saturation işlemini ColorMask/RangeMask ile sınırlayın.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Çıktıda star color ayrımı korunmalı, channel clipping oluşmamalı ve background gereksiz biçimde griye açılmamalıdır.
 
-## Sık yapılan hatalar
+## OSC, mono ve process interactions
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+OSC’de debayer/integration ve SPCC doğru tamamlanmalıdır. Mono LRGB’de Arcsinh RGB’ye uygulanıp luminance ayrı HT/GHS ile işlenebilir; recombination sonrası color washout kontrol edilir. StarXTerminator ile stars ve starless ayrılmışsa Arcsinh star layer için, GHS/HT starless layer için ayrı değerlendirilebilir; PixelMath birleşimi katman türüne uygun olmalıdır.
 
-## Sorun giderme
+## Troubleshooting
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Belirti | Neden | Verification | Corrective workflow |
+|---|---|---|---|
+| Gray background | Stretch fazla | Background median | Daha küçük factor; HT ile final kontrol |
+| Washed color | Calibration veya sonraki transform | Linear SPCC clone kıyası | Doğru girdiden yeniden başla |
+| Pink/harsh stars | Channel clipping/recombine | RGB star cores | Stars layer ve PixelMath’i düzelt |
+| Flat galaxy core | Highlight compression fazla | Core radial/tonal kıyas | HT/GHS ile kontrollü contrast |
+| Noisy shadows | Low signal de açıldı | Linear noise estimate | NXT ve smaller stretch |
 
-## Hızlı referans
+## Performance, limitations ve best practices
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+Point transform hızlıdır; asıl maliyet A/B denemesi ve color denetimidir. Faint color görünmesi gerçek SNR artışı değildir. Arcsinh’i tek başına final çözüm saymayın; HT/GHS ve Curves ile görevleri ayırın.
 
-## İlgili bölümler
+## Common mistakes
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Stretch](index.md)
+- Star color görünümünü doğru calibration kanıtı saymak
+- Black point’i faint color kuyruğunun içine taşımak
+- Mono veride özel color avantajı beklemek
+- Final contrast ihtiyacını tek Arcsinh adımına yüklemek
+- Stars/starless layer’ları uyumsuz stretch ile birleştirmek
+
+## Related processes ve references
+
+- [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)
+- [GHS](generalized-hyperbolic-stretch.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [StarXTerminator](../06-ai-eklentileri/starxterminator.md)
+- [GHS primer: arcsinh bağlamı](https://www.ghsastro.co.uk/doc/scripts/GeneralisedHyperbolicStretch/GeneralisedHyperbolicStretch.html)
