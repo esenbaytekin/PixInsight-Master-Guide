@@ -7,6 +7,8 @@ __pycache__/
 .venv/
 venv/
 env/
+.env
+!.env.example
 
 # MkDocs çıktısı
 site/
@@ -32,4 +34,3 @@ site/
 .DS_Store
 .idea/
 .vscode/
-

@@ -1,0 +1,43 @@
+services:
+  allsky-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: allsky-docs
+    restart: unless-stopped
+    networks:
+      - proxy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_proxy
+      - traefik.http.services.allsky-docs.loadbalancer.server.port=80
+      - traefik.http.routers.allsky-docs.rule=Host(`allsky.com.tr`)
+      - traefik.http.routers.allsky-docs.entrypoints=websecure
+      - traefik.http.routers.allsky-docs.tls=true
+      - traefik.http.routers.allsky-docs.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      - traefik.http.routers.allsky-docs.service=allsky-docs
+      - traefik.http.routers.allsky-docs-www.rule=Host(`www.allsky.com.tr`)
+      - traefik.http.routers.allsky-docs-www.entrypoints=websecure
+      - traefik.http.routers.allsky-docs-www.tls=true
+      - traefik.http.routers.allsky-docs-www.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      - traefik.http.routers.allsky-docs-www.middlewares=allsky-docs-www-redirect
+      - traefik.http.routers.allsky-docs-www.service=allsky-docs
+      - traefik.http.middlewares.allsky-docs-www-redirect.redirectregex.regex=^https://www\.allsky\.com\.tr/(.*)
+      - traefik.http.middlewares.allsky-docs-www-redirect.redirectregex.replacement=https://allsky.com.tr/$${1}
+      - traefik.http.middlewares.allsky-docs-www-redirect.redirectregex.permanent=true
+
+networks:
+  proxy:
+    external: true
+    name: traefik_proxy

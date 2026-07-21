@@ -1,5 +1,8 @@
 # GraXpert Entegrasyonu
 
+!!! info "PixInsight 1.9.3 UI doğrulaması"
+    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/graxpert/graxpert-evidence-matrix.md`.
+
 !!! info "Haricî araç"
     GraXpert, PixInsight processi değildir. Açık kaynaklı bağımsız bir gradient extraction uygulamasıdır; bu sayfa onu PixInsight 1.9.3 iş akışına veri bütünlüğü kontrolleriyle bağlar.
 

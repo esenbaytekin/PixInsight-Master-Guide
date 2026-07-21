@@ -1,0 +1,74 @@
+name: Production deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: allsky-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install documentation dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Build documentation
+        run: mkdocs build --strict
+
+      - name: Validate production image
+        run: docker build --tag pixinsight-master-guide:ci .
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy over SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          set -Eeuo pipefail
+          [[ -n "$DEPLOY_HOST" ]] || { echo "DEPLOY_HOST tanımlı değil." >&2; exit 1; }
+          [[ -n "$DEPLOY_USER" ]] || { echo "DEPLOY_USER tanımlı değil." >&2; exit 1; }
+          [[ -n "$DEPLOY_SSH_KEY" ]] || { echo "DEPLOY_SSH_KEY tanımlı değil." >&2; exit 1; }
+
+          port="${DEPLOY_PORT:-22}"
+          [[ "$port" =~ ^[0-9]+$ ]] || { echo "DEPLOY_PORT sayısal olmalıdır." >&2; exit 1; }
+
+          key_file="$(mktemp)"
+          known_hosts_file="$(mktemp)"
+          trap 'rm -f "$key_file" "$known_hosts_file"' EXIT
+
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$key_file"
+          chmod 600 "$key_file"
+          ssh-keyscan -T 10 -p "$port" -H "$DEPLOY_HOST" > "$known_hosts_file" 2>/dev/null
+          [[ -s "$known_hosts_file" ]] || { echo "SSH host key alınamadı." >&2; exit 1; }
+
+          ssh \
+            -i "$key_file" \
+            -p "$port" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$known_hosts_file" \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            'cd /srv/allsky && /srv/allsky/deployment/scripts/deploy.sh'

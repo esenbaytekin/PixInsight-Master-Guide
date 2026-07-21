@@ -295,6 +295,17 @@
 - [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
 - [ ] Kontrollü integration testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
 
+## PixInsight 1.9.3 UI validation — ikinci dalga
+
+- [x] ArcsinhStretch, ChannelCombination, ColorMask, CosmeticCorrection ve DarkStructureEnhance
+- [x] GeneralizedHyperbolicStretch, GraXpert, HDRMultiscaleTransform ve ImageCalibration
+- [x] LRGBCombination, MaskedStretch, MultiscaleMedianTransform, PixelMath, StarMask ve WBPP
+- [x] Registry/canonical/screenshot preflight ve üçlü validation artifact yapısı
+- [x] Görünen UI ile default/behavior/algorithm kanıt sınırlarının ayrılması
+- [ ] Final `mkdocs build --strict` — yerel MkDocs runtime mevcut değil; geçici dependency kurulumu onay bekliyor
+- [x] `git diff --check`
+- [ ] RangeMask — ekran görüntüsü bekleniyor
+
 ## Sprint 4.1 — Interim Review
 
 - [x] 15 process için registry/canonical integrity denetimi

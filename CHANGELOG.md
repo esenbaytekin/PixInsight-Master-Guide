@@ -6,6 +6,8 @@ Bu proje [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) yaklaşımın�
 
 ### Eklendi
 
+- PixInsight 1.9.3 UI validation dalgası: ArcsinhStretch, ChannelCombination, ColorMask, CosmeticCorrection, DarkStructureEnhance, GeneralizedHyperbolicStretch, GraXpert, HDRMultiscaleTransform, ImageCalibration, LRGBCombination, MaskedStretch, MultiscaleMedianTransform, PixelMath, StarMask ve WBPP için evidence matrix, UI notes ve validation checklist
+- Bu 15 canonical process/script sayfasında kanıta bağlı UI doğrulama sınırı; görünen değer/default ayrımı ile DATA-REQUIRED ve DOC-REQUIRED kayıtları
 - Sprint 4.0.2: process registry zorunlu single source of truth; exact case-sensitive slug preflight
 - Sprint 4.0.2: unknown slug, invalid registry/canonical path ve screenshot path mismatch için file-change öncesi durdurma
 - Sprint 4.0.2: display name/alias slug desteği ve automatic canonical execution fallback kaldırıldı; LinearFit orphan output korundu
