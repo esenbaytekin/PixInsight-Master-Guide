@@ -97,17 +97,28 @@ SPCC/PCC sonrasında görüntü soluk görünebilir. Sonuç “başarısız” i
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — channel clipping"
+!!! example "Görsel doğrulama ölçütü — channel clipping"
     **Amaç:** Beyaz star core ile channel clipping ilişkisini göstermek.  
     **Gerekli ekran veya veri:** Star close-up, RGB histogram ve pixel readout.  
     **Kanıtlanacak teknik nokta:** Clipped color bilgisinin calibration ile geri getirilememesi.  
     **Önerilen dosya adı:** `color-diagnostics-channel-clipping-v01.png`
 
-!!! example "Görsel eklenecek — color cast"
+!!! example "Görsel doğrulama ölçütü — color cast"
     **Amaç:** Global cast ile chromatic gradient'i ayırmak.  
     **Gerekli ekran veya veri:** RGB image, kanal background maps ve Preview statistics.  
     **Kanıtlanacak teknik nokta:** Spatial variation'ın yalnız global channel scaling olmaması.  
     **Önerilen dosya adı:** `color-diagnostics-cast-vs-gradient-v01.png`
+
+## Gerçek dünya renk belirtileri
+
+| Belirti | Olası neden | Doğrulama | Düzeltici workflow |
+|---|---|---|---|
+| Green background | Residual gradient/yanlış ROI | Kanal maps ve farklı ROI | Gradient’e dön; reference’ı değiştir |
+| Magenta stars | Green suppression veya layer mismatch | SPCC sonrası stars ile kıyas | SCNR/recombine adımını geri al |
+| Yellow galaxy core | Clipping veya white reference | Channel histogram ve linear core | Clipping’i düzelt; yeniden kalibre et |
+| Cyan nebula | Narrowband mapping/yanlış profile | Kanal katkılarını ayrı görüntüle | Mapping’i calibration’dan ayır |
+| Oversaturated stars | Nonlinear Curves/saturation | Linear SPCC çıktısıyla kıyas | Star mask ile saturation’ı azalt |
+| Renkli background | Yanlış ROI, cirrus veya moonlight | Çoklu Preview statistics | Temsilî ROI veya gradient workflow |
 
 ## Sık yapılan hatalar
 

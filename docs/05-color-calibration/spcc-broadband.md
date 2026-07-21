@@ -105,26 +105,35 @@ M31 RGB master için `SPCC-BB-M31-01` planlanır; outer disk, core, stars ve bac
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — mono LRGB sonucu"
+!!! example "Görsel doğrulama ölçütü — mono LRGB sonucu"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Mono LRGB broadband master  
     **Ekran veya çıktı:** Original/SPCC output/log  
     **Kanıtlanacak konu:** Filter/profile ve channel result  
     **Önerilen dosya adı:** `spcc-193-broadband-lrgb-result-v01.png`
 
-!!! example "Görsel eklenecek — OSC sonucu"
+!!! example "Görsel doğrulama ölçütü — OSC sonucu"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** OSC broadband master  
     **Ekran veya çıktı:** Original/SPCC output/log  
     **Kanıtlanacak konu:** CFA/profile ve star color karşılaştırması  
     **Önerilen dosya adı:** `spcc-193-broadband-osc-result-v01.png`
 
-!!! example "Görsel eklenecek — M31 color preservation"
+!!! example "Görsel doğrulama ölçütü — M31 color preservation"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** M31 LRGB  
     **Ekran veya çıktı:** Original/output/difference ve log  
     **Kanıtlanacak konu:** Core, outer disk ve halo color preservation  
     **Önerilen dosya adı:** `spcc-193-m31-color-preservation-v01.png`
+
+## Tam workflow karar matrisi
+
+| Workflow | SPCC girdisi | Sonraki karar | Neden |
+|---|---|---|---|
+| Mono LRGB | Linear combined RGB | Luminance’i sonra ekle | L channel color response çözmez |
+| LRGB + Ha | Önce broadband RGB | Ha’yı maskeli ekle | Emission star color fitini bozmamalı |
+| OSC dark sky | Debayered integrated color | Broadband profile | Stellar spectrum örneklenebilir |
+| OSC light pollution | Gradient düzeltilmiş color | Residual kanalları kontrol et | SPCC spatial gradient çözmez |
 
 ## Sık yapılan hatalar
 

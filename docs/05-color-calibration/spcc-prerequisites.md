@@ -86,19 +86,30 @@ OSC broadband master için CFA/debayer geçmişi, WCS, clipping, gradient, senso
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — astrometry ve WCS"
+!!! example "Görsel doğrulama ölçütü — astrometry ve WCS"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Solved broadband master  
     **Ekran veya çıktı:** WCS/metadata ve astrometry alanı  
     **Kanıtlanacak konu:** Exact astrometry UI ile geçerli solution kanıtı  
     **Önerilen dosya adı:** `spcc-193-astrometry-wcs-v01.png`
 
-!!! example "Görsel eklenecek — instrument profiles"
+!!! example "Görsel doğrulama ölçütü — instrument profiles"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Mono LRGB ve OSC örnekleri  
     **Ekran veya çıktı:** Sensor ve filter profile seçim ekranları  
     **Kanıtlanacak konu:** Database/profile seçeneklerinin exact adları ve eşleşmesi  
     **Önerilen dosya adı:** `spcc-193-sensor-filter-profiles-v01.png`
+
+## Preflight kabul matrisi
+
+| Girdi | Kabul kanıtı | Başarısızlıkta yapılacak |
+|---|---|---|
+| WCS | Star overlay alan boyunca uyumlu | ImageSolver ile metadata’yı düzelt |
+| Pixel size/focal length | Scale ile measured field uyumlu | Acquisition değerlerini doğrula |
+| Gaia DR3/SP | Database seçili ve query log başarılı | Kurulum/path ve coverage kontrolü |
+| Filter profile | Gerçek passband ile eşleşiyor | Custom curve veya güvenilir profile |
+| Sensor QE | Kamera/sensor modeliyle eşleşiyor | Generic profile riskini belgeleyin |
+| Stars | Unsaturated ve alana dağılmış samples | Clipping/detection sorununu çöz |
 
 ## Sık yapılan hatalar
 
@@ -169,4 +180,3 @@ flowchart TD
 - [SPCC Broadband](spcc-broadband.md)
 - [SPCC Narrowband](spcc-narrowband.md)
 - [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
-

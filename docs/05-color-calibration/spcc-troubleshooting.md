@@ -402,40 +402,52 @@ Catalog query hatası veren bir M31 testi için tam log, WCS overlay, image scal
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — process log başarı"
+!!! example "Görsel doğrulama ölçütü — process log başarı"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Broadband test input  
     **Ekran veya çıktı:** Tam başarı logu ve output  
     **Kanıtlanacak konu:** Gerçek output/log davranışı  
     **Önerilen dosya adı:** `spcc-193-log-success-v01.png`
 
-!!! example "Görsel eklenecek — process log hata"
+!!! example "Görsel doğrulama ölçütü — process log hata"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Kontrollü hatalı input  
     **Ekran veya çıktı:** Tam error logu  
     **Kanıtlanacak konu:** Gerçek error string ve kök neden  
     **Önerilen dosya adı:** `spcc-193-log-error-v01.png`
 
-!!! example "Görsel eklenecek — catalog match ve rejection"
+!!! example "Görsel doğrulama ölçütü — catalog match ve rejection"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Star-rich ve saturated fields  
     **Ekran veya çıktı:** Match overlay ve rejection logu  
     **Kanıtlanacak konu:** Catalog samples ve saturated rejection  
     **Önerilen dosya adı:** `spcc-193-catalog-match-rejection-v01.png`
 
-!!! example "Görsel eklenecek — saturated star rejection"
+!!! example "Görsel doğrulama ölçütü — saturated star rejection"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Saturated ve unclipped star field karşılaştırması  
     **Ekran veya çıktı:** Star cutouts, readout ve rejection logu  
     **Kanıtlanacak konu:** Saturation ile gerçek sample rejection ilişkisi  
     **Önerilen dosya adı:** `spcc-193-saturated-star-rejection-v01.png`
 
-!!! example "Görsel eklenecek — starless hata"
+!!! example "Görsel doğrulama ölçütü — starless hata"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Starless narrowband image  
     **Ekran veya çıktı:** UI ve tam log  
     **Kanıtlanacak konu:** Starless input için gerçek process davranışı  
     **Önerilen dosya adı:** `spcc-193-starless-error-v01.png`
+
+## Hızlı semptom matrisi
+
+| Semptom | İlk kontrol | Düzeltici sıra |
+|---|---|---|
+| Gaia catalog bulunamıyor | Database path, dosya seti ve query log | Gaia Preferences → path → coverage → tekrar query |
+| Filter seçimi yanlış | Acquisition filter ve profile curve | Doğru profile/custom curve → yeniden calibration |
+| Focal length/pixel size yanlış | WCS scale ve field overlay | Metadata → solve → SPCC |
+| Plate solve başarısız | Coordinates, scale, star shape | Girdiyi düzelt → ImageSolver → overlay |
+| White reference yanlış | Seçilen reference anlamı | Reference hedefini belirle → clone üzerinde A/B |
+| Green/magenta/cyan/yellow sonuç | Gradient, clipping, profile, later color operations | Linear SPCC çıktısına dön → sınıfı ayır → düzelt |
+| Oversaturated stars | Linear histogram ve nonlinear history | Stretch/Curves adımını geri al; star mask kullan |
 
 ## Sık yapılan hatalar
 

@@ -1,84 +1,91 @@
 # StarXTerminator
 
-**Durum: Taslak**
-
 ## Amaç
 
-Bu bölüm, StarXTerminator konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Görüntüyü starless ve stars bileşenlerine ayırarak nebula/galaxy ile yıldızların farklı işlemlerle yönetilmesini sağlamaktır. Ayrıştırma, yıldızların fiziksel olarak “yok edilmesi” değil, model tabanlı bir katman tahminidir.
+
+## Teori ve AI yaklaşımı
+
+Star removal, yıldız profiliyle nonstellar kompakt yapıyı sınıflandırmayı ve yıldız altındaki alanı tahmin etmeyi gerektirir. RC Astro, hiçbir star-removal aracının tüm görüntülerde kusursuz olamayacağını belirtir. Bu nedenle starless görüntü kadar stars layer ve recombination residual da incelenmelidir.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Nebula ile yıldızlara farklı stretch, saturation veya contrast uygulanacaksa
+- Narrowband yıldızları broadband yıldızlarla değiştirilecekse
+- Star mask üretimi veya kontrollü star reduction gerekiyorsa
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Kötü fokus, coma veya registration hatasını gizlemek için
+- Starless görüntüde kompakt nebula düğümleri korunmadan
+- Stars layer kaydedilmeden veya recombination planı olmadan
+- Bilimsel fotometri yapılacak çalışma kopyasında
 
-## Ön koşullar
+## Girdi ve çıktı beklentisi
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Girdi iyi registered, clipping durumu bilinen ve yıldız PSF’si makul görüntü olmalıdır. Çıktıda starless katman yıldız çukurları, halos veya “yeniden boyanmış” nebula içermemeli; stars katmanı belirgin nonstellar yapı taşımamalıdır. İki katman uygun birleşimle başlangıç görüntüsüne yakın sonuç üretmelidir.
 
-## PixInsight menü yolu
+## Parametre yaklaşımı
 
-`Process > ObjectRecognition > StarXTerminator`
+Kurulu UI’de doğrulanmış model/sürüm ve kontrol adları esas alınır. `Unscreen Stars` gibi seçeneklerin matematiksel birleşim davranışı varsayılmamalı; seçilen stars layer türüyle uyumlu PixelMath/recombination kullanılmalıdır.
 
-Process adı ve bu menü yolu PixInsight UI ekranında doğrudan okunmuştur. Aynı kanıt setinde plugin sürümü `2.4.11`, AI sürümü `11` olarak görünür. Ayrıntılı kayıt repository içindeki `validation/ui/pi-1.9.3/starxterminator/starxterminator-evidence-matrix.md` dosyasındadır.
+| Karar | Artırma/değiştirme gerekçesi | Risk |
+|---|---|---|
+| Model sürümü | Yeni model belirli PSF sorununu daha iyi çözüyorsa | Eski workflow ile farklı sonuç |
+| Linear/nonlinear çalışma | Ayrıştırma ve recombination planına göre | Yanlış domain’de halo/residual |
+| Stars output | Ayrı yıldız işlemi yapılacaksa | Kaydedilmezse geri dönüş zorlaşır |
+| Unscreen yaklaşımı | Screen-tabanlı recombination gerekiyorsa | Yanlış formülle brightness/color sapması |
 
-!!! warning "Sürüm ve UI doğrulama sınırı"
-    Plugin/AI sürüm metni görünür ancak PixInsight host sürüm numarası ekran içinde yoktur. Görseller resetlenmiş bir instance, tooltip, console veya tamamlanmış batch işlemi göstermediği için mevcut durumlar fabrika varsayılanı ya da davranış kanıtı sayılmamalıdır.
+## Hedef bazlı karar matrisi
 
-## Parametreler
+| Veri | Ana denetim | Neden |
+|---|---|---|
+| Galaxy | Kompakt HII regions ve çekirdek | Yıldız sanılarak silinebilir |
+| Emission nebula | Parlak düğüm ve filament kesişimi | Star residual ile karışır |
+| Reflection nebula | Bright star halo çevresi | Gerçek reflection yapısı kaybolabilir |
+| Dense star field | Starless dolgu ve stars contamination | Modelin en zor ayrıştırma alanıdır |
+| Wide field | Küçük yıldızların toplu residual’ı | Düşük tekil hata geniş alanda görünür |
+| Narrowband | Yıldız renk/recombination planı | Kanal oranları estetik mapping’e bağlıdır |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Uygulama ve işlem sırası
 
-| UI alanı | Doğrulanan etiketler | Kanıt sınırı |
-| --- | --- | --- |
-| Ana pencere | `Select AI`, `Generate Star Image`, `Unscreen Stars`, `Large Overlap`, `Process Batch` | Etiketler doğrulandı; davranış DOC/DATA-REQUIRED |
-| Batch output | `Output starless files to`, `Output star files to` | Etiketler doğrulandı; dosya üretimi DATA-REQUIRED |
-| Batch mask | `Invert`, `Mask`, `<No View Available>` | Görünür UI doğrulandı; mask behavior DOC/DATA-REQUIRED |
-| Batch options | `Unscreen Stars`, `Add Suffixes` | Etiketler doğrulandı; output etkisi DATA-REQUIRED |
-| Batch actions | `Select Input Files and Execute`, `Cancel` | Button etiketleri doğrulandı; execution behavior DATA-REQUIRED |
+1. BlurXTerminator gerekiyorsa önce lineer aşamada tamamlayın.
+2. Orijinal clone, starless ve stars layer üretin.
+3. Köşe, merkez, bright star ve kompakt hedef bölgelerini inceleyin.
+4. Starless dalda Curves, GHS veya ColorMask işlemlerini maskeli uygulayın.
+5. Stars dalında saturation ve star reduction’ı sınırlı tutun.
+6. PixelMath ile seçilen layer türüne uygun recombination yapın.
+7. Orijinalle brightness, halo ve color karşılaştırması yapın.
 
-Ana pencerede `Generate Star Image` ve `Unscreen Stars` işaretli, `Large Overlap` işaretsizdir. Batch penceresinde iki output seçeneği, `Unscreen Stars` ve `Add Suffixes` işaretli; `Invert` işaretsiz ve Mask alanında `<No View Available>` görünür. Bunlar yalnız ekran anındaki durumlardır ve default olarak yorumlanmamalıdır.
+## Süreç etkileşimleri
 
-## Uygulama adımları
-
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
-
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+SPCC yıldız renk ilişkisini kurduğu için star separation öncesi tamamlanması çoğu broadband akışında izlenebilirliği artırır. SCNR veya ColorMask işlemlerini yalnız starless dala uygulamak, yıldız rengini koruyabilir; ancak recombination sonrası cast yeniden kontrol edilmelidir. HistogramTransformation, MaskedStretch veya GHS iki dalda farklı uygulanırsa parlaklık uyumu yeniden kurulmalıdır.
 
 ## Sorun giderme
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Belirti | Olası neden | Doğrulama | Düzeltme |
+|---|---|---|---|
+| Starless’ta koyu delikler | Bright star/halo ayrıştırması | Stars ve residual incelemesi | Farklı aşama/model veya lokal maske |
+| Nebula düğümü silindi | Kompakt yapı star sanıldı | Orijinal kanal kıyası | Yapıyı maske ile geri birleştir |
+| Stars layer nebula içeriyor | Classification belirsizliği | Katmanı güçlü STF ile incele | Bölgesel düzeltme veya alternatif model |
+| Recombine sonucu fazla parlak | Yanlış birleşim matematiği | Başlangıç görüntüsüyle difference | Layer türüne uygun PixelMath kullan |
+| Magenta/renksiz yıldız | Stars dalında aşırı color işlemi | SPCC sonrası stars ile karşılaştır | Saturation/cast işlemini geri al |
 
-## Hızlı referans
+## Performans, sınırlamalar ve en iyi uygulamalar
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+Dense star fields ve büyük drizzle görüntüleri daha fazla bellek ve inceleme süresi gerektirir. GPU desteği kurulu sürüm belgeleriyle doğrulanmalıdır. Ayrıştırma sonrası her iki katmanı saklayın; yalnız starless sonucu final kabul etmeyin. Star removal hataları için lokal manuel onarım model davranışını gizlememeli, kayıt altında tutulmalıdır.
 
-## İlgili bölümler
+## Quick Reference
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [AI Eklentileri](index.md)
+- Recombination planını önceden seç
+- Stars layer’ı mutlaka üret ve sakla
+- Kompakt nonstellar yapıyı kontrol et
+- İki dalın stretch/color dengesini kaydet
+- Finali başlangıç görüntüsüyle karşılaştır
+
+## İlgili süreçler ve kaynaklar
+
 - [BlurXTerminator](blurxterminator.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [Color Calibration Diagnostics](../05-color-calibration/color-calibration-diagnostics.md)
+- [RC Astro StarXTerminator Usage Notes](https://www.rc-astro.com/starxterminator-usage-notes/)
