@@ -46,3 +46,7 @@ mkdocs build --strict
 - [Kılavuz ana sayfası](docs/index.md)
 - [Yol haritası](ROADMAP.md)
 - [Değişiklik günlüğü](CHANGELOG.md)
+
+## Production deployment
+
+Landing page, MkDocs `/docs/` yayını, Docker, Nginx, Traefik ve GitHub Actions kurulumu için [deployment rehberine](deployment/README.md) bakın.

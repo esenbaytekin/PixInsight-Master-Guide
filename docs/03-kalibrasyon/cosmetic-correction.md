@@ -1,5 +1,8 @@
 # CosmeticCorrection
 
+!!! info "PixInsight 1.9.3 UI doğrulaması"
+    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/cosmetic-correction/cosmetic-correction-evidence-matrix.md`.
+
 **Durum: Tamamlandı — Faz 1B**
 
 ## Amaç

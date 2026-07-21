@@ -1,5 +1,19 @@
 # FAZ 1B Teknik İnceleme Raporu
 
+## PixInsight 1.9.3 UI validation — ikinci dalga
+
+Registry’deki 15 process/script için supplied screenshot dizinleri incelendi: `arcsinh-stretch`, `channel-combination`, `color-mask`, `cosmetic-correction`, `dark-structure-enhance`, `generalized-hyperbolic-stretch`, `graxpert`, `hdr-multiscale-transform`, `image-calibration`, `lrgb-combination`, `masked-stretch`, `multiscale-median-transform`, `pixelmath`, `star-mask` ve `wbpp`.
+
+- 56 screenshot, yalnız kendi process dizinleri içinde kanıt olarak kullanıldı.
+- 45 validation artifact oluşturuldu: process başına evidence matrix, UI notes ve checklist.
+- Menü yolları ile görünür section/control ve açık dropdown kayıtları `UI-VERIFIED` olarak ayrıldı.
+- Ekran anındaki seçim ve değerler default sayılmadı; doğrulanan default sayısı sıfırdır.
+- Process output davranışı `DATA-REQUIRED`, algoritmik anlamlar `DOC-REQUIRED` olarak bırakıldı.
+- Evidence path, duplicate ID ve registry/canonical bütünlük kontrolleri geçti.
+- `git diff --check` geçti.
+- Final `mkdocs build --strict`, yerel MkDocs runtime bulunmadığı ve geçici dependency kurulumu güvenlik onayı almadığı için beklemededir.
+- `range-mask` screenshot dizini boş olduğundan bu dalganın dışında bırakıldı.
+
 **İnceleme türü:** İçerik ve doğrulama açığı envanteri; Revizyon 1 sonuçlarıyla güncellendi  
 **Kapsam:** FAZ 1B kapsamında güncellenen yedi kalibrasyon dokümanı  
 **Revizyon durumu:** Yapısal ve render bulguları giderildi; teknik kanıt açıkları izlenmeye devam ediyor.

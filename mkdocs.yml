@@ -1,5 +1,7 @@
 site_name: PixInsight Master Guide
 site_description: PixInsight 1.9.3 ve RC Astro eklentileri için Türkçe monokrom astrofotoğraf işleme el kitabı
+site_url: https://allsky.com.tr/docs/
+use_directory_urls: true
 theme:
   name: material
   language: tr
