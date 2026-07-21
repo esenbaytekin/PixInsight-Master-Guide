@@ -45,6 +45,48 @@ flowchart LR
     diagnose --> processes["SPCC ve PCC"]
 ```
 
+## Yaklaşım karşılaştırmaları
+
+| Yaklaşım | Referans | Güçlü yanı | Sınır |
+|---|---|---|---|
+| SPCC | Spectral catalog ve instrument response | Passband/sensor bağlamını modele katar | Gaia DR3/SP, WCS ve doğru profiles gerekir |
+| PCC | Broadband catalog photometry | Legacy karşılaştırma için yararlı | Tam spectral response modellemez |
+| Manual calibration | Seçilmiş reference veya katsayı | Catalog olmayan özel veride denetlenebilir | Reference seçimine duyarlıdır |
+| Aesthetic grading | Görsel hedef | İfade özgürlüğü | Fiziksel calibration değildir |
+
+| Veri | Calibration felsefesi | Neden |
+|---|---|---|
+| Broadband LRGB/OSC | Instrument response ve stellar reference | Sürekli spektrum renk ilişkisi kurulabilir |
+| LRGB + Ha | Önce broadband calibration, sonra kontrollü Ha | Ha katkısı broadband yıldız modelini bozmamalıdır |
+| SHO/HOO | Kanal mapping ve palette kararı | Dar band emisyonları broadband white balance değildir |
+
+## Uçtan uca workflow örnekleri
+
+| Veri seti | Önerilen karar zinciri | Neden farklı? |
+|---|---|---|
+| Broadband mono LRGB | RGB combine → gradient → solve → SPCC → BXT → NXT → stretch → L combine | Luminance renk response çözümünden ayrıdır |
+| LRGB + Ha | Broadband SPCC → BXT/NXT → kontrollü Ha blend → stretch | Ha, continuum yıldız fitine karıştırılmaz |
+| OSC dark sky | Debayer/integrate → gradient kontrolü → solve → SPCC → AI → stretch | Tek sensör/profile zinciri vardır |
+| OSC heavy light pollution | Calibration → gradient diagnostics/correction → solve → SPCC | Spatial color gradient önce ayrılmalıdır |
+| SHO | Kanal bazlı calibration/gradient → star strategy → palette mapping → stretch | Mapping estetik; emission sinyali fizikseldir |
+| HOO | Ha/OIII ayrımı → star calibration → HOO mapping → color diagnostics | OIII düşük SNR ve cyan mapping ayrıca korunur |
+| Dark sky broadband | Gradient doğrulaması → SPCC → minimal grading | Düşük çevresel gradient yine kanıtlanmalıdır |
+| Heavy light pollution mono | Filtre/gece bazlı integrate → gradient → RGB combine → SPCC | Kanalların background ve extinction farkı büyüktür |
+
+```mermaid
+flowchart LR
+    calibrated["Calibrated ve integrated channels"] --> gradient["Gradient diagnostics"]
+    gradient --> combine{"Broadband mı?"}
+    combine -- "Evet" --> rgb["RGB/OSC response"]
+    rgb --> solve["Plate solve ve profiles"]
+    solve --> spcc["SPCC"]
+    combine -- "Narrowband" --> lines["Emission channels ve star strategy"]
+    lines --> mapping["SHO veya HOO mapping"]
+    spcc --> ai["BXT sonra NXT"]
+    mapping --> ai
+    ai --> stretch["Stretch ve controlled grading"]
+```
+
 ## Quick Navigation
 
 | Soru | Sayfa |

@@ -89,29 +89,41 @@ Mono LRGB master'larda B kanalının daha zayıf görünmesi, hedefin yalnız fi
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — görünür spektrum"
+!!! example "Görsel doğrulama ölçütü — görünür spektrum"
     **Amaç:** Görünür spektrum ile RGB filter passband ilişkisini göstermek.  
     **Gerekli ekran veya veri:** Dalga boyu ekseni üzerinde temsili R/G/B transmission eğrileri.  
     **Kanıtlanacak teknik nokta:** RGB kanalların spektrumu kesikli ve örtüşen response'larla örneklemesi.  
     **Önerilen dosya adı:** `color-visible-spectrum-rgb-filters-v01.png`
 
-!!! example "Görsel eklenecek — mono LRGB zinciri"
+!!! example "Görsel doğrulama ölçütü — mono LRGB zinciri"
     **Amaç:** Ayrı filter exposure'larından RGB image üretimini göstermek.  
     **Gerekli ekran veya veri:** L/R/G/B masters ve ChannelCombination aşamaları.  
     **Kanıtlanacak teknik nokta:** Mono channel response'ların ayrı ölçülüp birleştirilmesi.  
     **Önerilen dosya adı:** `color-mono-lrgb-chain-v01.png`
 
-!!! example "Görsel eklenecek — OSC CFA zinciri"
+!!! example "Görsel doğrulama ölçütü — OSC CFA zinciri"
     **Amaç:** CFA sampling ve debayer sonrası RGB üretimini göstermek.  
     **Gerekli ekran veya veri:** CFA pattern, raw mosaic ve debayered image.  
     **Kanıtlanacak teknik nokta:** OSC pixel'lerinin başlangıçta tüm renkleri doğrudan ölçmemesi.  
     **Önerilen dosya adı:** `color-osc-cfa-chain-v01.png`
 
-!!! example "Görsel eklenecek — linear ve nonlinear"
+!!! example "Görsel doğrulama ölçütü — linear ve nonlinear"
     **Amaç:** Stretch'in color görünümünü nasıl değiştirebildiğini göstermek.  
     **Gerekli ekran veya veri:** Aynı lineer master'ın STF görünümü ve kalıcı stretched kopyası.  
     **Kanıtlanacak teknik nokta:** Display stretch ile pixel transformation ayrımı.  
     **Önerilen dosya adı:** `color-linear-nonlinear-comparison-v01.png`
+
+## Photometric renk ve estetik renk
+
+Photometric calibration, ölçülen yıldız sinyalini tanımlı bir reference sistemiyle ilişkilendirir. Estetik color grading saturation, hue ve local contrast tercihidir. İlki ikincisini yasaklamaz; yalnız başlangıç transformunu ölçülebilir kılar.
+
+| Katman | Fiziksel etki | İşleme kararı |
+|---|---|---|
+| Atmosfer | Dalga boyuna bağlı extinction | Hedef yüksekliği/air mass kaydedilir |
+| Filter | Passband transmission | Gerçek filter profile seçilir |
+| Sensor | Wavelength-dependent QE | Doğru sensor response kullanılır |
+| Optics | Toplam throughput | Biliniyorsa modele katılır |
+| Display | White point ve gamut | Calibration’dan ayrı yönetilir |
 
 ## Sık yapılan hatalar
 

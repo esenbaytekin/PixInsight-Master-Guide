@@ -108,12 +108,24 @@ NGC 6888 HOO data için `SPCC-NB-HOO-01` tasarlanır. Ha/OIII masters, star laye
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — narrowband scope"
+!!! example "Görsel doğrulama ölçütü — narrowband scope"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** SHO, HOO, RGB stars + NB ve starless examples  
     **Ekran veya çıktı:** Doğrulanmış narrowband UI, log ve scenario outputs  
     **Kanıtlanacak konu:** Mode/options kapsamı ile palette/star workflow ayrımı  
     **Önerilen dosya adı:** `spcc-193-narrowband-scope-v01.png`
+
+## Broadband ve narrowband karşılaştırması
+
+| Konu | Broadband | Narrowband SHO/HOO |
+|---|---|---|
+| Reference | Stellar continuum response | Emission mapping ve star strategy |
+| White reference | Fiziksel başlangıç olabilir | Palette white point estetik olabilir |
+| Filter profile | Geniş passband | Merkez wavelength/bandwidth kritik |
+| Background neutrality | Temsilî sky varsa | Mapped palette’de zorunlu değil |
+| Başarı | Star/target color ve fit | Signal separation ve palette tutarlılığı |
+
+SHO/HOO’da narrowband mode kullanımı doğal renk garantisi değildir. Emission lines fiziksel ölçüm, channel mapping ise görsel temsil kararıdır.
 
 ## Sık yapılan hatalar
 

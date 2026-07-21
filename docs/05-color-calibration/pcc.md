@@ -279,6 +279,12 @@ Farklı reference model, instrument profile kapsamı, catalog/source seçimi, wh
 | PCC-BB-METADATA-01 | Broadband | Eksik/yanlış metadata | metadata düzeltme | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
 | PCC-COMP-SPCC-01 | Broadband karşılaştırma | Aynı doğrulanmış master | PCC ve SPCC | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
 
+## Legacy konum, çıktı ve performans
+
+PCC, mevcut projelerin yeniden üretimi ve SPCC ile kontrollü A/B karşılaştırması için korunur. Yeni broadband workflow’da SPCC’nin Gaia spectral catalog ile filter/sensor response kullanabilmesi daha ayrıntılı bir instrument modeli sağlar. Buna rağmen yanlış WCS veya profile ile SPCC’ye geçmek, doğrulanmış PCC sonucunu otomatik olarak iyileştirmez.
+
+PCC çıktısı; process log, matched/rejected sources, channel statistics ve aynı STF altında star/background karşılaştırmasıyla kabul edilir. Plate solve/catalog işlemleri ağ, disk ve source sayısına bağlı süre oluşturabilir; başarısızlığı yalnız daha yüksek detection tolerance ile bastırmak yerine metadata zinciri düzeltilmelidir.
+
 ## Sık yapılan hatalar
 
 - WCS mevcut diye geçerli olduğunu varsaymak.
@@ -677,7 +683,7 @@ flowchart TD
 - **Ekran veya çıktı:** ana UI
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-main-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-02 — Astrometry bölümü
 
@@ -686,7 +692,7 @@ flowchart TD
 - **Ekran veya çıktı:** astrometry kontrolleri
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-astrometry-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-03 — Catalog controls
 
@@ -695,7 +701,7 @@ flowchart TD
 - **Ekran veya çıktı:** catalog alanı
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-catalog-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-04 — White reference controls
 
@@ -704,7 +710,7 @@ flowchart TD
 - **Ekran veya çıktı:** white reference alanı
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-white-reference-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-05 — Background controls
 
@@ -713,7 +719,7 @@ flowchart TD
 - **Ekran veya çıktı:** background alanı
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-background-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-06 — Source detection controls
 
@@ -722,7 +728,7 @@ flowchart TD
 - **Ekran veya çıktı:** source alanı
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-ui-source-detection-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-07 — Process log başarı
 
@@ -731,7 +737,7 @@ flowchart TD
 - **Ekran veya çıktı:** başarı logu
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-log-success-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-08 — Process log hata
 
@@ -740,7 +746,7 @@ flowchart TD
 - **Ekran veya çıktı:** hata logu
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-log-error-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-09 — Mono RGB before/after
 
@@ -749,7 +755,7 @@ flowchart TD
 - **Ekran veya çıktı:** RGB karşılaştırması
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-mono-rgb-before-after.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-10 — OSC before/after
 
@@ -758,7 +764,7 @@ flowchart TD
 - **Ekran veya çıktı:** OSC karşılaştırması
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-osc-before-after.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel PCC-11 — PCC ve SPCC
 
@@ -767,7 +773,7 @@ flowchart TD
 - **Ekran veya çıktı:** kontrollü karşılaştırma
 - **Teknik kanıt amacı:** UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `pcc-spcc-comparison.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 
 ## SSS

@@ -1,86 +1,89 @@
 # NoiseXTerminator
 
-**Durum: Taslak**
-
 ## Amaç
 
-Bu bölüm, NoiseXTerminator konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Noise bileşenini azaltırken astronomik sinyal, küçük ölçekli doku ve kanal ilişkilerini korumaktır. Amaç tamamen pürüzsüz background değil, sonraki stretch ve contrast işlemlerini taşıyabilecek kontrollü bir noise seviyesidir.
+
+## Teori ve AI yaklaşımı
+
+Model, eğitim verilerinden öğrendiği signal/noise ayrımını uygular. RC Astro AI3 belgesinde `Iterations` successive approximation adımlarını; intensity/color ve frequency separation modları farklı noise bileşenlerini kontrol eder. Modelin eğitim veri seti veya iç katmanları hakkında yayımlanmamış ayrıntılar varsayılmaz.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- BlurXTerminator veya diğer deconvolution tamamlandıktan sonra
+- Lineer veya nonlinear aşamada, sonraki işlemlerin noise’u büyüteceği biliniyorsa
+- Color separation kullanılacaksa RGB/OSC channel combination sonrasında
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Calibration, walking noise veya gradient hatasını gizlemek için
+- BlurXTerminator öncesinde
+- Çok zayıf diffuse signal ile noise ayrımı test edilmeden yüksek strength ile
+- Her işlem aşamasında tekrar tekrar
 
-## Ön koşullar
+## Girdi ve çıktı beklentisi
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Girdi clipping içermemeli; noise’un yüksek/orta/düşük frekans karakteri incelenmiş olmalıdır. Çıktıda background daha kontrollü görünürken yıldız rengi, faint halo, nebula filamentleri ve galaxy dust lane yapısı korunmalıdır.
 
-## PixInsight menü yolu
+## Parametre matrisi
 
-`Process > NoiseReduction > NoiseXTerminator`
+| Parametre/mod | Görev | Artırma gerekçesi | Risk |
+|---|---|---|---|
+| `Denoise` | Ana intensity veya high-frequency reduction | Grain sonraki stretch’i domine ediyorsa | Plastik doku, faint signal kaybı |
+| `Denoise Color` | Chromatic noise azaltma | Kanal benekleri ölçülebiliyorsa | Renk ayrımının zayıflaması |
+| `Denoise LF` | Low-frequency intensity noise | Blotchy yapı gradient değilse | Diffused gerçek sinyal kaybı |
+| `Denoise LF Color` | Low-frequency chromatic noise | Büyük renk lekeleri noise olarak doğrulandıysa | Gerçek renk geçişlerinin silinmesi |
+| `Iterations` | AI3 successive approximation adımı | Residual noise kontrollü kalıyorsa | Süre ve overprocessing riski |
 
-Process adı ve bu menü yolu PixInsight UI ekranında doğrudan okunmuştur. Aynı kanıt setinde plugin sürümü `2.3.3`, AI sürümü `3` olarak görünür. Ayrıntılı kayıt repository içindeki `validation/ui/pi-1.9.3/noisexterminator/noisexterminator-evidence-matrix.md` dosyasındadır.
+AI2 `Detail` ile AI3 `Iterations` aynı işlev değildir. Kurulu model sürümüne ait olmayan parametrelerin etkili olduğu varsayılmamalıdır.
 
-!!! warning "Sürüm ve UI doğrulama sınırı"
-    Plugin/AI sürüm metni görünür ancak PixInsight host sürüm numarası ekran içinde yoktur. Görseller resetlenmiş bir instance, tooltip veya console göstermediği için seçili değerler fabrika varsayılanı sayılmamalı; algoritma ve output davranışı ayrıca doğrulanmalıdır.
+## Hedef ve veri karar matrisi
 
-## Parametreler
+| Veri | Başlangıç yaklaşımı | Neden |
+|---|---|---|
+| High-SNR galaxy | Konservatif reduction | Gerçek mikro kontrast zaten güçlüdür |
+| Low-SNR galaxy | Çoklu düşük strength karşılaştırması | Dust/noise ayrımı belirsizdir |
+| Emission nebula | Filament maskesiyle doğrulama | Faint lifler high-frequency noise’a benzer |
+| Reflection nebula | Low-frequency kontrolünü sınırlı tut | Yumuşak renk geçişi korunmalıdır |
+| Dense star field | Star color ve halo kontrolü | Chromatic reduction yıldız rengini azaltabilir |
+| Heavy light pollution | Önce gradient/calibration | Denoise geniş ölçekli background model değildir |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Uygulama ve workflow position
 
-| UI etiketi | Doğrulama durumu | Kanıt sınırı |
-| --- | --- | --- |
-| `Select AI` | UI-VERIFIED | Button etiketi doğrulandı; hidden seçenekler ve davranış DOC/DATA-REQUIRED |
-| `Intensity/color separation` | UI-VERIFIED | Checkbox etiketi doğrulandı; algoritmik etki DOC/DATA-REQUIRED |
-| `Frequency separation` | UI-VERIFIED | Checkbox etiketi doğrulandı; algoritmik etki DOC/DATA-REQUIRED |
-| `Denoise HF Intensity`, `Denoise HF Color` | UI-VERIFIED | Numeric kontroller doğrulandı; output etkisi DATA-REQUIRED |
-| `Denoise LF Intensity`, `Denoise LF Color` | UI-VERIFIED | Numeric kontroller doğrulandı; output etkisi DATA-REQUIRED |
-| `HF/LF Scale (pixels)` | UI-VERIFIED | Numeric kontrol doğrulandı; ölçek anlamı DOC/DATA-REQUIRED |
-| `Iterations` | UI-VERIFIED | Numeric kontrol doğrulandı; yineleme davranışı DOC/DATA-REQUIRED |
+1. BlurXTerminator/deconvolution aşamasının tamamlandığını doğrulayın.
+2. Background, faint signal ve star color için Preview’lar oluşturun.
+3. En basit mod ve düşük müdahale ile başlayın.
+4. Aynı STF’de orijinal, sonuç ve farkı 1:1 inceleyin.
+5. Stretch simülasyonu ile residual noise’un sonraki aşamada nasıl büyüdüğünü kontrol edin.
+6. Kabul edilen instance ve AI sürümünü kaydedin.
 
-Ana arayüz karesinde iki separation checkbox'ı işaretli; `Denoise HF Intensity 0.75`, `Denoise HF Color 0.60`, `Denoise LF Intensity 0.35`, `Denoise LF Color 0.30`, `HF/LF Scale (pixels) 5.0` ve `Iterations 2` görünür. Bunlar yalnız ekran anındaki durumlardır ve default olarak yorumlanmamalıdır.
-
-## Uygulama adımları
-
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
-
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+Genel sıra: SPCC → BlurXTerminator → NoiseXTerminator → HistogramTransformation/GHS/MaskedStretch → CurvesTransformation. Nonlinear ikinci geçiş yalnız ilk sonucun yetersizliği ölçülmüşse ve çok düşük müdahaleyle değerlendirilmelidir.
 
 ## Sorun giderme
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Belirti | Olası neden | Doğrulama | Düzeltme |
+|---|---|---|---|
+| Plastik background | Strength/iterations fazla | Fark görüntüsü ve 1:1 kıyas | Miktarı veya iterasyonu azalt |
+| Faint OIII kayboldu | Signal noise olarak sınıflandı | Kanal bazlı mask/kıyas | Daha düşük reduction, koruyucu mask |
+| Renk lekeleri kaldı | Color noise ayrı ele alınmadı | RGB kanal karşılaştırması | Color separation’ı kontrollü test et |
+| Renkler soldu | Color reduction fazla | Star/nebula chroma ölçümü | Color miktarını azalt |
+| Blotchy yapı kaldı | LF noise veya gradient karışıklığı | Büyük ölçekli model testi | Önce gradient tanısı; sonra LF modu |
 
-## Hızlı referans
+## Performans, sınırlamalar ve uyarılar
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+Iterations ve separation modları işlem süresini/bellek kullanımını artırabilir. GPU/CPU farkı kurulu plugin sürümü ve donanım desteğine bağlıdır. Denoise sonucu scientific measurement için kullanılacaksa orijinal lineer master korunmalı ve ölçüm politikası ayrıca belirlenmelidir.
 
-## İlgili bölümler
+## Quick Reference
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [AI Eklentileri](index.md)
+- Deconvolution’dan sonra
+- Önce en basit mod
+- Noise ile diffuse signal’ı ayır
+- Stretch sonrası görünümü önceden test et
+- AI/model sürümünü kaydet
+
+## İlgili süreçler ve kaynaklar
+
 - [BlurXTerminator](blurxterminator.md)
+- [HistogramTransformation](../02-pixinsight-temelleri/histogram.md)
+- [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
+- [RC Astro NoiseXTerminator 2/AI3 User Manual](https://www.rc-astro.com/noisexterminator-2-ai3-user-manual-pixinsight/)

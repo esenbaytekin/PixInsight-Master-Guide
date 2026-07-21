@@ -84,29 +84,39 @@ M31 görüntüsünde kadraj köşesi karanlık görünür; ancak galactic cirrus
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — doğru ve yanlış reference"
+!!! example "Görsel doğrulama ölçütü — doğru ve yanlış reference"
     **Amaç:** Güvenilir background ile star/gradient contaminated bölgeyi ayırmak.  
     **Gerekli ekran veya veri:** İşaretli Preview'lar ve channel statistics.  
     **Kanıtlanacak teknik nokta:** Reference geometrisinin neutrality sonucunu etkileyebilmesi.  
     **Önerilen dosya adı:** `color-background-reference-correct-wrong-v01.png`
 
-!!! example "Görsel eklenecek — galaxy halo"
+!!! example "Görsel doğrulama ölçütü — galaxy halo"
     **Amaç:** Outer halo'nun background sanılma riskini göstermek.  
     **Gerekli ekran veya veri:** M31/galaxy image, halo maskesi ve Preview.  
     **Kanıtlanacak teknik nokta:** Karanlık görünen alanın zero signal olmaması.  
     **Önerilen dosya adı:** `color-background-reference-galaxy-halo-v01.png`
 
-!!! example "Görsel eklenecek — diffuse nebula"
+!!! example "Görsel doğrulama ölçütü — diffuse nebula"
     **Amaç:** Diffuse emission/reflection signal contamination'ı göstermek.  
     **Gerekli ekran veya veri:** Nebula master, model ve reference Preview.  
     **Kanıtlanacak teknik nokta:** Diffuse signal'ın neutral background yerine geçmemesi.  
     **Önerilen dosya adı:** `color-background-reference-diffuse-nebula-v01.png`
 
-!!! example "Görsel eklenecek — neutral ve siyah"
+!!! example "Görsel doğrulama ölçütü — neutral ve siyah"
     **Amaç:** Neutral channel relationship ile zero/black background farkını göstermek.  
     **Gerekli ekran veya veri:** Aynı Preview için RGB statistics ve iki rendering.  
     **Kanıtlanacak teknik nokta:** Neutrality'nin sıfır signal anlamına gelmemesi.  
     **Önerilen dosya adı:** `color-neutral-background-vs-black-v01.png`
+
+## BackgroundNeutralization kullanmak veya kullanmamak
+
+| Koşul | Karar | Gerekçe |
+|---|---|---|
+| Temsilî boş background var | Değerlendir | Channel offset tahmini yapılabilir |
+| Alan galaxy halo/cirrus ile dolu | Dikkatli ol veya atla | Reference gerçek sinyal içerir |
+| Gradient devam ediyor | Önce gradient’i düzelt | Tek ROI alan değişimini temsil etmez |
+| Background calibration içinde ele alındı | Sonucu ölç | İkinci correction aşırı nötrleştirebilir |
+| Narrowband mapped palette | Ayrı estetik karar | Neutral sky fiziksel hedef olmayabilir |
 
 ## Sık yapılan hatalar
 

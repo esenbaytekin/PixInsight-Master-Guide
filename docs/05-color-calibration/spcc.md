@@ -143,54 +143,65 @@ M31 mono LRGB birleşik RGB master için SPCC testi planlanır. WCS, filter/sens
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — SPCC ana arayüz"
+!!! example "Görsel doğrulama ölçütü — SPCC ana arayüz"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Broadband RGB test master  
     **Ekran veya çıktı:** Ana process UI ve sürüm bilgisi  
     **Kanıtlanacak konu:** Exact section/control adları ve process varlığı  
     **Önerilen dosya adı:** `spcc-193-main-interface-v01.png`
 
-!!! example "Görsel eklenecek — catalog ve reference"
+!!! example "Görsel doğrulama ölçütü — catalog ve reference"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Solved broadband field  
     **Ekran veya çıktı:** Catalog/reference UI ve query logu  
     **Kanıtlanacak konu:** Exact catalog/reference seçenekleri  
     **Önerilen dosya adı:** `spcc-193-catalog-reference-v01.png`
 
-!!! example "Görsel eklenecek — sensor profile"
+!!! example "Görsel doğrulama ölçütü — sensor profile"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** OSC ve mono camera records  
     **Ekran veya çıktı:** Sensor database/profile UI  
     **Kanıtlanacak konu:** Lookup ve fallback davranışı  
     **Önerilen dosya adı:** `spcc-193-sensor-profile-v01.png`
 
-!!! example "Görsel eklenecek — filter profile"
+!!! example "Görsel doğrulama ölçütü — filter profile"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Mono LRGB filter set  
     **Ekran veya çıktı:** Filter database/profile UI  
     **Kanıtlanacak konu:** Exact filter seçenekleri ve eşleşme  
     **Önerilen dosya adı:** `spcc-193-filter-profile-v01.png`
 
-!!! example "Görsel eklenecek — white reference"
+!!! example "Görsel doğrulama ölçütü — white reference"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Broadband star field  
     **Ekran veya çıktı:** White reference UI ve output  
     **Kanıtlanacak konu:** Exact seçenekler ve sonuç etkisi  
     **Önerilen dosya adı:** `spcc-193-white-reference-v01.png`
 
-!!! example "Görsel eklenecek — background neutralization"
+!!! example "Görsel doğrulama ölçütü — background neutralization"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Gradient-denetlenmiş broadband image  
     **Ekran veya çıktı:** Background controls ve reference  
     **Kanıtlanacak konu:** SPCC içi background davranışı  
     **Önerilen dosya adı:** `spcc-193-background-controls-v01.png`
 
-!!! example "Görsel eklenecek — narrowband seçenekleri"
+!!! example "Görsel doğrulama ölçütü — narrowband seçenekleri"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** SHO/HOO test images  
     **Ekran veya çıktı:** Doğrulanmış narrowband UI  
     **Kanıtlanacak konu:** Seçeneklerin varlığı, adı ve kapsamı  
     **Önerilen dosya adı:** `spcc-193-narrowband-controls-v01.png`
+
+## SPCC neden modern workflow’da PCC’nin yerini aldı?
+
+SPCC, Gaia DR3/SP spectral verisini ve seçilen filter/sensor response eğrilerini birlikte değerlendirerek PCC’nin broadband color-index yaklaşımından daha ayrıntılı bir instrument modeli sunar. Doğru profiles ve WCS mevcut olduğunda acquisition sistemine daha yakın response tahmini hedeflenir. PCC yine legacy karşılaştırma ve SPCC ön koşullarının sağlanamadığı durumlarda referans olabilir.
+
+!!! warning "Üstünlük mutlak değildir"
+    Yanlış filter profile ile çalışan SPCC, doğru bağlamla çalışan daha basit bir yöntemden güvenilir kabul edilemez. Model ayrıntısı girdi doğruluğunun yerine geçmez.
+
+## Workflow position ve performans
+
+Calibration → integration → gradient correction → plate solve → SPCC → BlurXTerminator/NoiseXTerminator → stretch genel broadband sırasıdır. Gaia database erişimi, source detection ve spectral fit büyük görüntülerde süre, bellek ve disk erişimini etkileyebilir.
 
 ## Sık yapılan hatalar
 

@@ -181,6 +181,18 @@ flowchart TD
 | BN-BB-MOONLIGHT-01 | Moonlight etkili | Chromatic gradient | gradient modeli | Histogram, clipping, hedef sinyali ve log | Veri setine bağlı çoklu kanıt | Gerçek veri bekliyor |
 | BN-COMP-SPCC-PCC-01 | Broadband karşılaştırma | Aynı doğrulanmış girdi | BN, PCC ve SPCC sıraları | Histogram, clipping, hedef sinyali ve log | Veri setine bağlı çoklu kanıt | Gerçek veri bekliyor |
 
+## Girdi, çıktı ve performans beklentisi
+
+Girdi lineer ve gradient açısından denetlenmiş olmalı; reference Preview galaxy halo, cirrus, nebula, bright-star halo, dust artefact ve clipping içermemelidir. Çıktıda channel background offsets daha tutarlı olabilir; background’un siyah olması veya tüm renk farklarının kaybolması başarı ölçütü değildir.
+
+| Seçenek | Gerekçe | Red işareti |
+|---|---|---|
+| Ayrı BN uygula | Temsilî ROI ve ölçülebilir offset var | Diffused target color değişiyor |
+| SPCC içi neutralization | Aynı calibration kaydında yönetilecek | Reference seçimi belirsiz |
+| Neutralization atla | Alanın tamamı gerçek signal içeriyor | Sırf background renkli göründüğü için zorlama |
+
+Preview kullanımı hesap yükünden çok tekrar üretilebilirlik sağlar. Birden fazla aday ROI’nin statistics karşılaştırması, tek büyük ve contaminated ROI’den daha güvenilir karar üretebilir.
+
 ## Sık yapılan hatalar
 
 - En karanlık alanı otomatik olarak background kabul etmek.
@@ -581,7 +593,7 @@ flowchart TD
 - **Ekran veya çıktı:** ana UI
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-ui-main-1.9.3.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-02 — Doğru reference preview
 
@@ -590,7 +602,7 @@ flowchart TD
 - **Ekran veya çıktı:** uygun aday
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-reference-valid.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-03 — Galaxy halo içeren yanlış preview
 
@@ -599,7 +611,7 @@ flowchart TD
 - **Ekran veya çıktı:** halo kontaminasyonu
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-reference-galaxy-halo.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-04 — Cirrus içeren yanlış preview
 
@@ -608,7 +620,7 @@ flowchart TD
 - **Ekran veya çıktı:** cirrus kontaminasyonu
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-reference-cirrus.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-05 — Nebula içeren yanlış preview
 
@@ -617,7 +629,7 @@ flowchart TD
 - **Ekran veya çıktı:** nebula kontaminasyonu
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-reference-nebula.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-06 — Star halo contamination
 
@@ -626,7 +638,7 @@ flowchart TD
 - **Ekran veya çıktı:** parlak yıldız halesi
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-reference-star-halo.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-07 — Residual gradient
 
@@ -635,7 +647,7 @@ flowchart TD
 - **Ekran veya çıktı:** uzamsal gradient
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-residual-gradient.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-08 — Before/after histogram
 
@@ -644,7 +656,7 @@ flowchart TD
 - **Ekran veya çıktı:** kanal histogramları
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-histogram-before-after.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-09 — Over-neutralization
 
@@ -653,7 +665,7 @@ flowchart TD
 - **Ekran veya çıktı:** aşırı nötrleşme
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-over-neutralization.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-10 — Clipping örneği
 
@@ -662,7 +674,7 @@ flowchart TD
 - **Ekran veya çıktı:** channel clipping
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-clipping-example.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 ### Görsel BN-11 — PCC/SPCC öncesi ve sonrası
 
@@ -671,7 +683,7 @@ flowchart TD
 - **Ekran veya çıktı:** işlem sırası karşılaştırması
 - **Teknik kanıt amacı:** Reference, UI veya sonuç davranışını doğrulamak
 - **Önerilen dosya adı:** `bn-pcc-spcc-comparison.png`
-- **Durum:** Görsel eklenecek
+- **Durum:** Görsel doğrulama ölçütü
 
 
 ## SSS

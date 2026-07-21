@@ -95,23 +95,39 @@ Broadband M31 LRGB master plate solve edilir ve catalog stars ile eşleşme plan
 
 ## Görsel planı
 
-!!! example "Görsel eklenecek — photometric zincir"
+!!! example "Görsel doğrulama ölçütü — photometric zincir"
     **Amaç:** Solve'dan channel calibration'a veri akışını göstermek.  
     **Gerekli ekran veya veri:** Astrometric solution, catalog match, response/log ve calibrated output.  
     **Kanıtlanacak teknik nokta:** Photometric calibration'ın tek adımlı color grading olmaması.  
     **Önerilen dosya adı:** `color-photometric-calibration-chain-v01.png`
 
-!!! example "Görsel eklenecek — catalog star match"
+!!! example "Görsel doğrulama ölçütü — catalog star match"
     **Amaç:** Matched, rejected ve saturated stars ayrımını göstermek.  
     **Gerekli ekran veya veri:** Catalog overlay ve rejection/log listesi.  
     **Kanıtlanacak teknik nokta:** Response tahmininin değerlendirilen star sample population'ına bağlı olabilmesi.  
     **Önerilen dosya adı:** `color-catalog-star-match-v01.png`
 
-!!! example "Görsel eklenecek — plate solve tanısı"
+!!! example "Görsel doğrulama ölçütü — plate solve tanısı"
     **Amaç:** Başarılı ve başarısız solve durumlarını karşılaştırmak.  
     **Gerekli ekran veya veri:** İki solve logu, metadata ve coordinate overlay.  
     **Kanıtlanacak teknik nokta:** Scale/coordinate metadata hatasının eşleşmeyi engelleyebilmesi.  
     **Önerilen dosya adı:** `color-plate-solve-success-failure-v01.png`
+
+## Flux, atmospheric extinction ve air mass
+
+Catalog magnitude doğrudan image pixel değeri değildir. Instrumental flux; exposure, aperture/PSF ölçümü, passband, sensor QE, optik throughput ve atmosferden etkilenir. Color calibration bu zincirdeki channel response ilişkisini tahmin eder; absolute physical flux birimine dönüşüm yaptığı varsayılmamalıdır.
+
+Hedef ufka yaklaştıkça air mass artar ve atmosferik extinction wavelength’e göre değişir. Bu nedenle farklı gecelerden kanalları yalnız exposure süresiyle ölçeklemek color response eşitliği sağlamaz.
+
+```mermaid
+flowchart LR
+    source["Stellar spectrum"] --> atmosphere["Atmosphere ve air mass"]
+    atmosphere --> filters["Filter ve optics"]
+    filters --> qe["Sensor QE"]
+    qe --> counts["Measured counts"]
+    catalog["Catalog reference"] --> fit["Response fit"]
+    counts --> fit
+```
 
 ## Sık yapılan hatalar
 
