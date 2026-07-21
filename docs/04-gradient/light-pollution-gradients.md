@@ -63,12 +63,25 @@ Bu bir tanı konusudur; tek bir process menü yolu yoktur. Olası modeller için
 !!! warning "Yanlış yaklaşımlar"
     Her renk eğimini SPCC ile çözmeye çalışmak; kalibrasyon hatasını ışık kirliliği sanmak; galaxy halo alanını kirli background kabul etmek; yoğun nebula alanında otomatik modeli denetlememek; kanalları bağımsız aşırı düzeltmek ve background'u tamamen siyaha zorlamak güvenilir değildir.
 
-!!! example "Görsel eklenecek"
-    Şehir yönü, horizon ve zenith bölgelerinin işaretlendiği broadband master eklenecek; görsel, luminance eğimiyle color cast'in aynı geometriyi izleyip izlemediğini gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Şehir yönü, horizon ve zenith bölgelerinin işaretlendiği broadband master kayıt altında bulunmalıdır; görsel, luminance eğimiyle color cast'in aynı geometriyi izleyip izlemediğini gösterecek.
 
 ## Gerçek kullanım senaryosu
 
 İki gecelik RGB veride ilk gecenin kırmızı kanalında şehir yönüne doğru artış, ikinci gecede ise pusla yayılmış daha geniş bir eğim görülür. Geceler ve kanallar ayrı modellenir; model galaksi halosunu içeriyorsa reddedilir. Birleştirme kararı residual ve signal preservation kontrolüyle verilir.
+
+## Pratik karar matrisi
+
+| Gözlem | Karar | Neden |
+|---|---|---|
+| Ufuk yönüne bağlı düzgün parlaklık artışı | Additive model test et | Sky glow hipoteziyle uyumludur |
+| Kamera koordinatında sabit donut/vignetting | Flat calibration'a dön | Optik response şüphesi güçlüdür |
+| Filtreler arasında farklı yön/şiddet | Kanalları ayrı tanıla | Spektral response ve hedef sinyali değişir |
+| Geceler arasında büyük seviye farkı | Normalization'ı denetle | Alt kümeler ayrı değerlendirilebilir |
+
+### Pratik örnek
+
+Geniş alan LRGB serisinde şehir yönündeki köşe L kanalında belirgin, RGB'de farklı şiddetteyse her kanalın calibrated subframe zaman serisi incelenir. Yön kamera döndüğünde sky koordinatına bağlı kalıyorsa çevresel kaynak hipotezi güçlenir. Kanallar ayrı integrate edilir; model yalnız galaxy halo içermediği gösterildiğinde kabul edilir.
 
 ## Sık yapılan hatalar
 

@@ -4,6 +4,8 @@ Bu kartlar hızlı teşhis içindir. Parametre değeri veya kesin çözüm verme
 
 ## Hata kartları indeksi
 
+Kartları sırayla uygulamak zorunlu değildir. Önce belirtiyi sınıflandırın; ardından **olası neden → ayırıcı test → güvenli geri dönüş** zincirini izleyin. Bir ayar değişikliği yalnız ayırıcı test onu destekliyorsa yapılmalıdır.
+
 | Kategori | Kartlar |
 | --- | --- |
 | Sample generation | 1, 15, 23, 24 |

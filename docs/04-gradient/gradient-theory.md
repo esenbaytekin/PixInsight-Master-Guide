@@ -157,6 +157,17 @@ Bu dosya teorik referanstır; bir PixInsight process’i değildir.
 !!! example "Emission nebula alanı"
     Ha master’ın büyük bölümünde zayıf emission bulunuyorsa karanlık görünen her alan gerçek background değildir. Model, yalnız güvenilir bölgelerle sınanır. Tam gradient kaldırma hedefi yerine gerçek filamentlerin model image’a geçmemesi kabul ölçütü yapılır.
 
+## Model kabul ölçütleri ve performans
+
+| Ölçüt | Kabul edilen model | Reddedilen model |
+|---|---|---|
+| Ölçek | Yavaş değişen background | Yıldız/filament ölçeğinde yapı |
+| Morfoloji | Kaynak hipoteziyle uyumlu yön | Galaxy veya nebula morfolojisi |
+| Residual | Belirgin azalma | Yeni halka, seam veya kanal lekesi |
+| Signal preservation | Halo ve diffuse sınırlar korunur | Hedef dış bölgeleri zayıflar |
+
+Polynomial degree veya sample sayısı arttıkça model maliyeti ve overfit riski artabilir. En karmaşık modeli değil, bağımsız tanı kanıtını karşılayan en basit modeli seçin. Uygulama için [Gradient Diagnostics](gradient-diagnostics.md), [ABE](abe.md) ve [DBE](dbe.md) sayfalarını izleyin.
+
 ## Sık yapılan hatalar
 
 1. Her gradient’i additive kabul etmek.

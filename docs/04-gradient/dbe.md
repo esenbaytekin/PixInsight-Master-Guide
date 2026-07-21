@@ -123,43 +123,69 @@ Kanıt dizini: `validation/ui/pi-1.9.3/dbe/screenshots/`. Ayrıntılı sınıfla
 
 Process, model üretimi için yeterli sayıda kabul edilmiş sample elde edememiştir. Uygun background alanı yetersiz olabilir; sample generation koşulları fazla kısıtlayıcı olabilir; target yoğun nebula veya galaxy sinyaliyle kaplı olabilir; `Radius` veya model koşulları uygun olmayabilir. Otomatik üretim yerine kontrollü manuel sample yerleşimi olası bir müdahaledir, garanti çözüm değildir. PixInsight hata mesajının sunduğu olası müdahaleler ve kesin hata koşulu 1.9.3 üzerinde doğrulanmayı bekliyor.
 
-!!! info "Görsel eklenecek"
-    Hata mesajı, sample generation ayarları ve kabul edilen sample sayısını gösteren ekran görüntüsü eklenecek.
+!!! info "Görsel doğrulama ölçütü"
+    Hata mesajı, sample generation ayarları ve kabul edilen sample sayısını gösteren ekran görüntüsü kayıt altında bulunmalıdır.
 
 ### Sample’ların nebulaya yerleştirilmesi
 
 Nebula üzerindeki sample, gerçek emission/reflection yapısını background modeline taşıyabilir. Bu durumda correction hedef sinyali azaltabilir veya yeniden şekillendirebilir.
 
-!!! info "Görsel eklenecek"
-    Nebula üzerindeki hatalı sample dağılımı ve temizlenmiş sample seti karşılaştırması eklenecek.
+!!! info "Görsel doğrulama ölçütü"
+    Nebula üzerindeki hatalı sample dağılımı ve temizlenmiş sample seti karşılaştırması kayıt altında bulunmalıdır.
 
 ### Model görüntüsünün nebulaya benzemesi
 
 Model image’ın nebulaya benzemesi, modelin gerçek sinyali background olarak öğrendiğine dair güçlü bir uyarıdır. Model kabul edilmemeli; samples, coverage ve model karmaşıklığı yeniden incelenmelidir.
 
-!!! info "Görsel eklenecek"
+!!! info "Görsel doğrulama ölçütü"
     Target ve Model Image aynı STF ölçeğinde yan yana gösterilecek.
 
 ### Division sonrası aşırı parlama
 
 Division, düşük model değerlerinin bulunduğu bölgelerde correction etkisini büyütebilir. Aşırı parlama, multiplicative hipotezin veya model seviyesinin uygun olmadığını gösterebilir. Kesin neden model ve statistics ile incelenmelidir.
 
-!!! info "Görsel eklenecek"
-    Division öncesi/sonrası ve model statistics karşılaştırması eklenecek.
+!!! info "Görsel doğrulama ölçütü"
+    Division öncesi/sonrası ve model statistics karşılaştırması kayıt altında bulunmalıdır.
 
 ### Subtraction sonrası siyah arka plan
 
 Siyah arka plan; modelin fazla çıkarılması, clipping, Normalize davranışı veya yalnız STF değişimiyle ilişkili olabilir. Histogram/Statistics ve yeniden hesaplanan STF görülmeden tek neden atanamaz.
 
-!!! info "Görsel eklenecek"
-    Eski ve yeniden hesaplanan STF ile histogram karşılaştırması eklenecek.
+!!! info "Görsel doğrulama ölçütü"
+    Eski ve yeniden hesaplanan STF ile histogram karşılaştırması kayıt altında bulunmalıdır.
 
 ### Gradientin tamamen kaybolmaması
 
 Residual gradient; yetersiz sample coverage, uygun olmayan model karmaşıklığı, gerçek signal/gradient belirsizliği veya correction türü uyuşmazlığından kaynaklanabilir. Gradient’i “tamamen yok etmek” uğruna gerçek sinyal modellemek doğru çözüm değildir.
 
-!!! info "Görsel eklenecek"
-    Residual model ve kontrollü sample revizyonu örneği eklenecek.
+!!! info "Görsel doğrulama ölçütü"
+    Residual model ve kontrollü sample revizyonu örneği kayıt altında bulunmalıdır.
+
+## Girdi gereksinimleri ve sample kabul ölçütleri
+
+DBE'ye girecek görüntü lineer olmalı; calibration, registration ve integration artefact'ları önce sınıflandırılmalıdır. Bir sample yalnız konumu boş göründüğü için kabul edilmez. Lokal medyanın çevresine göre tutarlılığı, star halo uzaklığı, diffuse signal riski ve alan genelindeki coverage birlikte değerlendirilir.
+
+| Değişiklik | Ne zaman gerekçeli? | Başarı ölçütü |
+|---|---|---|
+| `Tolerance` artırma | Temiz background adayları reddediliyorsa | Yeni sample'lar gerçek sinyale taşmıyor |
+| `Radius` artırma | Lokal ölçüm küçük yapı/noise'dan etkileniyorsa | Model daha kararlı, halo contamination yok |
+| `Polynomial Degree` artırma | Residual büyük ölçekli yapı düşük dereceyle temsil edilemiyorsa | Model gerçek hedefi kopyalamıyor |
+| Sample sayısını artırma | Alan coverage'ında doğrulanmış boşluk varsa | Yeni noktalar bağımsız bilgi sağlıyor |
+
+Tipik sample sayısı veya radius için evrensel değer yoktur; görüntü ölçeği, hedef doluluğu ve gradient geometrisi belirleyicidir.
+
+## Subtraction, Division ve çıktı kabulü
+
+Subtraction additive bir background hipotezini; Division multiplicative bir alan tepkisi hipotezini sınar. Flat calibration yerine DBE Division kullanmak fiziksel flat modelini geri getirmez. Modelin medyanı, düşük değerleri ve correction sonrası clipping istatistikleri incelenmeden Division kabul edilmemelidir.
+
+- Modelde yıldız, halo, galaxy kolu veya nebula filamenti seçilmemelidir.
+- Corrected image'da residual azalırken hedefin dış sınırı korunmalıdır.
+- Aynı STF yalnız görsel kıyas için kullanılmalı; histogram ve Statistics ayrıca ölçülmelidir.
+- Kabul edilen process instance, sample geometrisi ve model image saklanmalıdır.
+
+## Performans ve en iyi uygulamalar
+
+Çok sayıda sample tek başına daha iyi model değildir; hesap yükünü ve contamination fırsatını artırabilir. Önce seyrek ve güvenilir bir ağ kurun, yalnız coverage boşluklarını gerekçeli biçimde doldurun. Ayrıntılı yerleşim için [DBE Sample Yerleşimi](sample-placement.md), correction seçimi için [Subtraction ve Division](division-vs-subtraction.md) sayfasını kullanın.
 
 ## Sık yapılan hatalar
 

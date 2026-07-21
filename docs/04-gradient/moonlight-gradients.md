@@ -66,15 +66,28 @@ Bu bir tanı konusudur; tek bir PixInsight processi veya menü yolu yoktur.
 !!! note "Kanal bazlı değerlendirme"
     Mono filtrelerin farklı görünmesi tek başına filtre kusuru kanıtı değildir. Gerçek hedef sinyali, geçirgenlik ve çevresel saçılma birlikte değerlendirilmelidir.
 
-!!! example "Görsel eklenecek"
-    Ay yönü, subframe zamanı ve gradient yönünü birlikte gösteren seri eklenecek; görsel, yönsel ilişkinin zaman içinde tekrarlanıp tekrarlanmadığını kanıtlayacak.
+!!! example "Görsel doğrulama ölçütü"
+    Ay yönü, subframe zamanı ve gradient yönünü birlikte gösteren seri kayıt altında bulunmalıdır; görsel, yönsel ilişkinin zaman içinde tekrarlanıp tekrarlanmadığını kanıtlayacak.
 
-!!! example "Görsel eklenecek"
-    Açık ve puslu iki gecenin aynı hedef görüntüleri eklenecek; görsel, haze ile artan saçılmanın tek başına Ay açısıyla açıklanamayacağını gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Açık ve puslu iki gecenin aynı hedef görüntüleri kayıt altında bulunmalıdır; görsel, haze ile artan saçılmanın tek başına Ay açısıyla açıklanamayacağını gösterecek.
 
 ## Gerçek kullanım senaryosu
 
 LRGB serisinin ilk yarısında background düzgünken Ay yükseldikçe bir köşe parlaklaşır; meridian sonrası yön değişir. Frame'ler zaman ve kanal bazında incelenir. Kötü alt kümeler ayrılır, kalan frame'lerde normalization ihtiyacı ölçülür ve entegrasyon sonrası model gerçek halo içermiyorsa gradient correction test edilir.
+
+## Pratik karar matrisi
+
+| Değişken | Neden kaydedilir? | Karara etkisi |
+|---|---|---|
+| Zaman ve meridian tarafı | Gradient yönünü izlemek | Alt kümeleri ayırmayı gerekçelendirebilir |
+| Ay açısal uzaklığı ve yönü | Saçılma hipotezini sınamak | Yönsel korelasyon aranır |
+| Bulut/pus | Saçılmayı kuvvetlendirebilir | Aynı Ay geometrisindeki farkı açıklar |
+| Filtre | Spektral response değişir | Kanal bazlı tanı gerekir |
+
+### Pratik örnek
+
+Meridian öncesi ve sonrası subframe'lerde parlak köşe yön değiştiriyorsa tüm geceyi tek modelle zorlamak yerine zaman grupları ayrı blink edilir. Zayıf alt kümenin çıkarılması, normalization veya gradient correction seçenekleri yalnız final SNR ve signal preservation karşılaştırmasıyla seçilir.
 
 ## Sık yapılan hatalar
 
@@ -147,4 +160,3 @@ flowchart TD
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [Işık Kirliliği Gradientleri](light-pollution-gradients.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
-

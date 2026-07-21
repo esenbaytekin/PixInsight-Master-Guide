@@ -71,6 +71,16 @@ Tam menü grupları: **Doğrulama bekliyor**.
 !!! tip "İlk kontrol"
     Her düzeltmeden önce orijinal image, düzeltilmiş image ve Model Image aynı inceleme planında karşılaştırılmalıdır.
 
+## Bölüm boyunca kabul standardı
+
+| Aşama | Zorunlu kayıt | Kabul koşulu |
+|---|---|---|
+| Tanı | Calibration geçmişi, zaman/kanal karşılaştırması | Gradient hipotezi alternatiflerden ayrılmıştır |
+| Model | Model image ve ayar kaydı | Gerçek hedef morfolojisi görünmez |
+| Correction | Önce/sonra Statistics ve aynı STF | Residual azalır, clipping oluşmaz |
+| Signal preservation | Halo/filament sınırı karşılaştırması | Diffuse sinyal korunur |
+| Devir | Process instance ve sonuç notu | Sonuç yeniden üretilebilir |
+
 ## Adım adım kullanım
 
 1. Image’ın lineer ve uygun biçimde calibrated olduğunu doğrulayın.

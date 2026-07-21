@@ -86,17 +86,17 @@ flowchart TD
     diffuse -- "Hayır" --> residual["Residual gradient kontrolü"]
 ```
 
-!!! example "Görsel eklenecek"
-    GraXpert ana arayüzü eklenecek; görsel, kullanılan sürümü ve seçilen model yaklaşımını kanıtlayacak.
+!!! example "Görsel doğrulama ölçütü"
+    GraXpert ana arayüzü kayıt altında bulunmalıdır; görsel, kullanılan sürümü ve seçilen model yaklaşımını kanıtlayacak.
 
-!!! example "Görsel eklenecek"
-    GraXpert Background model eklenecek; görsel, star halo, galaxy halo veya nebula sinyalinin modele girip girmediğini gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    GraXpert Background model kayıt altında bulunmalıdır; görsel, star halo, galaxy halo veya nebula sinyalinin modele girip girmediğini gösterecek.
 
-!!! example "Görsel eklenecek"
-    GraXpert corrected image eklenecek; görsel, residual gradient, clipping ve signal preservation kontrolünün nasıl yapıldığını gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    GraXpert corrected image kayıt altında bulunmalıdır; görsel, residual gradient, clipping ve signal preservation kontrolünün nasıl yapıldığını gösterecek.
 
-!!! example "Görsel eklenecek"
-    Aynı master'ın GraXpert ve DBE sonuçları eklenecek; görsel, araç kazananı değil residual ve signal preservation farkını gösterecek.
+!!! example "Görsel doğrulama ölçütü"
+    Aynı master'ın GraXpert ve DBE sonuçları kayıt altında bulunmalıdır; görsel, araç kazananı değil residual ve signal preservation farkını gösterecek.
 
 ## Gerçek kullanım senaryosu
 
@@ -104,6 +104,23 @@ Geniş alan lineer master, floating-point veri korunacak şekilde dışarı akta
 
 !!! warning "SPCC sırası"
     Gradient düzeltmenin SPCC öncesi veya sonrası yapılmasına ilişkin kesin reçete verilmez. Background değişiminin color calibration ölçümünü, SPCC'nin de karşılaştırma görünümünü etkileyebileceği dikkate alınmalı; sıra gerçek veriyle test edilmelidir.
+
+## Girdi/çıktı bütünlüğü ve performans
+
+GraXpert round-trip işlemi yalnız gradient modelini değil dosya temsilini de etkileyebilir. Girdi ve çıktı için dimensions, channel count, sample format, bit depth, clipping, metadata ve color interpretation karşılaştırılmalıdır.
+
+| Denetim | Neden | Kabul kanıtı |
+|---|---|---|
+| Floating-point hassasiyeti | Quantization kaybını önlemek | Histogram/statistics karşılaştırması |
+| Kanal sırası ve sayısı | Renk eşleşmesini korumak | PixInsight içindeki channel denetimi |
+| Model image | Gerçek sinyal kaybını tespit etmek | Halo/nebula izi bulunmaması |
+| Sürüm ve ayar kaydı | Sonucu yeniden üretmek | Proje günlüğünde tam kayıt |
+
+Harici dosya okuma/yazma maliyeti büyük master'larda belirgin olabilir. Denoising ile gradient extraction aynı testte birleştirilmemeli; aksi halde hangi değişimin hangi adımdan geldiği ayrıştırılamaz.
+
+## Önerilen karşılaştırma yöntemi
+
+GraXpert, DBE ve işlenmemiş master aynı başlangıç verisinden üretilir. Aynı STF görünümü, Statistics ve residual model ile karşılaştırılır. Kazanan araç önceden seçilmez; hedef sinyalini koruyarak açıklanabilir background üreten yöntem kabul edilir.
 
 ## Sık yapılan hatalar
 

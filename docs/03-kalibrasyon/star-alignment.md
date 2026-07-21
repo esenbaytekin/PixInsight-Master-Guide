@@ -40,7 +40,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -92,6 +92,28 @@ UI kanıtı `Target Images`, `Format Hints`, `Output Images`, `Star Detection`, 
 
 !!! example "Saha örneği"
     Aynı teleskopla dithered dar alan mono setinde iyi yıldız profilli reference seçilir. Distortion kapalı test edilir. Difference residual temizse batch çalıştırılır; drizzle planlanıyorsa yardımcı dosyalar korunur.
+
+## Girdi gereksinimleri ve reference seçimi
+
+Reference Image en parlak frame olmak zorunda değildir. Yeterli yıldız kapsamı, iyi yıldız geometrisi, düşük clipping, temsilî kadraj ve kullanılabilir kenarlar birlikte değerlendirilir.
+
+| Ölçüt | Neden önemli? | Red işareti |
+|---|---|---|
+| Star coverage | Dönüşümü alan boyunca kısıtlar | Yıldızların yalnız merkezde olması |
+| FWHM/eccentricity | Temiz referans geometrisi sağlar | Takip/rüzgâr kaynaklı uzama |
+| Framing | Ortak geçerli alanı belirler | Büyük rotation veya kadraj sapması |
+| Saturation | Star centroid ölçümünü etkileyebilir | Çok sayıda doygun yıldız |
+
+## Drizzle preparation, çıktı ve performans
+
+`Generate drizzle data` tek başına çözünürlüğü artırmaz; sonraki drizzle integration için geometrik yardımcı veri üretir. Yeterli alt-pixel dither çeşitliliği yoksa maliyetin karşılığı sınırlı olabilir. Interpolation seçimi yıldız profili, ringing ve noise korelasyonu açısından temsilî frame'lerde karşılaştırılmalıdır.
+
+- Merkez ve dört köşede yıldız merkezleri blink sırasında sabit kalmalıdır.
+- Yeni ringing, çift yıldız veya geometri kırılması oluşmamalıdır.
+- Valid-pixel alanı ve kenar kaybı entegrasyon hedefiyle uyumlu olmalıdır.
+- Önce küçük alt kümede reference ve interpolation kombinasyonunu doğrulayın.
+
+Uydu izlerini silmek StarAlignment'ın değil [ImageIntegration](image-integration.md) aşamasının görevidir. Distortion correction için birincil başvuru: [PixInsight StarAlignment arbitrary distortion tutorial](https://www.pixinsight.com/tutorials/sa-distortion/index.html).
 
 ## Beklenen çıktı
 

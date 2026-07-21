@@ -41,7 +41,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -85,6 +85,33 @@ Process arama alanında `WeightedBatchPreprocessing`; WBPP için `Script > Batch
 
 !!! example "Saha örneği"
     Dört gecelik LRGB setinde WBPP, farklı binning taşıyan bir Green flat grubunu Diagnostics’te gösterir. Grup düzeltilmeden pipeline çalıştırılmaz. Finalde yalnız masters değil registered samples ve maps incelenir.
+
+## Girdi gereksinimleri ve master frame stratejisi
+
+WBPP, yanlış eşleşmiş frame'leri kendiliğinden doğru hale getiremez. Light, bias, dark ve flat dosyalarının metadata alanları işleme başlamadan denetlenmelidir. Aynı sensör modu, gain/offset, binning ve geometri tek grupta tutulmalı; dark için sıcaklık ve poz süresi, flat için filtre ile optik tren eşleşmelidir.
+
+| Karar | Neden | Kabul kanıtı |
+|---|---|---|
+| Master'ı yeniden kullan | Aynı acquisition koşullarında zaman kazandırır | Metadata eşleşmesi ve master istatistikleri |
+| Master'ı yeniden üret | Sensör modu, optik tren veya flat geometrisi değişmiştir | Yeni grubun ayrı entegrasyonu |
+| Dark scaling'i değerlendirme | CMOS glow veya eşleşen dark varken ölçekleme model hatası üretebilir | Eşleşen dark ile kalıntı karşılaştırması |
+| LocalNormalization kullan | Geceler arasında background/şeffaflık farkı vardır | Normalization çıktılarının denetimi |
+
+!!! warning "Gruplama hatası"
+    Dosyaların hatasız yüklenmesi, doğru calibration grupları oluştuğunu kanıtlamaz. `Diagnostics` sonucu ile light–master eşleşmesi ayrı ayrı doğrulanmalıdır.
+
+## Subframe quality, weighting ve walking noise
+
+Weighting seçilen bilimsel önceliği temsil etmelidir: FWHM çözünürlüğe, eccentricity yıldız geometrisine, SNR tahmini sinyal kalitesine duyarlıdır. Tek metriği mutlak eşik yapmak yerine dağılım, sıra grafiği ve örnek frame incelemesi birlikte kullanılmalıdır.
+
+Walking noise, sabit desen bileşenlerinin registration sonrası aynı yönde sürüklenerek birikmesiyle görünür. Rejection'ı sertleştirmek tek başına güvenilir çözüm değildir; dither yeterliliği, calibration kalitesi, frame sayısı ve iz yönü birlikte değerlendirilmelidir.
+
+## Performans, en iyi uygulamalar ve kaynaklar
+
+- Ara çıktıları hızlı ve yeterli boş alanı olan diskte tutun; drizzle ve normalization verileri depolama ihtiyacını artırır.
+- Küçük bir temsilî alt kümeyle calibration ve registration kontrolü yapmadan tüm geceyi çalıştırmayın.
+- WBPP ayar özetini, script sürümünü ve reference frame seçimini proje kaydına alın.
+- [PixInsight Master Calibration Frames](https://pixinsight.com/tutorials/master-frames/index.html) ve [M31 H-alpha örnek iş akışı](https://www.pixinsight.com/examples/M31-Ha/) kararların dayanağı için başvuru kaynaklarıdır.
 
 ## Beklenen çıktı
 

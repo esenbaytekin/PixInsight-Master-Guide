@@ -65,7 +65,7 @@ flowchart LR
 | Amp glow bölgesi | Dark calibration residual olabilir | Sensör deseninin “gradient” sayılması | Matching dark ve sensör koordinatı |
 | Sensör yansıması | Lokal optical/electronic artefact olabilir | Uygunsuz geniş model | Rotate/flip ve farklı gece testi |
 
-!!! example "Görsel eklenecek"
+!!! example "Görsel doğrulama ölçütü"
     Bu bölüm gerçek PixInsight 1.9.3 ekran görüntüsü ve örnek veri ile doğrulanacaktır.
 
 ## Model kontrolü
@@ -137,8 +137,20 @@ Hata, process’in model için yeterli kabul edilmiş sample üretemediğini bil
 
 Olası müdahaleler tek tek test edilir: bir control değiştirildikten sonra üretilen samples ve Model Image yeniden incelenir. Manuel yerleşim, güvenilir background biliniyor fakat otomatik üretim başarısız oluyorsa değerlendirilir. Hiçbiri garanti çözüm değildir.
 
-!!! example "Görsel eklenecek"
+!!! example "Görsel doğrulama ölçütü"
     Bu bölüm gerçek PixInsight 1.9.3 ekran görüntüsü ve örnek veri ile doğrulanacaktır.
+
+## Sample kalite matrisi ve performans
+
+| Sample konumu | Karar | Gerekçe |
+|---|---|---|
+| Temiz, yıldız halosundan uzak background | Kabul adayı | Lokal ölçüm background'u temsil edebilir |
+| Galaxy dış halo sınırı | Şüpheli | Gerçek sinyalin sınırı belirsizdir |
+| Emission/reflection nebulosity | Reddet | Model hedef sinyalini çıkarabilir |
+| Dust lane | Reddet | Koyu gerçek yapı background değildir |
+| Mosaic seam veya calibration artefact | Önce kök nedeni çöz | Modelleme artefact'ı gizleyebilir |
+
+Seyrek fakat alanı temsil eden temiz samples, yoğun ve contaminated bir ağdan daha değerlidir. Sample sayısını artırmak hesap yükünü yükseltir; bilgi kazancı sağlamayan kümelenmiş noktalar model güvenini artırmaz.
 
 ## Sık yapılan hatalar
 
@@ -221,4 +233,3 @@ flowchart TD
 - [DBE](dbe.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
-

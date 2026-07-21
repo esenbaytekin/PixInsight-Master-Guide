@@ -42,7 +42,7 @@ flowchart LR
 !!! warning "Doğrulama sınırı"
     Kamera modeline veya script build’ine bağlı ayrıntılar test edilmeden genellenmez. Belirsiz ayrıntı: **Doğrulama bekliyor**.
 
-+!!! warning "Doğrulama durumu"
+!!! warning "Doğrulama durumu"
     Bu davranışların PixInsight 1.9.3 arayüzünde ve ilgili process veya script sürümünde doğrulanması gerekiyor.
 
 ### Teknik doğrulama sınıflandırması
@@ -86,6 +86,26 @@ Process arama alanında `CosmeticCorrection`; WBPP için `Script > Batch Process
 
 !!! example "Saha örneği"
     Aynı koordinatta kalan hot pixels üç frame’de doğrulanır. Conservative Auto Detect düzeltilir; bad column Defect List’e alınır. Difference view gerçek yıldızların korunmasını gösterir.
+
+## Girdi gereksinimleri ve kusur sınıflandırması
+
+CosmeticCorrection, calibration tamamlandıktan ve defect'in tekrarlanabilir olduğu gösterildikten sonra uygulanmalıdır. Aynı koordinatta birçok subframe'de görülen kusur sensör kaynaklı olabilir; tek frame'deki iz kozmik ışın, uydu veya başka geçici olay olabilir.
+
+| Gözlem | Uygun araç | Gerekçe |
+|---|---|---|
+| Aynı koordinatta hot/cold pixel | CosmeticCorrection | Mekânsal olarak tekrarlanabilir kusur |
+| Sabit kötü sütun/satır | Doğrulanmış `Defect List` | Sınırları açık ve denetlenebilir |
+| Tek frame'de uydu izi | ImageIntegration rejection | Geniş geçici iz entegrasyonda değerlendirilir |
+| Yönlü walking noise | Acquisition/calibration incelemesi | Tekil pixel onarımı kök nedeni çözmez |
+
+## Eşik, çıktı ve performans
+
+`Sigma` veya Auto Detect eşikleri için kamera-bağımsız bir doğru değer yoktur. Temsilî frame'de yakalanan gerçek kusur sayısı ile yanlış yakalanan yıldız çekirdeği/kompakt sinyal sayısı birlikte incelenmelidir. Corrected map ve blink, her eşik değişikliğinden sonra kontrol edilmelidir.
+
+!!! tip "Az müdahale"
+    En çok pixel'i değiştiren değil, doğrulanmış kusurları en az gerçek sinyal kaybıyla düzelten ayarı seçin.
+
+Çıktıda persistent defect azalmalı; yıldız profilleri ve küçük ölçekli hedef sinyali yumuşamamalıdır. Büyük setlerde önce birkaç zayıf ve güçlü sinyalli frame üzerinde test yapın. `Defect List` kamera geometrisi değiştiğinde yeniden doğrulanmalıdır. Teknik davranış için PixInsight 1.9.3 içindeki process documentation esas alınmalıdır.
 
 ## Beklenen çıktı
 
