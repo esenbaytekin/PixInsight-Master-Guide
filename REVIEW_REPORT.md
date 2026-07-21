@@ -11,7 +11,7 @@ Registry’deki 15 process/script için supplied screenshot dizinleri incelendi:
 - Process output davranışı `DATA-REQUIRED`, algoritmik anlamlar `DOC-REQUIRED` olarak bırakıldı.
 - Evidence path, duplicate ID ve registry/canonical bütünlük kontrolleri geçti.
 - `git diff --check` geçti.
-- Final `mkdocs build --strict`, yerel MkDocs runtime bulunmadığı ve geçici dependency kurulumu güvenlik onayı almadığı için beklemededir.
+- Final `mkdocs build --strict`, GitHub Actions validation ve production Docker build içinde başarıyla tamamlandı.
 - `range-mask` screenshot dizini boş olduğundan bu dalganın dışında bırakıldı.
 
 **İnceleme türü:** İçerik ve doğrulama açığı envanteri; Revizyon 1 sonuçlarıyla güncellendi  

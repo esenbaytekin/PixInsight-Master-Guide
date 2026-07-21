@@ -302,7 +302,7 @@
 - [x] LRGBCombination, MaskedStretch, MultiscaleMedianTransform, PixelMath, StarMask ve WBPP
 - [x] Registry/canonical/screenshot preflight ve üçlü validation artifact yapısı
 - [x] Görünen UI ile default/behavior/algorithm kanıt sınırlarının ayrılması
-- [ ] Final `mkdocs build --strict` — yerel MkDocs runtime mevcut değil; geçici dependency kurulumu onay bekliyor
+- [x] Final `mkdocs build --strict` — GitHub Actions ve production Docker build içinde başarılı
 - [x] `git diff --check`
 - [ ] RangeMask — ekran görüntüsü bekleniyor
 
