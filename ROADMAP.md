@@ -12,7 +12,7 @@
   - [x] Sprint 2.1: Yapısal kontrol
   - [x] Sprint 2.1: MkDocs navigation entegrasyonu
   - [x] Sprint 2.1: Teknik risk sınıflandırması
-  - [ ] Sprint 2.1: PixInsight 1.9.3 ekran doğrulaması
+  - [ ] Sprint 2.1: PixInsight 1.9.3 ekran doğrulaması — DBE menü/section/control etiketleri doğrulandı; ABE ve behavior/default bekliyor
   - [ ] Sprint 2.1: Birincil kaynak doğrulaması
   - [ ] Sprint 2.1: Gerçek veri testi
   - [ ] Sprint 2.1: Görsel entegrasyonu
@@ -34,7 +34,7 @@
   - [x] Sprint 2.3: Flat-field ve gradient ayrımı ilk içerik
   - [x] Sprint 2.3: Navigation entegrasyonu
   - [x] Sprint 2.3: Yapısal kontrol
-  - [ ] Sprint 2.3: PixInsight 1.9.3 GradientCorrection sürüm doğrulaması
+  - [ ] Sprint 2.3: PixInsight 1.9.3 GradientCorrection sürüm doğrulaması — process/menu/control etiketleri doğrulandı; ekran içi sürüm/default/behavior bekliyor
   - [ ] Sprint 2.3: GraXpert güncel sürüm ve arayüz doğrulaması
   - [ ] Sprint 2.3: Birincil kaynak doğrulaması
   - [ ] Sprint 2.3: Gerçek broadband veri testi
@@ -186,9 +186,124 @@
       - [ ] Açılmış dropdown seçenekleri
       - [ ] Console/log ve kontrollü gerçek veri testleri
       - [ ] Birincil kaynak doğrulaması
+- [x] Sprint 4.0.0 — Validation Template Infrastructure
+  - [x] Prompt dizini ve kullanım rehberi
+  - [x] UI validation şablonu
+  - [x] Data validation şablonu
+  - [x] Source validation şablonu
+  - [x] Sprint review şablonu
+  - [x] Release checklist
+  - [x] UI validation template minimal invocation ve automatic canonical-document discovery revizyonu
+  - [x] Process registry, normalized canonical discovery ve candidate scoring altyapısı
+  - [x] LinearFit discovery issue registry-null ve DOC-REQUIRED akışıyla düzeltildi
+  - [x] Sprint 4.0.1 repository-derived documented process registry ve process inventory
+  - [x] Registry-authoritative canonical resolution ve nonexistent documentation guard
+  - [ ] LinearFit canonical process documentation — mevcut değil, tamamlanmadı
+  - [x] Sprint 4.0.2 registry-enforced UI validation ve exact-slug preflight
+  - [x] Canonical document integrity ve exact screenshot-path validation
+  - [x] Automatic canonical execution fallback kaldırıldı
+- [ ] LinearFit UI validation — evidence hazır; registry ve normalized fallback canonical aday bulamadı, DOC-REQUIRED
 - [ ] Faz 4: SHO ve HOO — Bekliyor
 - [ ] Faz 5: Maskeler ve PixelMath — Bekliyor
 - [ ] Faz 6: M31 tam uygulama — Bekliyor
 - [ ] Faz 7: NGC6888 tam uygulama — Bekliyor
 - [ ] Faz 8: Hata kütüphanesi — Bekliyor
 - [ ] Faz 9: PDF ve web yayını — Bekliyor
+## ScreenTransferFunction UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Process adı, `R/G/B/L` etiketleri ve menü yolu görsel doğrulaması
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default durumu, tooltip ve sayısal değer kanıtı
+- [ ] Kontrollü davranış testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## HistogramTransformation UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Process adı, menü yolu, kanal ve parametre etiketleri
+- [x] Graph style ve plot resolution açık liste seçenekleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü davranış testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## CurvesTransformation UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Process adı, menü yolu, kanal ve point alanı etiketleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü curve davranış testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## SCNR UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Process adı, menü yolu ve ana kontrol etiketleri
+- [x] Color ve protection açık liste seçenekleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü output testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## LocalHistogramEqualization UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Process adı, menü yolu ve ana kontrol etiketleri
+- [x] Histogram Resolution açık liste seçenekleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü local-contrast testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## NoiseXTerminator UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Plugin sürümü, AI sürümü, menü yolu ve kontrol etiketleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] PixInsight host sürümü, reset/default, tooltip ve console kanıtı
+- [ ] Kontrollü denoise testi ve plugin 2.3.3 birincil kaynak doğrulaması
+
+## BlurXTerminator UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Plugin sürümü, AI sürümü, menü yolu, sections ve controls
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] PixInsight host sürümü, reset/default, tooltip ve console kanıtı
+- [ ] Kontrollü correction testi ve plugin 2.1.4 birincil kaynak doğrulaması
+
+## StarXTerminator UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Plugin sürümü, AI sürümü, menü yolu ve ana kontroller
+- [x] Batch Processing pencere ve kontrol etiketleri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] PixInsight host sürümü, reset/default, tooltip ve console kanıtı
+- [ ] Kontrollü star-removal/batch testi ve plugin 2.4.11 birincil kaynak doğrulaması
+
+## StarAlignment UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Menü yolu, sections ve ana registration kontrolleri
+- [x] Yedi açık dropdown listesinin seçenek envanteri
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü registration testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## ImageIntegration UI doğrulaması
+
+- [x] Registry preflight ve canonical doküman bütünlüğü
+- [x] Menü yolu, sections ve temel selectors
+- [x] Altı açık dropdown listesinde 40 seçenek
+- [x] Evidence matrix, UI notes ve validation checklist
+- [ ] Reset/default, tooltip, console ve ekran içi sürüm kanıtı
+- [ ] Kontrollü integration testi ve PixInsight 1.9.3 birincil kaynak doğrulaması
+
+## Sprint 4.1 — Interim Review
+
+- [x] 15 process için registry/canonical integrity denetimi
+- [x] Validation artifact, evidence ID/reference ve screenshot-folder denetimi
+- [x] Canonical Markdown, navigation, strict build ve repository health kontrolü
+- [ ] ABE evidence matrix, UI notes ve validation checklist
+- [ ] ImageIntegration kayıp altı screenshot/evidence onarımı
+- [ ] SPCC evidence matrix current-schema migrasyonu
+- [ ] `process/screenshots/` orphan klasör kararı
+- [ ] StarAlignment ve ImageIntegration malformed admonition düzeltmesi
+- [ ] Generic draft Quick Reference/UI status tutarlılık düzeltmesi
+- [ ] Sprint 4.1 quality gate: **REVIEW REQUIRED**

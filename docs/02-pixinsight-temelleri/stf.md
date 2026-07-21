@@ -58,6 +58,11 @@ Auto STF, image statistics’inden bir görünüm üretir. Farklı image’lara 
 
 `Process > IntensityTransformations > ScreenTransferFunction`
 
+Bu process adı ve menü yolu PixInsight UI ekranında doğrudan okunmuştur. Aynı kanıt setinde STF penceresindeki `R`, `G`, `B` ve `L` kanal etiketleri de görünür durumdadır. Ayrıntılı kayıt repository içindeki `validation/ui/pi-1.9.3/screen-transfer-function/screen-transfer-function-evidence-matrix.md` dosyasındadır.
+
+!!! warning "UI doğrulama sınırı"
+    Mevcut görseller resetlenmiş bir instance, sayısal transfer değerleri, tooltip veya console çıktısı göstermiyor. Bu nedenle ekrandaki kontrol konumları fabrika varsayılanı olarak yorumlanmamalı; Auto STF hesabı ve process davranışı birincil kaynak veya kontrollü veri testiyle ayrıca doğrulanmalıdır.
+
 STF işlevlerine ana toolbar üzerindeki screen transfer kontrollerinden de erişilebilir. Arayüz konumu platform yerleşimine göre değişebilir.
 
 ## Parametreler
@@ -159,4 +164,3 @@ flowchart TD
 ## Sonraki Bölüme Geçiş
 
 Data dağılımını okumak ve screen stretch’i kalıcı dönüşümden ayırmak için [Histogram ve HistogramTransformation](histogram.md) bölümüne geçin.
-

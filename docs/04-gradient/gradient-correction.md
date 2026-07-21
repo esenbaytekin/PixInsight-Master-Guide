@@ -1,7 +1,7 @@
 # GradientCorrection
 
-!!! warning "Sürüm doğrulaması"
-    `GradientCorrection` processinin PixInsight 1.9.3 içindeki kullanılabilirliği, arayüzü ve parametreleri gerçek kurulum ekranıyla doğrulanmayı bekliyor.
+!!! warning "Sürüm doğrulama sınırı"
+    Process varlığı, menü yolu, üç section ve görünen kontrol etiketleri ekran kanıtıyla doğrulandı. Screenshot içinde sürüm numarası görünmediği için 1.9.3 kimliği kısmi kanıttır. Default değerler, algoritmik davranış ve output gerçek veri/birincil kaynak doğrulaması bekler.
 
 ## Amaç
 
@@ -49,11 +49,22 @@ Otomatik modelleme hız sağlar; kullanıcı kontrollü modelleme ise background
 
 ## Menü yolu
 
-Process adı: `GradientCorrection`. Tam menü yolu ve PixInsight 1.9.3 içindeki konumu **Doğrulama bekliyor**.
+Process adı: `GradientCorrection`.
+
+Görselde doğrulanan menü yolu: `Process → GradientCorrection → GradientCorrection`.
+
+Kanıt: `validation/ui/pi-1.9.3/gradient-correction/screenshots/07-process-menu-location.png`.
 
 ## Parametreler
 
-PixInsight 1.9.3 arayüzü görülmeden kontrol etiketleri, varsayılanlar veya sayısal öneriler verilmez.
+## Görsel kanıtla doğrulanan UI
+
+Arayüzde `Model Generation`, `Simplified Model` ve `Structure Protection` section başlıkları görülür. Doğrulanan etiketler arasında `Low threshold`, `Low tolerance`, `High threshold`, `High tolerance`, `Scale`, `Smoothness`, `Automatic convergence`, `Generate gradient model`, `Model degree`, `Generate simplified model`, `Protection threshold`, `Protection amount` ve `Generate protection masks` bulunur.
+
+Kanıt dizini: `validation/ui/pi-1.9.3/gradient-correction/screenshots/`. Ayrıntılı sınıflandırma: `validation/ui/pi-1.9.3/gradient-correction/gradient-correction-evidence-matrix.md`.
+
+!!! note "Mevcut değerler default değildir"
+    Görünen sayısal değerler ve checkbox durumları yalnız screenshot anını gösterir. Reset/yeni instance kanıtı olmadığı için default veya parametre önerisi değildir.
 
 | Özellik | GradientCorrection | ABE | DBE |
 | --- | --- | --- | --- |
@@ -77,8 +88,8 @@ PixInsight 1.9.3 arayüzü görülmeden kontrol etiketleri, varsayılanlar veya 
 6. Düzeltilmiş görüntüde residual gradient, renk sapması ve negatif clipping kontrolü yapın.
 7. Sonucu ABE, DBE veya işlem görmemiş kopyayla aynı gösterim koşulunda karşılaştırın.
 
-!!! example "Görsel eklenecek"
-    PixInsight 1.9.3 `GradientCorrection` arayüzü eklenecek; görsel, processin kurulumda bulunduğunu ve gerçek kontrol adlarını kanıtlayacak.
+!!! example "UI kanıtı eklendi"
+    Ana process arayüzü ve menü konumu validation dizininde kayıtlıdır. Model/output sonucu ve gerçek veri karşılaştırması hâlâ eklenecektir.
 
 ## Gerçek kullanım senaryosu
 
@@ -123,7 +134,7 @@ Geniş alan renkli bir master'da calibration sonrası şehir yönüne doğru par
 ## Quick Reference
 
 !!! tip "Kontrol listesi"
-    - [ ] 1.9.3 process varlığı ve arayüzü doğrulandı
+    - [x] Process varlığı, menü yolu ve görünen arayüz etiketleri doğrulandı
     - [ ] Calibration artefact olasılığı elendi
     - [ ] Görüntü lineer
     - [ ] Model gerçek sinyal içermiyor
@@ -149,10 +160,10 @@ flowchart TD
 
 | Kimlik | Kategori | Durum |
 | --- | --- | --- |
-| UI-3 | 1.9.3 process varlığı, menü yolu ve kontroller | Doğrulama bekliyor |
+| UI-3 | Process varlığı, menü yolu, üç section ve 15 kontrol etiketi/tipi | Doğrulandı; ekran içi 1.9.3 sürüm kimliği kısmi |
 | DOC-3 | Process algoritması ve model davranışı | Birincil process documentation gerekli |
 | DATA-3 | Renkli/mono gerçek veri karşılaştırması | Gerçek veri testi gerekli |
-| IMG-3 | Arayüz, model ve residual ekranları | Görsel gerekli |
+| IMG-3 | Arayüz ve menü ekranları mevcut; model/residual ekranları | Kısmen doğrulandı |
 
 ## İlgili bölümler
 

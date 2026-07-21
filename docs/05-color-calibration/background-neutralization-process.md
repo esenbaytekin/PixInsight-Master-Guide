@@ -7,8 +7,8 @@ Bu sayfa bağımsız PixInsight **BackgroundNeutralization** processini ve güve
 !!! warning "Beş ayrı kavram"
     **Background neutrality** genel bir renk ilişkisi kavramıdır. **BackgroundNeutralization** bir PixInsight processidir. SPCC içindeki olası background kontrolleri, PCC içindeki background/reference kontrolleri ve **gradient correction** ayrı işlemlerdir. Birbirlerinin eş anlamlısı değildir.
 
-!!! warning "PixInsight 1.9.3 doğrulama durumu"
-    Kesin menü konumu, section/control adları, lower/upper range davranışı, target background davranışı, istatistik yöntemi, default değerler ve exact linear/nonlinear davranış gerçek 1.9.3 UI ile henüz doğrulanmadı.
+!!! warning "PixInsight 1.9.3 doğrulama sınırı"
+    Görseller process adını, menü yolunu, `Region of Interest` section başlığını, görünen kontrol etiketlerini ve açık `Working mode` seçeneklerini doğrular. Ekran içinde sürüm numarası görünmediği için 1.9.3 kimliği kısmi kanıttır. Range, target background, statistics, clipping, default ve exact linear/nonlinear davranış hâlâ doğrulanmayı bekler.
 
 ## Kavramsal açıklama
 
@@ -89,15 +89,27 @@ flowchart TD
 | clipping protection | Uç değer riskini izlemek | Siyah/beyaz clipping | Clipping maskesi |
 | output validation | Sonucu kanıtlamak | Yalnız görünüşe güvenmek | Öncesi/sonrası, hedef yapı ve log |
 
-### UI doğrulaması bekleyen alanlar
+### Görsel kanıtla doğrulanan UI
+
+- Process adı: `BackgroundNeutralization`.
+- Menü yolu: `Process → ColorCalibration → BackgroundNeutralization`.
+- Görünen section: `Region of Interest`.
+- Açık `Working mode` seçenekleri: `Target Background`, `Rescale`, `Rescale as needed`, `Truncate`.
+- Kanıt dizini: `validation/ui/pi-1.9.3/background-neutralization/screenshots/`.
+- Evidence matrix: `validation/ui/pi-1.9.3/background-neutralization/background-neutralization-evidence-matrix.md`.
+
+!!! note "Mevcut değerler default değildir"
+    Görsellerde iki farklı `Reference image` durumu ve çeşitli sayısal değerler görülür. Processin yeni/resetlenmiş olduğu kanıtlanmadığından bunlar default veya davranış kanıtı değildir.
+
+### UI doğrulama durumu
 
 | UI alanı | Doğrulanacak bilgi | Yayın riski | Durum |
 | --- | --- | --- | --- |
-| process menu location | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| section names | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| reference image veya preview controls | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| lower/upper range controls | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| target background controls | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
+| process menu location | Menü yolu | Yüksek | Doğrulandı |
+| section names | `Region of Interest` section başlığı görüldü | Yüksek | Doğrulandı |
+| reference image veya preview controls | `Reference image` ve `From Preview` etiketleri görüldü; davranış bekliyor | Yüksek | Kısmen doğrulandı |
+| lower/upper range controls | `Lower limit` ve `Upper limit` etiketleri görüldü; davranış bekliyor | Yüksek | Kısmen doğrulandı |
+| target background controls | `Target background` etiketi ve dört `Working mode` seçeneği görüldü; etki bekliyor | Yüksek | Kısmen doğrulandı |
 | default values | 1.9.3 gerçek etiket ve davranış | Kritik | Doğrulama bekliyor |
 | clipping behavior | 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
 | exact statistics | 1.9.3 gerçek etiket ve davranış | Kritik | Doğrulama bekliyor |

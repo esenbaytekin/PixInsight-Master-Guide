@@ -1,0 +1,354 @@
+version: 1
+
+processes:
+  abe:
+    display_name: AutomaticBackgroundExtractor
+    type: core-process
+    canonical_doc: docs/04-gradient/abe.md
+    aliases:
+      - ABE
+      - Automatic Background Extractor
+    mkdocs_nav_title: AutomaticBackgroundExtractor
+    status: documented
+    confidence: high
+    notes: Dedicated process guide; H1, menu section and parameters.
+  arcsinh-stretch:
+    display_name: ArcsinhStretch
+    type: core-process
+    canonical_doc: docs/07-stretch/arcsinh-stretch.md
+    aliases:
+      - Arcsinh Stretch
+      - arcsinhstretch
+    mkdocs_nav_title: ArcsinhStretch
+    status: documented
+    confidence: medium
+    notes: Dedicated process draft.
+  background-neutralization:
+    display_name: BackgroundNeutralization
+    type: core-process
+    canonical_doc: docs/05-color-calibration/background-neutralization-process.md
+    aliases:
+      - Background Neutralization
+      - backgroundneutralization
+    mkdocs_nav_title: BackgroundNeutralization
+    status: documented
+    confidence: high
+    notes: Canonical process guide; separate from background-neutrality concept page.
+  blurxterminator:
+    display_name: BlurXTerminator
+    type: plugin
+    canonical_doc: docs/06-ai-eklentileri/blurxterminator.md
+    aliases:
+      - Blur X Terminator
+      - BXT
+    mkdocs_nav_title: BlurXTerminator
+    status: documented
+    confidence: medium
+    notes: Dedicated plugin guide draft.
+  channel-combination:
+    display_name: ChannelCombination
+    type: core-process
+    canonical_doc: docs/08-lrgb/channel-combination.md
+    aliases:
+      - Channel Combination
+      - channelcombination
+    mkdocs_nav_title: ChannelCombination
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  color-mask:
+    display_name: ColorMask
+    type: script
+    canonical_doc: docs/11-maskeler/color-mask.md
+    aliases:
+      - Color Mask
+      - colormask
+    mkdocs_nav_title: ColorMask
+    status: documented
+    confidence: medium
+    notes: Dedicated script guide draft.
+  cosmetic-correction:
+    display_name: CosmeticCorrection
+    type: core-process
+    canonical_doc: docs/03-kalibrasyon/cosmetic-correction.md
+    aliases:
+      - Cosmetic Correction
+      - cosmeticcorrection
+    mkdocs_nav_title: CosmeticCorrection
+    status: documented
+    confidence: high
+    notes: Dedicated process guide.
+  curves-transformation:
+    display_name: CurvesTransformation
+    type: core-process
+    canonical_doc: docs/13-final/curves-transformation.md
+    aliases:
+      - Curves Transformation
+      - curvestransformation
+    mkdocs_nav_title: CurvesTransformation
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  dark-structure-enhance:
+    display_name: DarkStructureEnhance
+    type: script
+    canonical_doc: docs/12-detay-ve-kontrast/dark-structure-enhance.md
+    aliases:
+      - Dark Structure Enhance
+      - darkstructureenhance
+    mkdocs_nav_title: DarkStructureEnhance
+    status: documented
+    confidence: medium
+    notes: Dedicated script guide draft.
+  dbe:
+    display_name: DynamicBackgroundExtraction
+    type: core-process
+    canonical_doc: docs/04-gradient/dbe.md
+    aliases:
+      - DBE
+      - Dynamic Background Extraction
+    mkdocs_nav_title: DynamicBackgroundExtraction
+    status: documented
+    confidence: high
+    notes: Dedicated process guide; established validation slug.
+  generalized-hyperbolic-stretch:
+    display_name: Generalized Hyperbolic Stretch
+    type: script
+    canonical_doc: docs/07-stretch/generalized-hyperbolic-stretch.md
+    aliases:
+      - GHS
+      - GeneralizedHyperbolicStretch
+    mkdocs_nav_title: Generalized Hyperbolic Stretch
+    status: documented
+    confidence: medium
+    notes: Dedicated script guide draft.
+  gradient-correction:
+    display_name: GradientCorrection
+    type: core-process
+    canonical_doc: docs/04-gradient/gradient-correction.md
+    aliases:
+      - Gradient Correction
+      - gradientcorrection
+    mkdocs_nav_title: GradientCorrection
+    status: documented
+    confidence: high
+    notes: Dedicated process guide; established validation slug.
+  graxpert:
+    display_name: GraXpert
+    type: plugin
+    canonical_doc: docs/04-gradient/graxpert.md
+    aliases:
+      - GraXpert Integration
+    mkdocs_nav_title: GraXpert
+    status: documented
+    confidence: medium
+    notes: External application/integration guide represented as plugin type by registry schema.
+  hdr-multiscale-transform:
+    display_name: HDRMultiscaleTransform
+    type: core-process
+    canonical_doc: docs/12-detay-ve-kontrast/hdr-multiscale-transform.md
+    aliases:
+      - HDR Multiscale Transform
+      - HDRMT
+    mkdocs_nav_title: HDRMultiscaleTransform
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  histogram-transformation:
+    display_name: HistogramTransformation
+    type: core-process
+    canonical_doc: docs/07-stretch/histogram-transformation.md
+    aliases:
+      - Histogram Transformation
+      - HT
+    mkdocs_nav_title: HistogramTransformation
+    status: documented
+    confidence: high
+    notes: Dedicated process guide; foundations histogram page excluded.
+  image-calibration:
+    display_name: ImageCalibration
+    type: core-process
+    canonical_doc: docs/03-kalibrasyon/image-calibration.md
+    aliases:
+      - Image Calibration
+      - imagecalibration
+    mkdocs_nav_title: ImageCalibration
+    status: documented
+    confidence: high
+    notes: Dedicated process guide.
+  image-integration:
+    display_name: ImageIntegration
+    type: core-process
+    canonical_doc: docs/03-kalibrasyon/image-integration.md
+    aliases:
+      - Image Integration
+      - imageintegration
+    mkdocs_nav_title: ImageIntegration
+    status: documented
+    confidence: high
+    notes: Dedicated process guide.
+  local-histogram-equalization:
+    display_name: LocalHistogramEqualization
+    type: core-process
+    canonical_doc: docs/12-detay-ve-kontrast/local-histogram-equalization.md
+    aliases:
+      - Local Histogram Equalization
+      - LHE
+    mkdocs_nav_title: LocalHistogramEqualization
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  lrgb-combination:
+    display_name: LRGBCombination
+    type: core-process
+    canonical_doc: docs/08-lrgb/lrgb-combination.md
+    aliases:
+      - LRGB Combination
+      - lrgbcombination
+    mkdocs_nav_title: LRGBCombination
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  masked-stretch:
+    display_name: MaskedStretch
+    type: core-process
+    canonical_doc: docs/07-stretch/masked-stretch.md
+    aliases:
+      - Masked Stretch
+      - maskedstretch
+    mkdocs_nav_title: MaskedStretch
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  multiscale-median-transform:
+    display_name: MultiscaleMedianTransform
+    type: core-process
+    canonical_doc: docs/12-detay-ve-kontrast/multiscale-median-transform.md
+    aliases:
+      - Multiscale Median Transform
+      - MMT
+    mkdocs_nav_title: MultiscaleMedianTransform
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  noisexterminator:
+    display_name: NoiseXTerminator
+    type: plugin
+    canonical_doc: docs/06-ai-eklentileri/noisexterminator.md
+    aliases:
+      - Noise X Terminator
+      - NXT
+    mkdocs_nav_title: NoiseXTerminator
+    status: documented
+    confidence: medium
+    notes: Dedicated plugin guide draft.
+  pcc:
+    display_name: PhotometricColorCalibration
+    type: core-process
+    canonical_doc: docs/05-color-calibration/pcc.md
+    aliases:
+      - PCC
+      - Photometric Color Calibration
+    mkdocs_nav_title: PCC
+    status: documented
+    confidence: high
+    notes: Canonical process guide; established validation slug.
+  pixelmath:
+    display_name: PixelMath
+    type: core-process
+    canonical_doc: docs/10-pixelmath/index.md
+    aliases:
+      - Pixel Math
+      - pixel-math
+    mkdocs_nav_title: PixelMath
+    status: documented
+    confidence: high
+    notes: Section index is the canonical PixelMath process guide and links its subtopics.
+  range-mask:
+    display_name: RangeMask
+    type: core-process
+    canonical_doc: docs/11-maskeler/range-mask.md
+    aliases:
+      - Range Mask
+      - rangemask
+    mkdocs_nav_title: RangeMask
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  scnr:
+    display_name: SCNR
+    type: core-process
+    canonical_doc: docs/13-final/scnr.md
+    aliases:
+      - Subtractive Chromatic Noise Reduction
+    mkdocs_nav_title: SCNR
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  screen-transfer-function:
+    display_name: ScreenTransferFunction
+    type: core-process
+    canonical_doc: docs/02-pixinsight-temelleri/stf.md
+    aliases:
+      - STF
+      - Screen Transfer Function
+    mkdocs_nav_title: STF
+    status: documented
+    confidence: high
+    notes: Dedicated process/foundations guide.
+  spcc:
+    display_name: SpectrophotometricColorCalibration
+    type: core-process
+    canonical_doc: docs/05-color-calibration/spcc.md
+    aliases:
+      - SPCC
+      - Spectrophotometric Color Calibration
+    mkdocs_nav_title: SPCC
+    status: documented
+    confidence: high
+    notes: Canonical process guide; established validation slug.
+  star-alignment:
+    display_name: StarAlignment
+    type: core-process
+    canonical_doc: docs/03-kalibrasyon/star-alignment.md
+    aliases:
+      - Star Alignment
+      - staralignment
+    mkdocs_nav_title: StarAlignment
+    status: documented
+    confidence: high
+    notes: Dedicated process guide.
+  star-mask:
+    display_name: StarMask
+    type: core-process
+    canonical_doc: docs/11-maskeler/star-mask.md
+    aliases:
+      - Star Mask
+      - starmask
+    mkdocs_nav_title: StarMask
+    status: documented
+    confidence: medium
+    notes: Dedicated process guide draft.
+  starxterminator:
+    display_name: StarXTerminator
+    type: plugin
+    canonical_doc: docs/06-ai-eklentileri/starxterminator.md
+    aliases:
+      - Star X Terminator
+      - SXT
+    mkdocs_nav_title: StarXTerminator
+    status: documented
+    confidence: medium
+    notes: Dedicated plugin guide draft.
+  wbpp:
+    display_name: WeightedBatchPreprocessing
+    type: script
+    canonical_doc: docs/03-kalibrasyon/wbpp.md
+    aliases:
+      - WBPP
+      - Weighted Batch Preprocessing
+    mkdocs_nav_title: WBPP
+    status: documented
+    confidence: high
+    notes: Dedicated script guide.
+

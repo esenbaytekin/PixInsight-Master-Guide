@@ -4,8 +4,8 @@
 
 Bu sayfa, PixInsight 1.9.3 bağlamında **PhotometricColorCalibration** (PCC) sürecini; astrometry, catalog matching, yıldız örneklemi, background ilişkisi ve sonuç doğrulamasıyla birlikte ele alır. PCC, legacy iş akışlarını yeniden üretmek veya SPCC ile kontrollü karşılaştırma yapmak için değerlendirilebilen bir alternatiftir.
 
-!!! warning "PixInsight 1.9.3 doğrulama durumu"
-    PCC'nin kesin menü konumu, bölüm ve kontrol adları, varsayılan değerleri, exact linear/nonlinear davranışı ve log/output ayrıntıları gerçek PixInsight 1.9.3 kurulumu ile henüz doğrulanmadı. Bu sayfa doğrulanmamış UI etiketi veya sabit parametre reçetesi vermez.
+!!! warning "PixInsight 1.9.3 doğrulama sınırı"
+    Görseller process adını, menü yolunu, beş section başlığını, görünen kontrol etiketlerini ve açık VizieR server seçeneklerini doğrular. Ekran içinde sürüm numarası görünmediği için 1.9.3 kimliği kısmi kanıttır. Default değerler, process davranışı, exact linear/nonlinear kabulü ve log/output hâlâ doğrulanmayı bekler.
 
 !!! note "Tarafsız kapsam"
     PCC'nin artık kullanılmaması ya da SPCC'nin her durumda daha doğru olması gibi bir sonuç çıkarılamaz. İki process aynı girdide aynı sonucu üretmek zorunda değildir; fark, tek başına hata kanıtı değildir.
@@ -87,19 +87,30 @@ flowchart TD
 | output validation | output validation bağlamını denetlemek | Yanlış referans veya yorum | UI, log ve kontrollü veri |
 | log and diagnostics | log and diagnostics bağlamını denetlemek | Yanlış referans veya yorum | UI, log ve kontrollü veri |
 
-### UI doğrulaması bekleyen alanlar
+### Görsel kanıtla doğrulanan UI
+
+- Process adı: `PhotometricColorCalibration`.
+- Menü yolu: `Process → ColorCalibration → PhotometricColorCalibration`.
+- Section başlıkları: `Calibration`, `Catalog Search`, `Signal Evaluation`, `Background Neutralization`, `Region of Interest`.
+- Kanıt dizini: `validation/ui/pi-1.9.3/pcc/screenshots/`.
+- Evidence matrix: `validation/ui/pi-1.9.3/pcc/pcc-evidence-matrix.md`.
+
+!!! note "Mevcut değerler default değildir"
+    Görsellerdeki seçimler ve checkbox durumları yalnız ekran anını kanıtlar. Processin yeni veya resetlenmiş olduğu gösterilmediğinden bu değerler default olarak kullanılamaz.
+
+### UI doğrulama durumu
 
 | UI alanı | Doğrulanacak bilgi | Yayın riski | Durum |
 | --- | --- | --- | --- |
-| process menu location | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| section names | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| catalog selector | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| white reference controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| background reference controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| source detection controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| star rejection controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| astrometry controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
-| output controls | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
+| process menu location | Menü yolu | Yüksek | Doğrulandı |
+| section names | Beş section başlığı | Yüksek | Doğrulandı |
+| catalog selector | `Catalog`, `VizieR server` etiketleri ve yedi açık server seçeneği görüldü; query davranışı bekliyor | Yüksek | Kısmen doğrulandı |
+| white reference controls | `White reference` etiketi ve mevcut seçim görüldü; seçenek listesi/anlam bekliyor | Yüksek | Kısmen doğrulandı |
+| background reference controls | Section, `Lower limit` ve `Upper limit` etiketleri görüldü; etki bekliyor | Yüksek | Kısmen doğrulandı |
+| source detection controls | Signal Evaluation etiketleri görüldü; davranış bekliyor | Yüksek | Kısmen doğrulandı |
+| star rejection controls | Saturation/source etiketleri görüldü; rejection davranışı ve log bekliyor | Yüksek | Kısmen doğrulandı |
+| astrometry controls | Bu üç görselde ayrı astrometry kontrolü görülmedi | Yüksek | Doğrulama bekliyor |
+| output controls | Output etiketleri görüldü; üretilen dosya ve log davranışı bekliyor | Yüksek | Kısmen doğrulandı |
 | log behavior | PixInsight 1.9.3 gerçek etiket ve davranış | Yüksek | Doğrulama bekliyor |
 | default values | PixInsight 1.9.3 gerçek etiket ve davranış | Kritik | Doğrulama bekliyor |
 | exact linear/nonlinear behavior | PixInsight 1.9.3 gerçek etiket ve davranış | Kritik | Doğrulama bekliyor |
@@ -833,4 +844,3 @@ flowchart TD
 - [Background Neutrality](background-neutrality.md)
 - [BackgroundNeutralization](background-neutralization-process.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
-

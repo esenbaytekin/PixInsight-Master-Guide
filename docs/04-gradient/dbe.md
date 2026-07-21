@@ -49,13 +49,29 @@ Background model, image’ın hangi yapısının “arka plan” kabul edildiği
 - Hatalı Master Flat’i sentetik olarak “tamir etmek” için
 - Sample’ları nebula/galaxy üzerine koyarak hedefi yeniden şekillendirmek için
 - Yalnız arka planı siyahlaştırmak amacıyla
-- Model Image incelenmeden `Replace Target` ile tek kopya üzerinde
+- Model Image incelenmeden `Replace target image` ile tek kopya üzerinde
 
 ## Menü yolu
 
 Process adı: `DynamicBackgroundExtraction`
 
-Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
+Görselde doğrulanan menü yolu: `Process → BackgroundModelization → DynamicBackgroundExtraction`.
+
+Kanıt: `validation/ui/pi-1.9.3/dbe/screenshots/07-spcc-process-menu-location.png`.
+
+!!! warning "Sürüm kanıtı sınırı"
+    Screenshot içinde sürüm numarası görünmez. Dosya `pi-1.9.3` validation dizininde sınıflandırılmıştır; bu nedenle ekran içi PixInsight 1.9.3 sürüm kimliği kısmi kanıttır.
+
+## Görsel kanıtla doğrulanan UI
+
+Ana arayüzde şu section başlıkları okunur: `No target view`, `Model Parameters (1)`, `Model Parameters (2)`, `Sample Generation`, `Model Image` ve `Target Image Correction`.
+
+`Correction` açık listesinde `None`, `Subtraction` ve `Division`; `Sample format` açık listesinde `Same as target`, `8-bit unsigned integer`, `16-bit unsigned integer`, `32-bit unsigned integer`, `32-bit IEEE 754 floating point` ve `64-bit IEEE 754 floating point` doğrudan görülür.
+
+Kanıt dizini: `validation/ui/pi-1.9.3/dbe/screenshots/`. Ayrıntılı sınıflandırma: `validation/ui/pi-1.9.3/dbe/dbe-evidence-matrix.md`.
+
+!!! note "Mevcut değerler default değildir"
+    Arayüzde görünen sayısal değerler ve checkbox durumları yalnız screenshot anını gösterir. Reset/yeni instance kanıtı olmadığı için default olarak kullanılamaz.
 
 ## Parametreler
 
@@ -64,18 +80,18 @@ Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
 | `Sample` | Background ölçüm konumlarını tanımlamak | Coverage yetersizse, yalnız güvenilir bölgelerde yeni sample | Contaminated veya redundant sample varsa | Gerçek sinyal modelde; yetersiz model |
 | `Tolerance` | Sample kabul davranışını etkileyen kontrol | Yalnız kabul edilen/reddedilen samples ve Model Image gözlenerek test edilir | Contamination artıyorsa geri alınır | Çok az sample veya contaminated samples |
 | `Radius` | Sample ölçüm alanının spatial kapsamını etkileyen kontrol | Geniş alanın gerçek background olduğu kanıtlanabiliyorsa test edilir | Dar background boşluğu veya yapı yakınında test edilir | Yapı contamination veya kararsız ölçüm |
-| `Shadows Relaxation` | Koyu bölgelerde sample kabul davranışını etkileyen kontrol | Kesin koşul **Doğrulama bekliyor** | Kesin koşul **Doğrulama bekliyor** | Yanlış background adayları; yetersiz samples |
+| `Shadows relaxation` | Koyu bölgelerde sample kabul davranışını etkileyen kontrol | Kesin koşul **Doğrulama bekliyor** | Kesin koşul **Doğrulama bekliyor** | Yanlış background adayları; yetersiz samples |
 | `Correction` | Subtraction/Division modelini seçmek | Sayısal artırma yok; fiziksel hipotez seçilir | Sayısal azaltma yok | Yanlış düzeltme modeli |
 | `Subtraction` | Additive background modelini çıkarmak | Parametre değildir; additive kanıtla seçilir | Uygulanmaz | Clipping veya gerçek sinyal kaybı |
 | `Division` | Multiplicative modelle bölmek | Parametre değildir; multiplicative kanıtla seçilir | Uygulanmaz | Köşe/parlaklık amplifikasyonu, noise artışı |
-| `Discard Model` | Model output’unu saklama/atma davranışı | Model ayrıca gerekmiyorsa, ancak QA sonrasında | Model inspection gerekiyorsa | Model kanıtı kaybolur |
+| `Discard background model` | Model output’unu saklama/atma davranışı | Model ayrıca gerekmiyorsa, ancak QA sonrasında | Model inspection gerekiyorsa | Model kanıtı kaybolur |
 | `Normalize` | Correction sonrası target seviyesini/ölçeğini yönetmek | Kesin koşul **Doğrulama bekliyor** | Kesin koşul **Doğrulama bekliyor** | Seviye veya renk ilişkisi değişebilir |
-| `Replace Target` | Düzeltilmiş sonucu target’a yazmak | Ayrı clone ve geri dönüş noktası varsa | Karşılaştırma korunacaksa | Orijinal sonuç dalı kaybolur |
+| `Replace target image` | Düzeltilmiş sonucu target’a yazmak | Ayrı clone ve geri dönüş noktası varsa | Karşılaştırma korunacaksa | Orijinal sonuç dalı kaybolur |
 | `Polynomial Degree` | Model yüzeyinin esnekliğini etkileyen kontrol | Residual, coverage ve Model Image birlikte destekliyorsa test edilir | Model gerçek sinyale uyuyor veya kararsız yapı üretiyorsa test edilir | Overfitting/underfitting |
 | `Interpolation` | Samples arasında background yüzeyi üretmek | Sayısal artırma değildir; uygun yöntem seçilir | Sayısal azaltma değildir | Edge artefact veya uygunsuz yüzey |
 
 !!! warning "Doğrulama durumu"
-    `Tolerance`, `Radius`, `Shadows Relaxation`, `Discard Model`, `Normalize`, `Replace Target`, `Polynomial Degree` ve `Interpolation` kontrollerinin tam PixInsight 1.9.3 davranışları ve seçenek adları yerleşik process documentation ile doğrulanmayı bekliyor.
+    `Tolerance`, `Radius`, `Shadows relaxation`, `Discard background model`, `Normalize` ve `Replace target image` etiketleri görselde doğrulandı; davranışları doğrulanmadı. `Polynomial Degree` ve `Interpolation` bu screenshot setinde görünmedi ve birincil kaynak doğrulaması bekliyor.
 
 ## Adım adım kullanım
 
@@ -84,12 +100,12 @@ Tam PixInsight 1.9.3 menü yolu: **Doğrulama bekliyor**.
 3. Gerekirse başlangıç sample grid’i üretin.
 4. Nebula, galaxy halo, reflection, IFN, bright star halo ve artefact üzerindeki samples’ı kaldırın.
 5. Image’ın tüm gradient yönlerini temsil edecek spatial coverage oluşturun.
-6. `Tolerance`, `Radius` ve `Shadows Relaxation` etkisini sample kabulü üzerinden kontrollü test edin.
+6. `Tolerance`, `Radius` ve `Shadows relaxation` etkisini sample kabulü üzerinden kontrollü test edin.
 7. En basit yeterli `Polynomial Degree` veya uygun `Interpolation` yaklaşımını seçin.
-8. İlk çalışmada model output’unu saklayın; `Discard Model` ile kanıtı kaybetmeyin.
+8. İlk çalışmada model output’unu saklayın; `Discard background model` ile kanıtı kaybetmeyin.
 9. Background model’i güçlü STF ile gerçek sinyal açısından inceleyin.
 10. `Subtraction` ve `Division` seçeneklerini yalnız etki modeline ilişkin kanıtla, ayrı clones üzerinde temel düzeyde test edin.
-11. `Normalize` ve `Replace Target` davranışını orijinalle karşılaştırın.
+11. `Normalize` ve `Replace target image` davranışını orijinalle karşılaştırın.
 12. STF’yi resetleyip yeniden hesaplayın.
 13. Residual gradient, clipping, noise amplification ve signal preservation kontrolü yapın.
 
@@ -153,7 +169,7 @@ Residual gradient; yetersiz sample coverage, uygun olmayan model karmaşıklığ
 4. `Polynomial Degree` ile gradient şiddetini karıştırmak.
 5. Model Image’ı atmadan önce incelememek.
 6. Subtraction ve Division’ı fiziksel ayrım yapmadan denemek.
-7. Normalize ve Replace Target davranışını doğrulamadan tek kopyada uygulamak.
+7. `Normalize` ve `Replace target image` davranışını doğrulamadan tek kopyada uygulamak.
 8. Düzeltme sonrası eski STF ile karar vermek.
 
 ## Sorun giderme
@@ -225,9 +241,9 @@ flowchart TD
 | Sınıf | Durum |
 | --- | --- |
 | A | Sample tabanlı background model, contamination ve under/overfitting kavramları sürümden bağımsız |
-| B | Tüm DBE control adları ve UI davranışları **Doğrulama bekliyor** |
+| B | Menü, altı section, 43 control etiketi/tipi ve açık Correction/Sample format seçenekleri doğrulandı; default ve davranışlar bekliyor |
 | C | Sample sayısı, Tolerance, Radius veya Degree için kesin değer verilmedi |
 | D | Interpolation, Polynomial ve correction algoritmalarının ayrıntıları birincil kaynak gerektirir |
 
 !!! warning "Doğrulama durumu"
-    Bu sayfadaki DBE parametre adları talep kapsamına göre korunmuştur; PixInsight 1.9.3 arayüzündeki tam etiketler, seçenekler, varsayılanlar ve hata koşulları kurulu process documentation ve gerçek uygulama ile doğrulanmalıdır.
+    UI etiketlerinin görünen kısmı validation kanıtlarıyla eşlendi. Screenshot içinde sürüm numarası, default/reset durumu, tooltip, console veya gerçek uygulama sonucu bulunmadığından bunlar process documentation ve kontrollü veriyle doğrulanmalıdır.

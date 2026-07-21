@@ -55,7 +55,12 @@ flowchart LR
 
 ## Menü yolu
 
-Process arama alanında `StarAlignment`; WBPP için `Script > Batch Processing > WeightedBatchPreprocessing`. Kesin menü grubu kurulu 1.9.3 arayüzünden doğrulanmalıdır.
+`Process > ImageRegistration > StarAlignment`
+
+Process adı ve bu menü yolu UI ekranında doğrudan okunmuştur. Ayrıntılı kayıt repository içindeki `validation/ui/pi-1.9.3/star-alignment/star-alignment-evidence-matrix.md` dosyasındadır. WBPP yolu bu UI kanıt setinin kapsamında değildir.
+
+!!! warning "UI doğrulama sınırı"
+    Mevcut görseller reset/new instance, tooltip, console veya ekran içi PixInsight sürümü göstermiyor. Seçili seçenekler default sayılmamalı; registration behavior ve algoritmik anlamlar ayrıca doğrulanmalıdır.
 
 ## Parametreler
 
@@ -67,6 +72,8 @@ Process arama alanında `StarAlignment`; WBPP için `Script > Batch Processing >
 | Distortion Correction | Yalnız differential distortion gerekçesiyle |
 | Generate drizzle data | Planlanan DrizzleIntegration için |
 | Star detection | Düşük SNR’de kontrollü ayar |
+
+UI kanıtı `Target Images`, `Format Hints`, `Output Images`, `Star Detection`, `Star Matching` ve `Interpolation` section başlıklarını doğrular. `Registration model`, `Working mode`, `Sample format`, `Compute PSF fits`, `Descriptor type`, `Compute intersections` ve `Pixel interpolation` açık listelerinde görünen seçenekler evidence matrix içinde tekil olarak kaydedilmiştir; seçeneklerin algoritmik anlamı bu ekran görüntülerinden çıkarılmamıştır.
 
 !!! tip "Parametre politikası"
     Evrensel preset yerine metadata, sample test, log ve maps birlikte değerlendirilir.

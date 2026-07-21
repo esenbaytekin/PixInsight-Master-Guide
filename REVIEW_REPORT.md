@@ -465,12 +465,12 @@ Dört içerik dosyasında standart başlıklar, en az beş SSS, Quick Reference,
 
 | ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
 | --- | --- | --- | --- | --- | --- | --- |
-| UI-1.01 | index.md | ABE/DBE tam menü yolları | UI-1 | Orta | PixInsight 1.9.3 menü ekranı | Bekliyor |
+| UI-1.01 | index.md | ABE/DBE tam menü yolları | UI-1 | Orta | DBE menüsü görselde doğrulandı; ABE bekliyor | Kısmen doğrulandı |
 | UI-1.02 | abe.md | Function Degree ve Smoothing Factor etiketleri | UI-1 | Yüksek | ABE interface + tooltip | Bekliyor |
 | UI-1.03 | abe.md | Model Image, Replace Target, Replace Background | UI-1 | Yüksek | ABE interface + output testi | Bekliyor |
-| UI-1.04 | dbe.md | Tolerance, Radius, Shadows Relaxation | UI-1 | Yüksek | DBE interface + tooltip | Bekliyor |
-| UI-1.05 | dbe.md | Discard Model, Normalize, Replace Target | UI-1 | Yüksek | DBE interface + output testi | Bekliyor |
-| UI-1.06 | dbe.md | Polynomial Degree, Interpolation ve Correction seçenekleri | UI-1 | Yüksek | DBE interface + process documentation | Bekliyor |
+| UI-1.04 | dbe.md | Tolerance, Radius, Shadows relaxation | UI-1 | Yüksek | Etiketler doğrulandı; tooltip/behavior bekliyor | Kısmen doğrulandı |
+| UI-1.05 | dbe.md | Discard background model, Normalize, Replace target image | UI-1 | Yüksek | Etiketler doğrulandı; output testi bekliyor | Kısmen doğrulandı |
+| UI-1.06 | dbe.md | Polynomial Degree, Interpolation ve Correction seçenekleri | UI-1 | Yüksek | Correction seçenekleri doğrulandı; Polynomial/Interpolation kaynak bekliyor | Kısmen doğrulandı |
 | DOC-1.01 | gradient-theory.md | Additive ve multiplicative model sınırları | DOC-1 | Yüksek | Resmî background extraction documentation | Bekliyor |
 | DOC-1.02 | gradient-theory.md | Polynomial modelin PixInsight uygulaması | DOC-1 | Yüksek | Resmî ABE/DBE documentation | Bekliyor |
 | DOC-1.03 | gradient-theory.md | Interpolation ve sınır davranışı | DOC-1 | Yüksek | Resmî DBE documentation | Bekliyor |
@@ -627,7 +627,7 @@ Beş içerik sayfası ortak başlıkları, en az beş SSS'yi, Quick Reference ve
 
 | ID | Dosya | Konu | Kategori | Öncelik | Doğrulama yöntemi | Durum |
 | --- | --- | --- | --- | --- | --- | --- |
-| UI-3.01 | gradient-correction.md | 1.9.3 process varlığı ve menü yolu | UI-3 | Yüksek | PixInsight 1.9.3 kurulum ekranı | Bekliyor |
+| UI-3.01 | gradient-correction.md | Process varlığı ve menü yolu | UI-3 | Yüksek | `validation/ui/pi-1.9.3/gradient-correction/screenshots/07-process-menu-location.png` | Doğrulandı |
 | DOC-3.01 | gradient-correction.md | Background model ve output davranışı | DOC-3 | Yüksek | Resmî process documentation | Bekliyor |
 | DATA-3.01 | gradient-correction.md | Renkli/mono ve ABE/DBE karşılaştırması | DATA-3 | Yüksek | Açıklamalı gerçek veri A/B testi | Bekliyor |
 | IMG-3.01 | gradient-correction.md | Arayüz, model ve residual | IMG-3 | Yüksek | 1.9.3 ekran görüntüsü | Bekliyor |
@@ -772,8 +772,8 @@ Eski UI-1…UI-4, DOC-1…DOC-4, DATA-1…DATA-4 ve IMG-1…IMG-4 kayıtları ta
 
 | ID | Konu | İlgili dosyalar | Öncelik | Doğrulama yöntemi | Yayın engeli mi? | Durum |
 | --- | --- | --- | --- | --- | --- | --- |
-| UI-GRAD-001 | ABE/DBE kontrol adları, tooltip ve menü yolları | abe.md, dbe.md, sample-placement.md, division-vs-subtraction.md | Kritik | PixInsight 1.9.3 kurulum ekranı ve process documentation | Evet | Bekliyor |
-| UI-GRAD-002 | GradientCorrection varlığı, arayüzü ve parametreleri | gradient-correction.md | Kritik | PixInsight 1.9.3 gerçek kurulum | Evet | Bekliyor |
+| UI-GRAD-001 | ABE/DBE kontrol adları, tooltip ve menü yolları | abe.md, dbe.md, sample-placement.md, division-vs-subtraction.md | Kritik | DBE UI kanıtı eklendi; ABE, tooltip ve behavior bekliyor | Evet | Kısmen doğrulandı |
+| UI-GRAD-002 | GradientCorrection varlığı, arayüzü ve parametreleri | gradient-correction.md | Kritik | Menü/section/control etiketleri doğrulandı; sürüm/default/behavior bekliyor | Evet | Kısmen doğrulandı |
 | UI-GRAD-003 | GraXpert sürümü, arayüzü ve format seçenekleri | graxpert.md | Yüksek | Güncel resmî release ve kurulu uygulama | Kısmi | Bekliyor |
 | DOC-GRAD-001 | ABE/DBE sample, model ve interpolation davranışı | gradient-theory.md, abe.md, dbe.md, sample-placement.md | Kritik | Resmî process documentation | Evet | Bekliyor |
 | DOC-GRAD-002 | Subtraction, Division, Normalize ve correction uygulaması | division-vs-subtraction.md, dbe.md | Kritik | Resmî process documentation ve kontrollü numeric test | Evet | Bekliyor |
@@ -826,7 +826,7 @@ On altı test gereklidir; birebir yinelenen test yoktur. Kanal testleri model da
 | VIS-GRAD-001 | ABE arayüz ve output | abe.md | 1.9.3 kontrol adları ve Model Image | UI + Original/Model | Kritik | Bekliyor |
 | VIS-GRAD-002 | DBE arayüz ve samples | dbe.md, sample-placement.md | Sample controls ve model ilişkisi | UI + sample overlay + Model | Kritik | Bekliyor |
 | VIS-GRAD-003 | Subtraction/Division | division-vs-subtraction.md | Clipping, parlaklık ve noise kıyası | Original/Model/iki Corrected/statistics | Yüksek | Bekliyor |
-| VIS-GRAD-004 | GradientCorrection | gradient-correction.md | 1.9.3 process varlığı ve gerçek kontroller | Sürüm + UI + output | Kritik | Bekliyor |
+| VIS-GRAD-004 | GradientCorrection | gradient-correction.md | Process varlığı ve gerçek kontroller | UI/menu mevcut; sürüm + output bekliyor | Kritik | Kısmen doğrulandı |
 | VIS-GRAD-005 | GraXpert round-trip | graxpert.md | UI, Background, Corrected ve metadata | GraXpert/PixInsight ekranları | Yüksek | Bekliyor |
 | VIS-GRAD-006 | Ay/haze zaman serisi | moonlight-gradients.md | Yön ve zaman değişimi | Subframe serisi + metadata | Orta | Bekliyor |
 | VIS-GRAD-007 | Işık kirliliği | light-pollution-gradients.md | Şehir/horizon ve kanal davranışı | Yön işaretli RGB/kanallar | Orta | Bekliyor |
@@ -1252,3 +1252,295 @@ Beş okunabilir ekran görüntüsü `validation/ui/pi-1.9.3/spcc/spcc-evidence-m
 | DOC-REQUIRED | 1 | Default/algoritmik kontrol anlamları birincil kaynak gerektiriyor |
 
 **Hazırlık kararı:** Process adı, menü yolu, section ve görünür kontrol etiketleri dokümana taşınabilir. Sürüm kimliği, default değerler, dropdown seçeneklerinin tamamı, tooltip, console, linear/nonlinear davranış, fallback ve algoritmik etkiler beklemektedir.
+
+## LinearFit UI validation — canonical discovery bekliyor
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `linear-fit` |
+| Normalized identifier | `linearfit` |
+| Aliases | `linear-fit`, `LinearFit`, `Linear Fit`, `linearfit` |
+| Screenshot | 2 okunabilir görsel |
+| UI kanıtı | Process, menu ve üç control etiketi doğrulandı |
+| Canonical discovery | Registry `null`; automatic fallback adayı yok; 80 puan eşiği karşılanmadı |
+| Dokümantasyon durumu | DOC-REQUIRED; yeni sayfa oluşturulmadı |
+| Veri durumu | Fit/rejection/output davranışı DATA-REQUIRED |
+| Evidence | `validation/ui/pi-1.9.3/linear-fit/linear-fit-evidence-matrix.md` |
+## ScreenTransferFunction UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `screen-transfer-function` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/02-pixinsight-temelleri/stf.md` |
+| Screenshot | 2 okunabilir görsel |
+| UI-VERIFIED | 8 kayıt: process adı, kanal etiketleri ve menü yolu |
+| UI-OBSERVED | 1 kayıt: dört transfer grafiğinin ekran anındaki görünümü |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, sayısal değer, tooltip, console ve icon işlevleri |
+| DATA-REQUIRED | Display-only etki, kanal bağlantısı ve Auto STF sonucu için kontrollü test |
+| DOC-REQUIRED | MTF, Auto STF hesabı ve kontrol anlamları için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/screen-transfer-function/screen-transfer-function-evidence-matrix.md` |
+
+## HistogramTransformation UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `histogram-transformation` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/07-stretch/histogram-transformation.md` |
+| Screenshot | 4 okunabilir görsel |
+| UI-VERIFIED | 29 kayıt: process/menu, kanal ve parametre etiketleri, açık liste seçenekleri |
+| UI-OBSERVED | 6 kayıt: ekran anındaki seçim ve sayılar |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip, console ve icon işlevleri |
+| DATA-REQUIRED | Pixel dönüşümü, clipping ve output etkisi için kontrollü test |
+| DOC-REQUIRED | Transfer parametrelerinin matematiksel anlamı ve Auto Clip Setup için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/histogram-transformation/histogram-transformation-evidence-matrix.md` |
+
+## CurvesTransformation UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `curves-transformation` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/13-final/curves-transformation.md` |
+| Screenshot | 2 okunabilir görsel |
+| UI-VERIFIED | 17 kayıt: process/menu, kanal ve point alanı etiketleri |
+| UI-OBSERVED | 3 kayıt: ekran anındaki sayılar ve düz çizgi |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip, console ve icon işlevleri |
+| DATA-REQUIRED | Curve uygulaması, kanal etkisi ve output değişimi için kontrollü test |
+| DOC-REQUIRED | Kanal anlamları, interpolasyon ve curve matematiği için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/curves-transformation/curves-transformation-evidence-matrix.md` |
+
+## SCNR UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `scnr` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/13-final/scnr.md` |
+| Screenshot | 4 okunabilir görsel |
+| UI-VERIFIED | 16 kayıt: process/menu, ana kontroller ve açık liste seçenekleri |
+| UI-OBSERVED | 4 kayıt: ekran anındaki seçim, değer ve checkbox durumu |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip ve console |
+| DATA-REQUIRED | Renk giderme, protection ve lightness sonucu için kontrollü test |
+| DOC-REQUIRED | Protection method ve Amount anlamı için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/scnr/scnr-evidence-matrix.md` |
+
+## LocalHistogramEqualization UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `local-histogram-equalization` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/12-detay-ve-kontrast/local-histogram-equalization.md` |
+| Screenshot | 3 okunabilir görsel |
+| UI-VERIFIED | 12 kayıt: process/menu, ana kontroller ve açık liste seçenekleri |
+| UI-OBSERVED | 5 kayıt: ekran anındaki sayılar, seçim ve checkbox durumu |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip ve console |
+| DATA-REQUIRED | Yerel kontrast, kernel ve output etkisi için kontrollü test |
+| DOC-REQUIRED | Parametrelerin ve histogram çözünürlüğünün anlamı için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/local-histogram-equalization/local-histogram-equalization-evidence-matrix.md` |
+
+## NoiseXTerminator UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `noisexterminator` |
+| Process türü | Plugin |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/06-ai-eklentileri/noisexterminator.md` |
+| Screenshot | 2 okunabilir görsel |
+| Görünen sürüm | NoiseXTerminator 2.3.3; AI version 3 |
+| PixInsight host sürümü | Ekranda görünmüyor |
+| UI-VERIFIED | 15 kayıt: başlık/sürümler, process/menu ve kontroller |
+| UI-OBSERVED | 8 kayıt: ekran anındaki sayılar ve checkbox durumları |
+| Default doğrulaması | 0 |
+| DATA-REQUIRED | Denoise sonucu, separation ve iteration etkisi için kontrollü test |
+| DOC-REQUIRED | HF/LF ayrımı, AI seçimi ve parametre anlamları için plugin birincil kaynağı |
+| Evidence | `validation/ui/pi-1.9.3/noisexterminator/noisexterminator-evidence-matrix.md` |
+
+## BlurXTerminator UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `blurxterminator` |
+| Process türü | Plugin |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/06-ai-eklentileri/blurxterminator.md` |
+| Screenshot | 2 okunabilir görsel |
+| Görünen sürüm | BlurXTerminator 2.1.4; AI version 4 |
+| PixInsight host sürümü | Ekranda görünmüyor |
+| UI-VERIFIED | 19 kayıt: başlık/sürümler, process/menu, sections ve controls |
+| UI-OBSERVED | 9 kayıt: ekran anındaki sayılar, aktif/pasif ve checkbox durumları |
+| Default doğrulaması | 0 |
+| DATA-REQUIRED | Stellar/nonstellar correction, PSF ve options sonucu için kontrollü test |
+| DOC-REQUIRED | AI seçimi, PSF ve correction option anlamları için plugin birincil kaynağı |
+| Evidence | `validation/ui/pi-1.9.3/blurxterminator/blurxterminator-evidence-matrix.md` |
+
+## StarXTerminator UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `starxterminator` |
+| Process türü | Plugin |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/06-ai-eklentileri/starxterminator.md` |
+| Screenshot | 3 okunabilir görsel |
+| Görünen sürüm | StarXTerminator 2.4.11; AI version 11 |
+| PixInsight host sürümü | Ekranda görünmüyor |
+| UI-VERIFIED | 21 kayıt: başlık/sürümler, process/menu, ana ve batch kontroller |
+| UI-OBSERVED | 9 kayıt: ekran anındaki checkbox ve mask durumları |
+| Default doğrulaması | 0 |
+| DATA-REQUIRED | Star removal, star image, unscreen ve batch output için kontrollü test |
+| DOC-REQUIRED | AI seçimi, overlap, unscreen ve mask anlamları için plugin birincil kaynağı |
+| Evidence | `validation/ui/pi-1.9.3/starxterminator/starxterminator-evidence-matrix.md` |
+
+## StarAlignment UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `star-alignment` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/03-kalibrasyon/star-alignment.md` |
+| Screenshot | 9 okunabilir görsel |
+| UI-VERIFIED | 65 kayıt: process/menu, sections, ana controls ve açık dropdown seçenekleri |
+| UI-OBSERVED | 14 kayıt: ekran anındaki seçim ve checkbox durumları |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip ve console |
+| DATA-REQUIRED | Registration, distortion, drizzle ve resampling sonucu için kontrollü test |
+| DOC-REQUIRED | Model, descriptor, matching ve interpolation anlamları için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/star-alignment/star-alignment-evidence-matrix.md` |
+
+## ImageIntegration UI validation
+
+| Alan | Sonuç |
+|---|---|
+| PROCESS_SLUG | `image-integration` |
+| Registry sonucu | Exact match; canonical belge mevcut |
+| Canonical belge | `docs/03-kalibrasyon/image-integration.md` |
+| Screenshot | 8 okunabilir görsel |
+| UI-VERIFIED | 58 kayıt: process/menu, sections, selectors ve açık dropdown seçenekleri |
+| UI-OBSERVED | 16 kayıt: ekran anındaki seçim ve checkbox durumları |
+| Default doğrulaması | 0 |
+| Bekleyen UI | Sürüm, reset/default, tooltip ve console |
+| DATA-REQUIRED | Integration, normalization, weighting ve rejection sonucu için kontrollü test |
+| DOC-REQUIRED | Combination, estimator, normalization, weighting ve rejection anlamları için birincil kaynak |
+| Evidence | `validation/ui/pi-1.9.3/image-integration/image-integration-evidence-matrix.md` |
+
+## Sprint 4.1 — Interim Review
+
+**İnceleme türü:** Review-only; yeni UI validation veya screenshot incelemesi yapılmadı.
+
+**Kapsam:** 15 process/plugin; `linear-fit` kapsam dışında bırakıldı.
+
+**Karar:** **REVIEW REQUIRED**
+
+### Registry tutarlılığı
+
+| Kontrol | Sonuç |
+|---|---|
+| İncelenen slug kayıtları | 15/15 mevcut |
+| Canonical document alanı | 15/15 dolu |
+| Canonical path mevcut | 15/15 |
+| Canonical path benzersiz | 15/15; çakışma yok |
+| Geçerli process type | 15/15 |
+| Registry geneli orphan canonical reference | 0 |
+| Registry geneli geçersiz type | 0 |
+
+Registry toplamı 32 kayıttır: 24 `core-process`, 4 `plugin`, 4 `script`.
+
+### Validation artifact denetimi
+
+| Process | screenshots | Evidence matrix | UI notes | Checklist | Sonuç |
+|---|---:|---:|---:|---:|---|
+| abe | Var | Eksik | Eksik | Eksik | Kritik eksik |
+| background-neutralization | Var | Var | Var | Var | Yapısal olarak tam |
+| blurxterminator | Var | Var | Var | Var | Yapısal olarak tam |
+| curves-transformation | Var | Var | Var | Var | Yapısal olarak tam |
+| dbe | Var | Var | Var | Var | Yapısal olarak tam |
+| histogram-transformation | Var | Var | Var | Var | Yapısal olarak tam |
+| image-integration | Var | Var | Var | Var | Altı evidence reference kırık |
+| local-histogram-equalization | Var | Var | Var | Var | Yapısal olarak tam |
+| noisexterminator | Var | Var | Var | Var | Yapısal olarak tam |
+| pcc | Var | Var | Var | Var | Yapısal olarak tam |
+| scnr | Var | Var | Var | Var | Yapısal olarak tam |
+| screen-transfer-function | Var | Var | Var | Var | Yapısal olarak tam |
+| spcc | Var | Var | Var | Var | Legacy evidence şeması |
+| star-alignment | Var | Var | Var | Var | Yapısal olarak tam |
+| starxterminator | Var | Var | Var | Var | Yapısal olarak tam |
+
+### Evidence tutarlılığı
+
+- ABE için `abe-evidence-matrix.md`, `abe-ui-notes.md` ve `abe-validation-checklist.md` yoktur; dört screenshot bulunduğu halde validation tamamlanmış sayılamaz.
+- ImageIntegration evidence matrix içindeki `combination.png`, `go-psf-type.png`, `noise-estimator.png`, `normalization.png`, `rejection-algorithm.png` ve `weights.png` referanslarının hedefleri mevcut değildir. Dizin içinde yalnız `01-full-interface.png` ve `07-process-menu-location.png` kalmıştır.
+- SPCC matrisi 83 benzersiz evidence ID içerir ancak güncel on sütunlu şemadaki ayrı `Sınıf` alanını kullanmaz; sınıflar `Not` sütununda tutulur. Bu nedenle current-template status validation ile tutarlı değildir.
+- Diğer incelenen evidence matrislerinde duplicate ID, invalid class, dış screenshot dizinine referans veya kırık screenshot reference bulunmadı.
+- Exact-byte duplicate screenshot çifti bulundu: `background-neutralization/screenshots/03-spcc-middle-section.png` ve `pcc/screenshots/Screenshot 2026-07-20 at 21.34.12.png`. Yeniden kullanım gerekçesi matriste açıklanmalıdır.
+
+### Screenshot klasörleri
+
+- İncelenen process screenshot klasörleri beklenen slug dizinleri altındadır.
+- Registry dışı `validation/ui/pi-1.9.3/process/screenshots/` klasörü boştur ve orphan klasördür.
+- `validation/ui/pi-1.9.3/linear-fit/` registry dışıdır; sprint talebi gereği değerlendirme ve öneri kapsamı dışında tutuldu.
+- Duplicate screenshot folder bulunmadı; bir exact-byte duplicate dosya çifti yukarıda raporlandı.
+
+### Canonical dokümantasyon
+
+- 15 canonical sayfanın tamamı mevcuttur ve strict build kapsamındadır.
+- Duplicate heading, unclosed code fence, merge marker veya validation tarafından eklenmiş `TODO`/`TBD` bulunmadı.
+- ABE canonical sayfasında UI validation yolu/güncellemesi yoktur.
+- `docs/03-kalibrasyon/star-alignment.md` ve `docs/03-kalibrasyon/image-integration.md` içinde `+!!! warning` biçiminde iki malformed admonition bulunur.
+- BlurXTerminator, CurvesTransformation, HistogramTransformation, LocalHistogramEqualization, NoiseXTerminator, SCNR ve StarXTerminator sayfaları hâlâ generic taslak metni ve Quick Reference içinde `Menü yolu | Doğrulama bekliyor` satırı taşır; aynı sayfalarda menü yolu UI-verified olduğundan içerik içi durum çelişkisi vardır.
+- `Doğrulama bekliyor` kayıtlarının PCC, BackgroundNeutralization, DBE ve Faz 1B sayfalarındaki önemli bölümü bilinçli DATA/DOC risk kaydıdır; bunlar `TODO` olarak sınıflandırılmadı.
+
+### Markdown, navigation ve build
+
+| Kontrol | Sonuç |
+|---|---|
+| Internal/relative links | MkDocs strict build geçti |
+| Missing nav targets | Yok |
+| Missing canonical pages | Yok |
+| Mermaid | MkDocs build geçti; Mermaid CLI ortamda yok |
+| Admonitions | İki malformed `+!!!` kaydı var |
+| Tables | Evidence tabloları yapısal olarak geçerli; SPCC schema legacy |
+| `mkdocs build --strict` | Başarılı, exit 0 |
+| MkDocs warning | Yok; Material/MkDocs 2.0 bilgilendirme banner'ı var |
+| Nav dışı sayfalar | Dört legacy `docs/05-renk-kalibrasyonu/` sayfası INFO olarak listeleniyor |
+| `git diff --check` | Başarılı; whitespace error yok |
+| Merge markers | 0 |
+
+### Interim istatistikler
+
+| Ölçüt | Sonuç |
+|---|---:|
+| İncelenen process | 15 |
+| Registry toplamı | 32 |
+| Scope coverage | 15/32 = %46,88 |
+| Tam quality gate geçen | 12/32 = %37,50 |
+| İncelenen core-process | 12/24 = %50,00 |
+| İncelenen plugin | 3/4 = %75,00 |
+| İncelenen script | 0/4 = %0,00 |
+
+`Tam quality gate` hesabı ABE artifact eksikliği, ImageIntegration kırık evidence references ve SPCC legacy schema nedeniyle üç süreci hariç tutar.
+
+### Riskler ve gerekli düzeltmeler
+
+1. ABE validation artifact seti tamamlanmalıdır; yeni screenshot incelemesi ayrı validation sprintinde yapılmalıdır.
+2. ImageIntegration için kayıp altı screenshot geri getirilmeli veya ilgili evidence satırları yeniden kanıtlanmalıdır.
+3. SPCC matrisi current evidence schema'ya migrate edilmelidir; mevcut sınıflandırma anlamı korunmalıdır.
+4. Boş `process/screenshots/` orphan klasörünün kaynağı belirlenmeli ve ayrı temizlik yetkisiyle kaldırılmalıdır.
+5. Exact-byte duplicate BN/PCC screenshot'ın iki process için neden geçerli olduğu açıklanmalı veya doğru kanıtla değiştirilmelidir.
+6. İki malformed `+!!!` admonition düzeltilmelidir.
+7. Yedi generic draft sayfadaki doğrulanmış menü yolu ile Quick Reference çelişkileri giderilmelidir.
+8. Reset/default, tooltip, console, host version, DATA-REQUIRED ve DOC-REQUIRED açıkları sonraki validation/source/data dalgalarında kapanmalıdır.
+
+### Öneri
+
+**REVIEW REQUIRED**
+
+Sonraki validation dalgasına başlamadan önce ABE artifact eksikliği, ImageIntegration kırık kanıtları ve SPCC evidence schema uyumsuzluğu kapatılmalıdır. Registry ve MkDocs altyapısı sağlıklıdır; engel yapısal veri bütünlüğü ve tutarlılık borcudur.

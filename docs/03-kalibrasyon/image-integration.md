@@ -63,7 +63,12 @@ flowchart LR
 
 ## Menü yolu
 
-Process arama alanında `ImageIntegration`; WBPP için `Script > Batch Processing > WeightedBatchPreprocessing`. Kesin menü grubu kurulu 1.9.3 arayüzünden doğrulanmalıdır.
+`Process > ImageIntegration > ImageIntegration`
+
+Process adı ve bu menü yolu UI ekranında doğrudan okunmuştur. Ayrıntılı kayıt repository içindeki `validation/ui/pi-1.9.3/image-integration/image-integration-evidence-matrix.md` dosyasındadır. WBPP yolu bu UI kanıt setinin kapsamında değildir.
+
+!!! warning "UI doğrulama sınırı"
+    Mevcut görseller reset/new instance, tooltip, console veya ekran içi PixInsight sürümü göstermiyor. Seçimler default sayılmamalı; integration algoritmaları ve output davranışı ayrıca doğrulanmalıdır.
 
 ## Parametreler
 
@@ -77,6 +82,8 @@ Process arama alanında `ImageIntegration`; WBPP için `Script > Batch Processin
 | Rejection Maps | Low/high audit |
 | Weight Maps | Katkı denetimi; seçeneğe bağlı |
 | Output files | Master, maps ve log |
+
+UI kanıtı `Input Images`, `Format Hints`, `Image Integration`, `Pixel Rejection (1)`, `Pixel Rejection (2)`, `Large-Scale Pixel Rejection`, `Signal and Noise Evaluation` ve `Region of Interest` section başlıklarını doğrular. `Combination`, `PSF type`, `Noise estimator`, `Normalization`, `Rejection algorithm` ve `Weights` açık listelerindeki 40 görünür seçenek evidence matrix içinde tekil kaydedilmiştir; algoritmik anlamları statik ekran görüntülerinden çıkarılmamıştır.
 
 !!! tip "Parametre politikası"
     Evrensel preset yerine metadata, sample test, log ve maps birlikte değerlendirilir.
