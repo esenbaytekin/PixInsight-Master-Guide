@@ -5,10 +5,17 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
 
 WORKDIR /app
 
+ARG DOC_VERSION=unversioned
+ARG DOC_COMMIT=unknown
+
+ENV DOC_VERSION=${DOC_VERSION} \
+    DOC_COMMIT=${DOC_COMMIT}
+
 COPY requirements.txt ./
 RUN python -m pip install -r requirements.txt
 
 COPY mkdocs.yml ./
+COPY hooks/ ./hooks/
 COPY docs/ ./docs/
 
 RUN mkdocs build --strict --site-dir /build/site
