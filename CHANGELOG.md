@@ -18,6 +18,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 
 ### Fixed
 
+- Header stylesheet'i için sürüm bazlı cache busting eklendi; güncel logo ve hizalama eski tarayıcı önbelleğine takılmadan yüklenir.
 - Header görsel hiyerarşisi ve responsive metadata davranışı düzeltildi.
 - Giriş sayfalarının navigation etiketi, H1, metadata ve içerik amacı eşlendi.
 - Başlangıç içeriklerinin keşfedilebilirliği geliştirildi.
