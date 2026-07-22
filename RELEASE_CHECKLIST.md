@@ -63,3 +63,39 @@ Bu liste v1.0.0 yayınının operasyonel kontrol kaydıdır. Otomatik ve yerel k
 - [ ] Önceki production image/commit kimliği kaydedildi
 - [ ] Rollback adımları [deployment rehberinden](deployment/README.md) doğrulandı
 - [ ] Sağlık kontrolü ve log erişimi doğrulandı
+
+## v1.0.2 — Google Analytics
+
+- [ ] GA4 property oluşturuldu
+- [ ] Web data stream oluşturuldu
+- [x] Doğru Measurement ID repository yapılandırmasına eklendi
+- [ ] Enhanced Measurement incelendi
+- [ ] Site search ölçümü incelendi
+- [ ] Internal traffic filtering incelendi
+- [ ] Data retention incelendi
+- [ ] Google Signals incelendi
+- [ ] Realtime trafik doğrulandı
+- [ ] Duplicate page view oluşmadığı doğrulandı
+
+## v1.0.2 — Consent
+
+- [ ] Consent banner production üzerinde görüntülendi
+- [ ] Analytics'in consent öncesinde kapalı olduğu network düzeyinde doğrulandı
+- [x] Analytics'in onay sonrasında tek native loader ile etkinleştiği yerel DOM düzeyinde doğrulandı
+- [x] Reject akışı test edildi
+- [x] Tercih değiştirme akışı test edildi
+- [x] Light mode test edildi
+- [x] Dark mode mevcut tema tarafından sunulmadığı için uygulanamaz olarak kaydedildi
+- [x] Mobil düzen test edildi
+- [ ] Gizlilik sayfası maintainer tarafından incelendi
+
+## v1.0.2 — Sitemap ve Search Console
+
+- [x] `sitemap.xml` yerel build'de üretildi
+- [x] `sitemap.xml` sprint doğrulamasında yapısal olarak geçerli bulundu
+- [x] Mevcut production sitemap HTTP 200 döndürüyor; v1.0.2 deploy sonrası yeniden kontrol edilmeli
+- [x] Root `robots.txt` için Nginx sunum kararı uygulandı
+- [ ] Search Console property doğrulandı
+- [ ] Sitemap Search Console'a gönderildi
+- [ ] Dokümantasyon ana sayfası URL Inspection ile incelendi
+- [ ] Production deploy sonrasında indexing istendi
