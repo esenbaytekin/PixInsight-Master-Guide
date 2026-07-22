@@ -1,5 +1,9 @@
 # Filtreler
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Filtreler` · `astrofotoğraf` · `signal` · `sinyal`
+
 **Durum: Taslak**
 
 ## Amaç

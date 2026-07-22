@@ -1,5 +1,9 @@
 # LRGB Teorisi ve İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** LRGB · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LRGB` · `luminance` · `channel combination`
+
 ## Amaç
 
 Luminance içindeki yüksek SNR’li intensity/detail bilgisini RGB chrominance ile birleştirerek çözünürlük, contrast ve color fidelity arasında kontrollü bir denge kurmaktır.

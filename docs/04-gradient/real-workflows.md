@@ -1,5 +1,10 @@
 # Gerçek Gradient İş Akışları
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Gerçek İş Akışları` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 Gradient teorisini, calibration doğrulamasından model kaydına kadar izlenebilir bir çalışma akışına dönüştürmek. Bu sayfadaki sonuçlar reçete değil, gerçek veriyle doldurulacak kontrol kapılarıdır.

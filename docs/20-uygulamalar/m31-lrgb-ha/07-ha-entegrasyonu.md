@@ -1,5 +1,9 @@
 # Ha Entegrasyonu
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Ha Entegrasyonu` · `case study` · `uygulama` · `end-to-end workflow` · `Ha`
+
 **Durum: Taslak**
 
 ## Amaç

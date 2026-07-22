@@ -1,5 +1,9 @@
 # PixelMath
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixelMath · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `PixelMath` · `expression` · `kanal karışımı`
+
 ## Amaç
 
 Pixel ve channel değerlerini açık expressions ile üretmek, karıştırmak, seçmek veya yeni image oluşturmak; karmaşık workflows’u denetlenebilir matematiksel adımlara ayırmaktır.

@@ -1,5 +1,9 @@
 # ChannelCombination RGB Hatası
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `ChannelCombination RGB Hatası` · `wrong channel mapping` · `purple stars` · `mor yıldızlar` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |

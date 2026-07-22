@@ -1,5 +1,9 @@
 # Gezegenimsi Nebula İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Gezegenimsi Nebula` · `planetary nebula` · `narrowband` · `high dynamic range` · `small target` · `workflow`
+
 ## Amaç
 
 Küçük açısal boyutlu planetary nebula'da bright core, inner shell, faint outer halo ve yıldız alanını farklı scale ve dinamik aralık gereksinimleriyle birlikte korumak.

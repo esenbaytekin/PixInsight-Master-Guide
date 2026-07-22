@@ -1,5 +1,9 @@
 # LRGB Galaksi İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LRGB Galaksi` · `LRGB Galaxy` · `galaxy workflow` · `workflow` · `iş akışı` · `image processing` · `LRGB`
+
 ## Amaç
 
 Galaxy core, dust lane, dış halo ve star color arasında doğal tonal hiyerarşi kurmak; luminance ayrıntısını RGB chrominance'a halo üretmeden taşımak.

@@ -1,5 +1,9 @@
 # son işlemler
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Final` · `case study` · `uygulama` · `end-to-end workflow`
+
 **Durum: Taslak**
 
 ## Amaç

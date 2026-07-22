@@ -1,5 +1,10 @@
 # PixelMath Temelleri
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixelMath · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Temeller` · `PixelMath basics` · `PixelMath temelleri` · `PixelMath` · `expression` · `kanal karışımı`
+    **Önerilen ön bilgiler:** [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 Expression, identifier, variable, operator, channel ve output kavramlarını güvenli bir mental modelle öğretmektir.

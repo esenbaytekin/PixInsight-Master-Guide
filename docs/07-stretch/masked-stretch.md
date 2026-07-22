@@ -1,5 +1,10 @@
 # MaskedStretch
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `MaskedStretch` · `Masked Stretch` · `stretch` · `nonlinear processing` · `histogram stretch`
+    **Önerilen ön bilgiler:** [STF](../02-pixinsight-temelleri/stf.md) · [Histogram](../02-pixinsight-temelleri/histogram.md)
+
 ## Amaç
 
 Bir dizi zayıf nonlinear transformu, önceki iteration sonucundan türetilen koruma ile uygulayarak highlights, bright stars ve nebula cores’un erken saturation riskini azaltmaktır.

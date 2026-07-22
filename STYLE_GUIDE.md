@@ -189,6 +189,18 @@ Navigasyon yalnız canonical sayfaları içerir. `docs/05-renk-kalibrasyonu/` al
 
 Canonical sayfalardaki `Önceki Bölüm` ve `Sonraki Bölüm` bağlantıları alfabetik sırayı değil `mkdocs.yml` içindeki öğrenme sırasını izler. Process sayfaları ilgili canonical process, iş akışı ve hata kartlarına; iş akışı sayfaları ise kullandıkları canonical process sayfalarına bağlanır. Bağlantı listeleri teknik açıklamayı tekrarlamaz ve yalnız bağlamla doğrudan ilişkili hedefleri içerir.
 
+## Sayfa Metadatası ve Arama
+
+- Canonical sayfalarda H1 başlığının hemen ardından `!!! info "Sayfa Bilgisi"` kutusu kullanılır.
+- İlk satır `Kategori`, `Düzey` ve `Tahmini okuma`; ikinci satır `Anahtar kelimeler` alanlarını içerir.
+- Major process sayfalarında üçüncü satır olarak canonical sayfalara bağlı `Önerilen ön bilgiler` eklenir.
+- Düzey yalnız `Beginner`, `Intermediate`, `Advanced` veya `Expert` değerlerinden biridir.
+- Okuma süresi, kod ve diyagram bloklarının okunma yükü göz önünde bulundurularak 3, 5, 7, 10, 15, 20, 25 veya 30 dakika biçiminde yuvarlanır.
+- Anahtar kelime listesi official process adı, yaygın kısaltma, anlamlı Türkçe/İngilizce karşılık ve gerektiğinde toplulukta kullanılan adı kapsar; sayfa başına sekiz girdiyi aşmaz.
+- Alias değerleri aynı yazımın büyük/küçük harf varyantlarını tekrarlamaz. Parametre veya process olmayan uydurma kısaltmalar eklenmez.
+- Workflow metadatası yalnız gerçekten geçerli hedef, filter combination, camera type, sky quality veya signal quality terimlerini içerir.
+- Metadata teknik açıklamanın yerine geçmez, doğrulanmamış davranış iddiası taşımaz ve `Doğrulama bekliyor` gibi placeholder değer içermez.
+
 ## Dosya ve Görsel Adlandırma
 
 - Dosya adları küçük harf ASCII ve tire biçimindedir.

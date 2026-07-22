@@ -1,5 +1,10 @@
 # HistogramTransformation
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `HistogramTransformation` · `HT` · `Histogram Transformation` · `black clipping` · `siyah kırpma` · `nonlinear processing` · `histogram stretch`
+    **Önerilen ön bilgiler:** [STF](../02-pixinsight-temelleri/stf.md) · [Histogram](../02-pixinsight-temelleri/histogram.md)
+
 ## Amaç
 
 Lineer veriyi kalıcı olarak nonlinear hale getirmek; black point, midtones ve white point üzerinden tonal dağılımı açık ve ölçülebilir biçimde yönetmektir.

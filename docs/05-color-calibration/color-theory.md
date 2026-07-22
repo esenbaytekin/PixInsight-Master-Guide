@@ -1,5 +1,10 @@
 # Astronomik Renk Teorisi
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Astronomik Renk Teorisi` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 Gökyüzünden gelen spektral sinyalin sensor, filter, calibration, RGB temsil, stretch ve display zincirinde nasıl dönüştüğünü sade bir modelle açıklamak.

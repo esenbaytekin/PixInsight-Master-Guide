@@ -1,5 +1,10 @@
 # SPCC Ön Koşulları
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `SPCC Ön Koşulları` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 SPCC öncesinde image state, astrometry, instrument profile ve reference uygunluğunu process reçetesi vermeden denetlemek.

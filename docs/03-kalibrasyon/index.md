@@ -1,5 +1,9 @@
 # Image Calibration Pipeline
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Kalibrasyon · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Kalibrasyon` · `calibration` · `linear processing`
+
 **Durum: Tamamlandı — Faz 1B**
 
 ## Amaç

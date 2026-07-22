@@ -1,5 +1,10 @@
 # White Balance
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Beyaz Dengesi` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 White balance kavramını consumer photography'deki görünüm ayarından ayırarak astronomik channel scaling ve referans seçimi bağlamında açıklamak.

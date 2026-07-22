@@ -1,5 +1,9 @@
 # BlurX ve NoiseX
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `BlurX ve NoiseX` · `case study` · `uygulama` · `end-to-end workflow`
+
 **Durum: Taslak**
 
 ## Amaç

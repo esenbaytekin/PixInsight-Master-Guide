@@ -1,5 +1,10 @@
 # Dışa Aktarım
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Dışa Aktarım` · `TIFF` · `PNG` · `JPEG` · `sRGB export` · `final processing` · `son işlemler` · `export`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maskeler](../11-maskeler/index.md)
+
 ## Amaç
 
 Export, PixInsight çalışma verisini hedef ortama uygun bit depth, file format, color space ve metadata ile teslim eder. Master arşivi, web görüntüsü ve print dosyası aynı gereksinimlere sahip değildir; tek export her kullanım için doğru değildir.

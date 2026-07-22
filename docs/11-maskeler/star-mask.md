@@ -1,5 +1,10 @@
 # StarMask
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `StarMask` · `Star Mask` · `mask` · `maske` · `selective processing`
+    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+
 ## Amaç
 
 StarMask, yıldız benzeri yapıları ölçek ve yoğunluk ölçütleriyle ayırarak yıldız koruma veya yıldızlara özel işlem için ağırlık haritası üretir. Başarı yalnız yıldız çekirdeklerini bulmakla değil, zayıf yıldızlar ile parlak haloları kontrollü kapsamakla ölçülür.

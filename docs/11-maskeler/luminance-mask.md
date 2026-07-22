@@ -1,5 +1,10 @@
 # Luminance Mask
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Luminance Mask` · `L mask` · `mask` · `maske` · `selective processing`
+    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+
 ## Amaç
 
 Luminance Mask, görüntünün yoğunluk yapısını process ağırlığına dönüştürür. Parlak, yüksek SNR yapıları korumak; zayıf alanlarda daha güçlü noise reduction veya parlak yapılarda daha kontrollü kontrast uygulamak için kullanılır.

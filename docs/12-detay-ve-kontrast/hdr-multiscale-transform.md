@@ -1,5 +1,10 @@
 # HDRMultiscaleTransform
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `HDRMultiscaleTransform` · `HDRMT` · `detail enhancement` · `contrast` · `detay`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 HDRMultiscaleTransform (HDRMT), parlak yapılardaki dinamik aralığı multiscale ayrıştırmayla sıkıştırır. Galaxy çekirdeği, planetary nebula merkezi veya parlak emission bölgesi gibi alanlarda büyük ölçekli parlaklık altında kalan lokal yapıyı görünür kılmayı amaçlar.

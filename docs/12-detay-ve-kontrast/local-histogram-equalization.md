@@ -1,5 +1,10 @@
 # LocalHistogramEqualization
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LocalHistogramEqualization` · `LHE` · `Local Contrast` · `detail enhancement` · `contrast` · `detay`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 LocalHistogramEqualization (LHE), komşuluk içindeki ton ayrımını artırarak orta ve büyük ölçekli yapıların algılanabilirliğini güçlendirir. Global histogramı yeniden kurmak yerine her bölgenin çevresine göre lokal kontrast üretir.

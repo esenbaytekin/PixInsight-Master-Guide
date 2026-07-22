@@ -1,5 +1,9 @@
 # OIII Koruma
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `OIII Koruma` · `case study` · `uygulama` · `end-to-end workflow`
+
 **Durum: Taslak**
 
 ## Amaç

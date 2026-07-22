@@ -1,5 +1,10 @@
 # LRGBCombination
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** LRGB · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LRGBCombination` · `LRGB Combination` · `LRGB` · `luminance` · `channel combination`
+    **Önerilen ön bilgiler:** [Renk Kalibrasyonu](../05-color-calibration/index.md) · [HistogramTransformation](../07-stretch/histogram-transformation.md)
+
 ## Amaç
 
 Hazırlanmış luminance’i RGB chrominance ile birleştirerek detail, contrast, saturation ve noise aktarımını kontrollü yönetmektir.

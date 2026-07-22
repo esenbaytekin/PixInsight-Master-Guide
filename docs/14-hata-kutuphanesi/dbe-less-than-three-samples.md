@@ -1,5 +1,9 @@
 # DBE: Less Than Three Samples
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `DBE: Less Than Three Samples` · `DBE sample error` · `background sample` · `gradient model` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |

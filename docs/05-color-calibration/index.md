@@ -1,5 +1,9 @@
 # Color Calibration Giriş
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Renk Kalibrasyonuna Giriş` · `color calibration` · `renk kalibrasyonu` · `white balance`
+
 ## Amaç
 
 Renk kalibrasyonunun amacını, ön koşullarını ve teoriden diagnostics'e okuma yolunu tanıtmak.

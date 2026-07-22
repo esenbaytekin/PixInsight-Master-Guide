@@ -1,5 +1,10 @@
 # Doygunluk
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Doygunluk` · `Saturation` · `color saturation` · `final processing` · `son işlemler` · `export`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maskeler](../11-maskeler/index.md)
+
 ## Amaç
 
 Saturation işlemi renklerin nötr eksenden uzaklığını değiştirir. Amaç rengi yalnızca “daha güçlü” yapmak değil; kalibre edilmiş hue ilişkisini, yıldız çeşitliliğini ve düşük SNR alanlarda chroma noise sınırını korumaktır.

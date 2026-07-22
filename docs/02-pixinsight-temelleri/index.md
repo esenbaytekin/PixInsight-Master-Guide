@@ -1,5 +1,9 @@
 # PixInsight Temelleri
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `PixInsight Temelleri` · `PixInsight` · `arayüz` · `workflow`
+
 **Durum: Tamamlandı — Faz 1A**
 
 ## Amaç

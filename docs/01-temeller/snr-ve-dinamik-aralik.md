@@ -1,5 +1,9 @@
 # SNR ve Dinamik Aralık
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `SNR ve Dinamik Aralık` · `astrofotoğraf` · `signal` · `sinyal`
+
 **Durum: Taslak**
 
 ## Amaç

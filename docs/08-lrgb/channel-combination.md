@@ -1,5 +1,10 @@
 # ChannelCombination
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** LRGB · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `ChannelCombination` · `Channel Combination` · `LRGB` · `luminance`
+    **Önerilen ön bilgiler:** [Renk Kalibrasyonu](../05-color-calibration/index.md) · [HistogramTransformation](../07-stretch/histogram-transformation.md)
+
 ## Amaç
 
 Ayrı monochrome görüntüleri RGB veya seçilen color space kanallarına açık eşleme ile birleştirmek; broadband RGB ve narrowband SHO/HOO başlangıç görüntüsü üretmektir.

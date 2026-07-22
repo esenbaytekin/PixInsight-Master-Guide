@@ -1,5 +1,9 @@
 # Gradient Düzeltme
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Gradient Bölümüne Giriş` · `gradient removal` · `gradient düzeltme` · `background modeling`
+
 **Durum: Yapısal incelemeye hazır — Sprint 2.4**
 
 ## Amaç

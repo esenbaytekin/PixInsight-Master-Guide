@@ -1,5 +1,9 @@
 # PixInsight Master Guide
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Başlangıç · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Ana Sayfa` · `PixInsight Master Guide` · `PixInsight Türkçe rehber`
+
 **Durum: Taslak**
 
 ## Amaç

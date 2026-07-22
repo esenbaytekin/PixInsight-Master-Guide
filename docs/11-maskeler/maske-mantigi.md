@@ -1,5 +1,10 @@
 # Maske Mantığı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Maske Mantığı` · `mask` · `maske` · `selective processing`
+    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+
 ## Amaç
 
 Bu sayfa, maskeyi bir siyah-beyaz şablondan ziyade sürekli bir ağırlık alanı olarak okumayı öğretir. İyi maske; hedefi ayırır, kenarlarda yumuşak geçiş kurar ve process etkisini veri kalitesine göre dağıtır.

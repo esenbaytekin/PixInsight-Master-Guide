@@ -1,5 +1,9 @@
 # NGC 6888 SHO
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `NGC 6888 SHO` · `case study` · `uygulama` · `end-to-end workflow` · `NGC 6888` · `SHO`
+
 **Durum: Taslak**
 
 ## Amaç

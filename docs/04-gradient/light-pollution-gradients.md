@@ -1,5 +1,10 @@
 # Işık Kirliliği Gradientleri
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Işık Kirliliği Gradientleri` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 Yapay aydınlatma, horizon/zenith farkı ve atmosferik saçılmayla ilişkili geniş ölçekli gradientleri tanımak; color cast, gerçek diffuse sinyal ve calibration artefact'larını ayırmak.

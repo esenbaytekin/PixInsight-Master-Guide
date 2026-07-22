@@ -1,5 +1,9 @@
 # Uygulamalı İş Akışları
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `İş Akışı Rehberi` · `workflow` · `iş akışı` · `image processing`
+
 ## Amaç
 
 Bu bölüm, process referanslarını gerçekçi veri koşullarında uçtan uca karar zincirlerine dönüştürür. Sabit parametre reçeteleri vermez; her adımda neden, görsel checkpoint, alternatif branch ve recovery noktası tanımlar.

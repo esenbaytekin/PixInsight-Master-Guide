@@ -1,5 +1,10 @@
 # SPCC Broadband İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `SPCC Broadband İş Akışı` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 OSC ve mono LRGB broadband veride SPCC testini instrument response, astrometry, star samples ve sonuç doğrulaması üzerinden planlamak.

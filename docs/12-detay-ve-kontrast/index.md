@@ -1,5 +1,9 @@
 # Detay ve Kontrast
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Detay ve Kontrast` · `detail enhancement` · `contrast` · `detay`
+
 ## Amaç
 
 Bu bölüm, görüntüdeki yapıları uzamsal ölçeklerine göre ayırıp kontrollü biçimde güçlendirmeyi anlatır. Hedef “daha keskin” bir görünüm değil; gerçek sinyali korurken lokal kontrastı, dinamik aralığı ve algılanabilir yapıyı yönetmektir.

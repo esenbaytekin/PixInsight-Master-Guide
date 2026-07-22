@@ -1,5 +1,9 @@
 # Broadband Yansıma ve Karanlık Nebula İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Broadband Yansıma ve Karanlık Nebula` · `reflection nebula` · `dark nebula` · `broadband filters` · `light pollution` · `mono camera` · `workflow`
+
 ## Amaç
 
 Reflection nebula'nın yumuşak mavi continuum'unu ve dark nebula/molecular cloud yapısını background, gradient ve chroma noise ile karıştırmadan ortaya çıkarmak.

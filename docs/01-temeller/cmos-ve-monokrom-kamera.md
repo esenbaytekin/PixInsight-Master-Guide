@@ -1,5 +1,9 @@
 # CMOS ve Monokrom Kamera
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `CMOS ve Monokrom Kamera` · `astrofotoğraf` · `signal` · `sinyal`
+
 **Durum: Taslak**
 
 ## Amaç

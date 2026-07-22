@@ -1,5 +1,10 @@
 # PixelMath Koşullar ve Fonksiyonlar
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixelMath · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Koşullar ve Fonksiyonlar` · `PixelMath` · `expression` · `kanal karışımı`
+    **Önerilen ön bilgiler:** [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 Comparison, boolean logic ve conditional selection ile pixel replacement/blending’i güvenli ve okunabilir kurmaktır.

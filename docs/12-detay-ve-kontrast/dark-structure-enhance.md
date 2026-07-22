@@ -1,5 +1,10 @@
 # DarkStructureEnhance
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `DarkStructureEnhance` · `DSE` · `detail enhancement` · `contrast` · `detay`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 DarkStructureEnhance (DSE), çevresine göre koyu kalan yapıları vurgulayarak galaxy dust lane'leri, molecular cloud sınırları ve nebula içindeki karanlık kanalları daha okunur hale getiren seçici bir script iş akışıdır.

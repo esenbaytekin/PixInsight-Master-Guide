@@ -1,5 +1,9 @@
 # Stretch
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Stretch` · `case study` · `uygulama` · `end-to-end workflow`
+
 **Durum: Taslak**
 
 ## Amaç

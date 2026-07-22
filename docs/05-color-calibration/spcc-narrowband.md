@@ -1,5 +1,10 @@
 # SPCC Narrowband Kapsamı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `SPCC Narrowband Kapsamı` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 SPCC'nin narrowband veride olası kapsamını broadband stellar calibration, channel normalization, palette mapping ve star reconstruction'dan ayırmak.

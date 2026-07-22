@@ -1,5 +1,9 @@
 # Process Icons ve ProcessContainer
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Process Icons` · `PixInsight` · `arayüz` · `workflow`
+
 **Durum: Tamamlandı — Faz 1A**
 
 ## Amaç

@@ -1,5 +1,10 @@
 # PixelMath Kanal Karışımları ve Tarifler
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixelMath · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Kanal Karışımları` · `PixelMath` · `expression` · `kanal karışımı`
+    **Önerilen ön bilgiler:** [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 Broadband ve narrowband channel construction, selective blend ve normalization tariflerini aynı validation standardıyla sunmaktır.
