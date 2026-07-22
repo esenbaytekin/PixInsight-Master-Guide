@@ -16,6 +16,7 @@ RUN python -m pip install -r requirements.txt
 
 COPY mkdocs.yml ./
 COPY hooks/ ./hooks/
+COPY overrides/ ./overrides/
 COPY docs/ ./docs/
 
 RUN mkdocs build --strict --site-dir /build/site

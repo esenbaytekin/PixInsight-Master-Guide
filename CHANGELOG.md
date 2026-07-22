@@ -20,6 +20,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 - Header görsel hiyerarşisi ve responsive metadata davranışı düzeltildi.
 - Giriş sayfalarının navigation etiketi, H1, metadata ve içerik amacı eşlendi.
 - Başlangıç içeriklerinin keşfedilebilirliği geliştirildi.
+- Theme override klasörü production Docker build context'ine eklendi.
 
 ### Deprecated
 
