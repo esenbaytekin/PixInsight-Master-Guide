@@ -135,7 +135,7 @@ Reference geometry’sine resample edilmiş lineer frames ve isteğe bağlı dri
 | Artefact tüm frame’lerde | Calibration/master zinciri | Eşleşmeleri ve logu inceleyin |
 | Artefact yalnız master’da | Registration/normalization/rejection | Maps ve residual’ları inceleyin |
 | Data clipped | Statistics ve pedestal | Önceki aşamaya dönün |
-| Process başarısız | Console log | İlk hata mesajını çözün |
+| İşlem başarısız | Console log | İlk hata mesajını çözün |
 
 ## SSS
 
@@ -157,7 +157,7 @@ Reference geometry’sine resample edilmiş lineer frames ve isteğe bağlı dri
 ??? question "Rejection ne zaman?"
     ImageIntegration sırasında.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Input metadata doğrulandı
@@ -166,7 +166,7 @@ Reference geometry’sine resample edilmiş lineer frames ve isteğe bağlı dri
     - [ ] Log incelendi
     - [ ] Yardımcı maps incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

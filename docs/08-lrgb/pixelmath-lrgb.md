@@ -1,29 +1,29 @@
 # PixelMath ile LRGB
 
-## Purpose
+## Amaç
 
 LRGBCombination’ın global kontrolü yetersiz olduğunda luminance contribution, mask, normalization ve layer blending’i açık ifadelerle yönetmektir.
 
-## Theory ve safety
+## Kuramsal Arka Plan ve safety
 
 Basit blend yüksek seviyede `result = (1-w)·RGB + w·L-derived color` fikrine dayanır; exact formulation color space ve hedefe göre değişir. Coefficients toplamı, input range ve clipping kontrol edilmelidir.
 
-## Input requirements
+## Giriş Gereksinimleri
 
 L/RGB geometry ve state eşleşmeli; identifier’lar açık; mask ve weight image’ları `[0,1]` aralığında doğrulanmış olmalıdır. Yeni image output tercih edilir.
 
-## LRGBCombination vs PixelMath
+## LRGBCombination ve PixelMath
 
 | Konu | LRGBCombination | PixelMath |
 |---|---|---|
 | Basit global LRGB | Güçlü | Daha fazla kurulum |
 | Masked/local blend | Sınırlı | Esnek |
 | Safety | UI yönlendirmesi | Kullanıcı sorumluluğu |
-| Reproducibility | Process instance | Expression + symbols + settings |
+| Reproducibility | İşlem instance | Expression + symbols + settings |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | Standard galaxy LRGB | LRGBCombination | Daha sade |
 | Core/halo farklı L weight | PixelMath + RangeMask | Spatial control |
@@ -31,7 +31,7 @@ L/RGB geometry ve state eşleşmeli; identifier’lar açık; mask ve weight ima
 | HaRGB | PixelMath | Emission contribution açıkça tanımlanır |
 | RGB-only | ChannelCombination | Ek karmaşıklık gerekmez |
 
-## Recipe: weighted luminance blend
+## Tarif: ağırlıklı luminance birleşimi
 
 - **Validation Status:** 🟨 Experimental
 - **Applicable data:** Geometry/state matched L ve RGB
@@ -44,7 +44,7 @@ L/RGB geometry ve state eşleşmeli; identifier’lar açık; mask ve weight ima
 - **Potential risks:** Range overflow, desaturation, seams
 - **Alternative approaches:** LRGBCombination veya masked Curves
 
-## Recipe: starless recombination
+## Tarif: starless yeniden birleştirme
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Eşleşen `starless` ve `stars` layers
@@ -56,7 +56,7 @@ L/RGB geometry ve state eşleşmeli; identifier’lar açık; mask ve weight ima
 - **Potential risks:** Brightness shift, halo ve clipping
 - **Alternative approaches:** StarXTerminator’ın önerdiği layer-specific workflow
 
-## Application, troubleshooting ve best practices
+## Uygulama, sorun giderme ve En İyi Uygulamalar
 
 1. Expression’ı constants ile değil symbols ile kurun.
 2. Yeni image üretin; single-channel Preview ve `$T` semantiğini karıştırmayın.
@@ -68,7 +68,7 @@ Black/white output genellikle range veya identifier hatasıdır; color washout a
 !!! warning "Formül bağlamı"
     Conceptual LRGB ifadesini color-space dönüşümü tanımlamadan doğrudan final formula saymayın.
 
-## Related processes
+## İlgili Süreçler
 
 - [PixelMath Temelleri](../10-pixelmath/temeller.md)
 - [LRGBCombination](lrgb-combination.md)

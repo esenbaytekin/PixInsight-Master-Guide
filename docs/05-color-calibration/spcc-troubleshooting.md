@@ -21,7 +21,7 @@ Kartlar kesin parametre reçetesi vermez. Sıra: input sınıfı → astrometry/
 | Channel response | 14–19, 29 |
 | Narrowband scope | 15, 24, 25 |
 | Display interpretation | 14–17, 28 |
-| Process comparison | 30 |
+| İşlem comparison | 30 |
 
 ```mermaid
 flowchart LR
@@ -416,14 +416,14 @@ Catalog query hatası veren bir M31 testi için tam log, WCS overlay, image scal
     **Kanıtlanacak konu:** Gerçek error string ve kök neden  
     **Önerilen dosya adı:** `spcc-193-log-error-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — catalog match ve rejection"
+!!! example "Görsel doğrulama ölçütü — katalog match ve reddetme"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Star-rich ve saturated fields  
     **Ekran veya çıktı:** Match overlay ve rejection logu  
     **Kanıtlanacak konu:** Catalog samples ve saturated rejection  
     **Önerilen dosya adı:** `spcc-193-catalog-match-rejection-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — saturated star rejection"
+!!! example "Görsel doğrulama ölçütü — saturated star reddetme"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Saturated ve unclipped star field karşılaştırması  
     **Ekran veya çıktı:** Star cutouts, readout ve rejection logu  
@@ -474,7 +474,7 @@ Kartlar yukarıdaki sınıf sırasıyla uygulanır; çözülmeyen durum UI-6/DOC
 ??? question "Starless hata nasıl çözülür?"
     Exact input davranışı ve star-reference gereksinimi doğrulanmadan çözüm uydurulmaz.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Tam log ve ilk hata saklandı
@@ -484,7 +484,7 @@ Kartlar yukarıdaki sınıf sırasıyla uygulanır; çözülmeyen durum UI-6/DOC
     - [ ] Gradient/clipping/display ayrıldı
     - [ ] İlgili doğrulama kaydı açıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

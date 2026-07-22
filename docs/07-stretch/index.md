@@ -1,10 +1,10 @@
-# Stretch ve Nonlinear Transformation
+# Stretch ve Doğrusal Olmayan Dönüşüm
 
 ## Amaç
 
 Lineer astronomik veriyi insan görme sistemi ve ekranın sınırlı dinamik aralığı içinde okunabilir hale getirirken faint signal, highlights, star profiles, color ratios ve background ayrımını kontrollü biçimde korumaktır.
 
-## Lineer ve nonlinear veri
+## Doğrusal ve doğrusal olmayan veri
 
 Lineer görüntüde pixel değeri, calibration ve response zincirinin izin verdiği ölçüde kaydedilen sinyalle orantılıdır. Nonlinear stretch bu oranı bilinçli olarak değiştirir: düşük değerleri daha fazla, yüksek değerleri daha az genişleterek büyük dinamik aralığı ekrana sıkıştırır.
 
@@ -38,16 +38,16 @@ Stretch sırasında saturation sabit kalmak zorunda değildir. Kanallar ayrı ve
 
 ## Process karşılaştırması
 
-| Process | Güçlü olduğu kontrol | Başlıca risk |
+| İşlem | Güçlü olduğu kontrol | Başlıca risk |
 |---|---|---|
 | [HistogramTransformation](histogram-transformation.md) | Açık black/midtones/white kontrolü | Shadow clipping ve sert star profiles |
 | [GeneralizedHyperbolicStretch](generalized-hyperbolic-stretch.md) | Belirli tonal bölgede esnek global contrast | Parametre etkileşimini yanlış yorumlama |
 | [MaskedStretch](masked-stretch.md) | Iterative highlight/star protection | Flat görünüm ve background-reference hassasiyeti |
 | [ArcsinhStretch](arcsinh-stretch.md) | Color/star saturation koruma eğilimi | Zayıf tonal separation veya gray background |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Doğal galaxy core ve açık histogram kontrolü | HistogramTransformation | Black/midtones/highlights doğrudan izlenir |
 | SHO/HOO starless yapı | GHS | Tonal bölgeye göre global contrast yönetilebilir |
@@ -56,7 +56,7 @@ Stretch sırasında saturation sabit kalmak zorunda değildir. Kanallar ayrı ve
 | Düşük SNR faint nebula | Küçük HT/GHS adımları | Noise ve faint signal her adımda karşılaştırılır |
 | Starless/stars ayrı dallar | GHS/HT + ayrı star stretch | Farklı dinamik aralıklar bağımsız yönetilir |
 
-## Workflow örnekleri
+## İş Akışı örnekleri
 
 ```mermaid
 flowchart LR
@@ -89,7 +89,7 @@ flowchart LR
 
 [SPCC](../05-color-calibration/spcc.md), [BackgroundNeutralization](../05-color-calibration/background-neutralization-process.md), [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md) ve çoğu lineer NoiseXTerminator geçişi stretch öncesinde tamamlanır. Stretch sonrasında [CurvesTransformation](../13-final/curves-transformation.md), [SCNR](../13-final/scnr.md), [ColorMask](../11-maskeler/color-mask.md) ve [RangeMask](../11-maskeler/range-mask.md) ile lokal/renk kontrollü düzeltmeler yapılabilir. Starless/stars birleşimi için [PixelMath](../10-pixelmath/index.md) kullanıldığında layer matematiği kaydedilmelidir.
 
-## Troubleshooting özeti
+## Sorun Giderme özeti
 
 | Belirti | Olası neden | Doğrulama | Düzeltici workflow |
 |---|---|---|---|
@@ -102,7 +102,7 @@ flowchart LR
 | Noisy background | Noise stretch ile görünür oldu | Linear noise estimate | NXT kararını gözden geçir; daha küçük stretch |
 | Harsh stars/halo | Highlights aşırı contrast | Radial star profile | Star mask/separate stretch, miktarı azalt |
 
-## Best practices
+## En İyi Uygulamalar
 
 - Her denemeyi aynı lineer clone’dan başlatın.
 - Histogram yanında Preview Statistics, star cores ve faint target bölgelerini izleyin.
@@ -110,7 +110,7 @@ flowchart LR
 - Global stretch ile local contrast problemini çözmeye çalışmayın.
 - Process instance ve image history kaydedin.
 
-## References
+## Kaynaklar
 
 - [PixInsight: ScreenTransferFunction ve HistogramTransformation temelleri](../02-pixinsight-temelleri/stf.md)
 - [GHS process reference](https://www.ghsastro.co.uk/doc/tools/GeneralizedHyperbolicStretch/GeneralizedHyperbolicStretch.html)

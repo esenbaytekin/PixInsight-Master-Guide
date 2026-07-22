@@ -1,6 +1,6 @@
 # PixelMath Temelleri
 
-## Purpose
+## Amaç
 
 Expression, identifier, variable, operator, channel ve output kavramlarını güvenli bir mental modelle öğretmektir.
 
@@ -15,11 +15,11 @@ Expression, identifier, variable, operator, channel ve output kavramlarını gü
 | Function | Tanımlı matematik/selection işlemi | Undocumented function uydurma |
 | Channel expression | R/G/B veya tek output hesabı | Channel mismatch |
 
-## Mathematical intuition
+## Mathematical sezgisel açıklama
 
 `a*A + b*B`, aynı koordinattaki A ve B pixel’lerini coefficients ile birleştirir. `M*A + (1-M)*B`, M bir `[0,1]` mask ise spatial blend üretir. Coefficients ve inputs aynı range/state’te değilse bu sezgi bozulur.
 
-## Input/output requirements
+## Giriş/çıktı requirements
 
 Geometry eşleşmeli, required channels mevcut, identifier’lar benzersiz ve output range planı açık olmalıdır. Floating-point new image debug için güvenlidir; final bit depth workflow’a göre seçilir.
 
@@ -38,9 +38,9 @@ Arithmetic, comparison ve boolean operations nested expressions oluşturur. High
 | Rescale | Output range’i yeniden eşleme | Relative photometry değişir |
 | Truncate/clamp | Range dışını sınırlama | Bilgi clipping’i |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | İlk formula testi | New image | Orijinal korunur |
 | RGB mapping | Separate R/G/B expressions | Mapping açık olur |
@@ -48,7 +48,7 @@ Arithmetic, comparison ve boolean operations nested expressions oluşturur. High
 | Range belirsiz | Rescale kapalı test + Statistics | Gerçek overflow görünür |
 | Karmaşık formula | Symbols ve ara images | Debug kolaylaşır |
 
-## Example: weighted average
+## Örnek: ağırlıklı ortalama
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Eşleşen mono images `A`, `B`
@@ -61,14 +61,14 @@ Arithmetic, comparison ve boolean operations nested expressions oluşturur. High
 - **Potential risks:** State/scale mismatch
 - **Alternative approaches:** ImageIntegration weighting
 
-## Common mistakes ve troubleshooting
+## Yaygın Hatalar ve sorun giderme
 
 Identifier not found için window adı; black/white output için min/max; unexpected color için channel expressions; dimension mismatch için geometry kontrol edilir. [Hata Ayıklama](hata-ayiklama.md) tablosunu kullanın.
 
 !!! tip "Ara sonuç"
     Uzun expression’ı tek seferde çalıştırmak yerine alt ifadeleri geçici images olarak üretin.
 
-## Related processes
+## İlgili Süreçler
 
 - [Koşullar ve Fonksiyonlar](kosullar-ve-fonksiyonlar.md)
 - [Kanal Karışımları](kanal-karisimlari.md)

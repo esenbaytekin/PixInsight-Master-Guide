@@ -8,7 +8,7 @@ BlurXTerminator, NoiseXTerminator ve StarXTerminator araçlarını tek düğmeli
 
 Bu araçlar eğitim örneklerinden öğrenilmiş ilişkileri yeni görüntüye uygular. Çıktı, yalnız girdide ölçülebilen bilginin deterministik yeniden inşası olarak kabul edilemez. Özellikle çok düşük SNR, doygun çekirdek, kötü sampling veya ciddi optik kusur bulunan bölgelerde modelin ürettiği yapı gerçek gökyüzü sinyalinden ayrıştırılamayabilir.
 
-!!! warning "Hallucination riski"
+!!! warning "Halüsinasyon Riski"
     “Doğal görünen” detay, fiziksel doğruluk kanıtı değildir. Sonuç farklı strength değerleri, orijinal veri ve mümkünse bağımsız yüksek SNR referansıyla karşılaştırılmalıdır.
 
 ## İş akışındaki görevler
@@ -46,7 +46,7 @@ Bu sıra evrensel reçete değildir. BlurXTerminator’ın güncel AI modeli lin
 
 ## Process interaction matrisi
 
-| Process | AI araçlarıyla ilişki | Neden |
+| İşlem | AI araçlarıyla ilişki | Neden |
 |---|---|---|
 | [StarAlignment](../03-kalibrasyon/star-alignment.md) | Önce tamamlanır | Geometrik hata AI ile gizlenmemelidir |
 | [ImageIntegration](../03-kalibrasyon/image-integration.md) | Ana lineer girdiyi üretir | Rejection ve weighting önce doğrulanır |

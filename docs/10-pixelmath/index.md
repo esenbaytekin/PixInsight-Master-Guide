@@ -1,10 +1,10 @@
 # PixelMath
 
-## Purpose
+## Amaç
 
 Pixel ve channel değerlerini açık expressions ile üretmek, karıştırmak, seçmek veya yeni image oluşturmak; karmaşık workflows’u denetlenebilir matematiksel adımlara ayırmaktır.
 
-## Theory ve evaluation intuition
+## Kuramsal Arka Plan ve evaluation sezgisel açıklama
 
 PixelMath her output pixel için expression’ı değerlendirir. Image identifier aynı koordinattaki pixel’i; scalar sabit tüm pixeller için aynı değeri; mask/weight image spatially varying coefficient’i temsil eder. Parentheses evaluation intent’ini açıklar.
 
@@ -20,19 +20,19 @@ inputs → expression + symbols → range/channel evaluation → output image
 - Replace target yerine önce new image üretin.
 - Expression, symbols ve process settings’i birlikte kaydedin.
 
-## PixelMath vs dedicated process
+## PixelMath ve dedicated process
 
-| İhtiyaç | PixelMath | Process tool |
+| İhtiyaç | PixelMath | İşlem tool |
 |---|---|---|
 | Basit RGB combine | Gereksiz esnek | ChannelCombination daha açık |
 | Masked/conditional blend | Güçlü | Sınırlı olabilir |
 | LRGB | Esnek ama riskli | LRGBCombination daha güvenli başlangıç |
 | Debuggability | Expression bilgisi gerekir | UI constraints yardımcı olur |
-| Reuse | Icon + symbols | Process instance |
+| Reuse | Icon + symbols | İşlem instance |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | RGB-only | ChannelCombination | Basitlik |
 | SHO/HOO mapping | ChannelCombination veya PixelMath | Weight gerekiyorsa PixelMath |
@@ -41,7 +41,7 @@ inputs → expression + symbols → range/channel evaluation → output image
 | Selective replacement | PixelMath + mask | Spatial condition gerekir |
 | Basit LRGB | LRGBCombination | Daha az hata yüzeyi |
 
-## Workflow position
+## İş Akışındaki Yeri
 
 PixelMath tek bir aşamaya ait değildir. Lineer channel construction, continuum blend ve synthetic L; nonlinear star recombination veya color enhancement için kullanılabilir. Expression’ın beklediği image state açıkça yazılmalıdır.
 
@@ -53,14 +53,14 @@ PixelMath tek bir aşamaya ait değildir. Lineer channel construction, continuum
 - [Hata Ayıklama](hata-ayiklama.md): parser, range, NaN ve mapping hataları
 - [PixelMath ile LRGB](../08-lrgb/pixelmath-lrgb.md): luminance/layer uygulamaları
 
-## Common mistakes ve best practices
+## Yaygın Hatalar ve En İyi Uygulamalar
 
 Operator precedence’e güvenmek, `$T` ile named image’ı karıştırmak, rescale/clamp davranışını bilmeden etkinleştirmek, farklı dimensions kullanmak ve community formula’yı kendi verisine uyarlamamak başlıca hatalardır.
 
-!!! warning "Mathematical safety"
+!!! warning "Matematiksel Güvenlik"
     Syntactically valid expression, scientifically veya visually doğru sonuç garantisi değildir.
 
-## Related processes
+## İlgili Süreçler
 
 - [LRGB](../08-lrgb/index.md)
 - [SPCC](../05-color-calibration/spcc.md)

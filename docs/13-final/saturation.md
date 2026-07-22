@@ -1,14 +1,14 @@
-# Saturation
+# Doygunluk
 
-## Purpose
+## Amaç
 
 Saturation işlemi renklerin nötr eksenden uzaklığını değiştirir. Amaç rengi yalnızca “daha güçlü” yapmak değil; kalibre edilmiş hue ilişkisini, yıldız çeşitliliğini ve düşük SNR alanlarda chroma noise sınırını korumaktır.
 
-## Theory ve bilimsel arka plan
+## Kuramsal Arka Plan ve bilimsel arka plan
 
 Saturation, brightness veya hue ile aynı değildir. Düşük saturation alanında küçük kanal farkları büyük hue oynaklığı yaratabilir; bu nedenle background noise saturation artışıyla renkli beneklere dönüşür. Kanal clipping'i oluştuğunda renk oranları geri döndürülemez biçimde bozulabilir.
 
-## Natural ve selective saturation
+## Doğal ve seçici doygunluk
 
 “Natural saturation” sabit bir hedef değildir; filter response, color calibration, display ve estetik amaca bağlıdır. Güvenli yaklaşım global artış yerine farklı yapıları maskelerle ayrı ağırlıklandırmaktır.
 
@@ -33,11 +33,11 @@ Saturation, brightness veya hue ile aynı değildir. Düşük saturation alanın
 - Düşük SNR arka plana maskesiz global artış olarak.
 - Export color mismatch sorununu çözmek için; önce ICC/color space kontrol edilmelidir.
 
-## Workflow position
+## İş Akışındaki Yeri
 
 Color calibration sonrasında, çoğunlukla nonlinear aşamada uygulanır. Ana contrast işlemleri saturation algısını değiştirebildiği için final Curves geçişleriyle iteratif çalışılır. Noise reduction sonrasında bile chroma noise yeniden kontrol edilmelidir.
 
-## Parameter approach
+## parametre yaklaşımı
 
 | Kontrol | Amaç | Artırma koşulu | Azaltma koşulu | Risk |
 |---|---|---|---|---|
@@ -53,7 +53,7 @@ Color calibration sonrasında, çoğunlukla nonlinear aşamada uygulanır. Ana c
 - **SHO/HOO:** Kanal mapping'i saturation ile “düzeltilmez”; önce mapping ve normalization doğrulanır.
 - **Yıldız:** StarMask ile çekirdek/halo saturation'ını ana hedeften ayrı yönetin.
 
-## Visual Result Expectation
+## Beklenen Görsel Sonuç
 
 | Durum | Görsel işaret |
 |---|---|
@@ -62,9 +62,9 @@ Color calibration sonrasında, çoğunlukla nonlinear aşamada uygulanır. Ana c
 | Over-processing | Neon renk, magenta star, cyan contamination, color clipping |
 | Tipik artefakt | Chroma noise, hue sınırı, renkli halo |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Global hafif renk artışı | Curves Saturation | Kontrollü ve iteratif eşleme |
 | Tek hue ailesi | ColorMask + Curves | Komşu renkleri korur |
@@ -84,7 +84,7 @@ flowchart TD
     G -->|"Hayır"| I["Export proof kontrolü"]
 ```
 
-## Common mistakes ve troubleshooting
+## Yaygın Hatalar ve sorun giderme
 
 | Belirti | Neden | Düzeltme |
 |---|---|---|
@@ -95,7 +95,7 @@ flowchart TD
 | Neon görünüm | Global amount fazla | Birden fazla hafif seçici geçiş |
 | Hue banding | Sert ColorMask | Maske geçişini yumuşatın |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Saturation işlemi genellikle hafiftir; büyük maskeler preview maliyetini artırır. Her geçişte histogram kanallarını, yıldızları, background ve hedefi ayrı kontrol edin. Web küçültme sonrası saturation algısı değişebileceği için export boyutunda proof yapın.
 

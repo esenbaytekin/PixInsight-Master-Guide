@@ -69,9 +69,9 @@ nav:
     - "Gradient Teorisi": 04-gradient/gradient-theory.md
     - "AutomaticBackgroundExtractor": 04-gradient/abe.md
     - "DynamicBackgroundExtraction": 04-gradient/dbe.md
-    - "Sample Placement": 04-gradient/sample-placement.md
+    - "Örnek Yerleşimi": 04-gradient/sample-placement.md
     - "Subtraction ve Division": 04-gradient/division-vs-subtraction.md
-    - "Gradient Diagnostics": 04-gradient/gradient-diagnostics.md
+    - "Gradient Tanısı": 04-gradient/gradient-diagnostics.md
     - "GradientCorrection": 04-gradient/gradient-correction.md
     - "GraXpert": 04-gradient/graxpert.md
     - "Ay Işığı Gradientleri": 04-gradient/moonlight-gradients.md
@@ -81,14 +81,14 @@ nav:
     - "M31 Gradient İş Akışı": 04-gradient/m31-gradient-workflow.md
     - "NGC 6888 Gradient İş Akışı": 04-gradient/ngc6888-gradient-workflow.md
     - "Gradient Hata Kartları": 04-gradient/error-cards.md
-    - "Gradient Quick Reference": 04-gradient/gradient-quick-reference.md
+    - "Gradient Hızlı Referansı": 04-gradient/gradient-quick-reference.md
   - "Renk Kalibrasyonu":
-    - "Color Calibration Giriş": 05-color-calibration/index.md
+    - "Renk Kalibrasyonuna Giriş": 05-color-calibration/index.md
     - "Astronomik Renk Teorisi": 05-color-calibration/color-theory.md
-    - "White Balance": 05-color-calibration/white-balance.md
-    - "Photometric Calibration Teorisi": 05-color-calibration/photometric-calibration-theory.md
-    - "Background Neutrality": 05-color-calibration/background-neutrality.md
-    - "Color Calibration Diagnostics": 05-color-calibration/color-calibration-diagnostics.md
+    - "Beyaz Dengesi": 05-color-calibration/white-balance.md
+    - "Fotometrik Kalibrasyon Teorisi": 05-color-calibration/photometric-calibration-theory.md
+    - "Arka Plan Nötrlüğü": 05-color-calibration/background-neutrality.md
+    - "Renk Kalibrasyonu Tanısı": 05-color-calibration/color-calibration-diagnostics.md
     - "SPCC": 05-color-calibration/spcc.md
     - "SPCC Ön Koşulları": 05-color-calibration/spcc-prerequisites.md
     - "SPCC Broadband İş Akışı": 05-color-calibration/spcc-broadband.md
@@ -139,12 +139,12 @@ nav:
     - "LocalHistogramEqualization": 12-detay-ve-kontrast/local-histogram-equalization.md
     - "MultiscaleMedianTransform": 12-detay-ve-kontrast/multiscale-median-transform.md
     - "DarkStructureEnhance": 12-detay-ve-kontrast/dark-structure-enhance.md
-  - "Final":
-    - "Final": 13-final/index.md
+  - "Son İşlemler":
+    - "Son İşlemler": 13-final/index.md
     - "CurvesTransformation": 13-final/curves-transformation.md
     - "SCNR": 13-final/scnr.md
-    - "Saturation": 13-final/saturation.md
-    - "Export": 13-final/export.md
+    - "Doygunluk": 13-final/saturation.md
+    - "Dışa Aktarım": 13-final/export.md
   - "Hata Kütüphanesi":
     - "Hata Kütüphanesi": 14-hata-kutuphanesi/index.md
     - "DBE: Less Than Three Samples": 14-hata-kutuphanesi/dbe-less-than-three-samples.md
@@ -152,17 +152,17 @@ nav:
     - "LRGB Source Image Not Found": 14-hata-kutuphanesi/lrgb-source-image-not-found.md
     - "OIII Kaybolması": 14-hata-kutuphanesi/oiii-kaybolmasi.md
     - "Maske Tüm Görüntüyü Kaplıyor": 14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md
-  - "Applied Workflows":
-    - "Workflow Rehberi": 15-workflows/index.md
-    - "LRGB Galaxy": 15-workflows/lrgb-galaxy.md
-    - "LRGB + Ha Galaxy": 15-workflows/lrgb-ha-galaxy.md
-    - "Broadband Reflection ve Dark Nebula": 15-workflows/broadband-nebula.md
-    - "Emission Nebula": 15-workflows/emission-nebula.md
+  - "Uygulamalı İş Akışları":
+    - "İş Akışı Rehberi": 15-workflows/index.md
+    - "LRGB Galaksi": 15-workflows/lrgb-galaxy.md
+    - "LRGB + Ha Galaksi": 15-workflows/lrgb-ha-galaxy.md
+    - "Broadband Yansıma ve Karanlık Nebula": 15-workflows/broadband-nebula.md
+    - "Emisyon Nebulası": 15-workflows/emission-nebula.md
     - "SHO ve HOO Narrowband": 15-workflows/sho-hoo.md
-    - "Planetary Nebula": 15-workflows/planetary-nebula.md
-    - "OSC Workflow": 15-workflows/osc-workflow.md
-    - "Mono Workflow": 15-workflows/mono-workflow.md
-    - "Data Quality Strategies": 15-workflows/data-quality-strategies.md
+    - "Gezegenimsi Nebula": 15-workflows/planetary-nebula.md
+    - "OSC İş Akışı": 15-workflows/osc-workflow.md
+    - "Mono İş Akışı": 15-workflows/mono-workflow.md
+    - "Veri Kalitesi Stratejileri": 15-workflows/data-quality-strategies.md
   - "Uygulamalar":
     - "Uygulamalar": 20-uygulamalar/index.md
     - "M31 LRGB + Ha":

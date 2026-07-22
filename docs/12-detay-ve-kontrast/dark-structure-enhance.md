@@ -1,14 +1,14 @@
 # DarkStructureEnhance
 
-## Purpose
+## Amaç
 
 DarkStructureEnhance (DSE), çevresine göre koyu kalan yapıları vurgulayarak galaxy dust lane'leri, molecular cloud sınırları ve nebula içindeki karanlık kanalları daha okunur hale getiren seçici bir script iş akışıdır.
 
-## Theory ve bilimsel arka plan
+## Kuramsal Arka Plan ve bilimsel arka plan
 
 DSE “karanlık veri üretmez”. Lokal koyu yapı ile çevresi arasındaki kontrast ilişkisini değiştirir. Gerçek dust lane, background gradient, calibration kusuru ve dark halo benzer tonlarda olabilir; bu nedenle seçim maskesi ve veri doğruluğu process miktarından daha önemlidir.
 
-!!! warning "Evidence Level — Community Consensus"
+!!! warning "Kanıt Düzeyi — Topluluk Uzlaşısı"
     DSE bir script olarak dağıtılır; kurulum kaynağı, sürümü, menü konumu ve kontrol adları PixInsight 1.9.3 ortamında doğrulanmalıdır. Core process davranışı varsayılmamalıdır.
 
 ## Ne zaman kullanılır?
@@ -25,7 +25,7 @@ DSE “karanlık veri üretmez”. Lokal koyu yapı ile çevresi arasındaki kon
 - Yıldız çevresindeki dark halo'yu güçlendirecek maskesiz kullanımda.
 - Clipped siyah noktalarda kayıp ayrıntıyı geri getirmek amacıyla.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Girdi gradient-corrected, renk/ton dengesi kurulmuş ve çoğunlukla nonlinear olmalıdır. DSE genellikle LHE/HDRMT gibi büyük yapısal işlemlerden sonra, final Curves öncesinde değerlendirilir. [RangeMask](../11-maskeler/range-mask.md), [Luminance Mask](../11-maskeler/luminance-mask.md) ve [StarMask](../11-maskeler/star-mask.md) birleşimi hedef dışı koyu bölgeleri koruyabilir.
 
@@ -67,9 +67,9 @@ Girdi gradient-corrected, renk/ton dengesi kurulmuş ve çoğunlukla nonlinear o
 | Güçlü yön | Dust lane vurgusu | Nebula/galaxy genel orta ölçek kontrastı |
 | Risk | Dark halo ve black crush | Bright/dark halo ve crunchy texture |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Güvenilir galaxy dust lane | DSE | Koyu yapıyı seçici vurgular |
 | Genel nebula lokal kontrastı | LHE | Yalnız karanlık yapıya bağlı değildir |
@@ -100,11 +100,11 @@ flowchart TD
 | Parlak halo | Lokal ton dengesi bozulmuş | Yapı çevresini radial inceleyin | Amount azaltın veya LHE kullanın |
 | Faint detail kaybı | Koyu yapı fazla bastırılmış | Orijinalle blink kıyası | PixelMath blend ve daha düşük miktar |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Script'in ölçek/iteration maliyeti görüntü boyutuyla artar. Preview ile ayar arayın, tam görüntüde kenar ve büyük yapı davranışını yeniden doğrulayın. DSE'yi “son dokunuş” olarak bile maskesiz otomatik reçeteye dönüştürmeyin.
 
-!!! tip "Evidence Level — Practical Recommendation"
+!!! tip "Kanıt Düzeyi — Pratik Öneri"
     Sonucu yalnız daha dramatik görünüp görünmediğine göre değil, koyu yapının özgün görüntüde süreklilik gösterip göstermediğine göre değerlendirin.
 
 ## Teknik doğrulama durumu

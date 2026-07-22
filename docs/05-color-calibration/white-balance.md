@@ -117,7 +117,7 @@ White reference görüntüyü beyaz yapmak değildir; response çözümünün ha
 ??? question "Manual scaling yanlış mıdır?"
     Belgeli özel amaçla değerlendirilebilir; evrensel sabit oran olarak sunulmamalıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Referans türü kaydedildi
@@ -127,7 +127,7 @@ White reference görüntüyü beyaz yapmak değildir; response çözümünün ha
     - [ ] Narrowband ile broadband ayrıldı
     - [ ] Grading calibration'dan ayrı tutuldu
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

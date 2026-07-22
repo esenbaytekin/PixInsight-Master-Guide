@@ -4,9 +4,9 @@
 
 Bu kütüphane, görünen artefaktı rastgele process uygulayarak bastırmak yerine kök aşamaya bağlar. Teşhis sırası: belirtiyi sınıflandır, veride ölç, hatanın ilk göründüğü history adımını bul, en erken güvenilir checkpoint'e dön ve yalnız ilgili aşamayı yeniden işle.
 
-## Severity standardı
+## Önem düzeyi standardı
 
-| Severity | Tanım | Örnek |
+| Önem Düzeyi | Tanım | Örnek |
 |---|---|---|
 | 🔴 Critical | Ciddi/geri döndürülemez veri kaybı veya geçersiz sonuç | Black/white clipping, yanlış channel mapping |
 | 🟠 Major | Kaliteyi önemli ölçüde düşürür; çoğu kez kısmi yeniden işleme gerekir | Güçlü gradient, luminance/recombination hatası, walking noise |
@@ -36,7 +36,7 @@ flowchart TD
 
 ## Renk sorunları
 
-| Belirti | Severity | Muhtemel kök | Verification | Corrective workflow |
+| Belirti | Önem Düzeyi | Muhtemel kök | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|---|
 | Green cast | 🟡/🟠 | Calibration, gradient, residual green | Kanal readout ve spatial dağılım | SPCC/PCC/gradient kontrolü; gerekirse [SCNR](../13-final/scnr.md) |
 | Magenta stars | 🟡 | SCNR, saturation, clipped green | Star core kanal değerleri | StarMask ile koru; SCNR/saturation adımına dön |
@@ -48,7 +48,7 @@ flowchart TD
 
 ## Ton ve detay sorunları
 
-| Belirti | Severity | Verification | Corrective workflow |
+| Belirti | Önem Düzeyi | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Flat-looking image | 🟡 | Histogram ve local contrast kıyası | [Curves](../13-final/curves-transformation.md) veya [LHE](../12-detay-ve-kontrast/local-histogram-equalization.md) |
 | Overprocessed image | 🟠 | Önceki checkpoint ile blink | En erken artefakt adımına dön; miktarı azalt |
@@ -60,7 +60,7 @@ flowchart TD
 
 ## Noise, gradient ve yıldız sorunları
 
-| Belirti | Severity | Muhtemel kök | Corrective workflow |
+| Belirti | Önem Düzeyi | Muhtemel kök | Düzeltme İş Akışı |
 |---|---|---|---|
 | Banding | 🟠 | Sensor/readout veya calibration residual | Calibration master, rejection ve background modelini denetle |
 | Walking noise | 🟠 | Yetersiz dither/integration | Acquisition ve integration'a dön; final NR ile gizleme |
@@ -70,9 +70,9 @@ flowchart TD
 | Star halos | 🟡/🟠 | Optik, channel PSF, mask veya stretch | Kanal profili, StarMask ve BXT/recombination kontrolü |
 | Dark halos | 🟠 | Aşırı sharpening/HDR/DSE | İlgili structural process checkpoint'e dön |
 
-## Workflow ve matematik sorunları
+## İş Akışı ve matematik sorunları
 
-| Belirti | Severity | Diagnostic page/workflow |
+| Belirti | Önem Düzeyi | Tanı sayfası/iş akışı |
 |---|---|---|
 | Incorrect luminance blend | 🟠 | [LRGB workflow](../08-lrgb/index.md), registration ve normalization |
 | Starless recombination artifact | 🟠 | Star/starless toplamını, range ve residual'ı kontrol et |
@@ -80,18 +80,18 @@ flowchart TD
 | Mask failures | 🟡/🟠 | [Maske tüm görüntüyü kaplıyor](maske-tum-goruntuyu-kapliyor.md) |
 | Channel mapping error | 🔴 | [ChannelCombination RGB Hatası](channel-combination-rgb-error.md) |
 | Missing source view | 🟡 | [LRGB Source Image Not Found](lrgb-source-image-not-found.md) |
-| DBE sample failure | 🟡 | [Less Than Three Samples](dbe-less-than-three-samples.md) |
+| DBE sample hata | 🟡 | [Less Than Three Samples](dbe-less-than-three-samples.md) |
 
-## Export sorunları
+## Dışa Aktarım sorunları
 
-| Belirti | Severity | Verification | Corrective workflow |
+| Belirti | Önem Düzeyi | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Export color mismatch | 🟡 | ICC tag, conversion ve ikinci viewer | [Export](../13-final/export.md) sRGB/ICC workflow'u |
 | Social media color shift | 🔵/🟡 | Browser ve test upload kıyası | sRGB, hedef boyut, embedded profile |
 | Export banding | 🟡 | 8-bit ve 16-bit dosyayı kıyasla | Dönüşümü sona bırak, 16-bit master koru |
 | Export siyah | 🟠 | STF kapatıldığında görüntü | Kalıcı HistogramTransformation stretch uygula |
 
-## Systematic corrective workflow
+## Sistematik Düzeltme İş Akışı
 
 1. Sorunun ilk göründüğü history adımını bulun.
 2. Aynı STF/zoom/color-managed viewer ile karşılaştırın.
@@ -100,9 +100,9 @@ flowchart TD
 5. Representative preview'da tek değişkenli test yapın.
 6. Düzeltmeyi tam görüntü ve export proof üzerinde doğrulayın.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | İlk kontrol | Neden |
+| Durum | İlk kontrol | Neden |
 |---|---|---|
 | Renk hatası | Calibration → gradient → final color | En erken doğru aşamayı bulur |
 | Contrast hatası | Clipping → global → local | Kayıp veri ile düşük kontrastı ayırır |
@@ -110,6 +110,6 @@ flowchart TD
 | Star hatası | Registration/PSF → mask → recombination | Profil, renk ve katman hatalarını ayırır |
 | Export hatası | Permanent stretch → ICC → bit depth | Veri ile viewer problemini ayırır |
 
-## Evidence Level
+## Kanıt Düzeyi
 
 Bu katalogdaki teşhis akışı **Verified Workflow** ve muhafazakâr **Practical Recommendation** niteliğindedir. Tek bir belirti tek bir kök nedeni kanıtlamaz; verification adımları atlanmamalıdır.

@@ -1,17 +1,17 @@
 # HistogramTransformation
 
-## Purpose
+## Amaç
 
 Lineer veriyi kalıcı olarak nonlinear hale getirmek; black point, midtones ve white point üzerinden tonal dağılımı açık ve ölçülebilir biçimde yönetmektir.
 
-## Theory ve mathematical intuition
+## Kuramsal Arka Plan ve mathematical sezgisel açıklama
 
 HistogramTransformation bir transfer function uygular: her giriş pixel değeri yeni bir çıkış değerine eşlenir. Midtones kontrolü düşük/orta değerleri genişletirken highlights’ı daha sınırlı hareket ettirir. Black/white point dışındaki değerleri sınıra taşımak clipping üretir ve bilgi geri alınamaz.
 
 !!! warning "STF ile temel fark"
     STF pixel verisini değiştirmez. HT uygulanınca görüntü datası gerçekten değişir. STF’den HT’ye aktarılan otomatik görünüm yalnız başlangıç önerisidir; clipping ve hedef yapısı denetlenmeden final stretch değildir.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 - Gradient, SPCC/BackgroundNeutralization ve lineer BXT/NXT kararları tamamlanmış olmalı.
 - RGB channels unclipped, background ve bright core ölçümleri kayıtlı olmalı.
@@ -50,7 +50,7 @@ Genel sıra: [SPCC](../05-color-calibration/spcc.md) → [BlurXTerminator](../06
 
 Luminance-only stretch color ratios’ı koruma amacıyla değerlendirilebilir; ancak RGB working space ve recombination davranışı workflow’a bağlıdır. Sabit sayısal “tipik değer” yerine histogram kuyrukları, target brightness ve clipping ölçülür.
 
-## Iterative vs single stretch
+## Yinelemeli ve tek stretch işlemi
 
 | Yaklaşım | Avantaj | Sınır |
 |---|---|---|
@@ -59,9 +59,9 @@ Luminance-only stretch color ratios’ı koruma amacıyla değerlendirilebilir; 
 
 Küçük adımlar matematiksel olarak otomatik üstün değildir; denetim ve geri dönüş kolaylığı sağlar.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Galaxy natural core | HT, küçük adımlar | Highlights ve halo açıkça izlenir |
 | Faint emission nebula | HT + RangeMask veya GHS | Shadow expansion korunarak yapılır |
@@ -69,7 +69,7 @@ Küçük adımlar matematiksel olarak otomatik üstün değildir; denetim ve ger
 | OSC star colors | Arcsinh başlangıç + HT | Color ve black point ayrı kontrol edilir |
 | High-SNR broadband | HT veya GHS | HT sade ve tekrar üretilebilirdir |
 
-## Application
+## Uygulama
 
 1. Lineer clone oluşturun ve STF’yi yalnız önizleme için kullanın.
 2. Histogramın sol/sağ kuyruklarını ve channel clipping’i inceleyin.
@@ -78,13 +78,13 @@ Küçük adımlar matematiksel olarak otomatik üstün değildir; denetim ve ger
 5. Core, faint target, background ve yıldızları aynı zoom’da karşılaştırın.
 6. Gerekirse küçük ikinci stretch uygulayın; final instance’ı saklayın.
 
-## Output expectations, advantages ve limitations
+## Beklenen Çıktılar, advantages ve sınırlamalar
 
 Çıktı nonlinear olmalı; faint yapı görünürken black/white clipping oluşmamalı ve star cores açıklanabilir kalmalıdır. HT’nin avantajı yalın ve öngörülebilir global kontroldür. Sınırlaması, tek global eğrinin galaxy core, nebula ve stars için aynı anda ideal local contrast sağlayamamasıdır.
 
-## Troubleshooting
+## Sorun Giderme
 
-| Belirti | Neden | Verification | Corrective workflow |
+| Belirti | Neden | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Siyah background/nebula kaybı | Black point clipping | Sol histogram/Statistics | Önceki clone’dan black point’siz tekrar |
 | Gray background | Midtones fazla | Background median | Daha küçük adım; black clipping yapma |
@@ -92,11 +92,11 @@ Küçük adımlar matematiksel olarak otomatik üstün değildir; denetim ve ger
 | Galaxy core yapay | White/core compression yetersiz | Core histogram ve STF kıyası | Küçük adım veya GHS/HDR yaklaşımı |
 | Color washout | Kanal davranışı/saturation | RGB histogram | RGB/K ve color-calibrated girdiyi kontrol et |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 HT hızlı bir point operation’dır; Real-Time Preview ve clone karşılaştırması işlem süresinden daha önemlidir. Farklı denemeleri aynı görüntüye zincirlemek yerine aynı lineer başlangıçtan üretin. Black point’i final kozmetik karar olarak değil veri sınırı olarak ele alın.
 
-## Common mistakes
+## Yaygın Hatalar
 
 - STF görünümünü doğrulamadan HT’ye kopyalamak
 - Black point’i histogram kuyruğunun içine taşımak
@@ -104,7 +104,7 @@ HT hızlı bir point operation’dır; Real-Time Preview ve clone karşılaştı
 - Kanal histogramlarını kontrol etmeden RGB/K dışı düzeltme yapmak
 - Nonlinear sonucu yeniden lineer process girdisi sanmak
 
-## Related processes ve references
+## İlgili Süreçler ve kaynaklar
 
 - [Stretch teorisi](index.md)
 - [GHS](generalized-hyperbolic-stretch.md)

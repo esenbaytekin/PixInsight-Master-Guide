@@ -1,14 +1,14 @@
-# Export
+# Dışa Aktarım
 
-## Purpose
+## Amaç
 
 Export, PixInsight çalışma verisini hedef ortama uygun bit depth, file format, color space ve metadata ile teslim eder. Master arşivi, web görüntüsü ve print dosyası aynı gereksinimlere sahip değildir; tek export her kullanım için doğru değildir.
 
-## Scientific background
+## Bilimsel Arka Plan
 
 Bit depth, kanal başına temsil edilebilen kod değerlerini etkiler; color space ise bu değerlerin hangi renkleri temsil ettiğini tanımlar. ICC profile, dosyadaki sayıları renk yönetimli uygulamanın yorumlayacağı uzaya bağlar. Profile assign etmek ile bir profile convert etmek aynı işlem değildir.
 
-!!! info "Evidence Level — Official Documentation"
+!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
     PixInsight staff tarafından yayımlanan web workflow'u, görüntüyü sRGB'ye dönüştürmeyi ve export sırasında ICC profile'ı gömmeyi önerir. Bu, farklı görüntüleyiciler arasındaki bütün farkları garantiyle ortadan kaldırmaz.
 
 ## Format karşılaştırması
@@ -20,7 +20,7 @@ Bit depth, kanal başına temsil edilebilen kod değerlerini etkiler; color spac
 | PNG | Web ve lossless ekran teslimi | Lossless, 8/16-bit seçenekleri | Fotoğraf için dosya boyutu yüksek olabilir |
 | JPEG | Web/social media | Küçük ve yaygın | Lossy compression; yeniden kaydetme artefakt üretir |
 
-## 8-bit vs 16-bit
+## 8-bit ve 16-bit
 
 | Özellik | 8-bit | 16-bit |
 |---|---|---|
@@ -31,7 +31,7 @@ Bit depth, kanal başına temsil edilebilen kod değerlerini etkiler; color spac
 
 Bit depth gerçek sinyal kalitesini artırmaz. 8-bit'e dönüşümden önce resample ve final tonal işlemleri tamamlamak quantization riskini azaltır.
 
-## Color spaces ve ICC
+## Renk uzayları ve ICC
 
 | Uzay | Kullanım | Güçlü yön | Risk |
 |---|---|---|---|
@@ -40,9 +40,9 @@ Bit depth gerçek sinyal kalitesini artırmaz. 8-bit'e dönüşümden önce resa
 
 Web için sRGB genellikle güvenli teslim uzayıdır. Print için matbaa/lab ICC gereksinimi esas alınmalıdır; rastgele Adobe RGB seçmek otomatik olarak daha iyi print üretmez.
 
-## Web, print ve archive strategy
+## Web, baskı ve arşiv strateji
 
-### Web/social media
+### Web ve sosyal medya
 
 1. Çalışma master'ından kopya üretin.
 2. Hedef piksel boyutuna resample edin.
@@ -51,7 +51,7 @@ Web için sRGB genellikle güvenli teslim uzayıdır. Print için matbaa/lab ICC
 5. PNG veya yüksek kaliteli JPEG üretin.
 6. Browser ve en az bir ikinci color-managed viewer ile proof yapın.
 
-### Print
+### Baskı
 
 1. Lab'ın color space, ICC ve bit-depth gereksinimini alın.
 2. Native çözünürlüğü ve hedef print boyutunu eşleştirin.
@@ -59,15 +59,15 @@ Web için sRGB genellikle güvenli teslim uzayıdır. Print için matbaa/lab ICC
 4. 16-bit TIFF gibi kabul edilen lossless formatı kullanın.
 5. Test print ile black point ve shadow detail kontrolü yapın.
 
-### Archive
+### Arşiv
 
 XISF/FITS çalışma master'ını, process icon/history kayıtlarını ve final 16-bit/32-bit interchange kopyasını saklayın. Web JPEG'ini tek arşiv master'ı yapmayın.
 
-## Metadata considerations
+## Üst veri değerlendirmesi
 
 Astrometric çözüm, acquisition notları, copyright ve ICC bilgisi farklı formatlarda farklı ölçüde korunabilir. Privacy gerektiren konum/kimlik metadata'sını paylaşım öncesi denetleyin. Export sonrası dosyayı yeniden açıp profile ve metadata varlığını doğrulayın.
 
-## PNG vs TIFF ve Web vs Print
+## PNG ve TIFF ve Web ve Print
 
 | İhtiyaç | PNG | TIFF |
 |---|---|---|
@@ -76,7 +76,7 @@ Astrometric çözüm, acquisition notları, copyright ve ICC bilgisi farklı for
 | ICC/bit-depth | Uygulama zinciriyle test edilmeli | Yaygın fakat reader uyumluluğu doğrulanmalı |
 | Dosya boyutu | Fotoğrafta büyük olabilir | Compression'a bağlı büyük olabilir |
 
-## Visual Result Expectation
+## Beklenen Görsel Sonuç
 
 | Durum | Görsel işaret |
 |---|---|
@@ -85,9 +85,9 @@ Astrometric çözüm, acquisition notları, copyright ve ICC bilgisi farklı for
 | Over-processing | JPEG ringing, oversharpening, clipped highlights |
 | Tipik artefakt | Color shift, banding, block artefact, metadata/profile kaybı |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Output | Why |
+| Durum | Önerilen Çıktı | Gerekçe |
 |---|---|---|
 | Web/social media | sRGB + PNG veya yüksek kaliteli JPEG | Tarayıcı/platform uyumluluğu |
 | Print master | Lab profiline göre 16-bit TIFF | Ton ve renk yönetimi headroom'u |
@@ -105,7 +105,7 @@ flowchart TD
     E --> H["Checksum ve yedek"]
 ```
 
-## Troubleshooting
+## Sorun Giderme
 
 | Belirti | Olası neden | Düzeltme |
 |---|---|---|
@@ -116,7 +116,7 @@ flowchart TD
 | JPEG block/ringing | Quality düşük/çoklu kayıt | Tek final encode, daha yüksek kalite |
 | Print shadow kaybı | Ekran çok parlak veya black point | Kalibre display ve test print |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Master üzerinde export işlemi yapmayın; türetilmiş kopya kullanın. Resample, profile conversion ve bit-depth dönüşüm sırasını kayıt altına alın. Export edilen dosyayı PixInsight dışında yeniden açarak gerçek teslimi doğrulayın.
 

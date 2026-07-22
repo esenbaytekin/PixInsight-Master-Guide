@@ -117,7 +117,7 @@ Her kanal için doğrulanmış lineer master image ve denetim çıktıları.
 | Artefact tüm frame’lerde | Calibration/master zinciri | Eşleşmeleri ve logu inceleyin |
 | Artefact yalnız master’da | Registration/normalization/rejection | Maps ve residual’ları inceleyin |
 | Data clipped | Statistics ve pedestal | Önceki aşamaya dönün |
-| Process başarısız | Console log | İlk hata mesajını çözün |
+| İşlem başarısız | Console log | İlk hata mesajını çözün |
 
 ## SSS
 
@@ -136,7 +136,7 @@ Her kanal için doğrulanmış lineer master image ve denetim çıktıları.
 ??? question "Master tek başına yeterli QA mı?"
     Hayır; maps, log ve ara frame’ler gerekir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Input metadata doğrulandı
@@ -145,7 +145,7 @@ Her kanal için doğrulanmış lineer master image ve denetim çıktıları.
     - [ ] Log incelendi
     - [ ] Yardımcı maps incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

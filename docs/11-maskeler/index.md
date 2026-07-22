@@ -4,7 +4,7 @@
 
 Maskeler, bir process'in etkisini görüntünün tamamına eşit uygulamak yerine yapısal, parlaklık veya renk temelli bölgelere dağıtır. Amaç yalnızca bir alanı “seçmek” değil; sinyal, gürültü ve geçiş bölgeleri arasında kontrollü bir etki haritası kurmaktır.
 
-!!! info "Evidence Level — Official Documentation"
+!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
     PixInsight'ta herhangi bir uygun görüntü maske olarak kullanılabilir. Maske, hedef görüntüde korunacak ve işlenecek bölgeleri tanımlar; kırmızı overlay yalnızca bu dağılımın ekran gösterimidir.
 
 ## Bu bölümde ne var?
@@ -41,7 +41,7 @@ flowchart LR
     G --> H
 ```
 
-## Workflow içindeki yeri
+## İş Akışı içindeki yeri
 
 Maskeler hem lineer hem de nonlinear aşamada kullanılabilir; ancak maske kaynağının dağılımı aşamaya göre değişir. Lineer veri çoğu zaman görüntülenebilir ve ayrıştırılabilir hale getirilmeden doğrudan iyi maske üretmez. Nonlinear veri ise clipping ve aşırı kontrast nedeniyle sert geçişler üretebilir.
 
@@ -54,7 +54,7 @@ Yaygın eşleşmeler:
 - [PixelMath](../10-pixelmath/index.md): maske birleştirme, kesişim ve çıkarma.
 - [LocalHistogramEqualization](../12-detay-ve-kontrast/local-histogram-equalization.md), [HDRMultiscaleTransform](../12-detay-ve-kontrast/hdr-multiscale-transform.md), [MultiscaleMedianTransform](../12-detay-ve-kontrast/multiscale-median-transform.md) ve [DarkStructureEnhance](../12-detay-ve-kontrast/dark-structure-enhance.md): ölçek ve bölge kontrollü detay işlemleri.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
 | İhtiyaç | Başlangıç tercihi | Doğrulama |
 |---|---|---|
@@ -73,7 +73,7 @@ Yaygın eşleşmeler:
 - Bir maske tarifini farklı veri setlerine sabit değerlerle taşımak.
 - Process önizlemesini maskesiz sonuçla karıştırmak.
 
-## Quick Reference
+## Hızlı Referans
 
 - Maskeyi hedef görüntüyle aynı geometriye getir.
 - Maskeyi tek başına incele; clipping, delik ve halo ara.

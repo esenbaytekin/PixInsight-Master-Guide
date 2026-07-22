@@ -191,7 +191,7 @@ Seyrek fakat alanı temsil eden temiz samples, yoğun ve contaminated bir ağdan
 ??? question "Otomatik mi manuel mi?"
     Otomatik set başlangıç olabilir; manuel yerleşim konum kanıtını kontrol eder. Her ikisi Model Image ile doğrulanır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Gerçek signal bölgeleri işaretli
@@ -203,7 +203,7 @@ Seyrek fakat alanı temsil eden temiz samples, yoğun ve contaminated bir ağdan
     - [ ] Model Image hedefe benzemiyor
     - [ ] Residual gradient incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

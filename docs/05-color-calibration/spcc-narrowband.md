@@ -98,7 +98,7 @@ flowchart TD
 | SPCC-NB-SHO-01 | SHO | Linear combination | Palette/model ayrımı | Gerçek veri bekliyor |
 | SPCC-NB-HOO-01 | HOO | Linear combination | Red dominance/gradient ayrımı | Gerçek veri bekliyor |
 | SPCC-NB-RGBSTARS-01 | RGB stars + NB | Ayrı star layer | Star reconstruction ilişkisi | Gerçek veri bekliyor |
-| SPCC-NB-STARLESS-01 | Starless NB | No star samples | Process error/scope | Gerçek veri bekliyor |
+| SPCC-NB-STARLESS-01 | Starless NB | No star samples | İşlem error/scope | Gerçek veri bekliyor |
 | SPCC-NB-HA-RGB-01 | HaRGB galaxy | Blend | Galaxy color preservation | Gerçek veri bekliyor |
 | SPCC-NB-DUALBAND-01 | Dual-band OSC | CFA/profile | Instrument/model scope | Gerçek veri bekliyor |
 
@@ -139,7 +139,7 @@ SHO/HOO’da narrowband mode kullanımı doğal renk garantisi değildir. Emissi
 
 | Belirti | İlk kontrol | Karar |
 | --- | --- | --- |
-| Palette anlamsız | Workflow hedefi | Color grading'i ayrı tut |
+| Palette anlamsız | İş Akışı hedefi | Color grading'i ayrı tut |
 | Starless error | Star sample ihtiyacı | UI/log doğrula |
 | Stars renksiz | Bandpass/saturation | RGB stars alternatifini değerlendir |
 | HOO red dominant | Mapping/SNR/gradient | Kök nedenleri ayır |
@@ -158,7 +158,7 @@ SHO/HOO’da narrowband mode kullanımı doğal renk garantisi değildir. Emissi
 ??? question "Dual-band OSC için hangi profile?"
     Sabit reçete verilmez; database/model kapsamı doğrulanmalıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Filter bands ve scenario kaydedildi
@@ -167,7 +167,7 @@ SHO/HOO’da narrowband mode kullanımı doğal renk garantisi değildir. Emissi
     - [ ] Palette/normalization/reconstruction ayrıldı
     - [ ] Original/log/output saklandı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

@@ -1,12 +1,12 @@
-# Applied Workflows
+# Uygulamalı İş Akışları
 
-## Goal
+## Amaç
 
 Bu bölüm, process referanslarını gerçekçi veri koşullarında uçtan uca karar zincirlerine dönüştürür. Sabit parametre reçeteleri vermez; her adımda neden, görsel checkpoint, alternatif branch ve recovery noktası tanımlar.
 
-## Workflow haritası
+## İş Akışı haritası
 
-| Workflow | Ana veri/hedef | Dahil edilen alternatifler |
+| İş Akışı | Ana veri/hedef | Dahil edilen alternatifler |
 |---|---|---|
 | [LRGB Galaxy](lrgb-galaxy.md) | Mono LRGB galaxy | Luminance olmadan RGB, high/low SNR |
 | [LRGB + Ha Galaxy](lrgb-ha-galaxy.md) | M31 tipi broadband + Ha | Weak Ha, star-color protection |
@@ -36,7 +36,7 @@ flowchart LR
     J --> K["Export and proof"]
 ```
 
-## Ortak decision checkpoints
+## Ortak decision kontrol noktaları
 
 ```mermaid
 flowchart TD
@@ -52,7 +52,7 @@ flowchart TD
     I -->|"Hayır"| K["Detail ve final refinement"]
 ```
 
-## Processing philosophy
+## İşleme Felsefesi
 
 - PixelMath, source registration/normalization doğrulanmadan kullanılmaz.
 - AI tools, veri model dışı artefakt taşıyorsa veya kontrol sonucu source detail'i değiştiriyorsa ertelenir/atlanır.
@@ -60,7 +60,7 @@ flowchart TD
 - Noise reduction, noise'u gerçek faint structure'dan ayıramıyorsa güçlendirilmez.
 - Her büyük adım process icon, clone veya history checkpoint ile geri alınabilir tutulur.
 
-## Workflow comparison
+## İş Akışı comparison
 
 | Karşılaştırma | Birinci yaklaşım | İkinci yaklaşım |
 |---|---|---|
@@ -72,9 +72,9 @@ flowchart TD
 | Low vs High SNR | Koruma ve sınırlı enhancement | Scale-specific detail için daha fazla headroom |
 | Short vs Long integration | Noise ve rejection sınırlaması | Faint structure ve robust statistics avantajı |
 
-## Ortak visual checkpoints
+## Ortak visual kontrol noktaları
 
-| Stage | Expected | Warning | Recovery |
+| Aşama | Beklenen | Uyarı | Düzeltme |
 |---|---|---|---|
 | Calibration | Dust/vignetting ve fixed pattern kontrol altında | Residual dust, amp glow, banding | Master eşleşmesini yeniden denetle |
 | Integration | Star profile tutarlı, rejection temiz | Walking noise, satellite residual | Dither/rejection/weights aşamasına dön |
@@ -83,11 +83,11 @@ flowchart TD
 | Detail | Yapı okunur, noise/halo büyümemiş | Crunchy texture, halo | Miktar/scale/maske azalt |
 | Export | Hedef viewer'da renk/ton tutarlı | Color shift, banding | ICC/bit depth/proof workflow'u |
 
-## Evidence Level
+## Kanıt Düzeyi
 
 Bu bölümdeki process sıraları **Verified Workflow**, veri setine göre branch seçimleri **Practical Recommendation** niteliğindedir. Exposure süreleri ve sabit parametreler kamera, sky, filter ve sampling verisi olmadan önerilmez.
 
-## References
+## Kaynaklar
 
 - [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md)
 - [Gradient Correction](../04-gradient/index.md)

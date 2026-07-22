@@ -1,4 +1,4 @@
-# Color Calibration Diagnostics
+# Renk Kalibrasyonu Tanısı
 
 ## Amaç
 
@@ -103,7 +103,7 @@ SPCC/PCC sonrasında görüntü soluk görünebilir. Sonuç “başarısız” i
     **Kanıtlanacak teknik nokta:** Clipped color bilgisinin calibration ile geri getirilememesi.  
     **Önerilen dosya adı:** `color-diagnostics-channel-clipping-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — color cast"
+!!! example "Görsel doğrulama ölçütü — renk baskısı"
     **Amaç:** Global cast ile chromatic gradient'i ayırmak.  
     **Gerekli ekran veya veri:** RGB image, kanal background maps ve Preview statistics.  
     **Kanıtlanacak teknik nokta:** Spatial variation'ın yalnız global channel scaling olmaması.  
@@ -153,7 +153,7 @@ SPCC/PCC sonrasında görüntü soluk görünebilir. Sonuç “başarısız” i
 ??? question "OIII görünmüyorsa scaling mi hatalıdır?"
     Noise, STF, gradient model, clipping ve gerçek signal birlikte kontrol edilmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Linearity
@@ -165,7 +165,7 @@ SPCC/PCC sonrasında görüntü soluk görünebilir. Sonuç “başarısız” i
     - [ ] Measurement/rendering ayrımı
     - [ ] Grading en sona bırakıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

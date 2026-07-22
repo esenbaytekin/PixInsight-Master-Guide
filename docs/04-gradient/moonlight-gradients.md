@@ -121,7 +121,7 @@ Meridian öncesi ve sonrası subframe'lerde parlak köşe yön değiştiriyorsa 
 ??? question "Dar bant Ay'dan etkilenmez mi?"
     Mutlak bağışıklık varsayılmamalı; kanal verisi ölçülmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Kontrol listesi"
     - [ ] Calibration ve flat doğrulandı
@@ -131,7 +131,7 @@ Meridian öncesi ve sonrası subframe'lerde parlak köşe yön değiştiriyorsa 
     - [ ] Model gerçek sinyal içermiyor
     - [ ] Sorunlu alt kümeler belirlendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

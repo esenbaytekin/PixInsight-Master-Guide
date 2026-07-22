@@ -1,26 +1,26 @@
 # ChannelCombination RGB Hatası
 
-## Error severity summary
+## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |
 |---|---|
-| Severity | 🔴 Critical |
+| Önem Düzeyi | 🔴 Critical |
 | Detectability | Easy |
 | Recoverability | Requires Partial Reprocessing |
-| Typical Detection Stage | After PixelMath / ChannelCombination |
+| Typical Detection Aşama | After PixelMath / ChannelCombination |
 
-## Symptoms
+## Belirtiler
 
 - Görüntü beklenen RGB renklerinden tamamen farklıdır.
 - Kırmızı nebula cyan/blue, mavi bölgeler sarı/kırmızı görünebilir.
 - BackgroundNeutralization veya SCNR sonrasında da temel renk ilişkisi düzelmez.
 - Kanal histogramları beklenen hedef sinyaliyle uyuşmaz.
 
-## Visual appearance
+## Görsel Görünüm
 
 Yanlış channel mapping global, yapısal bir renk dönüşümü üretir. Lokal cast'ten farklı olarak belirli nesne sınıfları sistematik biçimde yanlış hue'ya taşınır. Narrowband mapping kasıtlıysa bu bir hata değildir; sorun, hedeflenen mapping ile uygulanan mapping'in uyuşmamasıdır.
 
-## Likely causes
+## Olası Nedenler
 
 - R, G ve B source view'ların yanlış slotlara atanması.
 - PixelMath symbols veya channel expression'larının karıştırılması.
@@ -28,7 +28,7 @@ Yanlış channel mapping global, yapısal bir renk dönüşümü üretir. Lokal 
 - SHO/HOO mapping'in RGB beklenerek yorumlanması.
 - Mono kanalların registration/geometri uyumsuzluğu.
 
-## Verification steps
+## Doğrulama Adımları
 
 1. Her mono kanalı ayrı açın ve hedef yapıları blink ile karşılaştırın.
 2. FITS/XISF metadata ve acquisition kayıtlarından filter kimliğini doğrulayın.
@@ -46,7 +46,7 @@ flowchart TD
     E -->|"Evet"| G["Calibration ve color space kontrolü"]
 ```
 
-## Corrective workflow
+## Düzeltme İş Akışı
 
 1. Hatalı combined görüntüyü final Curves ile düzeltmeye çalışmayın.
 2. Güvenilir mono masters veya channel-separated checkpoint'e dönün.
@@ -55,14 +55,14 @@ flowchart TD
 5. Doğru mapping'i [ChannelCombination](../08-lrgb/channel-combination.md) veya PixelMath ile yeniden üretin.
 6. Ardından color calibration/normalization aşamasını tekrarlayın.
 
-## Prevention
+## Önleme
 
 - Acquisition metadata'yı koruyun.
 - Process icon adında mapping'i yazın: `RGB_R-G-B`, `SHO_S-H-O` gibi.
 - Source view adlarını kısa ama benzersiz tutun.
 - Combine öncesi her kanalı görsel ve metadata ile doğrulayın.
 
-## Common traps
+## Yaygın Tuzaklar
 
 - Yanlış mapping'i SCNR ile “normalleştirmek”.
 - SHO palette'i doğal RGB hatası sanmak.
@@ -70,10 +70,10 @@ flowchart TD
 - PixelMath output range/clipping ayarını gözden kaçırmak.
 - Hatalı combined görüntü üzerinde uzun final workflow sürdürmek.
 
-## Evidence Level
+## Kanıt Düzeyi
 
 **Verified Workflow:** Source-slot/expression eşleştirmesi doğrudan process instance ve output üzerinden doğrulanabilir. Belirli palette'in estetik yorumu veri setine bağlıdır.
 
-## Related processes
+## İlgili Süreçler
 
 [PixelMath](../10-pixelmath/index.md) · [LRGB](../08-lrgb/index.md) · [Color Calibration](../05-color-calibration/index.md) · [Hata Kütüphanesi](index.md)

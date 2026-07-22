@@ -60,10 +60,10 @@ Bu bir üst bölüm olduğundan tek bir parametre seti yoktur. Kontrol edilmesi 
 
 | Kontrol | Soru |
 | --- | --- |
-| Target view | Process doğru main view veya preview’a mı uygulanacak? |
+| Target view | İşlem doğru main view veya preview’a mı uygulanacak? |
 | Linearity | Data lineer mi, yalnızca STF ile mi görünür? |
 | Mask | Etkin maske var mı, ters mi? |
-| Process state | Process interface beklenen instance’ı mı taşıyor? |
+| İşlem state | İşlem interface beklenen instance’ı mı taşıyor? |
 | History | Geri dönüş için canlı undo state mevcut mu? |
 
 ## Uygulama Adımları
@@ -99,7 +99,7 @@ Lineer bir master luminance çok karanlık açılır. Auto STF ile yapı görün
 | Belirti | Olası neden | Çözüm |
 | --- | --- | --- |
 | Image çok karanlık | Lineer data, STF kapalı | STF ile ekran görünümünü kontrol edin |
-| Process etkisiz | Yanlış target veya maske | Active view ve maskeyi denetleyin |
+| İşlem etkisiz | Yanlış target veya maske | Active view ve maskeyi denetleyin |
 | Sonuç geri alınamıyor | Canlı undo state yok | Clone/proje/ara kayıt stratejisi kullanın |
 | Preview sonucu farklı | Farklı örnek alan | Temsilî preview seçin |
 | Icon beklenmeyen ayarla açılıyor | Yanlış instance kaydedildi | Icon’ı açıp parametreleri doğrulayın |
@@ -141,7 +141,7 @@ flowchart TD
 ??? question "Process Icon bir macro mudur?"
     Tek Process Icon bir process instance’ını kapsar. Sıralı çoklu işlem için ProcessContainer değerlendirilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **Görmek:** STF · **Data’yı değiştirmek:** process uygulaması · **Yerel test:** Preview · **Bağımsız karşılaştırma:** Clone · **Tek ayarı saklamak:** Process Icon · **Sıralı akış:** ProcessContainer

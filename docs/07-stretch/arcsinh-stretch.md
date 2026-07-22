@@ -1,16 +1,16 @@
 # ArcsinhStretch
 
-## Purpose
+## Amaç
 
 Faint color ve star color görünürlüğünü artırırken channel ratios ve highlights üzerinde klasik güçlü MTF stretch’e göre farklı bir ödünleşim sunan nonlinear başlangıç transformudur.
 
-## Theory, scientific background ve intuition
+## Kuramsal Arka Plan, bilimsel arka plan ve sezgisel açıklama
 
 Inverse hyperbolic sine ailesi düşük değerlerde yaklaşık lineer, daha yüksek değerlerde giderek sıkıştırıcı davranır. Astronomik görüntüde amaç faint signal’ı açarken bright structures’ın büyümesini sınırlamaktır. PixInsight processinin exact normalization ve parameter implementation’ı kurulu sürüm belgeleriyle doğrulanmalıdır.
 
 Color preservation mutlak değildir: black point, clipping, channel calibration ve sonraki Curves/SCNR işlemleri hue/saturation’ı değiştirebilir.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Girdi lineer, SPCC/BackgroundNeutralization tamamlanmış, gradient-free ve unclipped RGB/OSC olmalıdır. Mono image’da color preservation avantajı anlamlı değildir; tonal davranış için HT/GHS ile karşılaştırılır.
 
@@ -18,7 +18,7 @@ Girdi lineer, SPCC/BackgroundNeutralization tamamlanmış, gradient-free ve uncl
 
 Kurulu PixInsight dağıtımında `Process → IntensityTransformations → ArcsinhStretch` yolu doğrulanmalıdır; process/script varyantları karıştırılmamalıdır.
 
-!!! warning "Color preservation sınırı"
+!!! warning "Renk Koruma Sınırı"
     Arcsinh transformu yanlış white balance, residual color gradient veya channel clipping’i düzeltmez.
 
 ## Ne zaman kullanılır?
@@ -55,9 +55,9 @@ Typical settings sayısal reçete değildir. Küçük başlangıç strength’i,
 | Mono workflow | Özel color avantajı yok | Daha sade seçim |
 | Final contrast | Genellikle ek HT/GHS/Curves gerekir | Tek başına yeterli olabilir |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | OSC star color | Arcsinh + HT | Color başlangıcı ve tonal final ayrılır |
 | Broadband galaxy | Arcsinh A/B HT | Star color ile core davranışı karşılaştırılır |
@@ -65,7 +65,7 @@ Typical settings sayısal reçete değildir. Küçük başlangıç strength’i,
 | Mono L | HT veya GHS | Color preservation avantajı yoktur |
 | SHO/HOO starless | GHS | Palette tonal kontrolü daha doğrudandır |
 
-## Application ve output expectations
+## Uygulama ve beklenen çıktılar
 
 1. Linear color-calibrated clone ve karşılaştırma Preview’ları hazırlayın.
 2. Küçük stretch factor ile başlayın; black point clipping yapmayın.
@@ -80,9 +80,9 @@ Typical settings sayısal reçete değildir. Küçük başlangıç strength’i,
 
 OSC’de debayer/integration ve SPCC doğru tamamlanmalıdır. Mono LRGB’de Arcsinh RGB’ye uygulanıp luminance ayrı HT/GHS ile işlenebilir; recombination sonrası color washout kontrol edilir. StarXTerminator ile stars ve starless ayrılmışsa Arcsinh star layer için, GHS/HT starless layer için ayrı değerlendirilebilir; PixelMath birleşimi katman türüne uygun olmalıdır.
 
-## Troubleshooting
+## Sorun Giderme
 
-| Belirti | Neden | Verification | Corrective workflow |
+| Belirti | Neden | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Gray background | Stretch fazla | Background median | Daha küçük factor; HT ile final kontrol |
 | Washed color | Calibration veya sonraki transform | Linear SPCC clone kıyası | Doğru girdiden yeniden başla |
@@ -90,11 +90,11 @@ OSC’de debayer/integration ve SPCC doğru tamamlanmalıdır. Mono LRGB’de Ar
 | Flat galaxy core | Highlight compression fazla | Core radial/tonal kıyas | HT/GHS ile kontrollü contrast |
 | Noisy shadows | Low signal de açıldı | Linear noise estimate | NXT ve smaller stretch |
 
-## Performance, limitations ve best practices
+## Performans, sınırlamalar ve En İyi Uygulamalar
 
 Point transform hızlıdır; asıl maliyet A/B denemesi ve color denetimidir. Faint color görünmesi gerçek SNR artışı değildir. Arcsinh’i tek başına final çözüm saymayın; HT/GHS ve Curves ile görevleri ayırın.
 
-## Common mistakes
+## Yaygın Hatalar
 
 - Star color görünümünü doğru calibration kanıtı saymak
 - Black point’i faint color kuyruğunun içine taşımak
@@ -102,7 +102,7 @@ Point transform hızlıdır; asıl maliyet A/B denemesi ve color denetimidir. Fa
 - Final contrast ihtiyacını tek Arcsinh adımına yüklemek
 - Stars/starless layer’ları uyumsuz stretch ile birleştirmek
 
-## Related processes ve references
+## İlgili Süreçler ve kaynaklar
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)

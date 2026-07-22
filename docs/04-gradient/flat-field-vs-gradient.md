@@ -109,7 +109,7 @@ flowchart TD
 
 Bir RGB master'da köşeler koyu, sol kenar parlaktır. Tek DBE modeli uygulamak yerine her filter flat'i ve calibrated subframe incelenir. Köşe paterni sensör koordinatında sabit kaldığı için flat eşleşmesi düzeltilir; ardından sol kenardaki gece boyunca değişen residual şehir gradient'i ayrı modellenir.
 
-## Tanı matrisi ve workflow position
+## Tanı matrisi ve iş akışı position
 
 | Davranış | Flat/calibration şüphesi | Sky gradient şüphesi |
 |---|---|---|
@@ -155,7 +155,7 @@ Flat hatası varsa önce [ImageCalibration](../03-kalibrasyon/image-calibration.
 ??? question "STF tanı için yeterli mi?"
     Hayır; statistics, frame serisi ve calibration ürünleriyle desteklenmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tanı kontrol listesi"
     - [ ] Patern sensör ve gökyüzü koordinatlarında karşılaştırıldı
@@ -165,7 +165,7 @@ Flat hatası varsa önce [ImageCalibration](../03-kalibrasyon/image-calibration.
     - [ ] Zaman/yön değişimi ölçüldü
     - [ ] Flat sonrası residual gradient ayrı modellendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

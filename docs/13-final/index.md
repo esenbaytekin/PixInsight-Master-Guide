@@ -1,4 +1,4 @@
-# Final Processing
+# Son İşlemler
 
 ## Amaç
 
@@ -24,7 +24,7 @@ flowchart LR
     G --> H["Hedef ortamda proof"]
 ```
 
-## Final kontrol matrisi
+## son işlemler kontrol matrisi
 
 | Kontrol | Sorulacak soru | Geri dönülecek bölüm |
 |---|---|---|
@@ -35,9 +35,9 @@ flowchart LR
 | Arka plan | Gradient/noise residual var mı? | [Gradient](../04-gradient/index.md) ve [Calibration](../03-kalibrasyon/index.md) |
 | Teslim | ICC, bit depth ve format doğru mu? | Export |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Flat contrast | CurvesTransformation | Final midtone ilişkisini düzenler |
 | Hafif doğrulanmış green cast | Maskeli SCNR | Residual bileşeni sınırlar |
@@ -45,7 +45,7 @@ flowchart LR
 | Web teslimi | sRGB PNG/JPEG | Yaygın uyumluluk sağlar |
 | Sorunun kökü belirsiz | Hata Kütüphanesi | Belirtiyi workflow aşamasına bağlar |
 
-## Best practices
+## En İyi Uygulamalar
 
 - Final işlemleri ayrı process icon'larıyla küçük adımlara bölün.
 - Her adım öncesi clone veya history checkpoint oluşturun.
@@ -53,7 +53,7 @@ flowchart LR
 - Histogram, channel readout ve görsel değerlendirmeyi birlikte kullanın.
 - Web/print çıktısını hedef uygulamada yeniden açmadan tamamlanmış saymayın.
 
-## Visual Result Expectation
+## Beklenen Görsel Sonuç
 
 İyi final görüntüde background headroom'u, yıldız renk çeşitliliği ve hedef içindeki düşük/orta/yüksek frekans yapıları birlikte korunur. Under-processing yalnız “sönük” görünüm değildir; tonal hiyerarşinin okunmamasıdır. Over-processing ise clipping, halo, crunchy texture veya tekdüze/neon renklerle kendini gösterir.
 

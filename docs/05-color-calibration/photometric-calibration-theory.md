@@ -1,4 +1,4 @@
-# Photometric Calibration Teorisi
+# Fotometrik Kalibrasyon Teorisi
 
 ## Amaç
 
@@ -28,11 +28,11 @@ Görüntünün gökyüzündeki konumunu tanımlayan bilgiler target coordinates,
 
 | Bilgi | Potansiyel kullanım | Astrometric solution varsa durumu | Doğrulama durumu |
 | --- | --- | --- | --- |
-| Target coordinates | İlk sky konumu tahmini | Geçerli WCS daha doğrudan kullanılabilir | Process/sürüm doğrulaması bekliyor |
+| Target coordinates | İlk sky konumu tahmini | Geçerli WCS daha doğrudan kullanılabilir | İşlem/sürüm doğrulaması bekliyor |
 | WCS metadata | Image-sky coordinate dönüşümü | Astrometric solution'ın temel parçası olabilir | 1.9.3 doğrulaması bekliyor |
 | Focal length | Başlangıç image scale tahmini | Mevcut plate scale daha doğrudan olabilir | Fallback doğrulaması bekliyor |
 | Pixel size | Başlangıç scale hesabı | Çözülmüş scale varken rolü değişebilir | Fallback doğrulaması bekliyor |
-| Image dimensions | Field of view/scale bağlamı | Çözümün image geometrisiyle ilişkisini taşır | Process davranışı bekliyor |
+| Image dimensions | Field of view/scale bağlamı | Çözümün image geometrisiyle ilişkisini taşır | İşlem davranışı bekliyor |
 | Plate scale | Source search/solve başlangıcı | Geçerli solution içinde bulunabilir | 1.9.3 doğrulaması bekliyor |
 | Observation date | Epoch/observation bağlamı | WCS'nin yerini tutmaz | Exact kullanım bekliyor |
 | Filter bilgisi | Passband/response bağlamı | Astrometry'den ayrı işlev | Exact model kullanımı bekliyor |
@@ -95,13 +95,13 @@ Broadband M31 LRGB master plate solve edilir ve catalog stars ile eşleşme plan
 
 ## Görsel planı
 
-!!! example "Görsel doğrulama ölçütü — photometric zincir"
+!!! example "Görsel doğrulama ölçütü — fotometrik zincir"
     **Amaç:** Solve'dan channel calibration'a veri akışını göstermek.  
     **Gerekli ekran veya veri:** Astrometric solution, catalog match, response/log ve calibrated output.  
     **Kanıtlanacak teknik nokta:** Photometric calibration'ın tek adımlı color grading olmaması.  
     **Önerilen dosya adı:** `color-photometric-calibration-chain-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — catalog star match"
+!!! example "Görsel doğrulama ölçütü — katalog yıldız eşleşmesi"
     **Amaç:** Matched, rejected ve saturated stars ayrımını göstermek.  
     **Gerekli ekran veya veri:** Catalog overlay ve rejection/log listesi.  
     **Kanıtlanacak teknik nokta:** Response tahmininin değerlendirilen star sample population'ına bağlı olabilmesi.  
@@ -163,7 +163,7 @@ flowchart LR
 ??? question "Sonuç estetik olmak zorunda mı?"
     Hayır; estetik grading ayrı bir aşamadır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Linear, calibrated, gradient-denetlenmiş image
@@ -173,7 +173,7 @@ flowchart LR
     - [ ] Response ve channel scaling logu
     - [ ] Background/clipping/grading ayrı tutuldu
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

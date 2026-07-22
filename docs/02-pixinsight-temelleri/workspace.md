@@ -11,7 +11,7 @@ PixInsight 1.9.3 workspace’ini; image windows, views, explorer windows, proces
 Workspace, üzerinde çalışılan image data’nın kendisi değildir; nesnelerin yönetildiği masaüstüdür. Bir **image window** bir main view ve sıfır ya da daha fazla preview barındırabilir. **Active window** ile bir process interface’in **target view** seçimi her zaman aynı kabul edilmemelidir.
 
 ```mermaid
-graph TD
+flowchart TD
     W["Workspace"] --> IW["Image Windows"]
     IW --> MV["Main View"]
     IW --> PV["Previews"]
@@ -52,7 +52,7 @@ Kurulu platformda menü etiketleri yerleşik tooltip ve process documentation il
 | Öğe | Profesyonel kullanım |
 | --- | --- |
 | Image identifier | Kısa, benzersiz, kanal ve aşamayı belirten ad |
-| Active view | Process uygulanmadan hemen önce kontrol |
+| Active view | İşlem uygulanmadan hemen önce kontrol |
 | Zoom | Yapı ölçeğine uygun inceleme |
 | Explorer selection | İncelenen image/view ile eşleştirme |
 | Workspace layout | Akış yönünü yansıtan sade düzen |
@@ -88,7 +88,7 @@ Bir LRGB setinde pencereler `M31_L_linear`, `M31_R_linear`, `M31_G_linear`, `M31
 
 | Belirti | Kontrol | Eylem |
 | --- | --- | --- |
-| Process yanlış image’a gitti | Active/target view | Undo edin, identifier’ları iyileştirin |
+| İşlem yanlış image’a gitti | Active/target view | Undo edin, identifier’ları iyileştirin |
 | Explorer görünmüyor | View menüsü | İlgili Explorer Window’u yeniden açın |
 | Pencere ekran dışında | Window/workspace geometrisi | Arayüz geometrisini sıfırlama komutunu kullanın |
 | Image’lar ayırt edilemiyor | Identifier | Kanal ve aşamaya göre yeniden adlandırın |
@@ -132,7 +132,7 @@ flowchart TD
 ??? question "Process Explorer ile Process Icon aynı şey mi?"
     Hayır. Explorer process’lere erişim sağlar; icon yapılandırılmış bir instance saklar.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **Adlandır:** hedef_kanal_aşama · **Uygulamadan önce:** target + mask + lineerlik · **Yerel test:** Preview · **Bağımsız dal:** Clone · **Arayüz erişimi:** View/Process/Window

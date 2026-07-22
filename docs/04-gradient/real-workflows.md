@@ -99,7 +99,7 @@ flowchart TD
 
 Modelde gradient yönü görülebilir; fakat galaxy spiral yapısı, nebula filamentleri, dış halo ya da belirgin yıldız izleri bulunmamalıdır. Daha düz model daha doğru model anlamına gelmez.
 
-## Signal preservation
+## Sinyal koruma
 
 - Orijinal ve corrected görüntü aynı yeniden hesaplanmış STF koşulunda incelenmeli.
 - Fark görüntüsü hedef sinyaline benzeyen geniş ölçekli yapı açısından kontrol edilmeli.
@@ -149,12 +149,12 @@ Modelde gradient yönü görülebilir; fakat galaxy spiral yapısı, nebula fila
 ??? question "Flat sorunu DBE ile giderilir mi?"
     Doğru flat calibration'ın eşdeğeri değildir; önce kök neden düzeltilmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "On iki adım"
     Calibration → lineer inceleme → STF → hedef kapsamı → artefact sınıfı → araç → model → orijinal kıyası → signal preservation → residual → revizyon → kayıt.
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

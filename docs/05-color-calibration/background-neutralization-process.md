@@ -44,7 +44,7 @@ Uzamsal veya chromatic gradient, moonlight yapısı, light pollution deseni, air
 !!! info
     Neutral background ile black background aynı değildir. Background'da gürültü ve gerçek gök sinyali bulunabilir; sıfıra zorlamak clipping riskidir.
 
-## Background reference seçimi
+## Arka Plan Referansı seçimi
 
 Uygun aday; düşük büyük ölçekli yapıya, az yıldıza, clipping olmayan piksellere, gradient sonrası daha homojen yapıya ve görüntüyü temsil eden noise düzeyine sahip olabilir. Galaxy halo, nebula, cirrus ve reflection sinyali dışlanmalıdır.
 
@@ -98,7 +98,7 @@ flowchart TD
 - Kanıt dizini: `validation/ui/pi-1.9.3/background-neutralization/screenshots/`.
 - Evidence matrix: `validation/ui/pi-1.9.3/background-neutralization/background-neutralization-evidence-matrix.md`.
 
-!!! note "Mevcut değerler default değildir"
+!!! note "Mevcut değerler varsayılan değildir"
     Görsellerde iki farklı `Reference image` durumu ve çeşitli sayısal değerler görülür. Processin yeni/resetlenmiş olduğu kanıtlanmadığından bunlar default veya davranış kanıtı değildir.
 
 ### UI doğrulama durumu
@@ -494,7 +494,7 @@ flowchart TD
 
 **UI veya kaynak durumu:** **Doğrulama bekliyor**; PixInsight 1.9.3 UI ve gerçek veri gerekir.
 
-### BN-16 — Background reference çok küçük
+### BN-16 — Arka Plan Referansı çok küçük
 
 **Belirti:** Background reference çok küçük.
 
@@ -512,7 +512,7 @@ flowchart TD
 
 **UI veya kaynak durumu:** **Doğrulama bekliyor**; PixInsight 1.9.3 UI ve gerçek veri gerekir.
 
-### BN-17 — Background reference temsil edici değil
+### BN-17 — Arka Plan Referansı temsil edici değil
 
 **Belirti:** Background reference temsil edici değil.
 
@@ -566,7 +566,7 @@ flowchart TD
 
 **UI veya kaynak durumu:** **Doğrulama bekliyor**; PixInsight 1.9.3 UI ve gerçek veri gerekir.
 
-### BN-20 — Process log veya output beklenmedik
+### BN-20 — Process log veya çıktı beklenmedik
 
 **Belirti:** Process log veya output beklenmedik.
 
@@ -720,7 +720,7 @@ Olası background kontrolleri bağımsız process ile aynı kabul edilmemelidir;
 
 Histogram, clipping, yıldız renkleri, hedef morfolojisi, background uzamsal yapısı ve log birlikte değerlendirilir.
 
-## Quick Reference
+## Hızlı Referans
 
 - [ ] Gradient ve calibration artefact ayrı değerlendirildi.
 - [ ] Reference galaxy/nebula/cirrus dışında.
@@ -730,7 +730,7 @@ Histogram, clipping, yıldız renkleri, hedef morfolojisi, background uzamsal ya
 - [ ] Histogram, clipping ve hedef sinyali doğrulandı.
 - [ ] PCC/SPCC işlem sırası kaydedildi.
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

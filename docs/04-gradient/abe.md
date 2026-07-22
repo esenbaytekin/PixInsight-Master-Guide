@@ -123,7 +123,7 @@ ABE lineer, calibration artefact'ları ayrıştırılmış ve gerçek background
 
 ABE hızlıdır ve tekrar üretimi kolaydır; ancak otomasyon denetim ihtiyacını azaltmaz. Aynı STF, histogram istatistiği ve model görünümüyle önce/sonra karşılaştırması kaydedilmelidir.
 
-## Workflow position ve ilgili süreçler
+## İş Akışındaki Yeri ve ilgili süreçler
 
 Calibration ve integration denetiminden sonra, color calibration öncesinde kullanılması yaygın bir iş akışıdır; fakat sıra veri amacına göre doğrulanmalıdır. Karmaşık alanlarda [DBE](dbe.md), kök neden ayrımında [Gradient Diagnostics](gradient-diagnostics.md), correction türünde [Subtraction ve Division](division-vs-subtraction.md) kullanın.
 
@@ -166,7 +166,7 @@ Calibration ve integration denetiminden sonra, color calibration öncesinde kull
 ??? question "ABE sonrası DBE yapılır mı?"
     Otomatik bir sıra kuralı yoktur. ABE modeli reddedilirse DBE bağımsız ve kontrollü alternatif olarak denenebilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Image lineer ve calibrated
@@ -178,7 +178,7 @@ Calibration ve integration denetiminden sonra, color calibration öncesinde kull
     - [ ] Correction hipotezi gerekçeli
     - [ ] STF yeniden hesaplandı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD
@@ -195,7 +195,7 @@ flowchart TD
 | Sınıf | Durum |
 | --- | --- |
 | A | Otomatik background model ve overfitting riski sürümden bağımsız |
-| B | Process yolu ve control davranışları **Doğrulama bekliyor** |
+| B | İşlem yolu ve control davranışları **Doğrulama bekliyor** |
 | C | Hedef türlerine kesin preset verilmedi |
 | D | Polynomial ve smoothing uygulama ayrıntıları birincil kaynak gerektirir |
 

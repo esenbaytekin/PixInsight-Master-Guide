@@ -8,7 +8,7 @@ Görüntüdeki spatially varying point-spread function etkilerini düzeltmek ve 
 
 RC Astro teknik belgesine göre model görüntüdeki PSF’yi analiz ederek farklı bir PSF’ye dönüştürmeye çalışır; stellar diameter/halo ve nonstellar sharpening ayrı kontrollerle yönetilir. Modelin kapalı eğitim ayrıntıları burada varsayılmaz.
 
-!!! note "Deconvolution ilişkisi"
+!!! note "Deconvolution İlişkisi"
     BlurXTerminator klasik deconvolution ile aynı algoritma değildir; ancak güncel AI4 iş akışı için üretici lineer, noise reduction uygulanmamış girdiyi zorunlu kabul eder.
 
 ## Ne zaman kullanılır?
@@ -77,7 +77,7 @@ StarAlignment/ImageIntegration → gradient correction → SPCC → BlurXTermina
 
 Görüntü boyutu ve model sürümü süre/belleği belirler. GPU desteği ve hızlanma kurulu sürüm belgeleriyle doğrulanmalıdır. Preview testi performans kazandırır; final doğrulama tam çözünürlükte yapılır. İkinci deconvolution turu apparent sharpness artırsa da gerçek dışı detay riskini yükseltir.
 
-## Quick Reference
+## Hızlı Referans
 
 - Lineer ve denoise edilmemiş girdi
 - FWHM/sampling ölçümü
