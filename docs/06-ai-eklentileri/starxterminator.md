@@ -9,6 +9,8 @@
 
 Görüntüyü starless ve stars bileşenlerine ayırarak nebula/galaxy ile yıldızların farklı işlemlerle yönetilmesini sağlamaktır. Ayrıştırma, yıldızların fiziksel olarak “yok edilmesi” değil, model tabanlı bir katman tahminidir.
 
+Yıldızsız işlemenin workflow sınırı, layer state ve recombination riskleri için canonical [Yıldızsız İşleme ve Yıldız Yeniden Birleştirme](../09-narrowband/starless-processing.md) sayfasını kullanın. Bu sayfa StarXTerminator process davranışının sahibidir; starless workflow stratejisinin değil.
+
 ## Teori ve AI yaklaşımı
 
 Star removal, yıldız profiliyle nonstellar kompakt yapıyı sınıflandırmayı ve yıldız altındaki alanı tahmin etmeyi gerektirir. RC Astro, hiçbir star-removal aracının tüm görüntülerde kusursuz olamayacağını belirtir. Bu nedenle starless görüntü kadar stars layer ve recombination residual da incelenmelidir.

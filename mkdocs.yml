@@ -186,6 +186,11 @@ nav:
       - "SHO": 09-narrowband/sho.md
       - "Foraxx": 09-narrowband/foraxx.md
       - "Natural SHO": 09-narrowband/natural-sho.md
+      - "Kanal Normalizasyonu ve Ağırlıklandırma": 09-narrowband/channel-normalization-and-weighting.md
+      - "Sentetik Parlaklık": 09-narrowband/synthetic-luminance.md
+      - "Yıldızsız İşleme ve Yeniden Birleştirme": 09-narrowband/starless-processing.md
+      - "Narrowband Maske Stratejisi": 09-narrowband/mask-strategy.md
+      - "Narrowband Sorun Giderme": 09-narrowband/troubleshooting.md
   - "Son İşlemler":
     - "Son İşlemler": 13-final/index.md
     - "CurvesTransformation": 13-final/curves-transformation.md

@@ -9,6 +9,8 @@
 
 SPCC'nin narrowband veride olası kapsamını broadband stellar calibration, channel normalization, palette mapping ve star reconstruction'dan ayırmak.
 
+Narrowband palette ve color-balance kavramlarının canonical sahibi [Narrowband Renk Dengesi](../09-narrowband/natural-sho.md) sayfasıdır. Bu sayfa yalnız SPCC process kapsamını ve doğrulama sınırını sahiplenir.
+
 ## Kavramsal açıklama
 
 Ha, OIII ve SII broadband RGB değildir. SHO/HOO palette mapping içerir; narrowband channel normalization broadband stellar color calibration ile aynı değildir. Narrowband stars, filter bandpass nedeniyle broadband stellar color ilişkisini eksik temsil edebilir. SPCC'de özel narrowband seçenek/model varsa exact ad ve davranış PixInsight 1.9.3 UI/birincil kaynakla doğrulanmalıdır.

@@ -1,95 +1,78 @@
-# Hargb
+# HaRGB Mimarisi
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Narrowband · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Hargb` · `H-alpha RGB` · `narrowband` · `dar bant` · `Ha OIII SII`
-    **Önerilen ön bilgiler:** [PixelMath Temelleri](../10-pixelmath/temeller.md) · [Maskeler](../11-maskeler/index.md)
-
-**Durum: Taslak**
+    **Kategori:** Narrowband · **Düzey:** Advanced · **Tahmini okuma:** 10 dk
+    **Anahtar kelimeler:** `HaRGB` · `H-alpha RGB` · `continuum subtraction` · `galaxy Ha` · `star color`
+    **Önerilen ön bilgiler:** [Dar Bant Temelleri](index.md) · [Renk Kalibrasyonu](../05-color-calibration/index.md)
 
 ## Amaç
 
-Bu bölüm, Hargb konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+H-alpha emisyonunu broadband RGB görüntüye eklerken physical line signal, broadband continuum, color calibration ve display blend arasındaki sınırları açıklamak.
 
-## Ne zaman kullanılır?
+## HaRGB nedir?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+HaRGB, ayrı H-alpha verisini broadband RGB'nin çoğunlukla red/intensity yapısıyla birleştiren bir yöntem ailesidir. Tek bir formula değildir. Emisyon nebulalarında Ha yapısını güçlendirmek veya galakside H II bölgelerini görünür kılmak için kullanılabilir; ancak broadband continuum ve yıldız rengi korunacaksa katkı kontrollü olmalıdır.
 
-## Ne zaman kullanılmaz?
+```mermaid
+flowchart LR
+    ha["Ha: line + band içi continuum"] --> prep["Scale ve continuum kararı"]
+    rgb["Kalibre edilmiş broadband RGB"] --> prep
+    prep --> blend["Belgelenmiş Ha contribution"]
+    blend --> inspect["Color, stars, clipping kontrolü"]
+```
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Continuum neden önemlidir?
+
+Ha filtresi yalnız nebula çizgisini değil, dar bandın içine düşen yıldız/galaksi continuum'unu da kaydeder. Ha'yı red kanala doğrudan eklemek yıldızları, galaksi bulge'unu veya halo yapısını da kırmızılaştırabilir. Documentary amaçta continuum subtraction gerekebilir; bunun scale katsayısı filter bandpass ve sistem yanıtına bağlıdır ve tahmin edilmemelidir.
+
+PixInsight'ın [M31 H-alpha örneği](https://www.pixinsight.com/examples/M31-Ha/), galaksi renginin belgesel değerini korumak için continuum contribution'ın neden ayrılması gerektiğini gösterir. Bu örnekteki expression başka sisteme sabit katsayı olarak kopyalanmaz.
+
+## Başlıca mimari seçenekler
+
+| Yaklaşım | Amaç | Risk |
+|---|---|---|
+| Red-channel blend | Ha yapısını R içinde güçlendirmek | Salmon/magenta stars, clipped red |
+| Luminance contribution | Ha structure'ı intensity'ye taşımak | Color separation ve noise dengesi bozulabilir |
+| Continuum-aware blend | Line emission'u daha seçici ayırmak | Yanlış scale dark residual/halo üretir |
+| Starless Ha blend | Nebula ile stars'ı ayrı yönetmek | Separation residuals ve recombination halos |
 
 ## Ön koşullar
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+- Ha ve RGB aynı registration/crop geometry'sinde olmalı.
+- Gradient ve background mismatch ayrı düzeltilmiş olmalı.
+- RGB color calibration, Ha palette/blend kararından ayrılmalı.
+- Input image state'leri bilinmeli; lineer ve nonlinear veriler rastgele karıştırılmamalı.
+- Ha signal ve continuum amacı önceden tanımlanmalı.
 
-## PixInsight menü yolu
+## Ne zaman kullanılmaz?
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+- Ha master'da hedef yapısı noise'dan ayrılmıyorsa.
+- Reflection nebula veya broadband dust, Ha ile temsil edilmeye çalışılıyorsa.
+- Image identifiers, geometry veya state eşleşmiyorsa.
+- Documentary color hedefinde continuum etkisi ölçülmeden direct addition yapılıyorsa.
 
-## Parametreler
+## Görsel planı
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+!!! example "Gerçek veri görseli — HaRGB contribution"
+    **Eğitim amacı:** Direct Ha blend ile continuum-aware yaklaşımın yıldız ve galaksi rengine etkisini göstermek.
+    **Kaynak/kanallar:** Proje RGB ve Ha masters.
+    **Durum:** Registered lineer data; eşdeğer final stretch.
+    **Varyantlar:** RGB, direct blend, continuum-aware blend, starless blend.
+    **İşaretleme:** H II regions, stellar halos, bulge color ve red clipping.
+    **Beklenen ders:** Ha katkısı yalnız nebula sinyalini değiştirmeyebilir.
+    **Proje verisi gerekli:** Evet.
 
-## Uygulama adımları
+## İlgili sayfalar
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
-
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Narrowband](index.md)
-- [HOO](hoo.md)
-
-## İlgili Süreçler
-
-- [HOO](hoo.md)
-- [SHO](sho.md)
-- [Foraxx](foraxx.md)
-- [Natural SHO](natural-sho.md)
-
-## İlgili İş Akışları
-
-- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
-- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
-- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
-- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+- [PixelMath Kanal Karışımları](../10-pixelmath/kanal-karisimlari.md)
+- [LRGB + Ha Galaksi İş Akışı](../15-workflows/lrgb-ha-galaxy.md)
+- [Yıldızsız İşleme](starless-processing.md)
+- [Kanal Normalizasyonu](channel-normalization-and-weighting.md)
+- [Narrowband Sorun Giderme](troubleshooting.md)
 
 ## Önceki Bölüm
 
-[← Narrowband](index.md)
+[← Dar Bant Temelleri](index.md)
 
 ## Sonraki Bölüm
 
