@@ -1,70 +1,116 @@
 # RangeMask
 
-**Durum: Taslak**
-
 ## Amaç
 
-Bu bölüm, RangeMask konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+RangeMask, görüntüdeki belirli bir parlaklık aralığını grayscale ağırlık haritasına dönüştürür. Nebula, galaksi gövdesi, parlak çekirdek veya arka plan gibi yoğunlukla ayrılabilen yapıları seçmek için kullanılır.
+
+## Teori
+
+Process, alt ve üst yoğunluk sınırları arasındaki pikselleri seçer; yumuşatma kontrolleri seçimin kenar geçişini düzenler. Sonuç salt nesne segmentasyonu değildir: aynı parlaklığa sahip yıldız, gradient veya gürültü de seçilebilir.
+
+!!! info "Evidence Level — Practical Recommendation"
+    Eşikler veri setine bağlıdır. Sabit sayılar yerine maskenin histogramını ve hedef üzerindeki overlay'i değerlendirin.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Nebula veya galaksi sinyalini arka plandan ayırırken.
+- Parlak çekirdeği HDR veya Curves işleminden korurken.
+- Zayıf arka planda noise reduction etkisini artırırken.
+- Yıldız maskesiyle birleştirilecek geniş yapı maskesi üretirken.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Hedef ile arka plan aynı yoğunluk aralığındaysa.
+- Seçim yalnız hue veya yıldız morfolojisine dayanıyorsa.
+- Flat-field kaynaklı multiplicative hatayı düzeltmek amacıyla.
+- Maske, gradient'i hedef sinyal sanıyorsa.
 
-## Ön koşullar
+## Menü yolu
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+`Process > IntensityTransformations > RangeMask`
 
-## PixInsight menü yolu
-
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+!!! warning "Evidence Level — UI verification"
+    Menü yolu ve kontrol adlarının PixInsight 1.9.3 kurulumunda ekran kanıtıyla doğrulanması gerekir; modül dağılımı güncellemelerle değişebilir.
 
 ## Parametreler
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+| Kontrol | Amacı | Artırıldığında | Azaltıldığında | Yanlış kullanım sonucu |
+|---|---|---|---|---|
+| Lower limit | Seçimin alt yoğunluk sınırı | Daha karanlık pikseller dışlanır | Arka plan seçime girer | Zayıf sinyal kaybı veya gürültü seçimi |
+| Upper limit | Seçimin üst yoğunluk sınırı | Daha parlak yapılar dahil olur | Parlak çekirdek/yıldızlar dışlanır | Halo veya clipping |
+| Smoothness | Ton geçişini yumuşatır | Daha geniş, doğal geçiş | Daha kesin sınır | Aşırı değerlerde seçim taşması ya da sert kenar |
+| Screening | Seçimin düşük ağırlıklı bölgelerini düzenler | Zayıf katkı bastırılabilir | Daha fazla düşük seviye yapı kalır | İnce sinyalin silinmesi |
 
-## Uygulama adımları
+Kontrol isimleri sürüm arayüzünde doğrulanmalıdır; davranış değerlendirmesi maskenin çıktısı üzerinden yapılmalıdır.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Adım adım kullanım
 
-## Beklenen sonuç
+1. Hedef yapının histogramdaki yaklaşık konumunu inceleyin.
+2. `Lower limit` ile arka planı, `Upper limit` ile istenmeyen parlak yapıları sınırlandırın.
+3. Maskeyi üretin ve tek başına inceleyin.
+4. Siyah/beyaz clipping, yıldız haloları ve gradient sızıntısı arayın.
+5. Gerekirse maskeyi kontrollü yumuşatın veya StarMask ile birleştirin.
+6. Hedefe bağlayın; polarity'yi overlay ile kontrol edin.
+7. Preview üzerinde düşük etkili bir process denemesi yapın.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Gerçek kullanım senaryoları
 
-## Sık yapılan hatalar
+### Emission nebula üzerinde noise reduction
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+Zayıf arka planı beyaza, parlak nebula dokusunu gri/siyaha yaklaştıran bir RangeMask hazırlanır. NoiseXTerminator daha çok düşük SNR alanda çalışırken parlak filamentler kısmen korunur. Karar, tek bir threshold yerine sonuçtaki doku sürekliliğine göre alınır.
 
-## Sorun giderme
+### Galaksi çekirdeğini koruyarak kontrast
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+Çekirdeği ve parlak iç kolları seçen maske invert edilerek LHE veya Curves etkisinden korunur. StarMask çıkarımı, yıldız çevresindeki sahte kontrastı azaltabilir.
 
-## Hızlı referans
+## RangeMask ve Luminance Mask
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+| Ölçüt | RangeMask | Luminance Mask |
+|---|---|---|
+| Seçim | Belirli yoğunluk bandı | Tüm yoğunluk yapısının sürekli kopyası |
+| Güçlü yön | Alt/üst aralık izolasyonu | Sinyal ağırlıklı kademeli koruma |
+| Risk | Aynı parlaklıktaki ilgisiz yapılar | Gürültü ve gradient'i taşıma |
+
+## Practical Decision Guide
+
+```mermaid
+flowchart TD
+    A["Hedef parlaklıkla ayrılıyor mu?"] -->|"Hayır"| B["ColorMask veya StarMask değerlendir"]
+    A -->|"Evet"| C{"Tek bant yeterli mi?"}
+    C -->|"Evet"| D["RangeMask üret"]
+    C -->|"Hayır"| E["Birden fazla maskeyi PixelMath ile birleştir"]
+    D --> F["Clipping ve geçiş kontrolü"]
+    E --> F
+    F --> G{"İlgisiz yıldızlar seçildi mi?"}
+    G -->|"Evet"| H["StarMask çıkar"]
+    G -->|"Hayır"| I["Preview testi"]
+    H --> I
+```
+
+## Sık yapılan hatalar ve sorun giderme
+
+| Belirti | Neden | Çözüm |
+|---|---|---|
+| Nebula eksik seçiliyor | Lower limit fazla yüksek | Eşiği düşürüp geçişi inceleyin |
+| Arka plan tamamen beyaz | Lower limit düşük | Arka planı dışlayacak şekilde artırın |
+| Yıldız haloları seçiliyor | Aynı yoğunluk bandı | StarMask çıkarın veya üst sınırı değerlendirin |
+| İşlem sınırı görünüyor | Sert maske | Smoothness/yumuşatma kullanın |
+| Gradient maskeye giriyor | Yoğunluk temelli ayrım yetersiz | Önce gradient düzeltmesini değerlendirin |
+| Maske ters çalışıyor | Polarity yanlış | Overlay ile inversion kontrolü yapın |
+
+## Quick Reference
+
+- Eşik değerlerini veri setinden türet.
+- Alt sınır: arka plan ayrımı.
+- Üst sınır: parlak yapı kontrolü.
+- Maskeyi tek başına ve overlay ile incele.
+- Yıldızları gerekirse ayrı maske ile çıkar.
+- Preview sonucunda kenar ve halo ara.
+
+## Teknik doğrulama durumu
+
+Yoğunluk aralığına dayalı maskeleme temel kavramdır. Menü yolu, parametre adları ve özellikle `Screening` davranışı PixInsight 1.9.3 UI kanıtıyla doğrulanmalıdır.
 
 ## İlgili bölümler
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Maskeler](index.md)
-- [StarMask](star-mask.md)
-
+[Maske Mantığı](maske-mantigi.md) · [StarMask](star-mask.md) · [Luminance Mask](luminance-mask.md) · [PixelMath](../10-pixelmath/index.md)
