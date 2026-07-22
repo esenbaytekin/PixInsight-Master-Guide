@@ -14,27 +14,29 @@
       {% set icon = config.theme.icon.menu or "material/menu" %}
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">{{ config.site_name }}</span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            {% if page.meta and page.meta.title %}{{ page.meta.title }}{% else %}{{ page.title }}{% endif %}
-          </span>
+    <div class="pmg-header-brand">
+      <div class="md-header__title" data-md-component="header-title">
+        <div class="md-header__ellipsis">
+          <div class="md-header__topic">
+            <span class="md-ellipsis">{{ config.site_name }}</span>
+          </div>
+          <div class="md-header__topic" data-md-component="header-topic">
+            <span class="md-ellipsis">
+              {% if page.meta and page.meta.title %}{{ page.meta.title }}{% else %}{{ page.title }}{% endif %}
+            </span>
+          </div>
         </div>
       </div>
+      {% if config.extra.release_version %}
+        <div class="pmg-release-meta" aria-label="Sürüm {{ config.extra.release_version }}, commit {{ config.extra.release_commit }}">
+          <span class="pmg-release-version">{{ config.extra.release_version }}</span>
+          {% if config.extra.release_commit %}
+            <span class="pmg-release-separator" aria-hidden="true">-</span>
+            <span class="pmg-release-commit" title="Git commit {{ config.extra.release_commit }}">{{ config.extra.release_commit }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
-    {% if config.extra.release_version %}
-      <div class="pmg-release-meta" aria-label="Sürüm {{ config.extra.release_version }}, commit {{ config.extra.release_commit }}">
-        <span class="pmg-release-version">{{ config.extra.release_version }}</span>
-        {% if config.extra.release_commit %}
-          <span class="pmg-release-separator" aria-hidden="true">·</span>
-          <span class="pmg-release-commit" title="Git commit {{ config.extra.release_commit }}">{{ config.extra.release_commit }}</span>
-        {% endif %}
-      </div>
-    {% endif %}
     {% if config.theme.palette %}
       {% if not config.theme.palette is mapping %}{% include "partials/palette.html" %}{% endif %}
     {% endif %}

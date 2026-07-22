@@ -38,7 +38,11 @@ log "Dedicated deployment checkout origin/main durumuna getiriliyor."
 git reset --hard origin/main
 
 log "Container image oluşturuluyor."
-doc_version="$(git describe --tags --abbrev=0 2>/dev/null || printf 'unversioned')"
+if [[ -s VERSION ]]; then
+  doc_version="$(tr -d '[:space:]' < VERSION)"
+else
+  doc_version="$(git describe --tags --abbrev=0 2>/dev/null || printf 'unversioned')"
+fi
 doc_commit="$(git rev-parse --short=7 HEAD)"
 log "Dokümantasyon kimliği: ${doc_version} · ${doc_commit}"
 docker compose build \
