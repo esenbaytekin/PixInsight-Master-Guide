@@ -1,69 +1,101 @@
 # Detay ve Kontrast
 
-**Durum: Taslak**
-
 ## Amaç
 
-Bu bölüm, Detay ve Kontrast konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Bu bölüm, görüntüdeki yapıları uzamsal ölçeklerine göre ayırıp kontrollü biçimde güçlendirmeyi anlatır. Hedef “daha keskin” bir görünüm değil; gerçek sinyali korurken lokal kontrastı, dinamik aralığı ve algılanabilir yapıyı yönetmektir.
 
-## Ne zaman kullanılır?
+## Multiscale felsefesi
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Bir görüntü, farklı uzamsal frekansların toplamı gibi düşünülebilir:
 
-## Ne zaman kullanılmaz?
+- **Yüksek uzamsal frekans:** küçük yıldız çekirdekleri, ince filamentler ve gürültü.
+- **Orta frekans:** galaksi kolları, dust lane sınırları ve nebula kıvrımları.
+- **Düşük frekans:** geniş halo, büyük nebula gövdesi ve arka plan gradient'i.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+“İnce”, “orta” ve “büyük” mutlak sınıflar değildir; görüntünün örnekleme ölçeği, çözünürlüğü ve hedefin açısal boyutuyla değişir. Aynı layer, iki farklı veri setinde farklı fiziksel yapıları temsil edebilir.
 
-## Ön koşullar
+```mermaid
+flowchart LR
+    A["Görüntü"] --> B["Küçük ölçekler"]
+    A --> C["Orta ölçekler"]
+    A --> D["Büyük ölçekler"]
+    B --> E["Gürültü ve ince detay"]
+    C --> F["Filament ve dust lane"]
+    D --> G["Halo ve global yapı"]
+    E --> H["Ölçeğe uygun işlem"]
+    F --> H
+    G --> H
+```
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Wavelet ve benzeri multiscale ayrıştırmalar, görüntüyü karakteristik boyutlarına göre katmanlara ayırmayı sağlar. Bu bölüm algoritmik uygulama ayrıntısı uydurmaz; layer'ları “belirli piksel boyutundaki yapıların çalışma alanı” olarak kullanır.
 
-## PixInsight menü yolu
+## Global ve lokal kontrast
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+| Özellik | Global kontrast | Lokal kontrast |
+|---|---|---|
+| Kapsam | Görüntünün genel ton dağılımı | Komşuluk içindeki ton farkı |
+| Araç örneği | HistogramTransformation, CurvesTransformation | LHE, HDRMT, DSE |
+| Güçlü yön | Genel tonal hiyerarşi | Yapıların algılanabilirliği |
+| Risk | Zayıf yapının arka planda kaybolması | Halo, gürültü ve “crunchy” görünüm |
 
-## Parametreler
+## Process seçimi
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+| İhtiyaç | İlk değerlendirilecek araç | Neden |
+|---|---|---|
+| Parlak çekirdekte dinamik aralık | [HDRMultiscaleTransform](hdr-multiscale-transform.md) | Büyük yapıdan bağımsız lokal kontrast kurar |
+| Orta/büyük yapı kontrastı | [LocalHistogramEqualization](local-histogram-equalization.md) | Kernel çevresindeki kontrastı sınırlar |
+| Layer bazlı noise/detail kontrolü | [MultiscaleMedianTransform](multiscale-median-transform.md) | Ölçeklerin ayrı ağırlıklandırılmasına izin verir |
+| Dust lane ve koyu yapı vurgusu | [DarkStructureEnhance](dark-structure-enhance.md) | Koyu lokal yapıları hedefler |
 
-## Uygulama adımları
+!!! warning
+    Detail enhancement yeni sinyal üretmez. Düşük SNR veride gürültüyü yapıya benzetebilir; maske ve kontrollü miktar, güçlü parametreden daha değerlidir.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Workflow konumu
 
-## Beklenen sonuç
+Gradient ve renk kalibrasyonu tamamlanmadan lokal kontrast uygulamak artefaktları büyütür. Genellikle önce [noise reduction](../06-ai-eklentileri/noisexterminator.md), sonra stretch, ardından hedefe göre lokal kontrast değerlendirilir. MMT lineer aşamada da kullanılabilir; LHE, HDRMT ve DSE çoğunlukla görünür yapının değerlendirilebildiği nonlinear aşamada kullanılır.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+```mermaid
+flowchart TD
+    A["Kalibre ve gradient düzeltilmiş veri"] --> B["Noise ve yapı ölçeklerini değerlendir"]
+    B --> C{"İşlem lineer mi?"}
+    C -->|"Evet"| D["MMT ile ölçek kontrollü işlem"]
+    C -->|"Hayır"| E["Global ton hiyerarşisini kur"]
+    E --> F{"Ana ihtiyaç"}
+    F -->|"Dinamik aralık"| G["HDRMT"]
+    F -->|"Lokal kontrast"| H["LHE"]
+    F -->|"Koyu yapı"| I["DSE"]
+    G --> J["Maske ve düşük miktarla doğrula"]
+    H --> J
+    I --> J
+    D --> J
+```
 
-## Sık yapılan hatalar
+## Veri türüne göre strateji
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Veri/hedef | Öncelik | Muhafazakâr yaklaşım |
+|---|---|---|
+| Galaxy/LRGB | Çekirdek, kollar, dust lane | HDRMT → maskeli LHE → gerekirse DSE |
+| Emission nebula/SHO/HOO | Filament ve renk ayrımı | Luminance maskeli LHE; chroma noise kontrolü |
+| Reflection nebula/OSC | Yumuşak halo ve toz | Büyük kernel, düşük amount; sert mikro-kontrasttan kaçın |
+| Planetary nebula | Parlak çekirdek ve kabuk | HDRMT, ardından küçük/orta ölçek kontrolü |
+| Dark nebula | Koyu yapı ve zayıf arka plan | DSE yerine/yanında kontrollü LHE; halo denetimi |
+| Düşük SNR/ışık kirliliği | Gürültü ve gradient güvenliği | Önce düzeltme ve maskeli NR; enhancement'ı sınırlı tut |
+| Yüksek SNR/karanlık gökyüzü | İnce yapı sürekliliği | Birden fazla hafif, ölçek odaklı geçiş |
 
-## Sorun giderme
+## Practical Decision Guide
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+1. Hedef yapının ölçeğini 1:1 görüntüde belirleyin.
+2. Gürültünün aynı ölçekte olup olmadığını kontrol edin.
+3. Dinamik aralık sorunu varsa HDRMT; lokal kontrast sorunu varsa LHE değerlendirin.
+4. Layer bazlı ayrım gerekiyorsa MMT kullanın.
+5. Yalnız koyu yapı hedefleniyorsa DSE'yi maskeli ve düşük miktarda test edin.
+6. Maskeli/maskesiz sonucu aynı zoom ve aynı screen stretch ile karşılaştırın.
 
 ## İlgili bölümler
 
-- [Ana Sayfa](../index.md)
-- [HDRMultiscaleTransform](hdr-multiscale-transform.md)
-- [LocalHistogramEqualization](local-histogram-equalization.md)
+[HistogramTransformation](../02-pixinsight-temelleri/histogram.md) · [Generalized Hyperbolic Stretch](../07-stretch/generalized-hyperbolic-stretch.md) · [CurvesTransformation](../13-final/curves-transformation.md) · [Maskeler](../11-maskeler/index.md) · [PixelMath](../10-pixelmath/index.md)
 
+## Referanslar
+
+- [PixInsight Workshop — HDRMultiscaleTransform and multiscale processing](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
+- [PixInsight Forum — HDRMT and LHE workflow example](https://pixinsight.com/forum/index.php?threads/m101-hdr-processing-startools-vs-pixinsight.4286/)
