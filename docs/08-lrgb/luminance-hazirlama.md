@@ -1,70 +1,71 @@
 # Luminance Hazırlama
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+Luminance’i RGB’ye detail/contrast aktarabilecek geometry, PSF, noise ve dynamic range koşullarına getirmektir.
 
-Bu bölüm, Luminance Hazırlama konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory
 
-## Ne zaman kullanılır?
+Luminance yalnız “daha parlak mono görüntü” değildir. RGB ile aynı sky signal’ı farklı passband ve SNR ile örnekler. Birleşimde L’nin small-scale structure, noise ve star profile’ı chrominance üzerine taşınır.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Input requirements
 
-## Ne zaman kullanılmaz?
+- L ve RGB aynı registration/crop/dimensions
+- Gradient ve calibration temiz
+- L clipping içermiyor
+- FWHM/PSF farkı ölçülmüş
+- Linear/nonlinear state ve normalization planı açık
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Gerçek L vs synthetic L
 
-## Ön koşullar
+| Özellik | Gerçek L | Synthetic L |
+|---|---|---|
+| Photon seti | Ayrı broad luminance exposure | RGB’den türetilir |
+| SNR/detail | Daha yüksek olabilir | RGB ile sınırlı |
+| Geometry/PSF | RGB’den farklı olabilir | RGB ile doğal eşleşir |
+| Color uyumu | Passband mismatch riski | RGB response ile tutarlı |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Preparation parameters
 
-## PixInsight menü yolu
+| Karar | Ölçüm | Risk |
+|---|---|---|
+| PSF match | FWHM ve star profile | Color halo/harsh stars |
+| Noise reduction | Background noise estimate | Detail kaybı/plastic texture |
+| Sharpening | High-SNR structure | Noise amplification |
+| Stretch match | Histogram/core/background | Unnatural contrast |
+| Weight | L/RGB detail-color dengesi | Washed color |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Practical Decision Guide
 
-## Parametreler
+| Situation | Recommendation | Why |
+|---|---|---|
+| High-SNR sharp L | Kontrollü LRGB | Detail kazancı olası |
+| L seeing kötü | RGB-only veya PSF match | L stars sonucu bozar |
+| L light pollution güçlü | RGB/synthetic L test | Background ve color riskli |
+| Reflection nebula | Düşük L weight | Chrominance korunur |
+| Galaxy | L detail öncelikli A/B | Dust lane ve halo dengesi gerekir |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Workflow
 
-## Uygulama adımları
+L integration → gradient control → BXT/NXT → PSF/noise ölçümü → RGB ile geometry/state match → LRGBCombination/PixelMath → color/detail acceptance.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+!!! warning "Aşırı hazırlama"
+    L üzerinde agresif sharpening veya denoise, birleşimde RGB’den bağımsız yapay detail/doku oluşturabilir.
 
-## Beklenen sonuç
+## Troubleshooting ve best practices
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+| Belirti | Neden | Corrective workflow |
+|---|---|---|
+| Color halo | PSF/registration mismatch | Align ve PSF match |
+| Noise transfer | L background zayıf | L denoise/weight azalt |
+| Color washout | L contrast/weight fazla | L normalize veya RGB-only |
+| Core clipping | L stretch fazla | Linear clone’dan yeniden hazırla |
 
-## Sık yapılan hatalar
+Her ara L clone’u ve ölçümü saklayın; final sharpness’i tek başarı ölçütü yapmayın.
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Related processes
 
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [LRGB](index.md)
-- [ChannelCombination](channel-combination.md)
-
+- [LRGB teorisi](index.md)
+- [LRGBCombination](lrgb-combination.md)
+- [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
+- [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md)

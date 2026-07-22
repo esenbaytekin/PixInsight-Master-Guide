@@ -1,70 +1,76 @@
 # PixelMath ile LRGB
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+LRGBCombination’ın global kontrolü yetersiz olduğunda luminance contribution, mask, normalization ve layer blending’i açık ifadelerle yönetmektir.
 
-Bu bölüm, PixelMath ile LRGB konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory ve safety
 
-## Ne zaman kullanılır?
+Basit blend yüksek seviyede `result = (1-w)·RGB + w·L-derived color` fikrine dayanır; exact formulation color space ve hedefe göre değişir. Coefficients toplamı, input range ve clipping kontrol edilmelidir.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Input requirements
 
-## Ne zaman kullanılmaz?
+L/RGB geometry ve state eşleşmeli; identifier’lar açık; mask ve weight image’ları `[0,1]` aralığında doğrulanmış olmalıdır. Yeni image output tercih edilir.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## LRGBCombination vs PixelMath
 
-## Ön koşullar
+| Konu | LRGBCombination | PixelMath |
+|---|---|---|
+| Basit global LRGB | Güçlü | Daha fazla kurulum |
+| Masked/local blend | Sınırlı | Esnek |
+| Safety | UI yönlendirmesi | Kullanıcı sorumluluğu |
+| Reproducibility | Process instance | Expression + symbols + settings |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Practical Decision Guide
 
-## PixInsight menü yolu
+| Situation | Recommendation | Why |
+|---|---|---|
+| Standard galaxy LRGB | LRGBCombination | Daha sade |
+| Core/halo farklı L weight | PixelMath + RangeMask | Spatial control |
+| Starless workflow | PixelMath | Layer control |
+| HaRGB | PixelMath | Emission contribution açıkça tanımlanır |
+| RGB-only | ChannelCombination | Ek karmaşıklık gerekmez |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Recipe: weighted luminance blend
 
-## Parametreler
+- **Validation Status:** 🟨 Experimental
+- **Applicable data:** Geometry/state matched L ve RGB
+- **Purpose:** L contribution’ı mask veya weight ile sınırlamak
+- **Workflow position:** SPCC ve L hazırlama sonrası
+- **Inputs:** `RGB`, `L`, normalize edilmiş `M`, `w`
+- **Conceptual expression:** `(1-w*M)*RGB + (w*M)*Lrgb`
+- **Expected outcome:** Seçilen bölgelerde kontrollü detail contribution
+- **Known limitations:** `Lrgb` üretim yöntemi ve color space sonucu belirler; ifade doğrudan universal recipe değildir
+- **Potential risks:** Range overflow, desaturation, seams
+- **Alternative approaches:** LRGBCombination veya masked Curves
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Recipe: starless recombination
 
-## Uygulama adımları
+- **Validation Status:** 🟦 Community Practice
+- **Applicable data:** Eşleşen `starless` ve `stars` layers
+- **Purpose:** Ayrı işlenen layers’ı birleştirmek
+- **Workflow position:** StarXTerminator ve ayrı stretch/color işlemleri sonrası
+- **Inputs:** Layer türü ve üretim ayarı belgelenmiş images
+- **Expected outcome:** Target detail ve stars birlikte
+- **Known limitations:** Additive ve screen/unscreen layers aynı formülle birleşmez
+- **Potential risks:** Brightness shift, halo ve clipping
+- **Alternative approaches:** StarXTerminator’ın önerdiği layer-specific workflow
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Application, troubleshooting ve best practices
 
-## Beklenen sonuç
+1. Expression’ı constants ile değil symbols ile kurun.
+2. Yeni image üretin; single-channel Preview ve `$T` semantiğini karıştırmayın.
+3. Weight/mask min–max değerlerini kontrol edin.
+4. Output’u RGB-only ve LRGBCombination ile karşılaştırın.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Black/white output genellikle range veya identifier hatasıdır; color washout aşırı L contribution; seam mask transition sorunudur. [Hata Ayıklama](../10-pixelmath/hata-ayiklama.md) akışını kullanın.
 
-## Sık yapılan hatalar
+!!! warning "Formül bağlamı"
+    Conceptual LRGB ifadesini color-space dönüşümü tanımlamadan doğrudan final formula saymayın.
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Related processes
 
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [LRGB](index.md)
-- [ChannelCombination](channel-combination.md)
-
+- [PixelMath Temelleri](../10-pixelmath/temeller.md)
+- [LRGBCombination](lrgb-combination.md)
+- [StarXTerminator](../06-ai-eklentileri/starxterminator.md)
+- [RangeMask](../11-maskeler/range-mask.md)

@@ -1,72 +1,75 @@
 # ChannelCombination
 
-!!! info "PixInsight 1.9.3 UI doğrulaması"
-    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/channel-combination/channel-combination-evidence-matrix.md`.
+## Purpose
 
-**Durum: Taslak**
+Ayrı monochrome görüntüleri RGB veya seçilen color space kanallarına açık eşleme ile birleştirmek; broadband RGB ve narrowband SHO/HOO başlangıç görüntüsü üretmektir.
 
-## Amaç
+## Theory ve intuition
 
-Bu bölüm, ChannelCombination konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Her output channel, seçilen input image’ın aynı koordinattaki pixel değerini alır. Process channel mapping yapar; exposure matching, normalization, SPCC veya continuum subtraction’ı kendiliğinden çözmez.
 
-## Ne zaman kullanılır?
+## Input requirements ve workflow position
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Inputs aynı dimensions, registration, crop, bit depth/image state ve açıklanabilir intensity scale’e sahip olmalıdır. Broadband lineer RGB, ChannelCombination sonrası SPCC’ye gider. Narrowband mapping color-calibration değil temsil seçimidir.
 
-## Ne zaman kullanılmaz?
+## Ne zaman kullanılır / kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+RGB/SHO/HOO’nun doğrudan ve okunabilir mapping’i için kullanılır. Weight, mask, selective replacement veya karmaşık normalization gerektiğinde [PixelMath](../10-pixelmath/index.md) tercih edilir. Dimension/channel mismatch veya farklı stretch state’leri düzeltilmeden kullanılmaz.
 
-## Ön koşullar
+## Parameters ve typical settings
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Kontrol | Amaç | Risk |
+|---|---|---|
+| Color space | Output channel modelini seçer | Yanlış model beklenmeyen channel üretir |
+| R/G/B source | Input identifier eşleme | Yanlış mapping false color üretir |
+| Channel enable | Kanalı dahil/replace etme | Eksik output veya eski kanalın kalması |
+| Create/replace target | Yeni image veya mevcut target | Orijinali istemeden değiştirme |
 
-## PixInsight menü yolu
+Typical setting, her channel için doğru image identifier ve yeni output oluşturmadır; weight gerekiyorsa processin desteklemediği davranış varsayılmaz.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Linear vs nonlinear combination
 
-## Parametreler
+| State | Avantaj | Risk |
+|---|---|---|
+| Linear | SPCC ve ortak stretch için temiz başlangıç | Kanallar normalize değilse cast |
+| Nonlinear | Önceden ayrı stretch edilmiş mapping | Tonal eşleşme ve clipping zorlaşır |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Practical Decision Guide
 
-## Uygulama adımları
+| Situation | Recommendation | Why |
+|---|---|---|
+| Broadband RGB | ChannelCombination | Basit ve izlenebilir mapping |
+| SHO/HOO başlangıcı | ChannelCombination | Mapping açıkça belgelenir |
+| Weighted/synthetic channel | PixelMath | Coefficient kontrolü gerekir |
+| Channel replacement | ChannelCombination veya PixelMath | Replace kapsamına göre |
+| Masked blend | PixelMath | Spatial seçim gerekir |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Application ve output
 
-## Beklenen sonuç
+1. Dimensions/registration ve image state’i doğrulayın.
+2. R, G, B identifier’larını açıkça kaydedin.
+3. Yeni output oluşturun; channel histogramlarını kontrol edin.
+4. Broadband ise SPCC’ye, narrowband ise mapping/color diagnostics’e geçin.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Beklenen output doğru channel mapping’e sahip, clipping üretmemiş color image’dır.
 
-## Sık yapılan hatalar
+## Common mistakes ve troubleshooting
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Belirti | Neden | Düzeltme |
+|---|---|---|
+| Tamamen yanlış renk | Channel mapping ters | Identifier’ları tek tek görüntüle |
+| Dimension mismatch | Crop/registration farklı | Aynı geometry üret |
+| Color cast | Scale/gradient farklı | Kanalları normalize ve gradient kontrol et |
+| Black channel | Yanlış/boş identifier | Source image ve channel enable kontrolü |
+| Harsh color noise | Düşük SNR channel | Integration/NXT ve weighting’e dön |
 
-## Sorun giderme
+## Advantages, limitations ve best practices
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+Basitliği ana avantajdır; conditional veya weighted blend yapmaması ana sınırdır. Process icon ve output identifier’ı saklayın. SHO/HOO mapping’i “doğal color” olarak adlandırmayın.
 
-## Hızlı referans
+## Related processes
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [LRGB](index.md)
-- [Luminance Hazırlama](luminance-hazirlama.md)
+- [LRGB teorisi](index.md)
+- [LRGBCombination](lrgb-combination.md)
+- [Kanal karışımları](../10-pixelmath/kanal-karisimlari.md)
+- [SPCC](../05-color-calibration/spcc.md)

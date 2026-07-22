@@ -1,70 +1,65 @@
-# Koşullar ve Fonksiyonlar
+# PixelMath Koşullar ve Fonksiyonlar
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+Comparison, boolean logic ve conditional selection ile pixel replacement/blending’i güvenli ve okunabilir kurmaktır.
 
-Bu bölüm, Koşullar ve Fonksiyonlar konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory ve evaluation intuition
 
-## Ne zaman kullanılır?
+Comparison bir boolean condition üretir; conditional expression bu sonuca göre iki değerden birini seçer. Hard condition keskin sınır, continuous mask yumuşak transition üretir. PixelMath’in exact conditional/function syntax’ı process documentation ile kontrol edilmelidir.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Input requirements
 
-## Ne zaman kullanılmaz?
+Threshold’un image state ve range bağlamı, channel semantics, mask polarity ve output range bilinmelidir. NaN/Inf üretebilecek alt expressions önce guard edilmelidir.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Boolean ve conditional concepts
 
-## Ön koşullar
+| Kavram | Kullanım | Risk |
+|---|---|---|
+| Comparison | Threshold/class test | Noise sınırında flicker |
+| AND/OR/NOT | Koşulları birleştirme | Parentheses/precedence |
+| Conditional selection | A veya B seçme | Hard seam |
+| Smooth mask blend | Kademeli seçim | Mask contamination |
+| Guard | Division/log domain koruma | Yanlış epsilon bias |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Practical Decision Guide
 
-## PixInsight menü yolu
+| Situation | Recommendation | Why |
+|---|---|---|
+| Smooth target blend | Continuous mask | Hard edge önlenir |
+| Invalid denominator | Guarded condition | NaN/Inf önlenir |
+| Star/core selection | RangeMask/Star mask | Raw threshold noise’a duyarlı |
+| Channel-specific rule | Separate expressions | Semantics açık olur |
+| Basit global adjustment | Dedicated process | Daha az hata yüzeyi |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Safe construction workflow
 
-## Parametreler
+1. Condition/weight image’ı tek başına yeni image olarak üretin.
+2. Min/max ve transition bölgelerini inceleyin.
+3. True ve false branches’i ayrı test edin.
+4. Final expression’ı parentheses ve symbols ile kurun.
+5. Output NaN, clipping ve seams kontrolü yapın.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Advantages ve limitations
 
-## Uygulama adımları
+Koşullar spatially selective replacement sağlar; ancak object-aware değildir. Threshold, noise ve stretch state değişince farklı pixel seti seçebilir. Curves + ColorMask/RangeMask çoğu görsel düzeltmede daha okunabilir olabilir.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Common mistakes ve troubleshooting
 
-## Beklenen sonuç
+| Belirti | Neden | Corrective workflow |
+|---|---|---|
+| Keskin sınır | Hard condition | Smooth mask blend |
+| Ters alan değişti | Mask polarity | Mask’i tek başına görüntüle |
+| Invalid expression | Yanlış function/operator | Minimal alt ifade ile başla |
+| NaN/black output | Invalid domain/division | Guard ve epsilon test et |
+| Unexpected colors | Condition channels farklı | Separate channel debug |
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+!!! warning "Undocumented syntax"
+    Başka yazılım dilindeki function veya ternary syntax’ı PixelMath’te varmış gibi kullanmayın.
 
-## Sık yapılan hatalar
+## Related processes
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [PixelMath](index.md)
 - [Temeller](temeller.md)
-
+- [Kanal Karışımları](kanal-karisimlari.md)
+- [RangeMask](../11-maskeler/range-mask.md)
+- [ColorMask](../11-maskeler/color-mask.md)
