@@ -40,7 +40,7 @@ plugins:
       lang: tr
 
 extra_css:
-  - stylesheets/extra.css?v=1.0.2
+  - stylesheets/extra.css?v=1.1.0
 
 extra_javascript:
   - javascripts/mermaid.mjs
