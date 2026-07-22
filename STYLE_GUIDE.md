@@ -183,6 +183,15 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 - Dosya taşınırsa gelen bağlantılar aynı değişiklikte güncellenir.
 - Legacy yönlendirme sayfaları navigasyona eklenmez; canonical içeriği tekrar etmez.
 
+## Eğitim Katmanları
+
+- Foundations concept sayfaları **“Bu nedir?”** sorusunu yanıtlar; belirli bir process'in arayüzünü veya parametre reçetesini tekrar etmez.
+- Process sayfaları **“Yazılımda nasıl kullanılır?”** sorusunu yanıtlar ve gerekli kavramsal ön bilgiye bağlantı verir.
+- Workflow sayfaları **“Hangi durumda ve hangi sırayla kullanılır?”** sorusunu yanıtlar; process belgelerinin ikinci kopyası olmaz.
+- Troubleshooting sayfaları **“Ne yanlış gitti?”** sorusunu belirti, neden, doğrulama ve recovery sırasıyla ele alır.
+- Astrofotoğraf Temelleri yazılımdan bağımsız veri üretimi kavramlarını; Görüntü İşleme Temelleri evrensel sayısal görüntü kavramlarını; PixInsight Temelleri ise yazılımın çalışma modelini kapsar.
+- Bir sayfa birden fazla eğitim domain'ini önemli ölçüde içeriyorsa yeni canonical kopya oluşturulmaz; audit kaydıyla ayrıştırma planlanır ve mevcut URL, redirect kararı verilene kadar korunur.
+
 ## Navigasyon ve Legacy Sayfalar
 
 Navigasyon yalnız canonical sayfaları içerir. `docs/05-renk-kalibrasyonu/` altındaki kısa yönlendirmeler eski URL'leri korumak için tutulur; ikinci bir Color Calibration ağacı değildir. Yeni içerik ve yeni bağlantılar yalnız `docs/05-color-calibration/` hedeflerine yazılır.

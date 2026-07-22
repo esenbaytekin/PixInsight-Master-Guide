@@ -1,75 +1,83 @@
-# Temeller
+# Foundations
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Temeller` · `astrofotoğraf` · `signal` · `sinyal`
+    **Kategori:** Foundations · **Düzey:** Beginner · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `foundations` · `astrofotoğraf temelleri` · `görüntü işleme` · `PixInsight temelleri` · `öğrenme yolu`
 
-**Durum: Taslak**
+## Bu konu neden önemlidir?
 
-## Amaç
+Bir PixInsight işlemini hangi düğmeyle çalıştıracağını bilmek, doğru kararı vermek için tek başına yeterli değildir. Önce verinin nasıl üretildiğini, sonra görüntü işlemenin veriyi nasıl dönüştürdüğünü ve son olarak PixInsight'ın bu dönüşümleri nasıl yönettiğini ayırmak gerekir. Foundations alanı bu üç bilgi katmanını birbirine karıştırmadan öğretir.
 
-Bu bölüm, Temeller konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Üç eğitim domain'i
 
-## Ne zaman kullanılır?
+| Domain | Temel soru | Kapsam | Kapsam dışı |
+| --- | --- | --- | --- |
+| Astrofotoğraf Temelleri | Veri nasıl oluşur? | Kamera, filtre, signal-to-noise ratio, dynamic range ve çekim planlama | PixInsight process kullanımı |
+| Görüntü İşleme Temelleri | Sayısal görüntü nasıl değişir? | Linear/nonlinear durum, histogram, signal, noise, stretch, gradient ve mask kavramları | Belirli process için parametre reçetesi |
+| PixInsight Temelleri | Yazılım bu veriyi nasıl temsil eder ve yönetir? | Workspace, image view, Preview, STF, History Explorer ve process instance davranışı | Hedefe özel astrofotoğraf reçetesi |
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+```mermaid
+flowchart LR
+    astro["Astrofotoğraf"] --> image["Görüntü işleme"]
+    image --> pix["PixInsight"]
+    pix --> process["Process rehberleri"]
+    process --> workflow["Uygulamalı iş akışları"]
+    workflow --> trouble["Sorun giderme"]
+```
 
-## Ne zaman kullanılmaz?
+## Temel kavram
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+Bu rehber dört farklı sayfa türünü farklı sorulara ayırır:
 
-## Ön koşullar
+- **Concept page:** “Bu nedir?”
+- **Process page:** “Yazılımda nasıl kullanılır?”
+- **Workflow page:** “Hangi durumda ve hangi sırayla kullanılır?”
+- **Troubleshooting page:** “Ne yanlış gitti ve nasıl teşhis edilir?”
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Bir foundations sayfası process arayüzünü yeniden anlatmaz. İlgili process'e bağlanır ve kavramsal ön bilgiyi sağlar.
 
-## PixInsight menü yolu
+## Pratikte nasıl görünür?
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+Örneğin zayıf bir sinyali değerlendirirken öğrenme yolu şöyledir:
 
-## Parametreler
+1. [SNR ve Dinamik Aralık](snr-ve-dinamik-aralik.md) ile verinin sınırlarını anlayın.
+2. [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md) sayfasında ilgili yazılım aracının kapsamını inceleyin.
+3. [Veri Kalitesi ve Entegrasyon Stratejileri](../15-workflows/data-quality-strategies.md) ile işlemin akış içindeki yerini belirleyin.
+4. Sonuç beklenmedikse [Hata Kütüphanesi](../14-hata-kutuphanesi/index.md) üzerinden belirtiye göre ilerleyin.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Yaygın kavram yanılgıları
 
-## Uygulama adımları
+- Bir process'in menü yolunu bilmenin teoriyi anlamakla aynı olduğunu düşünmek.
+- STF ile ekranda görünür hale gelen veriyi kalıcı stretch uygulanmış veri sanmak.
+- Zayıf signal sorununu yalnız noise reduction parametresiyle çözmeye çalışmak.
+- Calibration, gradient correction ve stretch aşamalarını birbirinin alternatifi kabul etmek.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Tipik başlangıç hataları
 
-## Beklenen sonuç
+- Kamera ve filtre koşullarını kaydetmeden işlem reçetesi aramak.
+- Linear/nonlinear durumu doğrulamadan process uygulamak.
+- Concept, process ve workflow sayfalarındaki önerilerin kanıt düzeyini ayırmamak.
+- Sorun giderme sayfasına geçmeden önce expected output tanımlamamak.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## İlgili PixInsight kavramları
 
-## Sık yapılan hatalar
+- [PixInsight Temelleri](../02-pixinsight-temelleri/index.md)
+- [Workspace](../02-pixinsight-temelleri/workspace.md)
+- [ScreenTransferFunction](../02-pixinsight-temelleri/stf.md)
+- [Histogram ve HistogramTransformation](../02-pixinsight-temelleri/histogram.md)
+- [Preview, Clone ve History Explorer](../02-pixinsight-temelleri/preview-clone-history.md)
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Nereden devam edilmeli?
 
-## Sorun giderme
+Yeni başlayanlar şu sırayı izlemelidir:
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../index.md)
-- [CMOS ve Monokrom Kamera](cmos-ve-monokrom-kamera.md)
-- [Filtreler](filtreler.md)
+1. [CMOS ve Monokrom Kamera](cmos-ve-monokrom-kamera.md)
+2. [Filtreler](filtreler.md)
+3. [SNR ve Dinamik Aralık](snr-ve-dinamik-aralik.md)
+4. [Çekim Planlama](cekim-planlama.md)
+5. [Histogram ve Tonal Dönüşüm](../02-pixinsight-temelleri/histogram.md)
+6. [PixInsight Temelleri](../02-pixinsight-temelleri/index.md)
+7. [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md)
 
 ## Önceki Bölüm
 

@@ -159,8 +159,8 @@ flowchart TD
 
 ## Sonraki Bölüm
 
-Dönüşümleri güvenli biçimde sınamak ve geri dönüş dalları oluşturmak için [Preview, Clone ve History Explorer](preview-clone-history.md) bölümüne geçin.
+PixInsight'ın image, view ve process çalışma modelini öğrenmek için [PixInsight Temelleri](index.md) bölümüne geçin.
 
 ## Önceki Bölüm
 
-[← STF](stf.md)
+[← Çekim Planlama](../01-temeller/cekim-planlama.md)

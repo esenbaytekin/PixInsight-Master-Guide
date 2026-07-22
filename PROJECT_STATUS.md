@@ -22,11 +22,19 @@
 | robots.txt | `/docs/robots.txt` eklendi; Nginx root `/robots.txt` için aynı dosyayı sunacak |
 | Search Console | DNS TXT doğrulama ve sitemap gönderimi maintainer manuel işlemi olarak bekliyor |
 | Tarayıcı/network QA | Consent başlangıç, ret, kabul, yeniden açma, iptal ve mobil akışları yerel DOM düzeyinde doğrulandı; cookie/collect network kaydı araç erişimi nedeniyle bekliyor |
-| Production doğrulaması | Commit/deploy yapılmadığı için bekliyor |
+| Production doğrulaması | v1.0.2 deploy edildi; sitemap, iki robots URL'si, gizlilik sayfası ve consent başlangıç durumu doğrulandı |
 
 Kalan Google hesabı işlemleri: Domain Property doğrulama TXT kaydı, sitemap gönderimi, GA4 Realtime testi, Enhanced Measurement/site search/internal traffic/retention/Google Signals/ads personalization ayarlarının incelenmesi.
 
-Mevcut tema yalnız light görünüm sunar; dark-mode consent testi uygulanabilir değildir. v1.0.2 deploy öncesi production sitemap mevcut ve HTTP 200 döndürmektedir; yeni `/docs/robots.txt` ve root `/robots.txt` uçları commit/deploy yapılmadığı için mevcut production sürümünde henüz HTTP 404 döndürür.
+Mevcut tema yalnız light görünüm sunar; dark-mode consent testi uygulanabilir değildir. v1.0.2 production üzerinde `/docs/sitemap.xml`, `/docs/robots.txt`, root `/robots.txt` ve gizlilik sayfası HTTP 200 döndürmektedir.
+
+## Phase 7.1 bilgi mimarisi durumu
+
+- Foundations alanı Astrofotoğraf, Görüntü İşleme ve PixInsight domain'lerine ayrıldı.
+- 11 mevcut Foundations sayfası sınıflandırıldı; canonical URL'lerin tamamı korundu.
+- Dört Astrofotoğraf Temelleri sayfası kapsamlı Phase 7.2 yeniden yazımı gerektiren taslak olarak kaydedildi.
+- `histogram.md` kavram ve process kapsamı karışık sayfa olarak işaretlendi; ayrıştırma canonical karar verilmeden uygulanmadı.
+- Kalıcı eğitim katmanı kuralları STYLE_GUIDE'a eklendi; detaylı kayıt [FOUNDATIONS_AUDIT.md](FOUNDATIONS_AUDIT.md) içindedir.
 
 ## Tamamlanan kapsam
 

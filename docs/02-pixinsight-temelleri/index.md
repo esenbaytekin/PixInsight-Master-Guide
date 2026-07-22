@@ -156,4 +156,4 @@ flowchart TD
 
 ## Önceki Bölüm
 
-[← Çekim Planlama](../01-temeller/cekim-planlama.md)
+[← Histogram ve Tonal Dönüşüm](histogram.md)
