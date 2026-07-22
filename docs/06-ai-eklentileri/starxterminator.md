@@ -1,5 +1,10 @@
 # StarXTerminator
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** AI Eklentileri · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `StarXTerminator` · `SXT` · `StarX` · `AI processing` · `RC Astro` · `image restoration`
+    **Önerilen ön bilgiler:** [ImageIntegration](../03-kalibrasyon/image-integration.md) · [Gradient Düzeltme](../04-gradient/index.md)
+
 ## Amaç
 
 Görüntüyü starless ve stars bileşenlerine ayırarak nebula/galaxy ile yıldızların farklı işlemlerle yönetilmesini sağlamaktır. Ayrıştırma, yıldızların fiziksel olarak “yok edilmesi” değil, model tabanlı bir katman tahminidir.

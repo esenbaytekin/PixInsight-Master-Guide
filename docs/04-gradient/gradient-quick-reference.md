@@ -1,5 +1,10 @@
 # Gradient Hızlı Referans
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Gradient Hızlı Referansı` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 Yazdırılabilir kontrol sayfası. Sabit parametre reçetesi içermez; kararlar model ve gerçek veri kanıtına bağlanır.
 
 ## Gradient işleminden önce

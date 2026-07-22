@@ -1,5 +1,10 @@
 # Fotometrik Kalibrasyon Teorisi
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Fotometrik Kalibrasyon Teorisi` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 Plate solving, catalog matching, stellar color index ve instrument response üzerinden relative color calibration yaklaşımını açıklamak; absolute photometry ve estetik görünümden ayırmak.

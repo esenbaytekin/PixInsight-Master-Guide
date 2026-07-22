@@ -1,5 +1,10 @@
 # SPCC Sorun Giderme
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 15 dk
+    **Anahtar kelimeler:** `SPCC Sorun Giderme` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 SPCC hata, output ve yorumlama sorunlarını astrometry, metadata, catalog, instrument profile, star sample, background, channel response, narrowband scope, display ve process comparison sınıflarına ayırmak.

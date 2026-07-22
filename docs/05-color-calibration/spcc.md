@@ -1,5 +1,10 @@
 # SpectrophotometricColorCalibration
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 10 dk
+    **Anahtar kelimeler:** `SPCC` · `SpectrophotometricColorCalibration` · `Spectrophotometric Color Calibration` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 !!! warning "PixInsight 1.9.3 doğrulama sınırı"
     Görsel kanıt, process adını, menü yolunu, beş section başlığını ve görünen kontrol etiketlerini doğrular. Ekranın içinde sürüm numarası görünmediğinden 1.9.3 sürüm kimliği kısmi kanıttır. Catalog seçeneklerinin tamamı, sensor/filter database davranışı, varsayılan değerler, narrowband sonucu, output ve process davranışı doğrulanmayı bekler.
 

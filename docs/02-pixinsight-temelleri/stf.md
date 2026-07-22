@@ -1,5 +1,9 @@
 # ScreenTransferFunction (STF)
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `STF` · `ScreenTransferFunction` · `Screen Transfer Function` · `PixInsight` · `arayüz` · `workflow`
+
 **Durum: Tamamlandı — Faz 1A**
 
 ## Amaç

@@ -1,5 +1,9 @@
 # Narrowband
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Narrowband · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Narrowband` · `dar bant` · `Ha OIII SII`
+
 **Durum: Taslak**
 
 ## Amaç

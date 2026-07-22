@@ -1,5 +1,10 @@
 # Background Neutrality
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Arka Plan Nötrlüğü` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 Neutral background kavramını zero signal, siyah background ve gradient correction'dan ayırmak; reference seçiminin gerçek diffuse signal üzerindeki risklerini açıklamak.

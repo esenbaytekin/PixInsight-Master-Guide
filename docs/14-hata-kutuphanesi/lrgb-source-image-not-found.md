@@ -1,5 +1,9 @@
 # LRGB Source Image Not Found
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LRGB Source Image Not Found` · `missing source image` · `LRGBCombination error` · `image identifier` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |

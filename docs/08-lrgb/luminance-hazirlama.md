@@ -1,5 +1,10 @@
 # Luminance Hazırlama
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** LRGB · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Luminance Hazırlama` · `LRGB` · `luminance` · `channel combination`
+    **Önerilen ön bilgiler:** [Renk Kalibrasyonu](../05-color-calibration/index.md) · [HistogramTransformation](../07-stretch/histogram-transformation.md)
+
 ## Amaç
 
 Luminance’i RGB’ye detail/contrast aktarabilecek geometry, PSF, noise ve dynamic range koşullarına getirmektir.

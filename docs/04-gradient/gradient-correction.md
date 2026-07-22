@@ -1,5 +1,10 @@
 # GradientCorrection
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `GradientCorrection` · `Gradient Correction` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 !!! warning "Sürüm doğrulama sınırı"
     Process varlığı, menü yolu, üç section ve görünen kontrol etiketleri ekran kanıtıyla doğrulandı. Screenshot içinde sürüm numarası görünmediği için 1.9.3 kimliği kısmi kanıttır. Default değerler, algoritmik davranış ve output gerçek veri/birincil kaynak doğrulaması bekler.
 

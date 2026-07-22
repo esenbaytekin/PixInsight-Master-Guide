@@ -1,5 +1,10 @@
 # Calibration Pipeline
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Kalibrasyon · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Calibration Pipeline` · `calibration` · `kalibrasyon` · `linear processing`
+    **Önerilen ön bilgiler:** [CMOS ve Monokrom Kamera](../01-temeller/cmos-ve-monokrom-kamera.md) · [SNR ve Dinamik Aralık](../01-temeller/snr-ve-dinamik-aralik.md)
+
 **Durum: Tamamlandı — Faz 1B**
 
 ## Amaç

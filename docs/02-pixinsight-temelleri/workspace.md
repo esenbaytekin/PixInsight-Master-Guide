@@ -1,5 +1,9 @@
 # Workspace
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Workspace` · `PixInsight` · `arayüz` · `workflow`
+
 **Durum: Tamamlandı — Faz 1A**
 
 ## Amaç

@@ -1,5 +1,10 @@
 # BlurXTerminator
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** AI Eklentileri · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `BlurXTerminator` · `BXT` · `BlurX` · `AI processing` · `RC Astro` · `image restoration`
+    **Önerilen ön bilgiler:** [ImageIntegration](../03-kalibrasyon/image-integration.md) · [Gradient Düzeltme](../04-gradient/index.md)
+
 ## Amaç
 
 Görüntüdeki spatially varying point-spread function etkilerini düzeltmek ve yıldızlı/yıldızsız yapıda kontrollü keskinlik iyileştirmesi sağlamaktır. Araç, kötü fokus veya yetersiz sampling’i ölçüm olmadan “gerçek detaya” dönüştüren bir mekanizma değildir.

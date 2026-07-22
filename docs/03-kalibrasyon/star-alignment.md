@@ -1,5 +1,10 @@
 # StarAlignment
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Kalibrasyon · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `StarAlignment` · `Star Alignment` · `registration` · `calibration` · `kalibrasyon` · `linear processing`
+    **Önerilen ön bilgiler:** [CMOS ve Monokrom Kamera](../01-temeller/cmos-ve-monokrom-kamera.md) · [SNR ve Dinamik Aralık](../01-temeller/snr-ve-dinamik-aralik.md)
+
 **Durum: Tamamlandı — Faz 1B**
 
 ## Amaç

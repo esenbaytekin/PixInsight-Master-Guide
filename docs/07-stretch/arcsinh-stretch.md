@@ -1,5 +1,10 @@
 # ArcsinhStretch
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `ArcsinhStretch` · `Arcsinh Stretch` · `stretch` · `nonlinear processing` · `histogram stretch`
+    **Önerilen ön bilgiler:** [STF](../02-pixinsight-temelleri/stf.md) · [Histogram](../02-pixinsight-temelleri/histogram.md)
+
 ## Amaç
 
 Faint color ve star color görünürlüğünü artırırken channel ratios ve highlights üzerinde klasik güçlü MTF stretch’e göre farklı bir ödünleşim sunan nonlinear başlangıç transformudur.

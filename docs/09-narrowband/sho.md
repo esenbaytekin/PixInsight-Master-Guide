@@ -1,5 +1,10 @@
 # SHO
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Narrowband · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `SHO` · `Hubble Palette` · `SII Ha OIII` · `narrowband` · `dar bant` · `Ha OIII SII`
+    **Önerilen ön bilgiler:** [PixelMath Temelleri](../10-pixelmath/temeller.md) · [Maskeler](../11-maskeler/index.md)
+
 **Durum: Taslak**
 
 ## Amaç

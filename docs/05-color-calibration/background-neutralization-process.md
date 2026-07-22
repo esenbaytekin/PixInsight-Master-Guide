@@ -1,5 +1,10 @@
 # BackgroundNeutralization
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 20 dk
+    **Anahtar kelimeler:** `BackgroundNeutralization` · `Background Neutralization` · `BN` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 Bu sayfa bağımsız PixInsight **BackgroundNeutralization** processini ve güvenilir background reference seçimini açıklar.

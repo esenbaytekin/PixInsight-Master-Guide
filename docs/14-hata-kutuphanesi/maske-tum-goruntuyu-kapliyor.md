@@ -1,5 +1,9 @@
 # Maske Tüm Görüntüyü Kaplıyor
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Maske Tüm Görüntüyü Kaplıyor` · `mask not working` · `maske çalışmıyor` · `inverted mask` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |

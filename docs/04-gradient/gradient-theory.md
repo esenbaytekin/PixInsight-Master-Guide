@@ -1,5 +1,10 @@
 # Gradient Teorisi
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 7 dk
+    **Anahtar kelimeler:** `Gradient Teorisi` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 **Durum: Teknik incelemeye hazır — Sprint 2.1**
 
 ## Amaç

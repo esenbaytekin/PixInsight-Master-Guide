@@ -1,5 +1,9 @@
 # Maskeler ve Seçici İşleme
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Maskeler` · `mask` · `maske` · `selective processing`
+
 ## Amaç
 
 Maskeler, bir process'in etkisini görüntünün tamamına eşit uygulamak yerine yapısal, parlaklık veya renk temelli bölgelere dağıtır. Amaç yalnızca bir alanı “seçmek” değil; sinyal, gürültü ve geçiş bölgeleri arasında kontrollü bir etki haritası kurmaktır.

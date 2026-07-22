@@ -1,5 +1,9 @@
 # Terimler Sözlüğü
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Başvuru · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Terimler Sözlüğü` · `PixInsight terimleri` · `glossary` · `sözlük`
+
 **Durum: Taslak**
 
 ## Amaç

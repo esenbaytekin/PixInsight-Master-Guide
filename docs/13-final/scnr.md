@@ -1,5 +1,10 @@
 # SCNR
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `SCNR` · `Subtractive Chromatic Noise Reduction` · `green cast` · `final processing` · `son işlemler` · `export`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maskeler](../11-maskeler/index.md)
+
 ## Amaç
 
 SCNR, seçilen chromatic bileşenin diğer kanallara göre aşırı katkısını azaltmak için kullanılır. Astrofotoğraf workflow'unda en yaygın kullanım residual green cast kontrolüdür; araç renk kalibrasyonunun yerine geçmez.

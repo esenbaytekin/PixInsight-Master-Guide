@@ -1,5 +1,10 @@
 # PixelMath Hata Ayıklama
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixelMath · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `PixelMath hata ayıklama` · `wrong PixelMath` · `PixelMath error` · `expression syntax` · `kanal karışımı`
+    **Önerilen ön bilgiler:** [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 Parser, identifier, geometry, channel, range ve numerical safety sorunlarını belirtilerden kök nedene sistematik biçimde ayırmaktır.

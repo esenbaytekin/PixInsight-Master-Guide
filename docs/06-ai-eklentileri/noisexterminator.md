@@ -1,5 +1,10 @@
 # NoiseXTerminator
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** AI Eklentileri · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `NoiseXTerminator` · `NXT` · `NoiseX` · `noise increased` · `gürültü arttı` · `AI processing` · `RC Astro` · `image restoration`
+    **Önerilen ön bilgiler:** [ImageIntegration](../03-kalibrasyon/image-integration.md) · [Gradient Düzeltme](../04-gradient/index.md)
+
 ## Amaç
 
 Noise bileşenini azaltırken astronomik sinyal, küçük ölçekli doku ve kanal ilişkilerini korumaktır. Amaç tamamen pürüzsüz background değil, sonraki stretch ve contrast işlemlerini taşıyabilecek kontrollü bir noise seviyesidir.

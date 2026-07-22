@@ -1,5 +1,10 @@
 # PixelMath ile LRGB
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** LRGB · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `PixelMath ile LRGB` · `LRGB` · `luminance` · `channel combination`
+    **Önerilen ön bilgiler:** [Renk Kalibrasyonu](../05-color-calibration/index.md) · [HistogramTransformation](../07-stretch/histogram-transformation.md)
+
 ## Amaç
 
 LRGBCombination’ın global kontrolü yetersiz olduğunda luminance contribution, mask, normalization ve layer blending’i açık ifadelerle yönetmektir.

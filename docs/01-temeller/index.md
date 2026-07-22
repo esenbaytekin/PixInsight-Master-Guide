@@ -1,5 +1,9 @@
 # Temeller
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Temeller` · `astrofotoğraf` · `signal` · `sinyal`
+
 **Durum: Taslak**
 
 ## Amaç

@@ -1,5 +1,9 @@
 # OIII Kaybolması
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `OIII Kaybolması` · `no OIII signal` · `OIII sinyali yok` · `narrowband channel loss` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |

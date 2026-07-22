@@ -1,5 +1,9 @@
 # Stretch ve Doğrusal Olmayan Dönüşüm
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Stretch` · `nonlinear processing` · `histogram stretch`
+
 ## Amaç
 
 Lineer astronomik veriyi insan görme sistemi ve ekranın sınırlı dinamik aralığı içinde okunabilir hale getirirken faint signal, highlights, star profiles, color ratios ve background ayrımını kontrollü biçimde korumaktır.

@@ -1,5 +1,9 @@
 # Hata Kütüphanesi
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Sorun Giderme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Hata Kütüphanesi` · `troubleshooting` · `sorun giderme` · `PixInsight error`
+
 ## Amaç
 
 Bu kütüphane, görünen artefaktı rastgele process uygulayarak bastırmak yerine kök aşamaya bağlar. Teşhis sırası: belirtiyi sınıflandır, veride ölç, hatanın ilk göründüğü history adımını bul, en erken güvenilir checkpoint'e dön ve yalnız ilgili aşamayı yeniden işle.

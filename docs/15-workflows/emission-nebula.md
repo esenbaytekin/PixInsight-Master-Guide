@@ -1,5 +1,9 @@
 # Emisyon Nebulası İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Emisyon Nebulası` · `emission nebula` · `narrowband` · `Ha` · `OIII` · `SII` · `workflow`
+
 ## Amaç
 
 Emission filamentleri, geniş faint halo, star field ve background noise arasında kontrollü ayrım kurmak; broadband veya mono emission veride clipping ve yapay mikro-kontrasttan kaçınmak.

@@ -1,5 +1,10 @@
 # Ay Işığı Kaynaklı Gradientler
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Ay Işığı Gradientleri` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 Ay ışığıyla ilişkili geniş ölçekli eğimleri şehir ışığı, ince bulut, nem/pus, internal reflection, filter halo ve normal sky brightness değişiminden ayırmak.

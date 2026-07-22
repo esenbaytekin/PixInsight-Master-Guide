@@ -1,5 +1,9 @@
 # Çekim Planlama
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Çekim Planlama` · `astrofotoğraf` · `signal` · `sinyal`
+
 **Durum: Taslak**
 
 ## Amaç

@@ -1,5 +1,10 @@
 # Gradient Hata Kartları
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 10 dk
+    **Anahtar kelimeler:** `Gradient Hata Kartları` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 Bu kartlar hızlı teşhis içindir. Parametre değeri veya kesin çözüm vermez; artefact sınıflandırması → calibration → model → signal preservation → correction kıyası → yeniden modelleme → gerçek veri kaydı sırasını izler.
 
 ## Hata kartları indeksi

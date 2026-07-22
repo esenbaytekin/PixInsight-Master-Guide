@@ -1,5 +1,9 @@
 # OSC İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `OSC İş Akışı` · `OSC` · `One Shot Color` · `color camera` · `workflow` · `iş akışı` · `image processing`
+
 ## Amaç
 
 CFA/Bayer tek kamera verisini doğru calibration ve debayer sırasıyla işlemek; broadband veya dual-band acquisition'da gradient, color calibration, chroma noise ve yıldızları kontrollü yönetmek.

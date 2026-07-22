@@ -1,5 +1,10 @@
 # PhotometricColorCalibration (PCC)
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 25 dk
+    **Anahtar kelimeler:** `PCC` · `PhotometricColorCalibration` · `Photometric Color Calibration` · `color calibration` · `renk kalibrasyonu` · `white balance`
+    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+
 ## Amaç
 
 Bu sayfa, PixInsight 1.9.3 bağlamında **PhotometricColorCalibration** (PCC) sürecini; astrometry, catalog matching, yıldız örneklemi, background ilişkisi ve sonuç doğrulamasıyla birlikte ele alır. PCC, legacy iş akışlarını yeniden üretmek veya SPCC ile kontrollü karşılaştırma yapmak için değerlendirilebilen bir alternatiftir.

@@ -1,5 +1,10 @@
 # Flat-field Hatası ve Gradient Ayrımı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Flat-Field ve Gradient Ayrımı` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 Multiplicative flat-field response ile çoğunlukla additive gökyüzü gradient'ini kanıta dayalı biçimde ayırmak; gradient extraction'ı calibration onarımı gibi kullanmamak.

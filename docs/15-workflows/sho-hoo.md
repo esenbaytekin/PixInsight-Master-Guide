@@ -1,5 +1,9 @@
 # SHO ve HOO Narrowband İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `SHO ve HOO Narrowband` · `SHO workflow` · `HOO workflow` · `Hubble Palette` · `SII` · `Ha` · `OIII` · `narrowband`
+
 ## Amaç
 
 Ha, OIII ve varsa SII sinyalini registration, normalization ve SNR farklarını gözeterek birleştirmek; OIII'yi koruyan, halo üretmeyen ve palette kararını açıkça kaydeden narrowband sonuç üretmek.

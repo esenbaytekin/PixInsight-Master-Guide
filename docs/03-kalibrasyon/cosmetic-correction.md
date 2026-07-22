@@ -1,5 +1,10 @@
 # CosmeticCorrection
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Kalibrasyon · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `CosmeticCorrection` · `Cosmetic Correction` · `calibration` · `kalibrasyon` · `linear processing`
+    **Önerilen ön bilgiler:** [CMOS ve Monokrom Kamera](../01-temeller/cmos-ve-monokrom-kamera.md) · [SNR ve Dinamik Aralık](../01-temeller/snr-ve-dinamik-aralik.md)
+
 !!! info "PixInsight 1.9.3 UI doğrulaması"
     Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/cosmetic-correction/cosmetic-correction-evidence-matrix.md`.
 

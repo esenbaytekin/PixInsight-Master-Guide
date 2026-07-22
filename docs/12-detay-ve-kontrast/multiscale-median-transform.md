@@ -1,5 +1,10 @@
 # MultiscaleMedianTransform
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `MultiscaleMedianTransform` · `MMT` · `detail enhancement` · `contrast` · `detay`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
 ## Amaç
 
 MultiscaleMedianTransform (MMT), görüntüyü ölçek katmanlarına ayırarak noise reduction, detail attenuation veya enhancement işlemlerini yapı boyutuna göre kontrol eder. Gücü, tüm görüntüye tek bir “sharpness” uygulamak yerine küçük, orta ve büyük yapıları ayrı değerlendirmesidir.

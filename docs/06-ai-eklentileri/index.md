@@ -1,5 +1,9 @@
 # AI Eklentileri
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** AI Eklentileri · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `AI Eklentileri` · `AI processing` · `RC Astro` · `image restoration`
+
 ## Amaç
 
 BlurXTerminator, NoiseXTerminator ve StarXTerminator araçlarını tek düğmeli “iyileştirme” olarak değil; ölçülebilir girdi koşulları, sınırlamalar ve geri dönüş testleri olan model tabanlı işlemler olarak konumlandırmaktır.

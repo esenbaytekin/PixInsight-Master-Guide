@@ -1,5 +1,9 @@
 # Son İşlemler
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Son İşlemler` · `final processing` · `son işlemler` · `export`
+
 ## Amaç
 
 Final processing, önceki aşamalarda kurulmuş sinyali bozmadan tonal hiyerarşi, renk yoğunluğu ve teslim formatını tamamlar. Bu bölüm “son rötuş” adı altında kök sorunları gizlemek yerine, her değişikliği ölçülebilir bir amaca bağlar.

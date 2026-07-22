@@ -1,5 +1,10 @@
 # NGC 6888 Gradient İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `NGC 6888 Gradient İş Akışı` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 NGC 6888 Ha/OIII verisi için diffuse sinyali korumaya odaklanan, test edilebilir narrowband gradient iş akışı hazırlamak. Gerçek veri sonucu henüz yoktur.

@@ -1,5 +1,10 @@
 # CurvesTransformation
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `CurvesTransformation` · `Curves Transformation` · `overprocessed image` · `aşırı işlenmiş görüntü` · `final processing` · `son işlemler`
+    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maskeler](../11-maskeler/index.md)
+
 ## Amaç
 
 CurvesTransformation, giriş değerlerini kullanıcı tanımlı eğrilerle çıkış değerlerine eşleyerek final contrast ve color refinement sağlar. Gücü, global ton dönüşümünü maskelerle yapısal olarak sınırlandırabilmesidir.

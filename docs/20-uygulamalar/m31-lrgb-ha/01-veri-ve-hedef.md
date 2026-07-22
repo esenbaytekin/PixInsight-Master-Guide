@@ -1,5 +1,9 @@
 # Veri ve Hedef
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Veri ve Hedef` · `case study` · `uygulama` · `end-to-end workflow`
+
 **Durum: Taslak**
 
 ## Amaç

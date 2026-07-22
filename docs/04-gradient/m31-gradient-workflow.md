@@ -1,5 +1,10 @@
 # M31 Gradient İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31 Gradient İş Akışı` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 ## Amaç
 
 M31 broadband/LRGB verisi için test edilebilir gradient iş akışı, veri kayıt formu ve görsel kanıt planı oluşturmak. Bu sayfada gerçek M31 testi yapılmış değildir.

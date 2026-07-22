@@ -1,5 +1,9 @@
 # Veri Kalitesi ve Entegrasyon Stratejileri
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Veri Kalitesi Stratejileri` · `low SNR` · `poor seeing` · `sky quality` · `signal quality` · `subframe quality` · `workflow`
+
 ## Amaç
 
 Dark sky/urban, low/high SNR ve short/long integration koşullarında aynı process listesini tekrarlamak yerine pipeline'ın hangi kararlarının değişmesi gerektiğini göstermek.

@@ -1,5 +1,10 @@
 # DynamicBackgroundExtraction (DBE)
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 10 dk
+    **Anahtar kelimeler:** `DynamicBackgroundExtraction` · `DBE` · `Dynamic Background Extraction` · `gradient removal` · `gradient düzeltme` · `background modeling`
+    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
+
 **Durum: Teknik incelemeye hazır — Sprint 2.1**
 
 ## Amaç

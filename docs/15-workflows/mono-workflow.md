@@ -1,5 +1,9 @@
 # Mono İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Mono İş Akışı` · `Mono` · `Monochrome` · `mono camera` · `workflow` · `iş akışı` · `image processing`
+
 ## Amaç
 
 Mono camera filter setlerini ayrı calibration, integration, gradient, PSF ve SNR özellikleriyle yönetip LRGB veya narrowband final'e güvenilir biçimde birleştirmek.

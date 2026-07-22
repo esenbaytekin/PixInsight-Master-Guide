@@ -1,5 +1,10 @@
 # RangeMask
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `RangeMask` · `RangeSelection` · `Range Mask` · `mask` · `maske` · `selective processing`
+    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+
 ## Amaç
 
 RangeMask, görüntüdeki belirli bir parlaklık aralığını grayscale ağırlık haritasına dönüştürür. Nebula, galaksi gövdesi, parlak çekirdek veya arka plan gibi yoğunlukla ayrılabilen yapıları seçmek için kullanılır.

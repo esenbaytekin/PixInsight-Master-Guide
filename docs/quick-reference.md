@@ -1,5 +1,9 @@
 # Hızlı Referans
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Başvuru · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `Hızlı Referans` · `quick reference` · `PixInsight kontrol listesi`
+
 **Durum: Taslak**
 
 ## Amaç

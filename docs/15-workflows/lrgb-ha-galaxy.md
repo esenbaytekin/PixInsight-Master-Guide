@@ -1,5 +1,9 @@
 # LRGB + Ha Galaksi İş Akışı
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `LRGB + Ha Galaksi` · `LRGB Ha` · `H-alpha galaxy` · `workflow` · `iş akışı` · `image processing` · `LRGB` · `Ha`
+
 ## Amaç
 
 Natural broadband galaxy color'u korurken Ha star-forming regions sinyalini kontrollü eklemek; M31 tipi hedeflerde dust lane ve star color'u bozmamak.

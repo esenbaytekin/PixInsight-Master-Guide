@@ -1,5 +1,9 @@
 # Preview, Clone ve History Explorer
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `Preview, Clone ve History` · `PixInsight` · `arayüz` · `workflow`
+
 **Durum: Tamamlandı — Faz 1A**
 
 ## Amaç

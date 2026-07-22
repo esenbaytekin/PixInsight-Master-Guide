@@ -1,5 +1,10 @@
 # ColorMask
 
+!!! info "Sayfa Bilgisi"
+    **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
+    **Anahtar kelimeler:** `ColorMask` · `Color Mask` · `mask` · `maske` · `selective processing`
+    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+
 ## Amaç
 
 ColorMask, belirli bir hue aralığını saturation ve intensity koşullarıyla seçerek renk temelli grayscale maske üretir. Amaç yalnız “kırmızıyı seçmek” değil; hedef rengin komşu hue'larla geçişini ve düşük saturation bölgelerindeki belirsizliği yönetmektir.
