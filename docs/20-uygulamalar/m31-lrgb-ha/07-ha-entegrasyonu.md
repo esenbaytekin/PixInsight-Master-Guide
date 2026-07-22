@@ -1,87 +1,44 @@
-# Ha Entegrasyonu
+# M31: Ha Entegrasyonu
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Ha Entegrasyonu` · `case study` · `uygulama` · `end-to-end workflow` · `Ha`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Expert · **Tahmini okuma:** 7 dk
+    **Anahtar kelimeler:** `M31 Ha` · `HaRGB` · `HII mask` · `PixelMath` · `star color`
 
 ## Amaç
 
-Bu bölüm, Ha Entegrasyonu konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Ha'yı yalnız güvenilir yıldız oluşum bölgelerine katmak; global red contamination, magenta yıldız ve halo üretmemek.
 
-## Ne zaman kullanılır?
+## Başlamadan önce
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+LRGB baseline tamamlanmış; Ha geometry, scale, PSF, noise ve stretch state açısından uyumlu olmalıdır. Ha yapısı noise'dan ayrılamıyorsa bu aşama atlanır.
 
-## Ne zaman kullanılmaz?
+## Adım adım karar noktaları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+1. Ha içindeki continuum/yıldız katkısı ile HII yapısını ayıran maskeyi üretin; maskeyi görüntü üzerinde değil ayrı görünümde inceleyin.
+2. Maskenin yıldızları ve galaksi continuum'unu gereksiz seçmediğini %100 crop'ta doğrulayın.
+3. Formül kullanılıyorsa input'ları, output intent'i, linear/nonlinear state'i, normalization varsayımını ve clipping riskini kaydedin; canonical formül açıklaması [PixelMath LRGB](../../08-lrgb/pixelmath-lrgb.md) sayfasındadır.
+4. Universal blend yüzdesi kullanmayın. Katkıyı clone serisinde artırıp yalnız HII morfolojisinin değiştiği noktayı bulun.
+5. Broadband star color için exclusion mask veya starless dalını değerlendirin; star recombination sonrası black halo kontrolü yapın.
 
-## Ön koşullar
+| Belirti | Kök neden adayı | Düzeltici dal |
+|---|---|---|
+| Tüm galaksi kırmızı | Global Ha / geniş maske | Maskeyi daralt, normalization'ı kontrol et |
+| Magenta veya kırmızı yıldız | Stellar Ha contribution | Star exclusion / starless dal |
+| Neon HII knots | Katkı veya contrast fazla | Blend'i azalt, LRGB baseline'a dön |
+| Ha kayboluyor | Maske çok kısıtlı veya sinyal zayıf | Maskeyi ve master SNR'ını ayır |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Kalite kontrol ve ne zaman durmalı?
 
-## PixInsight menü yolu
+HII bölgeleri artarken core, dust lane, halo ve yıldız rengi değişmiyorsa katkı kabul edilir. Ha etkisini görmek için saturation veya contrast zorlamak gerekiyorsa veri kanıtı yetersiz olabilir; LRGB-only final geçerli sonuçtur.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Görsel kanıt planı
 
-## Parametreler
+Ha master, HII maskesi, star exclusion maskesi, LRGB/HaLRGB tam görüntü ve HII/star %100 crop çiftleri.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## İlgili kavramlar
 
-## Uygulama adımları
+[Ha Entegrasyonu](../../09-narrowband/hargb.md) · [Maskeler](../../11-maskeler/index.md) · [Starless Processing](../../09-narrowband/starless-processing.md)
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Önceki / Sonraki
 
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← LRGB](06-lrgb.md)
-
-## Sonraki Bölüm
-
-[Final →](08-final.md)
-
-## Kullanılan Süreçler
-
-- [PixelMath](../../10-pixelmath/kanal-karisimlari.md)
-- [StarMask](../../11-maskeler/star-mask.md)
-- [ColorMask](../../11-maskeler/color-mask.md)
+[← LRGB](06-lrgb.md) · [Final →](08-final.md)

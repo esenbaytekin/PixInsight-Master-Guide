@@ -200,6 +200,18 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 - Starless processing bir workflow stratejisidir; fiziksel sahnenin literal decomposition'ı olarak sunulmaz.
 - Her narrowband kavramının tek canonical owner'ı bulunur.
 
+## İş Akışı Yazım Standardı
+
+- Workflow sayfası process listesi değil; girdi varsayımı, gözlenebilir kanıt, karar, alternatif, başarısızlık işareti ve geçiş ölçütü zinciridir.
+- Her önemli aşama “neden gerekli?”, “hangi kanıtla gerekli?”, “hangi state'te uygulanır?”, “aşırı işlem nasıl görünür?” ve “atlanırsa ne olur?” sorularını yanıtlar.
+- Generic workflow genel karar mimarisinin; project-specific workflow ise dataset facts, o projedeki kararlar ve kanıt kapılarının canonical sahibidir.
+- Dataset fact ile hedefe ilişkin genel bilgi ayrılır. Repository kaydında olmayan kamera, optik, filter, poz veya integration süresi tahmin edilmez; eksik kayıt açıkça belirtilir.
+- Process parametreleri workflow içinde yeniden belgelenmez; canonical process sayfasına bağlantı verilir.
+- Her proje aşamasında beklenen ara sonuç, başarısızlık işareti, geri dönüş noktası ve “ne zaman durmalı?” ölçütü bulunur.
+- Formül; input, output intent, linear/nonlinear state, normalization varsayımı, dynamic-range davranışı ve clipping riski olmadan workflow'a eklenmez.
+- Visual evidence plan; tam görüntü, sabit koordinatlı yüzde 100 crop, gerekli model/mask ve önce/sonra çiftlerini tanımlar. Henüz olmayan görsel, sonucu doğrulamış gibi anlatılmaz.
+- Final kalite kapısı en az clipping, background, star/halo, noise, yapı sürekliliği ve export kaydını kapsar.
+
 ## Navigasyon ve Legacy Sayfalar
 
 Navigasyon yalnız canonical sayfaları içerir. `docs/05-renk-kalibrasyonu/` altındaki kısa yönlendirmeler eski URL'leri korumak için tutulur; ikinci bir Color Calibration ağacı değildir. Yeni içerik ve yeni bağlantılar yalnız `docs/05-color-calibration/` hedeflerine yazılır.

@@ -1,87 +1,50 @@
-# Maskeler
+# NGC 6888: Maske Stratejisi
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Maskeler` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Expert · **Tahmini okuma:** 7 dk
+    **Anahtar kelimeler:** `NGC 6888 mask` · `OIII mask` · `RangeSelection` · `mask polarity` · `star mask`
 
 ## Amaç
 
-Bu bölüm, Maskeler konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+OIII shell, bright Ha, stars ve background için hangi bölgenin seçildiğini açıkça gösteren; işlem polaritesi doğrulanmış maskeler kurmak.
 
-## Ne zaman kullanılır?
+## Adım adım karar noktaları
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+1. Her maskeye tek görev verin: OIII protection, background protection, star exclusion veya structure selection.
+2. Maskeyi görünür hale getirip siyah/beyaz/gri tonların hangi etkiyi temsil ettiğini küçük bir test işlemiyle doğrulayın.
+3. OIII maskesini yalnız parlaklık kopyası yapmayın; gerçek shell morfolojisi ile noise blotch'larını %100 ölçekte ayırın.
+4. Feathering/scale, hedef yapının sınırını kesmeyecek kadar geniş; unrelated background'ı seçmeyecek kadar sınırlı olmalıdır.
+5. Maskeyi uyguladıktan sonra düşük etkili test yapın ve maskesiz clone ile kıyaslayın.
 
-## Ne zaman kullanılmaz?
+## Tanı dalları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+### Maske tamamen beyaz görünüyor
 
-## Ön koşullar
+Range/transfer aralığı görüntünün tamamını seçiyor olabilir. Histogramı ve maskenin gerçek pixel aralığını inceleyin; yalnız STF görünümüne güvenmeyin. Kaynağın stretch state'i ile maske üretim varsayımını eşleştirin.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+### Maske sonrası görüntü kırmızı oluyor
 
-## PixInsight menü yolu
+Önce bunun maskenin görüntülenmesi/overlay'i mi, yanlış image view'a uygulanması mı, yoksa yanlış polarity nedeniyle işlemin tüm red-dominant alana uygulanması mı olduğunu ayırın. Maskeyi kaldırıp clone ile karşılaştırmadan color düzeltmesi eklemeyin.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+| Maske | Seçmesi gereken | Seçmemesi gereken | Kanıt |
+|---|---|---|---|
+| OIII | Güvenilir shell/outer structure | Random background noise | Mask + OIII crop |
+| Background | Signal dışı zemin | Nebula uzantısı | Full-frame overlay |
+| Star | Yıldız çekirdeği/halo hedefi | Nebula knots | Star/nebula crop |
+| Structure | İşlenecek ölçek | Core clipping alanı | İşlem öncesi/sonrası |
 
-## Parametreler
+## Ne zaman durmalı?
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+Maskenin neyi seçtiğini tek cümle ve bir görselle gösteremiyorsanız işlem uygulamayın. All-white/all-black maske veya yanlış polarity çözülmeden OIII koruma aşamasına geçmeyin.
 
-## Uygulama adımları
+## Görsel kanıt planı
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+Her maskenin grayscale görünümü, overlay'i, ters polarity testi ve shell/background/star %100 crop'u.
 
-## Beklenen sonuç
+## İlgili kavramlar ve process sayfaları
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+[Maskeler](../../11-maskeler/index.md) · [RangeMask](../../11-maskeler/range-mask.md) · [StarMask](../../11-maskeler/star-mask.md) · [Narrowband Mask](../../09-narrowband/mask-strategy.md)
 
-## Sık yapılan hatalar
+## Önceki / Sonraki
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [NGC 6888 SHO](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← SHO Kombinasyonu](03-sho-kombinasyonu.md)
-
-## Sonraki Bölüm
-
-[OIII Koruma →](05-oiii-koruma.md)
-
-## Kullanılan Süreçler
-
-- [RangeMask](../../11-maskeler/range-mask.md)
-- [StarMask](../../11-maskeler/star-mask.md)
-- [ColorMask](../../11-maskeler/color-mask.md)
+[← HOO/SHO](03-sho-kombinasyonu.md) · [OIII koruma →](05-oiii-koruma.md)

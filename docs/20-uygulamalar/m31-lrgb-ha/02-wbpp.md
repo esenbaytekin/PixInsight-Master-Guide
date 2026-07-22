@@ -1,88 +1,51 @@
-# WBPP
+# M31: Kalibrasyon ve Entegrasyon Kapısı
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `WBPP` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31 WBPP` · `kalibrasyon` · `entegrasyon` · `rejection` · `weighting`
 
 ## Amaç
 
-Bu bölüm, WBPP konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+LRGB ve Ha master'larını sonraki karşılaştırmaları geçerli kılacak kalibrasyon, registration ve integration durumuna getirmek. Bu sayfa WBPP parametrelerini tekrar etmez; [WBPP](../../03-kalibrasyon/wbpp.md) canonical sahibidir.
 
-## Ne zaman kullanılır?
+## Gerekli giriş verileri
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Light dosyaları, acquisition koşullarıyla eşleşen calibration masters veya bunları üretecek kareler, filter kimliği ve seçilmiş registration reference. Eksik calibration verisi, “WBPP tamamlandı” etiketiyle gizlenmez.
 
-## Ne zaman kullanılmaz?
+## Adım adım karar noktaları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+1. Dosyaları filter ve exposure metadata'ya göre gruplandırın; yanlış grubu düzeltmeden çalıştırmayın.
+2. Calibration sonrası tek kareleri residual amp glow, dust shadow, hot/cold pixel ve pedestal/clipping açısından inceleyin.
+3. Registration reference'ı yalnız en parlak kare diye değil star profile, distortion ve coverage ile seçin.
+4. Integration weight ve rejection'ı subframe sayısı, SNR ve artefakt türüne göre değerlendirin; tek algoritmayı evrensel ilan etmeyin.
+5. Rejection maps üzerinde uydu izi giderilmiş mi, gerçek core veya yıldız yapısı reddedilmiş mi kontrol edin.
 
-## Ön koşullar
+| Kapı | Geçer | Kalırsa yapılacak |
+|---|---|---|
+| Calibration | Sabit desen ve optik izler kontrol altında | Master eşleşmesi / calibration ayarı |
+| Registration | Yıldız ve frame geometry uyumlu | Reference / distortion / interpolation incelemesi |
+| Integration | Rejection gerçek artefaktı ayırıyor | Rejection ve weight stratejisi |
+| Master karşılaştırma | Kanallar tanımlı ve lineer | Metadata / dosya eşleme düzeltmesi |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Sık görülen hatalar ve sorun giderme
 
-## PixInsight menü yolu
+- **Walking noise:** Final master'da yönlü iz varsa yalnız denoise etmeyin; dither ve rejection geçmişini değerlendirin.
+- **Uydu izi:** Rejection map'te iz yoksa subframe sayısı ve rejection uygunluğunu inceleyin.
+- **Şişmiş Ha yıldızları:** Seeing/filter halo/registration ayrımını sonraki blend'den önce yapın.
+- **Düşük kaliteli L subframe:** Weight'in gerçekten düşürüp düşürmediğini ölçün; parlaklığı kalite sanmayın.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Beklenen ara sonuç ve durma ölçütü
 
-## Parametreler
+Beş lineer master ortak geometry'ye sahip; rejection, edge ve star crop kontrollerini geçmiş olmalıdır. Gerçek yapı rejection map'e giriyorsa veya kanal geometry'si uyuşmuyorsa ilerlemeyin.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Görsel kanıt planı
 
-## Uygulama adımları
+Calibration öncesi/sonrası crop, registration blink, weight dağılımı, low/high rejection maps ve beş master paneli.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## İlgili process sayfaları
 
-## Beklenen sonuç
+[ImageCalibration](../../03-kalibrasyon/image-calibration.md) · [CosmeticCorrection](../../03-kalibrasyon/cosmetic-correction.md) · [StarAlignment](../../03-kalibrasyon/star-alignment.md) · [ImageIntegration](../../03-kalibrasyon/image-integration.md)
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Önceki / Sonraki
 
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Sonraki Bölüm
-
-[DBE ve SPCC →](03-dbe-spcc.md)
-
-## Kullanılan Süreçler
-
-- [WBPP](../../03-kalibrasyon/wbpp.md)
-- [CosmeticCorrection](../../03-kalibrasyon/cosmetic-correction.md)
-- [StarAlignment](../../03-kalibrasyon/star-alignment.md)
-- [ImageIntegration](../../03-kalibrasyon/image-integration.md)
+[← Veri ve hedef](01-veri-ve-hedef.md) · [DBE ve SPCC →](03-dbe-spcc.md)

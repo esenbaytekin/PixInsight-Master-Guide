@@ -1,87 +1,57 @@
-# Veri ve Hedef
+# M31: Veri ve Hedef Kararları
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Veri ve Hedef` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31 veri` · `LRGB` · `Ha` · `dataset` · `işleme hedefi`
 
 ## Amaç
 
-Bu bölüm, Veri ve Hedef konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+İşleme başlamadan önce gözlem gerçeğini, genel workflow ilkesini ve bu projede alınacak kararı birbirinden ayırmak.
 
-## Ne zaman kullanılır?
+## Veri seti özeti
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+| Alan | Proje kaydı |
+|---|---|
+| Hedef | M31 |
+| Acquisition type | Mono LRGB + Ha varsayımı; dosya başlıklarıyla doğrulanmalı |
+| Kanallar | L, R, G, B, Ha bekleniyor |
+| Poz / integration | Repository kaydında mevcut değil |
+| Optik / kamera / filter set | Repository kaydında mevcut değil |
+| Capture conditions | Repository kaydında mevcut değil |
+| Data limitations | Kanal SNR, seeing, clipping ve gradient ölçülmeli |
+| Processing goal | Doğal LRGB, yerel Ha, korunan core/dust/star color |
 
-## Ne zaman kullanılmaz?
+!!! warning "Eksik veri"
+    Eksik alanlar tahmin edilmez. FITS/XISF metadata, acquisition log ve master ölçümleriyle doldurulmadan kamera veya poz süresine bağlı tavsiye verilmez.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Başlamadan önce
 
-## Ön koşullar
+1. Channel identity, bit depth, geometry ve linear state'i kaydedin.
+2. L/R/G/B/Ha master'larını aynı STF karşılaştırmasıyla inceleyin; STF yalnız ekrandaki görünümü değiştirir.
+3. Clipped core, satellite trail, gradient, PSF ve gürültü farklarını ayrı kaydedin.
+4. “Ha eklemek” hedefini, tüm diski kırmızılaştırmak değil HII bölgelerini ayırmak olarak tanımlayın.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Karar noktaları
 
-## PixInsight menü yolu
+| Kanıt | Karar | Alternatif |
+|---|---|---|
+| Ha'da yapı noise'dan ayrılıyor | Ha dalını açık tut | Daha fazla veri veya LRGB-only |
+| Core ham master'da clipped | Kısa poz kaynağı ara | Core'u yapay olarak karartma |
+| Kanallar farklı geometry | Registration planla | Birleştirmeyi durdur |
+| Bir kanal belirgin düşük SNR | Kanal bazlı işleme | Aynı parametreleri kopyalama |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Kalite kontrol ve durma ölçütü
 
-## Parametreler
+Kanal kimlikleri ve eksikler kayıtlı, processing goal ölçülebilir ve geri dönüş checkpoint'leri adlandırılmışsa ilerleyin. Kanalın ne olduğu veya lineer durumu belirsizse durun.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Görsel kanıt planı
 
-## Uygulama adımları
+Beş master'ın aynı ölçekte tam görüntüsü; core, dust lane ve yıldız alanından %100 crop; histogram ve metadata paneli.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## İlgili kavramlar ve sorun giderme
 
-## Beklenen sonuç
+[Lineer ve Nonlineer](../../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) · [Signal ve Noise](../../02-pixinsight-temelleri/sinyal-ve-gurultu.md) · [Veri Kalitesi](../../15-workflows/data-quality-strategies.md)
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Önceki / Sonraki
 
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [WBPP](02-wbpp.md)
-
-## Önceki Bölüm
-
-[← M31 LRGB + Ha](index.md)
-
-## Sonraki Bölüm
-
-[WBPP →](02-wbpp.md)
-
-## Kullanılan Süreçler
-
-- [WBPP](../../03-kalibrasyon/wbpp.md)
-- [ImageCalibration](../../03-kalibrasyon/image-calibration.md)
-- [ImageIntegration](../../03-kalibrasyon/image-integration.md)
+[← M31 projesi](index.md) · [WBPP →](02-wbpp.md)

@@ -1,86 +1,43 @@
-# Stretch
+# M31: Stretch Stratejisi
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Stretch` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31 stretch` · `core protection` · `dust lane` · `RGB` · `luminance`
 
 ## Amaç
 
-Bu bölüm, Stretch konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+RGB ile luminance'ı, çekirdeği clip etmeden ve dust lane ton ayrımını sıkıştırmadan LRGB birleşimine hazırlamak.
 
-## Ne zaman kullanılır?
+## Başlamadan önce
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Görüntülerin lineer state'i kesin olmalı; STF görünümü kalıcı stretch sanılmamalıdır. Black point ve highlight kararları histogram ile doğrulanır.
 
-## Ne zaman kullanılmaz?
+## Karar noktaları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+1. RGB ve L için ayrı clone/checkpoint üretin; aynı stretch'i kopyalamak zorunlu değildir.
+2. Core histogramda üst sınıra dayanıyorsa daha kademeli [GHS](../../07-stretch/generalized-hyperbolic-stretch.md) veya kontrollü [HistogramTransformation](../../07-stretch/histogram-transformation.md) dalı seçin.
+3. Dust lane ile halo arasındaki orta ton ayrımını tam görüntüde izleyin; sırf çarpıcı görünüm için black point'i taşımayın.
+4. RGB'yi color taşıyıcısı, L'yi structure taşıyıcısı olarak hazırlayın; iki görüntinin tonal uyumu LRGBCombination öncesi sınanır.
 
-## Ön koşullar
+| Kontrol | Geçer | Başarısızlık |
+|---|---|---|
+| Core | Ton katmanları seçiliyor | Düz beyaz alan / clipping |
+| Dust lane | İnce yapı sürekliliği var | Siyah ezilme veya yapay kontrast |
+| Background | Noise var ama black point altında kesilmiyor | Lekeli / tamamen siyah zemin |
+| RGB | Star color ayrımı sürüyor | Doygun çekirdek veya renksiz yıldız |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Alternatif yollar ve durma ölçütü
 
-## PixInsight menü yolu
+L ile RGB farklı tonal tepki veriyorsa birleşimden önce ayrı stretch sürdürülür. Core korunuyor, dust lane okunuyor ve hiçbir kanal clip olmuyorsa daha dramatik stretch yerine LRGB testine geçin.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Görsel kanıt planı
 
-## Parametreler
+RGB ve L histogramları, STF referansı, kalıcı stretch sonrası tam görüntü, core/dust/background %100 crop.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## İlgili kavramlar
 
-## Uygulama adımları
+[Lineer ve Nonlineer](../../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) · [STF ve HistogramTransformation](../../02-pixinsight-temelleri/stf.md)
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Önceki / Sonraki
 
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← BlurX ve NoiseX](04-blurx-noisex.md)
-
-## Sonraki Bölüm
-
-[LRGB →](06-lrgb.md)
-
-## Kullanılan Süreçler
-
-- [HistogramTransformation](../../07-stretch/histogram-transformation.md)
-- [GeneralizedHyperbolicStretch](../../07-stretch/generalized-hyperbolic-stretch.md)
+[← BlurX ve NoiseX](04-blurx-noisex.md) · [LRGB →](06-lrgb.md)

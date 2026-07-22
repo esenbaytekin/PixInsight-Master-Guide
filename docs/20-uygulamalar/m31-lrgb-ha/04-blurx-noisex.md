@@ -1,86 +1,44 @@
-# BlurX ve NoiseX
+# M31: Lineer Restorasyon ve Gürültü Kararı
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `BlurX ve NoiseX` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31` · `BlurXTerminator` · `NoiseXTerminator` · `lineer` · `restoration`
 
 ## Amaç
 
-Bu bölüm, BlurX ve NoiseX konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+BlurXTerminator ve NoiseXTerminator'ı zorunlu reçete değil, ölçülen PSF ve noise sorununa verilen geri alınabilir kararlar olarak kullanmak.
 
-## Ne zaman kullanılır?
+## Gerekli durum
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Gradient ve renk hazırlığı kontrol edilmiş lineer master'lar gerekir. Plugin/model sürümü ve uygulama sırası checkpoint notuna yazılır; PixInsight sürümü tek başına plugin davranışını tanımlamaz.
 
-## Ne zaman kullanılmaz?
+## Adım adım karar noktaları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+1. Tam görüntü ile core, dust lane ve farklı parlaklıktaki star crop'larını kaydedin.
+2. Restorasyon ihtiyacını yıldız profili ve yapı sürekliliğiyle gösterin; ihtiyaç yoksa BlurXTerminator'ı atlayın.
+3. Her kanalı ayrı değerlendirin. Ha veya düşük SNR renk kanalına L ile aynı ayarı kopyalamayın.
+4. Noise azaltımında zayıf dust ve HII yapısının sürekliliğini kontrol edin; “pürüzsüz background” hedef değildir.
+5. İşlemleri ayrı clone/checkpoint'lerde karşılaştırın; sonraki stretch'te artefakt büyüyeceği için lineer aşamada karar verin.
 
-## Ön koşullar
+| Belirti | Olası aşırılık | Düzeltici dal |
+|---|---|---|
+| Koyu yıldız halkası | Restorasyon / PSF uyumsuzluğu | Etkiyi azalt, model ve girdiyi doğrula |
+| Dust lane plastiksi | Noise reduction fazla | Daha koruyucu ayar veya işlemi atla |
+| Ha knot'ları silik | Zayıf sinyal noise sanılmış | Ha kanalını yeniden değerlendir |
+| Kanal keskinlikleri ayrışıyor | Aynı ayarın kopyalanması | Kanal bazlı karar |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Kalite kontrol ve ne zaman durmalı?
 
-## PixInsight menü yolu
+İşlemli görüntü doğal yıldız profili, kesintisiz dust yapısı ve residual noise karakteri gösteriyorsa ilerleyin. Kazanç yalnız %100 crop'ta görünürken halo veya yapay doku üretiyorsa işlemi atlayın.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Görsel kanıt planı
 
-## Parametreler
+Her process için kapalı/açık tam görüntü ve aynı koordinattan core, dust ve yıldız %100 crop üçlüsü.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## İlgili process sayfaları
 
-## Uygulama adımları
+[BlurXTerminator](../../06-ai-eklentileri/blurxterminator.md) · [NoiseXTerminator](../../06-ai-eklentileri/noisexterminator.md) · [Signal ve Noise](../../02-pixinsight-temelleri/sinyal-ve-gurultu.md)
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Önceki / Sonraki
 
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← DBE ve SPCC](03-dbe-spcc.md)
-
-## Sonraki Bölüm
-
-[Stretch →](05-stretch.md)
-
-## Kullanılan Süreçler
-
-- [BlurXTerminator](../../06-ai-eklentileri/blurxterminator.md)
-- [NoiseXTerminator](../../06-ai-eklentileri/noisexterminator.md)
+[← DBE ve SPCC](03-dbe-spcc.md) · [Stretch →](05-stretch.md)

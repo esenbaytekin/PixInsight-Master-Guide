@@ -1,87 +1,54 @@
-# Veri ve Hedef
+# NGC 6888: Veri ve Hedef Kararları
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Veri ve Hedef` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `NGC 6888 veri` · `Ha` · `OIII` · `SII` · `weak channel`
 
 ## Amaç
 
-Bu bölüm, Veri ve Hedef konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Hedefe ilişkin genel bilgi ile gerçek acquisition kaydını ayırmak ve zayıf OIII iddiasını görüntü kanıtıyla sınamak.
 
-## Ne zaman kullanılır?
+## Veri seti özeti
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+| Alan | Proje kaydı |
+|---|---|
+| Target | NGC 6888 |
+| Acquisition type | Mono narrowband varsayımı; metadata ile doğrulanmalı |
+| Channels | Ha ve OIII bekleniyor; SII varlığı doğrulanmalı |
+| Exposure / integration | Repository kaydında mevcut değil |
+| Optical system / camera / filters | Repository kaydında mevcut değil |
+| Capture conditions | Repository kaydında mevcut değil |
+| Data limitations | OIII düşük SNR senaryosu; ölçüm gerekir |
+| Processing goal | OIII morfolojisini koruyan HOO veya veri uygunsa SHO |
 
-## Ne zaman kullanılmaz?
+!!! warning "Proje gerçeği"
+    NGC 6888'in hedef özellikleri, bu veri setinde OIII'nin gerçekten ölçüldüğü anlamına gelmez. Kanal master'ı ve acquisition kaydı kanıtın sahibidir.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Başlamadan önce
 
-## Ön koşullar
+Channel identity, lineer state, geometry, clipping, gradient, star halo, noise ve OIII morfolojisini kaydedin. Aynı STF görünümü yalnız görsel karşılaştırmadır; sayısal normalization değildir.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Karar noktaları
 
-## PixInsight menü yolu
+| Kanıt | Karar | Alternatif |
+|---|---|---|
+| OIII shell/outer structure noise'dan ayrılıyor | OIII dalına devam | Daha fazla veri / Ha-only |
+| SII güvenilir yapı taşıyor | SHO adayını aç | HOO |
+| Kanal geometry farklı | Registration düzelt | Combine etme |
+| Halo yalnız bir filter'da | Kanal/star planında ayır | Global blur/denoise ile gizleme |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Kalite kontrol ve durma ölçütü
 
-## Parametreler
+Kanal kimliği ve fiziksel anlamı açık, eksik dataset facts işaretli ve OIII yapısı sabit crop'ta gösterilebiliyorsa ilerleyin. OIII yalnız agresif STF ile rastgele blotch olarak görünüyorsa palette'e geçmeyin.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Görsel kanıt planı
 
-## Uygulama adımları
+Aynı koordinatta Ha/OIII/SII full-frame ve %100 shell/background/star crop; histogram ve metadata.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## İlgili kavramlar
 
-## Beklenen sonuç
+[SII–Ha–OIII](../../09-narrowband/index.md) · [Signal ve Noise](../../02-pixinsight-temelleri/sinyal-ve-gurultu.md) · [Narrowband Genel Bakış](../../09-narrowband/index.md)
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Önceki / Sonraki
 
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [NGC 6888 SHO](index.md)
-- [Kanal Hazırlama](02-kanal-hazirlama.md)
-
-## Önceki Bölüm
-
-[← NGC 6888 SHO](index.md)
-
-## Sonraki Bölüm
-
-[Kanal Hazırlama →](02-kanal-hazirlama.md)
-
-## Kullanılan Süreçler
-
-- [WBPP](../../03-kalibrasyon/wbpp.md)
-- [ImageCalibration](../../03-kalibrasyon/image-calibration.md)
-- [ImageIntegration](../../03-kalibrasyon/image-integration.md)
+[← NGC 6888 projesi](index.md) · [Kanal hazırlama →](02-kanal-hazirlama.md)
