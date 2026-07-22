@@ -12,6 +12,8 @@ SNR ve dinamik aralık birbirine bağlıdır fakat aynı kavram değildir. Uzun 
 
 ## Temel kavramlar
 
+Gürültü türleri, pattern noise, quantization, uzamsal ölçek ve stretch sonrası görünürlük için ayrı canonical sayfa [Sinyal ve Gürültü](../02-pixinsight-temelleri/sinyal-ve-gurultu.md) kullanılmalıdır. Bu sayfa SNR, integration time ve acquisition dinamik aralığına odaklanır.
+
 ### Sinyal
 
 Sinyal, yorumlamak istediğimiz hedef kaynaklı ölçümdür. Bir emisyon nebulasında H-alpha fotonları, bir galakside yıldız popülasyonu ve tozdan gelen broadband ışık veya bir yıldızın fotometrik akısı örnek olabilir. “Arka plan” her zaman gereksiz değildir; bilimsel amaca bağlı olarak bir bileşen başka bir çalışmada sinyal sayılabilir.

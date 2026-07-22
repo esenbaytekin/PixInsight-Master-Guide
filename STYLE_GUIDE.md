@@ -186,6 +186,8 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 ## Eğitim Katmanları
 
 - Foundations concept sayfaları **“Bu nedir?”** sorusunu yanıtlar; belirli bir process'in arayüzünü veya parametre reçetesini tekrar etmez.
+- Evrensel teori process dokümantasyonu içinde saklanmaz; concept sayfası teoriye, process sayfası arayüz ve uygulamaya karşılıklı bağlantı verir.
+- Concept ve onu uygulayan process aynı prosedürü veya aynı uzun teori açıklamasını tekrarlamaz; her kavram için tek canonical sahip tanımlanır.
 - Process sayfaları **“Yazılımda nasıl kullanılır?”** sorusunu yanıtlar ve gerekli kavramsal ön bilgiye bağlantı verir.
 - Workflow sayfaları **“Hangi durumda ve hangi sırayla kullanılır?”** sorusunu yanıtlar; process belgelerinin ikinci kopyası olmaz.
 - Troubleshooting sayfaları **“Ne yanlış gitti?”** sorusunu belirti, neden, doğrulama ve recovery sırasıyla ele alır.

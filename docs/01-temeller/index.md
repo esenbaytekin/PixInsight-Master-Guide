@@ -13,7 +13,7 @@ Bir PixInsight işlemini hangi düğmeyle çalıştıracağını bilmek, doğru 
 | Domain | Temel soru | Kapsam | Kapsam dışı |
 | --- | --- | --- | --- |
 | Astrofotoğraf Temelleri | Veri nasıl oluşur? | Kamera, filtre, signal-to-noise ratio, dynamic range ve çekim planlama | PixInsight process kullanımı |
-| Görüntü İşleme Temelleri | Sayısal görüntü nasıl değişir? | Linear/nonlinear durum, histogram, signal, noise, stretch, gradient ve mask kavramları | Belirli process için parametre reçetesi |
+| Görüntü İşleme Temelleri | Sayısal görüntü nasıl değişir? | Lineer/nonlineer durum, histogram, sinyal, gürültü, stretch, renk kanalları ve yerel kontrast | Belirli process için parametre reçetesi |
 | PixInsight Temelleri | Yazılım bu veriyi nasıl temsil eder ve yönetir? | Workspace, image view, Preview, STF, History Explorer ve process instance davranışı | Hedefe özel astrofotoğraf reçetesi |
 
 ```mermaid
@@ -75,9 +75,14 @@ Yeni başlayanlar şu sırayı izlemelidir:
 2. [Filtreler](filtreler.md)
 3. [SNR ve Dinamik Aralık](snr-ve-dinamik-aralik.md)
 4. [Çekim Planlama](cekim-planlama.md)
-5. [Histogram ve Tonal Dönüşüm](../02-pixinsight-temelleri/histogram.md)
-6. [PixInsight Temelleri](../02-pixinsight-temelleri/index.md)
-7. [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md)
+5. [Histogram ve Ton Dağılımı](../02-pixinsight-temelleri/histogram.md)
+6. [Lineer ve Nonlineer Görüntü](../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md)
+7. [Stretch Temelleri](../02-pixinsight-temelleri/stretch-temelleri.md)
+8. [Sinyal ve Gürültü](../02-pixinsight-temelleri/sinyal-ve-gurultu.md)
+9. [Renk ve Kanallar](../02-pixinsight-temelleri/renk-ve-kanallar.md)
+10. [Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md)
+11. [PixInsight Temelleri](../02-pixinsight-temelleri/index.md)
+12. [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md)
 
 ## Önceki Bölüm
 

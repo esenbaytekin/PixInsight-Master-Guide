@@ -3,7 +3,7 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Maskeler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
     **Anahtar kelimeler:** `Maske Mantığı` · `mask` · `maske` · `selective processing`
-    **Önerilen ön bilgiler:** [HistogramTransformation](../07-stretch/histogram-transformation.md) · [PixelMath Temelleri](../10-pixelmath/temeller.md)
+    **Önerilen ön bilgiler:** [Histogram ve Ton Dağılımı](../02-pixinsight-temelleri/histogram.md) · [Lineer ve Nonlineer Görüntü](../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md)
 
 ## Amaç
 
@@ -25,6 +25,20 @@ Bir maske pikseli normalize edilmiş olarak `m ∈ [0,1]` aralığında düşün
 
 !!! note
     PixInsight'ın kırmızı maske overlay'i bir görselleştirmedir. Kırmızı rengin yoğunluğu maske görüntüsünün gerçek piksel değerleriyle karıştırılmamalıdır.
+
+```mermaid
+flowchart LR
+    white["Beyaz: tam etki"] --> gray["Gri: kısmi etki"]
+    gray --> black["Siyah: koruma"]
+    invert["Inversion"] --> swap["Etki ve koruma yönü yer değiştirir"]
+```
+
+!!! note "TODO Illustration"
+    **Eğitim amacı:** Maske polarity, partial protection ve sert/yumuşak geçiş farkını göstermek.
+    **Gerekli kaynak:** Aynı hedef görüntü üzerinde luminance/range tabanlı gerçek maske.
+    **Durumlar:** Maske görüntüsü, overlay, normal etki, inverted etki.
+    **İşaretleme:** Beyaz, gri, siyah bölgeler; clipping ve gürültülü maske sınırı.
+    **Gerçek proje verisi:** Evet.
 
 ## Binary ve grayscale maske
 
@@ -129,6 +143,8 @@ Matematiksel model kavramsal ve process'ten bağımsızdır. PixInsight 1.9.3'te
 
 ## Ayrıca İnceleyin
 
+- [Sinyal ve Gürültü](../02-pixinsight-temelleri/sinyal-ve-gurultu.md)
+- [Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md)
 - [RangeMask](range-mask.md)
 - [StarMask](star-mask.md)
 - [ColorMask](color-mask.md)

@@ -3,9 +3,7 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Gradient Düzeltme · **Düzey:** Intermediate · **Tahmini okuma:** 7 dk
     **Anahtar kelimeler:** `Gradient Teorisi` · `gradient removal` · `gradient düzeltme` · `background modeling`
-    **Önerilen ön bilgiler:** [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md) · [Gradient Teorisi](gradient-theory.md)
-
-**Durum: Teknik incelemeye hazır — Sprint 2.1**
+    **Önerilen ön bilgiler:** [Lineer ve Nonlineer Görüntü](../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) · [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md)
 
 ## Amaç
 
@@ -66,8 +64,8 @@ corrected ≈ observed ÷ estimated_response
 
 Bu bölme yalnız multiplicative response varsayımı geçerliyse anlamlıdır. Gerçek image’da iki etki birlikte bulunabilir. Flat-field calibration ile gradient removal birbirinin alternatifi değildir; correction seçimi veri ve model kanıtıyla yapılmalıdır.
 
-!!! info "Sprint kapsamı"
-    Subtraction ve Division yöntemlerinin ayrıntılı karşılaştırması Sprint 2.2’de ele alınacaktır. Bu gösterimler yalnız kavramsal ayrımı öğretir; PixInsight algoritmasının eksiksiz tanımı değildir.
+!!! info "Kapsam sınırı"
+    Bu gösterimler kavramsal ayrımı öğretir; PixInsight algoritmalarının eksiksiz tanımı veya parametre rehberi değildir. Uygulama ayrıntısı [Subtraction ve Division](division-vs-subtraction.md) sayfasındadır.
 
 ### Polynomial model mantığı
 
@@ -98,6 +96,19 @@ flowchart TD
 - Narrowband ve broadband kanallarda arka plan yapısı farklı olabilir.
 - Mosaic, wide-field ve güçlü diffuse signal alanlarında güvenilir background bölgeleri azalabilir.
 - Calibration residual’ı ile sky gradient üst üste binebilir.
+
+### Gradient, vignetting ve background neutrality
+
+Light pollution, Moonlight ve optical reflection çoğunlukla alana bağlı additive bileşenler oluşturabilir. Vignetting ve pixel-response farkları ise flat-field calibration ile modellenmesi gereken multiplicative etkiler arasındadır. Hatalı flat uygulaması iki sınıfın birlikte görünmesine yol açabilir.
+
+Background neutrality, seçilen arka plan örneğindeki kanal ilişkisini nötr referansa yaklaştırır; alan boyunca değişen gradient geometrisini kaldırmaz. Bu nedenle neutrality, gradient removal ve flat-field correction birbirinin yerine kullanılmamalıdır.
+
+!!! note "TODO Illustration"
+    **Eğitim amacı:** Gerçek geniş ölçekli nebulosity ile istenmeyen gradienti ayırma güçlüğünü göstermek.
+    **Gerekli kaynak:** IFN veya geniş emisyon içeren gerçek wide-field veri ve aynı alana ait background model.
+    **Durumlar:** Doğrusal görüntü, aday model, düzeltilmiş görüntü.
+    **İşaretleme:** Güvenilir background, gerçek sinyal, reflection ve overfit bölgesi.
+    **Gerçek proje verisi:** Evet.
 
 ### Gradient düzeltmenin sınırları
 
@@ -172,6 +183,8 @@ Bu dosya teorik referanstır; bir PixInsight process’i değildir.
 | Signal preservation | Halo ve diffuse sınırlar korunur | Hedef dış bölgeleri zayıflar |
 
 Polynomial degree veya sample sayısı arttıkça model maliyeti ve overfit riski artabilir. En karmaşık modeli değil, bağımsız tanı kanıtını karşılayan en basit modeli seçin. Uygulama için [Gradient Diagnostics](gradient-diagnostics.md), [ABE](abe.md) ve [DBE](dbe.md) sayfalarını izleyin.
+
+Process kapsamı için ayrıca [GradientCorrection](gradient-correction.md); neutrality ayrımı için [Arka Plan Nötrlüğü](../05-color-calibration/background-neutrality.md) kullanılmalıdır.
 
 ## Sık yapılan hatalar
 

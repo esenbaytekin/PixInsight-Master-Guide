@@ -3,11 +3,13 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Renk Kalibrasyonu · **Düzey:** Intermediate · **Tahmini okuma:** 5 dk
     **Anahtar kelimeler:** `Astronomik Renk Teorisi` · `color calibration` · `renk kalibrasyonu` · `white balance`
-    **Önerilen ön bilgiler:** [Gradient Tanısı](../04-gradient/gradient-diagnostics.md) · [Astronomik Renk Teorisi](color-theory.md)
+    **Önerilen ön bilgiler:** [Renk ve Kanallar](../02-pixinsight-temelleri/renk-ve-kanallar.md) · [Gradient Tanısı](../04-gradient/gradient-diagnostics.md)
 
 ## Amaç
 
 Gökyüzünden gelen spektral sinyalin sensor, filter, calibration, RGB temsil, stretch ve display zincirinde nasıl dönüştüğünü sade bir modelle açıklamak.
+
+Evrensel RGB, luminance, chrominance, channel separation ve synthetic luminance kavramları [Renk ve Kanallar](../02-pixinsight-temelleri/renk-ve-kanallar.md) sayfasına aittir. Bu sayfa astronomik spektrum, instrument response ve color calibration bağlamıyla sınırlıdır.
 
 ## Kavramsal açıklama
 
@@ -192,6 +194,7 @@ flowchart TD
 
 ## Ayrıca İnceleyin
 
+- [Renk ve Kanallar](../02-pixinsight-temelleri/renk-ve-kanallar.md)
 - [White Balance](white-balance.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [PixInsight Temelleri — STF](../02-pixinsight-temelleri/stf.md)

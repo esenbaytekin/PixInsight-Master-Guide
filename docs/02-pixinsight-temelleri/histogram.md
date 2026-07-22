@@ -1,166 +1,132 @@
-# Histogram ve HistogramTransformation
+# Histogram ve Ton Dağılımı
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** PixInsight Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 5 dk
-    **Anahtar kelimeler:** `Histogram` · `HistogramTransformation` · `HT` · `Histogram Transformation` · `PixInsight` · `arayüz` · `workflow`
+    **Kategori:** Görüntü İşleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 10 dk
+    **Anahtar kelimeler:** `histogram` · `ton dağılımı` · `black point` · `white point` · `midtones` · `clipping` · `RGB histogram` · `dynamic range`
 
-**Durum: Tamamlandı — Faz 1A**
+## Bu konu neden önemlidir?
 
-## Amaç
+Histogram, görüntüdeki piksel değerlerinin dağılımını özetler. Bir görüntünün karanlık, düşük kontrastlı veya kırpılmış görünmesinin nedenini araştırırken güçlü bir ölçüm aracıdır; ancak görüntünün nerede hangi yapıyı içerdiğini göstermez. Bu sayfa evrensel histogram okumasını açıklar. PixInsight arayüzü ve slider kullanımı ayrı [HistogramTransformation](../07-stretch/histogram-transformation.md) process sayfasının sorumluluğundadır.
 
-Histogramı image data dağılımının özeti olarak okumak ve HistogramTransformation ile yapılan kalıcı dönüşümün ScreenTransferFunction’dan neden temelden farklı olduğunu açıklamak.
+## Temel kavram
 
-## Kavramsal Açıklama
+Histogram, piksel değerlerini aralıklara (bin) ayırır ve her aralığa kaç örnek düştüğünü sayar.
 
-Histogram, belirli yoğunluk aralıklarına düşen örneklerin frekans dağılımıdır. Histogramın şekli tek başına “iyi görüntü” ölçütü değildir; hedef, kanal, maske, lineerlik ve örnekleme bağlamıyla yorumlanır.
+- **Yatay eksen:** Solda düşük, sağda yüksek piksel değerleri.
+- **Dikey eksen:** Her değer aralığındaki piksel sayısı veya göreli sıklık.
+- **Gölgeler (shadows):** Dağılımın düşük değerli bölgesi.
+- **Orta tonlar (midtones):** Siyah ve beyaz sınırları arasındaki ara değerler.
+- **Parlak alanlar (highlights):** Dağılımın yüksek değerli bölgesi.
 
-**HistogramTransformation (HT), hedef image’ın piksel değerlerini gerçekten değiştirir.** Shadows clipping, midtones ve highlights ayarları uygulandığında yeni örnek değerleri image data’ya yazılır. Tipik bir nonlinear stretch sonrası image artık lineer süreç aşamasında değildir.
-
-**ScreenTransferFunction (STF) ise piksel değerlerini değiştirmez.** Yalnızca aynı tür transfer fonksiyonunu ekran sunumunda kullanabilir. STF’yi kapatmak görünümü geri alır; HT’yi uyguladıktan sonra geri dönüş için Undo, History Explorer, clone veya önceki dosya gerekir.
+!!! note "Ölçek önemlidir"
+    Dikey eksen doğrusal veya logaritmik gösterilebilir. Logaritmik görünüm seyrek histogram kuyruklarını daha görünür kılar; piksel verisini değiştirmez.
 
 ```mermaid
 flowchart LR
-    X["x: kaynak piksel"] --> S["STF T(x)"]
-    S --> DISP["Yalnız display"]
-    X --> H["HistogramTransformation T(x)"]
-    H --> NEW["Yeni piksel değeri"]
-    NEW --> FILE["Kaydedilen işlenmiş data"]
+    black["Siyah sınırı"] --> shadows["Gölgeler"]
+    shadows --> midtones["Orta tonlar"]
+    midtones --> highlights["Parlak alanlar"]
+    highlights --> white["Beyaz sınırı"]
 ```
 
-## Matematiksel Arka Plan (gerekiyorsa)
+## Siyah nokta, beyaz nokta ve kırpılma
 
-Histogram, (N) örneği (B) bin’e ayırır; bin sayımı görüntünün uzamsal düzenini içermez. Aynı histogramı paylaşan iki image görsel olarak farklı olabilir.
+Siyah nokta (black point), en düşük çıktı sınırına; beyaz nokta (white point), en yüksek çıktı sınırına karşılık gelir. Dönüşüm sırasında bu sınırların dışına itilen farklı giriş değerleri aynı çıktı değerine yığılırsa kırpılma (clipping) oluşur. Kırpılan değerler arasındaki ayrım kaybolur.
 
-PixInsight midtones transfer function, kontrol noktaları ({0,0}), ({m,0.5}), ({1,1}) olan rasyonel bir interpolasyondur:
+Histogramın sol veya sağ kenara değmesi tek başına clipping kanıtı değildir. Sensörün doğal sıfırları, kalibrasyon, doygun pikseller ve seçilen görüntüleme ölçeği birlikte incelenmelidir. Histogramla birlikte sayısal readout, kanal kontrolü ve görüntü konumu gerekir.
 
-[
-MTF(m,x)=\frac{(m-1)x}{(2m-1)x-m}
-]
+!!! note "TODO Illustration"
+    **Eğitim amacı:** Sağlıklı histogram kuyruğu ile alt/üst clipping farkını göstermek.
+    **Gerekli kaynak:** Aynı doğrusal astro görüntünün kontrollü kopyaları.
+    **Durumlar:** Orijinal, shadow-clipped ve highlight-clipped.
+    **İşaretleme:** Siyah nokta, beyaz nokta, kaybolan kuyruk ve etkilenen görüntü bölgeleri.
+    **Gerçek proje verisi:** Evet.
 
-uygun parça tanımlarıyla uç noktaları korur. (m=0.5) identity; (m<0.5) midtones’u yükseltir, (m>0.5) düşürür. Shadows ve highlights noktaları giriş aralığını yeniden eşler; clipping seçimi geri döndürülemez bilgi kaybı yaratabilir.
+## Kanal histogramları, luminance ve RGB
 
-## Ne zaman kullanılır?
+R, G ve B histogramları kanalların değer dağılımını ayrı gösterir. Kanalların tepe noktalarının farklı olması otomatik olarak renk hatası değildir; hedef spektrumu ve arka plan da farklı kanal değerleri üretebilir. Buna karşılık tek kanalın sınıra dayanması, birleşik görünüm kabul edilebilir olsa bile kanal bazlı clipping işareti olabilir.
 
-- Lineer image’ı kontrollü biçimde nonlinear aşamaya geçirmek
-- Siyah/beyaz nokta ve midtones dağılımını incelemek
-- STF başlangıç mapping’ini kalıcı dönüşüme aktarmak
-- Kanal bazlı veya RGB/K dönüşümlerini değerlendirmek
-- Önce/sonra histogramını nicel bağlamla karşılaştırmak
+Parlaklık (luminance), RGB kanallarının basit aritmetik ortalaması olmak zorunda değildir; kullanılan renk uzayı ve ağırlık tanımı sonucu etkiler. Bir luminance histogramı renk kanallarındaki bütün ayrıntıları temsil etmez. Renk dengesini yalnız birleşik histogram üzerinden teşhis etmek bu nedenle sınırlıdır.
 
-## Ne zaman kullanılmaz?
+## Dinamik aralığın histogramda dağılımı
 
-- Yalnızca lineer data’yı ekranda görmek için; bunun için STF yeterlidir.
-- Lineer süreçler tamamlanmadan gelişigüzel stretch yapmak için.
-- Arka planı “siyah yapmak” amacıyla sinyal clip etmek için.
-- Histogram şekline bakıp spatial artefact hakkında tek başına karar vermek için.
+Doğrusal deep-sky veride hedef örneklerinin büyük bölümü sayısal aralığın soluna yakın, dar bir bölgede toplanabilir. Bu durum verinin boş olduğu anlamına gelmez. Zayıf sinyal küçük değer farkları içinde kayıtlı olabilir; ekran bunu varsayılan doğrusal sunumla ayıramaz.
 
-## PixInsight Menü Yolu
+Bir stretch, düşük ve orta değerler arasındaki farkları ekranda daha geniş bir aralığa dağıtır. Histogram genişler ve şekil değiştirir. Bu değişim yeni hedef sinyali üretmez; var olan değerlerin temsilini dönüştürür.
 
-`Process > IntensityTransformations > HistogramTransformation`
+## Görüntü verisinde nasıl görünür?
 
-## Parametreler
+| Görünüm | Histogram olasılığı | Ek kontrol |
+|---|---|---|
+| Neredeyse siyah doğrusal görüntü | Dar dağılım sol bölgede | Geçici display stretch ile yapıyı görünür kılın. |
+| Sol kenarda yığılma | Gerçek sıfırlar veya shadow clipping | Sayısal readout ve önceki aşamayla karşılaştırın. |
+| Sağ kenarda yığılma | Doygun yıldızlar veya highlight clipping | Kanalları ve parlak çekirdekleri ayrı inceleyin. |
+| Geniş fakat düz görünüm | Değer aralığı geniş, yerel kontrast düşük olabilir | Uzamsal yapı ve lokal ölçüm yapın. |
+| Ayrık kanal kuyrukları | Gerçek renk farkı veya kanal dönüşümü | Renk kalibrasyonu ve kanal clipping durumunu inceleyin. |
 
-| Parametre | İşlev | Risk |
-| --- | --- | --- |
-| Shadows clipping point | Alt giriş değerlerini siyaha eşler | Zayıf sinyal kaybı |
-| Midtones balance | Nonlinear orta ton dönüşümü | Aşırı stretch/noise görünürlüğü |
-| Highlights clipping point | Üst değerleri beyaza eşler | Yıldız çekirdeği clipping |
-| Low/High range | Çıkış aralığını sınırlar | Dinamik aralık sıkıştırması |
-| Channel selector | RGB/K veya tek kanal | Renk dengesinin değişmesi |
+## Histogramın işlem boyunca değişimi
 
-Evrensel bir “doğru” slider değeri yoktur. Parametreler image statistics, hedef ve sonraki aşamaya göre doğrulanır.
+- **Calibration ve normalization:** Dağılımın konumunu ve genişliğini değiştirebilir.
+- **Gradient correction:** Alan boyunca değişen arka planı düzelttiği için arka plan dağılımını daraltabilir.
+- **Color calibration:** Kanal ölçeklerini değiştirir.
+- **Stretch:** Tonları doğrusal olmayan biçimde yeniden dağıtır.
+- **Local contrast:** Benzer global histogramla farklı uzamsal görünüm üretebilir.
+- **Clipping:** Dağılımı sınırlara yığarak bilgi kaybettirir.
 
-## Uygulama Adımları
+## Histogram yorumunun sınırları
 
-1. Lineer süreçlerin tamamlandığını doğrulayın.
-2. Image’ın bir clone’unu oluşturun.
-3. STF ile kabul edilebilir başlangıç görünümü üretin.
-4. STF instance’ını HT kontrol çubuğuna sürükleyin.
-5. HT preview’u etkinleştirerek shadows ve highlights clipping’i inceleyin.
-6. Histogramın sol kenarına agresif yaklaşmayın; zayıf sinyali kontrol edin.
-7. HT’yi clone’a uygulayın.
-8. STF’yi resetleyin. Image görünür kalıyorsa stretch data’ya uygulanmıştır.
-9. Yeni histogramı, yıldız çekirdeklerini ve arka planı kontrol edin.
-10. Sonucu yeni bir aşama adıyla kaydedin.
+Histogram uzamsal konum taşımaz. Aynı histogramı paylaşan iki görüntü, pikseller farklı yerlere dağıtıldığında tamamen farklı görünebilir. Halo, ringing, gradient geometrisi, yıldız şekli ve maske sınırı yalnız histogramdan teşhis edilemez.
 
-## Beklenen Sonuç
+Seçili Preview histogramı ile tüm görüntü histogramı da aynı soruyu yanıtlamaz. Arka plan Preview’u noise ve black point için yararlı olabilirken parlak çekirdeği temsil etmeyebilir.
 
-Image data kontrollü biçimde nonlinear hale gelir; STF resetlense bile görünür yapı korunur. Zayıf sinyal ve highlights gereksiz clip edilmemiş olmalıdır.
+## Pratik örnek
 
-## Gerçek Kullanım Senaryosu
+Doğrusal bir nebula entegrasyonu ekranda karanlık görünür. Histogram sol tarafta dar bir tepe gösterir. Geçici ekran stretch’i uygulandığında nebula görünür olur, fakat ham piksel histogramı değişmez. Kalıcı stretch sonrasında piksel değerleri yeniden dağıtılır ve histogram genişler. Siyah nokta nebula kuyruğunun içine taşınırsa zayıf yapı aynı siyah değere yığılır ve geri getirilemez.
 
-SPCC ve lineer noise reduction tamamlanmış RGB image için Auto STF başlangıç görünümü oluşturulur. STF instance HT’ye aktarılır. HT bir clone’a uygulanır, ardından STF resetlenir. Clone görünür kalırken kaynak lineer image karanlık görünür: bu, kaynakta screen transfer; clone’da gerçek data transformation bulunduğunu açıkça gösterir.
+## Yaygın yanlış anlamalar
 
-## Sık Yapılan Hatalar
+- Histogram tepesinin solda olmasını veri yokluğu sanmak.
+- Histogramı görüntünün uzamsal haritası gibi yorumlamak.
+- Birleşik RGB histogramı temizse hiçbir kanalda clipping olmadığını varsaymak.
+- Her histogram boşluğunu siyah veya beyaz noktayı taşımak için güvenli alan kabul etmek.
+- STF ile görünen histogram değişimini kalıcı veri dönüşümü sanmak.
+- “Dengeli” histogram şeklinin evrensel estetik veya teknik hedef olduğunu düşünmek.
 
-1. HT uygulamasından sonra STF’yi açık bırakıp çift stretch görünümü oluşturmak.
-2. Shadows clipping ile zayıf nebula sinyalini kesmek.
-3. Highlights clipping ile yıldız çekirdeklerini doyurmak.
-4. Lineer süreçler bitmeden nonlinear stretch yapmak.
-5. RGB/K ile kanal bazlı dönüşüm farkını göz ardı etmek.
-6. Histogramı spatial kalite haritası sanmak.
-7. Kaynak lineer image yerine tek kopya üzerinde geri dönüşsüz ilerlemek.
+## Karar rehberi
 
-## Sorun Giderme
+| Soru | Sonraki kontrol | Neden |
+|---|---|---|
+| Görüntü karanlık ama doğrusal mı? | Geçici display stretch kullanın. | Ekran görünümü ile veri durumunu ayırır. |
+| Siyah nokta taşınabilir mi? | Sol kuyruğu, background readout’u ve hedef yapısını birlikte inceleyin. | Boş görünen kuyruk zayıf sinyal içerebilir. |
+| Yıldızlar doymuş mu? | Kanal bazlı üst değerleri kontrol edin. | Bir kanal diğerlerinden önce kırpılabilir. |
+| Gradient var mı? | Uzamsal arka plan örneklerini inceleyin. | Histogram gradient yönünü göstermez. |
+| Stretch aşırı mı? | Kırpılma, yıldız profili, renk ve zayıf yapı sürekliliğini kontrol edin. | Histogram tek başına görsel artefaktları açıklamaz. |
 
-| Belirti | Neden | Çözüm |
-| --- | --- | --- |
-| Image aşırı parlak | HT sonrası STF hâlâ aktif | STF’yi resetleyin |
-| Arka plan keskin siyah | Shadows clipping fazla | Undo/clone’a dönüp siyah noktayı geri alın |
-| Yıldız çekirdeği düz beyaz | Highlights clipping | Üst noktayı koruyun, preview/readout kontrolü yapın |
-| Renk kaydı | Yanlış channel seçimi | RGB/K ve kanal dönüşümlerini inceleyin |
-| HT sonrası image hâlâ karanlık | Instance identity/yanlış target | Parametre ve target view’ı doğrulayın |
+## PixInsight ile ilişkisi
 
-## İleri Seviye Notlar
+- [ScreenTransferFunction](stf.md) geçici ekran görünümü sağlar; görüntü verisini değiştirmez.
+- [HistogramTransformation](../07-stretch/histogram-transformation.md) histogram ve transfer kontrollerini kalıcı piksel dönüşümüne uygular.
+- [Stretch Temelleri](stretch-temelleri.md) geçici ve kalıcı stretch’in kavramsal ayrımını kurar.
+- [Gradient Teorisi](../04-gradient/gradient-theory.md) histogramın gösteremediği uzamsal arka plan değişimini açıklar.
+- [Renk ve Kanallar](renk-ve-kanallar.md) RGB, luminance, chrominance ve kanal clipping ilişkisini açıklar.
 
-- STF’den HT’ye aktarım, screen mapping’i data transformation için başlangıç yapar; otomatik olarak “optimum final stretch” garantilemez.
-- Histogram uzamsal bilgi taşımaz; aynı dağılım farklı yapı konumlarına sahip olabilir.
-- Clipping değerlendirmesi histogramla birlikte image readout ve temsilî previews gerektirir.
-- Resmî referans: [HistogramTransformation documentation](https://pixinsight.com/doc/tools/HistogramTransformation/HistogramTransformation.html).
+## Nereden devam edilmeli?
 
-### Karar Ağacı
+1. [Lineer ve Nonlineer Görüntü](lineer-ve-nonlineer-goruntu.md)
+2. [Stretch Temelleri](stretch-temelleri.md)
+3. [HistogramTransformation](../07-stretch/histogram-transformation.md)
+4. [LRGB Galaksi İş Akışı](../15-workflows/lrgb-galaxy.md)
+5. [Hata Kütüphanesi](../14-hata-kutuphanesi/index.md)
 
-```mermaid
-flowchart TD
-    A["Image görünür yapılacak"] --> B{"Data lineer kalmalı mı?"}
-    B -- Evet --> C["STF kullan"]
-    B -- Hayır --> D{"Lineer işlemler tamam mı?"}
-    D -- Hayır --> E["HT uygulama; iş akışına dön"]
-    D -- Evet --> F["Clone oluştur"]
-    F --> G["STF instance'ını HT'ye aktar"]
-    G --> H["Clipping kontrolü"]
-    H --> I["HT uygula, STF resetle"]
-```
+## Kaynaklar
 
-### SSS
-
-??? question "HistogramTransformation image data’yı değiştirir mi?"
-    Evet. Uygulandığında dönüşüm sonuçları hedef image’ın örneklerine yazılır.
-
-??? question "STF ve HT aynı slider’lara sahipse aynı şey midir?"
-    Hayır. Benzer transfer parametreleri kullanabilirler; STF display katmanında, HT data üzerinde çalışır.
-
-??? question "HT’den sonra STF neden resetlenmeli?"
-    Gerçek stretch’in görünümünü ek bir screen stretch olmadan değerlendirmek için.
-
-??? question "Histogramın solunda boşluk bırakmak zorunlu mu?"
-    Evrensel bir piksel mesafesi yoktur. Amaç zayıf sinyali clip etmeden siyah noktayı yönetmektir.
-
-??? question "Histogram tüm artefact’ları gösterir mi?"
-    Hayır. Uzamsal konumu göstermez; image incelemesi gerekir.
-
-??? question "HT işlemi geri alınabilir mi?"
-    Canlı oturumda Undo/History mümkün olabilir; güvenli yöntem ayrıca clone ve aşamalı dosya kaydıdır.
-
-## Hızlı Referans
-
-!!! tip "Quick Reference"
-    **STF:** display, data değişmez. **HT:** image data değişir. HT öncesi lineer işlemleri tamamla; clone kullan; clipping’i kontrol et; uygulama sonrası STF’yi resetle.
-
-## Sonraki Bölüm
-
-PixInsight'ın image, view ve process çalışma modelini öğrenmek için [PixInsight Temelleri](index.md) bölümüne geçin.
+- [PixInsight — HistogramTransformation Reference Documentation](https://pixinsight.com/doc/tools/HistogramTransformation/HistogramTransformation.html)
+- [PixInsight Staff — Linear and nonlinear image discussion](https://pixinsight.com/forum/index.php?threads/what-is-a-linear-verus-non-linear-image.428/)
 
 ## Önceki Bölüm
 
 [← Çekim Planlama](../01-temeller/cekim-planlama.md)
+
+## Sonraki Bölüm
+
+[Lineer ve Nonlineer Görüntü →](lineer-ve-nonlineer-goruntu.md)

@@ -3,11 +3,13 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Son İşlemler · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
     **Anahtar kelimeler:** `CurvesTransformation` · `Curves Transformation` · `overprocessed image` · `aşırı işlenmiş görüntü` · `final processing` · `son işlemler`
-    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maskeler](../11-maskeler/index.md)
+    **Önerilen ön bilgiler:** [Stretch Temelleri](../02-pixinsight-temelleri/stretch-temelleri.md) · [Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md)
 
 ## Amaç
 
 CurvesTransformation, giriş değerlerini kullanıcı tanımlı eğrilerle çıkış değerlerine eşleyerek final contrast ve color refinement sağlar. Gücü, global ton dönüşümünü maskelerle yapısal olarak sınırlandırabilmesidir.
+
+Evrensel stretch ve global/local contrast teorisi önerilen foundations sayfalarına aittir; burada PixInsight process davranışı ve workflow konumu ele alınır.
 
 ## Kuramsal Arka Plan ve bilimsel arka plan
 

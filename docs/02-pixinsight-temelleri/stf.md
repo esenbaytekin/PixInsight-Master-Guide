@@ -10,6 +10,8 @@
 
 Lineer image data’yı değiştirmeden ekranda incelemek, kanalları görünür kılmak ve geçici bir görüntüleme stretch’i yönetmek.
 
+Lineer/nonlineer veri durumunun process’ten bağımsız açıklaması [Lineer ve Nonlineer Görüntü](lineer-ve-nonlineer-goruntu.md), tonal dönüşüm ilkeleri [Stretch Temelleri](stretch-temelleri.md) sayfasındadır.
+
 ## Kavramsal Açıklama
 
 **ScreenTransferFunction image data’yı değiştirmez.** STF, seçili view’ın ekranda nasıl çizileceğini belirleyen bir screen transfer’dır. Kaydettiğiniz lineer XISF/FITS verisi, yalnızca STF açıldığı için nonlinear olmaz. STF kapatıldığında karanlık görünüm geri gelir; bu bir undo işlemi değildir, yalnızca görüntüleme aktarımının kaldırılmasıdır.
