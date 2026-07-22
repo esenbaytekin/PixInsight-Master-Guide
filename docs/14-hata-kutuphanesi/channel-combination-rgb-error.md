@@ -1,70 +1,79 @@
 # ChannelCombination RGB Hatası
 
-**Durum: Taslak**
+## Error severity summary
 
-## Amaç
+| Alan | Değer |
+|---|---|
+| Severity | 🔴 Critical |
+| Detectability | Easy |
+| Recoverability | Requires Partial Reprocessing |
+| Typical Detection Stage | After PixelMath / ChannelCombination |
 
-Bu bölüm, ChannelCombination RGB Hatası konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Symptoms
 
-## Ne zaman kullanılır?
+- Görüntü beklenen RGB renklerinden tamamen farklıdır.
+- Kırmızı nebula cyan/blue, mavi bölgeler sarı/kırmızı görünebilir.
+- BackgroundNeutralization veya SCNR sonrasında da temel renk ilişkisi düzelmez.
+- Kanal histogramları beklenen hedef sinyaliyle uyuşmaz.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Visual appearance
 
-## Ne zaman kullanılmaz?
+Yanlış channel mapping global, yapısal bir renk dönüşümü üretir. Lokal cast'ten farklı olarak belirli nesne sınıfları sistematik biçimde yanlış hue'ya taşınır. Narrowband mapping kasıtlıysa bu bir hata değildir; sorun, hedeflenen mapping ile uygulanan mapping'in uyuşmamasıdır.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Likely causes
 
-## Ön koşullar
+- R, G ve B source view'ların yanlış slotlara atanması.
+- PixelMath symbols veya channel expression'larının karıştırılması.
+- Dosya/view adlarının acquisition filter'ını yanlış temsil etmesi.
+- SHO/HOO mapping'in RGB beklenerek yorumlanması.
+- Mono kanalların registration/geometri uyumsuzluğu.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Verification steps
 
-## PixInsight menü yolu
+1. Her mono kanalı ayrı açın ve hedef yapıları blink ile karşılaştırın.
+2. FITS/XISF metadata ve acquisition kayıtlarından filter kimliğini doğrulayın.
+3. ChannelCombination slotları veya PixelMath RGB expressions'ı okuyun.
+4. Process icon instance'ını uygulanan history adımıyla eşleştirin.
+5. Küçük bir preview'da açık test mapping'i üretin.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+```mermaid
+flowchart TD
+    A["RGB renkleri sistematik yanlış"] --> B{"Mapping kasıtlı palette mi?"}
+    B -->|"Evet"| C["Palette dokümantasyonunu doğrula"]
+    B -->|"Hayır"| D["Source metadata ve view adlarını kontrol et"]
+    D --> E{"Slot/expression doğru mu?"}
+    E -->|"Hayır"| F["Doğru mapping ile yeniden combine"]
+    E -->|"Evet"| G["Calibration ve color space kontrolü"]
+```
 
-## Parametreler
+## Corrective workflow
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+1. Hatalı combined görüntüyü final Curves ile düzeltmeye çalışmayın.
+2. Güvenilir mono masters veya channel-separated checkpoint'e dönün.
+3. Registration ve geometry eşleşmesini doğrulayın.
+4. Kaynakları açıkça `R`, `G`, `B` veya `SII`, `Ha`, `OIII` olarak yeniden adlandırın.
+5. Doğru mapping'i [ChannelCombination](../08-lrgb/channel-combination.md) veya PixelMath ile yeniden üretin.
+6. Ardından color calibration/normalization aşamasını tekrarlayın.
 
-## Uygulama adımları
+## Prevention
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+- Acquisition metadata'yı koruyun.
+- Process icon adında mapping'i yazın: `RGB_R-G-B`, `SHO_S-H-O` gibi.
+- Source view adlarını kısa ama benzersiz tutun.
+- Combine öncesi her kanalı görsel ve metadata ile doğrulayın.
 
-## Beklenen sonuç
+## Common traps
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+- Yanlış mapping'i SCNR ile “normalleştirmek”.
+- SHO palette'i doğal RGB hatası sanmak.
+- Kanal boyutları farklıyken yalnız renk sorununa odaklanmak.
+- PixelMath output range/clipping ayarını gözden kaçırmak.
+- Hatalı combined görüntü üzerinde uzun final workflow sürdürmek.
 
-## Sık yapılan hatalar
+## Evidence Level
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+**Verified Workflow:** Source-slot/expression eşleştirmesi doğrudan process instance ve output üzerinden doğrulanabilir. Belirli palette'in estetik yorumu veri setine bağlıdır.
 
-## Sorun giderme
+## Related processes
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Hata Kütüphanesi](index.md)
-- [DBE: Less Than Three Samples](dbe-less-than-three-samples.md)
-
+[PixelMath](../10-pixelmath/index.md) · [LRGB](../08-lrgb/index.md) · [Color Calibration](../05-color-calibration/index.md) · [Hata Kütüphanesi](index.md)

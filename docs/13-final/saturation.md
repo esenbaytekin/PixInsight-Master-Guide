@@ -1,70 +1,106 @@
 # Saturation
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+Saturation işlemi renklerin nötr eksenden uzaklığını değiştirir. Amaç rengi yalnızca “daha güçlü” yapmak değil; kalibre edilmiş hue ilişkisini, yıldız çeşitliliğini ve düşük SNR alanlarda chroma noise sınırını korumaktır.
 
-Bu bölüm, Saturation konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory ve bilimsel arka plan
+
+Saturation, brightness veya hue ile aynı değildir. Düşük saturation alanında küçük kanal farkları büyük hue oynaklığı yaratabilir; bu nedenle background noise saturation artışıyla renkli beneklere dönüşür. Kanal clipping'i oluştuğunda renk oranları geri döndürülemez biçimde bozulabilir.
+
+## Natural ve selective saturation
+
+“Natural saturation” sabit bir hedef değildir; filter response, color calibration, display ve estetik amaca bağlıdır. Güvenli yaklaşım global artış yerine farklı yapıları maskelerle ayrı ağırlıklandırmaktır.
+
+| Maske | Koruduğu/hedeflediği alan | Kullanım |
+|---|---|---|
+| StarMask | Yıldız çekirdeği ve halo | Oversaturated/magenta star önleme |
+| RangeMask | Background veya parlak hedef | Düşük SNR renk gürültüsünü dışlama |
+| Luminance Mask | Sinyal gücüne göre ağırlık | Parlak yapıda kontrollü saturation |
+| ColorMask | Belirli hue ailesi | Nebula veya galaxy bölgesel renk düzenleme |
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- SPCC/PCC ve stretch sonrası renk yoğunluğu kontrollü artırılacaksa.
+- Galaxy ile yıldız saturation'ı ayrı yönetilecekse.
+- SHO/HOO palette içinde hue bölgeleri birbirinden ayrılacaksa.
+- Final görüntü display/export koşulunda sönük görünüyorsa ve profil sorunu yoksa.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Color calibration veya background cast sorununu gizlemek için.
+- Kanal clipping'i olan görüntüde kayıp rengi geri getirmek için.
+- Düşük SNR arka plana maskesiz global artış olarak.
+- Export color mismatch sorununu çözmek için; önce ICC/color space kontrol edilmelidir.
 
-## Ön koşullar
+## Workflow position
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Color calibration sonrasında, çoğunlukla nonlinear aşamada uygulanır. Ana contrast işlemleri saturation algısını değiştirebildiği için final Curves geçişleriyle iteratif çalışılır. Noise reduction sonrasında bile chroma noise yeniden kontrol edilmelidir.
 
-## PixInsight menü yolu
+## Parameter approach
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+| Kontrol | Amaç | Artırma koşulu | Azaltma koşulu | Risk |
+|---|---|---|---|---|
+| Saturation curve/amount | Renk yoğunluğu | Kalibre renkler sönükse | Noise/clipping başlıyorsa | Yapay renk ve channel clipping |
+| Hue range | Seçici renk ailesi | Hedef ton varyasyonu genişse | Komşu renk contamination varsa | Sert hue sınırı |
+| Mask weight | Spatial etki | Hedef yetersiz seçilmişse | Star/background etkileniyorsa | Halo ve renk kopması |
 
-## Parametreler
+## Galaxy, nebula ve yıldız koruması
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+- **Galaxy:** Luminance/RangeMask ile dış kol sinyalini ağırlıklandırın; sarı çekirdeği ve blue star-forming bölgeleri ayrı kontrol edin.
+- **Emission nebula:** ColorMask ile hedef hue'yu seçin; background chroma noise'u koruyun.
+- **Reflection nebula:** Mavi kanal noise ve yıldız halolarına özellikle bakın.
+- **SHO/HOO:** Kanal mapping'i saturation ile “düzeltilmez”; önce mapping ve normalization doğrulanır.
+- **Yıldız:** StarMask ile çekirdek/halo saturation'ını ana hedeften ayrı yönetin.
 
-## Uygulama adımları
+## Visual Result Expectation
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+| Durum | Görsel işaret |
+|---|---|
+| Beklenen iyileşme | Renk ayrımı artar; yıldız çeşitliliği ve nötr background korunur |
+| Under-processing | Kalibre hue'lar birbirinden zor ayrılır |
+| Over-processing | Neon renk, magenta star, cyan contamination, color clipping |
+| Tipik artefakt | Chroma noise, hue sınırı, renkli halo |
 
-## Beklenen sonuç
+## Practical Decision Guide
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+| Situation | Recommended Process | Why |
+|---|---|---|
+| Global hafif renk artışı | Curves Saturation | Kontrollü ve iteratif eşleme |
+| Tek hue ailesi | ColorMask + Curves | Komşu renkleri korur |
+| Oversaturated stars | StarMask ile azaltma | Stellar renkleri ayrı yönetir |
+| Renkli background noise | Önce chroma NR/mask | Saturation sorunu büyütür |
 
-## Sık yapılan hatalar
+```mermaid
+flowchart TD
+    A["Renk sönük görünüyor"] --> B{"Calibration ve ICC doğru mu?"}
+    B -->|"Hayır"| C["Kök nedeni düzelt"]
+    B -->|"Evet"| D{"Global mi seçici mi?"}
+    D -->|"Seçici"| E["Color/Range/Star mask oluştur"]
+    D -->|"Global"| F["Hafif saturation curve"]
+    E --> F
+    F --> G{"Noise, halo veya clipping var mı?"}
+    G -->|"Evet"| H["Miktarı azalt ve maskeyi düzelt"]
+    G -->|"Hayır"| I["Export proof kontrolü"]
+```
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Common mistakes ve troubleshooting
 
-## Sorun giderme
+| Belirti | Neden | Düzeltme |
+|---|---|---|
+| Chroma noise | Background maskesiz | Range/Luminance Mask kullanın |
+| Magenta stars | Yıldız kanalları clipping'e yakın | StarMask ile miktarı azaltın |
+| Cyan nebula | Hue contamination veya SCNR etkisi | Kanal/hue dağılımını geri denetleyin |
+| Yellow core | Luminance blend veya channel balance | LRGB ve calibration aşamasına dönün |
+| Neon görünüm | Global amount fazla | Birden fazla hafif seçici geçiş |
+| Hue banding | Sert ColorMask | Maske geçişini yumuşatın |
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+## Performance ve best practices
 
-## Hızlı referans
+Saturation işlemi genellikle hafiftir; büyük maskeler preview maliyetini artırır. Her geçişte histogram kanallarını, yıldızları, background ve hedefi ayrı kontrol edin. Web küçültme sonrası saturation algısı değişebileceği için export boyutunda proof yapın.
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+## Teknik doğrulama durumu ve ilgili süreçler
 
-## İlgili bölümler
+Saturation/hue ilişkisi genel renk teorisidir. Curves kanal adları ve UI davranışı PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır.
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Final](index.md)
-- [CurvesTransformation](curves-transformation.md)
-
+[CurvesTransformation](curves-transformation.md) · [SCNR](scnr.md) · [ColorMask](../11-maskeler/color-mask.md) · [Export](export.md)

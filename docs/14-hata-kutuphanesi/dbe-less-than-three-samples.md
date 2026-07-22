@@ -1,70 +1,71 @@
 # DBE: Less Than Three Samples
 
-**Durum: Taslak**
+## Error severity summary
 
-## Amaç
+| Alan | Değer |
+|---|---|
+| Severity | 🟡 Moderate |
+| Detectability | Easy |
+| Recoverability | Fully Recoverable |
+| Typical Detection Stage | Gradient Correction |
 
-Bu bölüm, DBE: Less Than Three Samples konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Symptoms
 
-## Ne zaman kullanılır?
+- DBE uygulaması `Less than three samples were generated` mesajıyla durur.
+- Otomatik sample generation hedef üzerinde yeterli geçerli sample üretmez.
+- Background model oluşturulamaz.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Visual appearance
 
-## Ne zaman kullanılmaz?
+Hata çoğunlukla görüntüyü değiştirmeden process'i durdurur. Ancak hata mesajını aşmak için yanlış yerlere sample eklemek, daha sonra nebula benzeri model veya residual gradient üretebilir.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Likely causes
 
-## Ön koşullar
+- Sample generation koşulları için uygun background alanı çok azdır.
+- Tolerance veya sample radius, görüntü istatistiğiyle uyuşmuyordur.
+- Preview/ROI ya da küçük crop yeterli spatial coverage sağlamıyordur.
+- Yoğun nebula/galaxy alanı güvenilir background noktalarını sınırlar.
+- Mevcut sample'lar silinmiş veya geçersiz konumdadır.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Verification steps
 
-## PixInsight menü yolu
+1. Hedefin tam görüntü mü preview mı olduğunu kontrol edin.
+2. DBE sample overlay'inde gerçekten kaç geçerli sample bulunduğunu sayın.
+3. Sample'ların yıldız, nebula, galaxy halo ve dark structure üzerinde olmadığını kontrol edin.
+4. Tolerance/radius değişikliklerini tek tek preview edin.
+5. Güvenilir background alanı yoksa DBE'nin uygun araç olup olmadığını yeniden değerlendirin.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+```mermaid
+flowchart TD
+    A["Üçten az sample"] --> B{"Tam görüntüde güvenilir background var mı?"}
+    B -->|"Hayır"| C["Başka model/araç veya daha geniş veri değerlendir"]
+    B -->|"Evet"| D["Manual sample yerleştir"]
+    D --> E{"Model hedef yapıya benziyor mu?"}
+    E -->|"Evet"| F["Sample'ları yeniden dağıt"]
+    E -->|"Hayır"| G["Düşük etkili correction testi"]
+```
 
-## Parametreler
+## Corrective workflow
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+1. Hata veren instance'ı sıfırlamak yerine sample koşullarını kaydedin.
+2. Tam görüntü üzerinde birkaç güvenilir manual sample ile başlayın.
+3. Spatial coverage'ı görüntüye yayın; sample sayısını yalnız eşiği geçmek için artırmayın.
+4. Model görüntüsünü inceleyin. Astronomik hedefe benziyorsa sample seçimi yanlıştır.
+5. [Division vs Subtraction](../04-gradient/division-vs-subtraction.md) kararını gradient tipine göre verin.
+6. Corrected image ve model/residual'ı birlikte değerlendirin.
 
-## Uygulama adımları
+## Prevention
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+- DBE öncesinde gradient diagnostic yapın.
+- Sample'ları hedef dışı güvenilir background'a koyun.
+- Küçük crop yerine yeterli alanı modelleyin.
+- Tolerance ve radius için sabit reçete kullanmayın.
+- Model görüntüsünü her zaman saklayıp inceleyin.
 
-## Beklenen sonuç
+## Evidence Level
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+**Verified Workflow:** Minimum sample hatası console mesajıyla doğrudan gözlenir. Tolerance/radius seçimi **Practical Recommendation** olarak veri setine bağlıdır.
 
-## Sık yapılan hatalar
+## Related processes
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Hata Kütüphanesi](index.md)
-- [ChannelCombination RGB Hatası](channel-combination-rgb-error.md)
-
+[DBE](../04-gradient/dbe.md) · [Sample Placement](../04-gradient/sample-placement.md) · [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) · [Hata Kütüphanesi](index.md)
