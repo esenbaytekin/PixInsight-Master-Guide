@@ -1,84 +1,120 @@
 # LocalHistogramEqualization
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+LocalHistogramEqualization (LHE), komşuluk içindeki ton ayrımını artırarak orta ve büyük ölçekli yapıların algılanabilirliğini güçlendirir. Global histogramı yeniden kurmak yerine her bölgenin çevresine göre lokal kontrast üretir.
 
-Bu bölüm, LocalHistogramEqualization konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory ve bilimsel arka plan
+
+LHE, contrast-limited adaptive histogram equalization yaklaşımını kullanır. Kernel radius incelenen komşuluğun karakteristik boyutunu; contrast limit ise lokal histogramın ne ölçüde güçlendirilebileceğini belirler. Küçük kernel daha ince yapıları ve gürültüyü, büyük kernel daha geniş yapıları hedefleme eğilimindedir.
+
+!!! info "Evidence Level — Official Documentation"
+    PixInsight'ın teknik iş akışı örneği, LHE'yi CLAHE uygulaması olarak tanımlar ve düşük SNR alanlarda noise intensification riskini azaltmak için maskeli kullanır.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Galaxy kolları ve dust lane çevresindeki orta ölçekli kontrast zayıfsa.
+- Emission nebula filamentleri global Curves ile ayrışmıyorsa.
+- Reflection nebula/toz yapısında yumuşak lokal ayrım gerekiyorsa.
+- SHO/HOO görüntüde luminance yapısı renk ayrımından bağımsız güçlendirilecekse.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Gradient veya flat hatasını düzeltmek için.
+- Çok düşük SNR veride maske olmadan.
+- Global ton dağılımı henüz dengeli değilse.
+- Parlak çekirdek dinamik aralığı asıl sorunsa HDRMT daha doğrudan olabilir.
 
-## Ön koşullar
+## Workflow position ve input requirements
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
-
-## PixInsight menü yolu
-
-`Process > IntensityTransformations > LocalHistogramEqualization`
-
-Process adı ve bu menü yolu PixInsight UI ekranında doğrudan okunmuştur. Ayrıntılı kanıt repository içindeki `validation/ui/pi-1.9.3/local-histogram-equalization/local-histogram-equalization-evidence-matrix.md` dosyasındadır.
-
-!!! warning "UI doğrulama sınırı"
-    Görseller resetlenmiş bir instance, tooltip, console veya ekran içi sürüm numarası göstermiyor. Seçili değerler fabrika varsayılanı sayılmamalı; parametre anlamları ve output davranışı ayrıca doğrulanmalıdır.
+Girdi geometrik ve fotometrik sorunlardan arındırılmış, çoğunlukla nonlinear ve clipping içermeyen bir master olmalıdır. Noise reduction ile enhancement sırası veri setine bağlıdır; LHE'nin mevcut noise'u büyütme ihtimali nedeniyle düşük SNR veride önce kontrollü noise reduction genellikle daha güvenlidir.
 
 ## Parametreler
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+| Parametre | Amacı | Artırma gerekçesi | Azaltma gerekçesi | Yanlış kullanım sonucu |
+|---|---|---|---|---|
+| Kernel radius | Lokal komşuluk ölçeği | Daha büyük yapı hedefleniyorsa | İnce yapı hedefleniyorsa | Ölçek uyumsuzluğu, halo veya gürültü |
+| Contrast limit | Lokal amplification sınırı | Etki yetersizse | Gürültü/artefakt büyüyorsa | “Crunchy” doku, clipping benzeri görünüm |
+| Amount | İşlenmiş sonuç karışımı | Kontrollü etki yetersizse | Sonuç yapay görünüyorsa | Over-enhancement |
+| Histogram resolution | Lokal histogram örnekleme ayrıntısı | Ton geçişi gerektiriyorsa | Performans/kararlılık değerlendirmesi | Veri setine bağlı; UI doğrulaması gerekir |
 
-| UI etiketi | Doğrulama durumu | Kanıt sınırı |
-| --- | --- | --- |
-| `Kernel Radius` | UI-VERIFIED | Etiket ve numeric kontrol doğrulandı; algoritmik etki DOC/DATA-REQUIRED |
-| `Contrast Limit` | UI-VERIFIED | Etiket ve numeric kontrol doğrulandı; algoritmik etki DOC/DATA-REQUIRED |
-| `Amount` | UI-VERIFIED | Etiket ve numeric kontrol doğrulandı; output etkisi DATA-REQUIRED |
-| `Histogram Resolution` | UI-VERIFIED | Açık listede `8-bit (256)`, `10-bit (1024)`, `12-bit (4096)` okunuyor; teknik anlam DOC-REQUIRED |
-| `Circular Kernel` | UI-VERIFIED | Checkbox etiketi doğrulandı; kernel davranışı DOC/DATA-REQUIRED |
+!!! warning
+    “Typical setting” sabit piksel değeri değildir. Kernel radius, hedef yapının görüntü üzerindeki piksel boyutuna göre seçilmelidir; crop, drizzle ve kamera örneklemesi aynı değerin anlamını değiştirir.
 
-Ana arayüz karesinde `Kernel Radius 64`, `Contrast Limit 2.0`, `Amount 1.000`, seçili `8-bit (256)` ve işaretli `Circular Kernel` görünür. Bunlar yalnız ekran anındaki durumlardır ve default olarak yorumlanmamalıdır.
+## Adım adım kullanım
 
-## Uygulama adımları
+1. Hedef yapının piksel ölçeğini 1:1 görünümde tahmin edin.
+2. Arka planı ve yıldızları koruyan [RangeMask](../11-maskeler/range-mask.md) veya [Luminance Mask](../11-maskeler/luminance-mask.md) hazırlayın.
+3. Kernel radius'u hedef yapıdan küçük ve büyük iki denemeyle kıyaslayın.
+4. Contrast limit'i halo/gürültü oluşmayacak seviyede tutun.
+5. Amount ile global sonucu karıştırın; tek güçlü uygulama yerine gerekirse iki hafif farklı ölçek kullanın.
+6. Maskeyi kapatıp 1:1 ve uzak görünümde karşılaştırın.
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Hedefe göre uygulama
 
-## Beklenen sonuç
+| Hedef | Ölçek tercihi | Neden | Koruma |
+|---|---|---|---|
+| Galaxy | Orta yapı + ikinci hafif büyük ölçek | Kollar ve dış halo ayrı ölçeklerdir | Çekirdek, yıldız, düşük SNR dış bölge |
+| Emission nebula | Filament genişliğine uygun | Global stretch'in ayıramadığı kıvrımlar | Gürültülü arka plan ve yıldızlar |
+| Reflection nebula | Daha geniş ve düşük amount | Toz/halo geçişi yumuşaktır | Karanlık arka plan |
+| Planetary nebula | Kabuk boyutuna uygun | Küçük hedefte yanlış kernel kolay artefakt üretir | Yıldız ve parlak çekirdek |
+| SHO/HOO | Luminance yapısına göre | Renk gürültüsünü contrast sinyali sanmamak için | ColorMask yerine luminance odaklı maske |
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## LHE karşılaştırmaları
 
-## Sık yapılan hatalar
+| Karşılaştırma | LHE | Diğer araç |
+|---|---|---|
+| LHE vs HDRMT | Lokal kontrastı yükseltir | HDRMT parlak yapıların dinamik aralığını sıkıştırır |
+| LHE vs Curves | Komşuluk/ölçek tabanlı | Curves global veya maskeyle bölgesel ton eşlemesi yapar |
+| LHE vs DSE | Açık ve koyu yapı farkını birlikte etkiler | DSE koyu yapıları hedefler |
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Practical Decision Guide
+
+| Situation | Recommended Process | Why |
+|---|---|---|
+| Galaxy kolu ve nebula filamenti | LHE | Orta ölçekli lokal kontrastı artırır |
+| Parlak çekirdek ayrıntısı | HDRMT | Dinamik aralığı daha doğrudan yönetir |
+| Yalnız dust lane vurgusu | DSE | Koyu yapıya özgü seçim sunar |
+| Global tonal denge | CurvesTransformation | Lokal kernel yerine genel ton ilişkisini düzenler |
+
+```mermaid
+flowchart TD
+    A["Lokal kontrast zayıf"] --> B{"Hedef ölçeği biliniyor mu?"}
+    B -->|"Hayır"| C["Farklı radius preview'ları üret"]
+    B -->|"Evet"| D["Maskeli düşük amount testi"]
+    C --> D
+    D --> E{"Halo veya noise arttı mı?"}
+    E -->|"Evet"| F["Limit/amount azalt, maskeyi düzelt"]
+    E -->|"Hayır"| G["İkinci hafif ölçeği değerlendir"]
+```
 
 ## Sorun giderme
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Belirti | Olası neden | Doğrulama | Düzeltme |
+|---|---|---|---|
+| Crunchy görünüm | Küçük kernel/yüksek contrast | 1:1'de mikro-kontrast ve noise bakın | Radius artırın, limit/amount azaltın |
+| Parlak/dark halo | Ölçek uyumsuzluğu veya sert maske | Maskesiz sınırı inceleyin | Kernel ve maske geçişini değiştirin |
+| Arka plan hasarı | Maske yetersiz | Arka planı ayrı preview'da karşılaştırın | Range/Luminance Mask'i güçlendirin |
+| Faint detail kaybı | Aşırı kontrast baskısı | Düşük amount sonuçla kıyaslayın | Önceki aşamaya dönüp miktarı azaltın |
+| Düzleşmiş kontrast | Çok büyük kernel | Farklı radius sonuçlarını kıyaslayın | Yapı ölçeğine yaklaşın |
+| Yapay texture | Noise yapı sanılıyor | Noise-only bölgede kontrol edin | Önce NR, sonra maskeli LHE uygulayın |
 
-## Hızlı referans
+## Performance considerations
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+Büyük kernel, yüksek çözünürlük ve geniş görüntü bellek/süre maliyetini artırır. Parametre seçimini representative preview'larda yapın; kenar koşulları nedeniyle final doğrulamayı tam görüntüde tekrarlayın.
 
-## İlgili bölümler
+## Best practices ve output expectations
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Detay ve Kontrast](index.md)
-- [HDRMultiscaleTransform](hdr-multiscale-transform.md)
+- Sonuç “detay eklenmiş” değil, mevcut detayın daha okunur olduğu görünmelidir.
+- Farklı ölçekleri düşük amount ile ayrı geçişlerde kullanın.
+- Yıldız, arka plan ve hedef yapıyı üç ayrı kontrol bölgesinde inceleyin.
+- [CurvesTransformation](../13-final/curves-transformation.md) ile son global dengeyi LHE'den sonra kurun.
+
+## Teknik doğrulama durumu
+
+CLAHE yaklaşımı ve maskeli kullanım resmi PixInsight örneğiyle desteklenir. Parametrelerin tam UI adları, sınırları ve varsayılanları PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır.
+
+## Referanslar
+
+- [PixInsight Forum — HDRMT and LHE workflow example](https://pixinsight.com/forum/index.php?threads/m101-hdr-processing-startools-vs-pixinsight.4286/)
+- [Multiscale processing overview](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
