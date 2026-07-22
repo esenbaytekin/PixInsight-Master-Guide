@@ -1,78 +1,53 @@
-# Uygulamalar
+# Uygulamalı Projeler
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Uygulamalar` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Uygulamalı İş Akışları · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `uygulamalı proje` · `M31` · `NGC 6888` · `LRGB` · `HaRGB` · `HOO` · `SHO`
 
 ## Amaç
 
-Bu bölüm, Uygulamalar konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Bu bölüm, process sıralarını değil iki veri tipinde karar vermeyi öğretir. Genel ilkelerin canonical sahibi [Uygulamalı İş Akışları](../15-workflows/index.md), process kullanımlarının sahibi ilgili process sayfalarıdır. Buradaki sayfalar bir kararın hangi kanıtla alındığını ve bir sonraki aşamaya hangi koşulla geçildiğini gösterir.
 
-## Ne zaman kullanılır?
+## Proje seçimi
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+| Proje | Veri | Ana karar | Uygun olduğu durum |
+|---|---|---|---|
+| [M31 LRGB + Ha](m31-lrgb-ha/index.md) | L, R, G, B, Ha | Ha'yı doğal broadband renge yerel olarak katmak | Galaksi rengi, çekirdek ve yıldız renginin korunması |
+| [NGC 6888 SHO/HOO](ngc6888-sho/index.md) | En az Ha ve OIII; SHO için SII | Zayıf OIII'yi kaybetmeden palette seçmek | Kanal SNR'ları ve morfolojileri belirgin biçimde farklı olduğunda |
 
-## Ne zaman kullanılmaz?
+## Veri seti planları
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+| Plan | Kanallar | Kullanım | Eksik kayıtların ele alınması |
+|---|---|---|---|
+| A — güçlü üç kanal | SII, Ha, OIII; her birinde güvenilir yapı | Generic SHO kararlarını sınamak | Poz süresi, optik ve kamera proje kaydından doldurulur |
+| B — zayıf OIII | Ha ve OIII; OIII düşük SNR | NGC 6888 HOO/SHO dalları | Kanal histogramı, gürültü ve morfoloji karşılaştırması kaydedilir |
+| C — broadband + Ha | LRGB ve Ha | M31 yerel Ha katkısı | PSF, registration ve kanal ölçeği ölçülmeden blend yapılmaz |
 
-## Ön koşullar
+!!! warning "Veri gerçeği"
+    Bu planlar test tasarımıdır; belirli kamera, poz süresi veya entegrasyon süresi iddiası değildir. Proje sayfasındaki “kayıt mevcut değil” alanları gerçek oturum kayıtlarıyla doldurulmadan sayısal reçeteye dönüştürülmez.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Ortak kalite kapıları
 
-## PixInsight menü yolu
+```mermaid
+flowchart LR
+    A["Master veriler"] --> B{"Geometri ve veri durumu uygun mu?"}
+    B -->|"Hayır"| C["Kalibrasyon veya registration'a dön"]
+    B -->|"Evet"| D{"Arka plan ve kanallar güvenilir mi?"}
+    D -->|"Hayır"| E["Modeli veya kanal hazırlığını düzelt"]
+    D -->|"Evet"| F["Renk ya da palette dalı"]
+    F --> G{"Tam görüntü ve yüzde 100 kontrol geçti mi?"}
+    G -->|"Hayır"| H["Son güvenilir checkpoint'e dön"]
+    G -->|"Evet"| I["Teslim ve dışa aktarım"]
+```
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Görsel kanıt planı
 
-## Parametreler
+Her proje için ham master karşılaştırması, model görüntüsü, maske görünümü, blend öncesi/sonrası ve tam görüntü ile %100 crop çiftleri gereklidir. Görsel bulunmadığında metin, gözle doğrulanmamış sonucu olmuş gibi anlatmaz.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## İlgili İş Akışları
 
-## Uygulama adımları
-
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
-
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../index.md)
-
-## Önceki Bölüm
-
-[← Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+[LRGB Galaksi](../15-workflows/lrgb-galaxy.md) · [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md) · [SHO ve HOO](../15-workflows/sho-hoo.md) · [Veri Kalitesi](../15-workflows/data-quality-strategies.md)
 
 ## Sonraki Bölüm
 
-[M31 LRGB + Ha →](m31-lrgb-ha/index.md)
+[M31 LRGB + Ha projesi →](m31-lrgb-ha/index.md)

@@ -1,91 +1,68 @@
-# M31 LRGB + Ha
+# M31 LRGB + Ha Uygulaması
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `M31 LRGB + Ha` · `case study` · `uygulama` · `end-to-end workflow` · `M31` · `LRGB` · `Ha`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 7 dk
+    **Anahtar kelimeler:** `M31` · `LRGB` · `HaRGB` · `galaksi` · `çekirdek` · `toz şeridi`
 
 ## Amaç
 
-Bu bölüm, M31 LRGB + Ha konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+M31'in broadband rengini, çekirdeğini, toz şeritlerini ve yıldız rengini korurken Ha sinyalini yalnız güvenilir yıldız oluşum bölgelerinde görünür kılan tekrar edilebilir bir karar zinciri kurmak.
 
-## Ne zaman kullanılır?
+## Hangi veri için uygundur?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+Ortak geometriye taşınabilecek L, R, G, B ve Ha master'ları içindir. Ha yoksa [generic LRGB](../../15-workflows/lrgb-galaxy.md), Ha yapısı gürültüden ayrılamıyorsa Ha eklemeden tamamlanan LRGB dalı seçilir.
 
-## Ne zaman kullanılmaz?
+## İş akışı özeti
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+```mermaid
+flowchart TD
+    A["Veri ve hedef kaydı"] --> B["Kalibrasyon ve entegrasyon"]
+    B --> C["Gradient ve broadband renk"]
+    C --> D["Lineer restorasyon"]
+    D --> E["RGB ve L stretch"]
+    E --> F["LRGB birleştirme"]
+    F --> G{"Ha güvenilir mi?"}
+    G -->|"Hayır"| H["LRGB final"]
+    G -->|"Evet"| I["Maskeli Ha katkısı"]
+    I --> J["Final doğrulama"]
+```
 
-## Ön koşullar
+## Adım adım karar noktaları
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Aşama | Karar kanıtı | Geçiş ölçütü | Geri dönüş |
+|---|---|---|---|
+| [1. Veri ve hedef](01-veri-ve-hedef.md) | Kanal ve çekim kaydı | Eksikler ve hedef açık | Oturum kayıtlarını tamamla |
+| [2. WBPP](02-wbpp.md) | Rejection, weight ve registration | Artefaktsız master'lar | Kalibrasyon/entegrasyon |
+| [3. DBE ve SPCC](03-dbe-spcc.md) | Model, background ve yıldız rengi | Gerçek halo korunmuş | Sample/model veya metadata |
+| [4. BlurX ve NoiseX](04-blurx-noisex.md) | PSF, noise ve yapı | Artefakt üretmeyen lineer sonuç | İşlemi azalt veya atla |
+| [5. Stretch](05-stretch.md) | Core ve dust lane | Clipping yok, ton ayrımı var | Stretch checkpoint'i |
+| [6. LRGB](06-lrgb.md) | Renk ve luminance uyumu | Renk yıkanmıyor | Etki/işlem zamanı |
+| [7. Ha](07-ha-entegrasyonu.md) | HII maskesi ve star exclusion | Global kırmızılaşma yok | Mask/normalization/blend |
+| [8. Final](08-final.md) | Tam görüntü ve %100 crop | Halo, clipping, chroma noise yok | Son güvenilir aşama |
 
-## PixInsight menü yolu
+## Proje kararları
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+- Çekirdek clipped ise HDR veya kontrast işlemi kayıp veriyi geri getirmez; kısa poz kaynağı gerekir.
+- Galaksi halo'su background sample alanı değildir. Model galaksiye benziyorsa düzeltme durdurulur.
+- Ha tüm red channel'ın yerine geçmez; katkı yapısal maske ve broadband yıldız korumasıyla sınanır.
+- Tek bir Ha yüzdesi yayınlanmaz. Ölçek, normalization ve maske her veri setinde yeniden doğrulanır.
 
-## Parametreler
+## Ne zaman durmalı?
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+LRGB tek başına tamamlanabilir kaliteye ulaştığında Ha kanıtı yetersizse durun. Final görüntüde HII bölgeleri belirginleşirken çekirdek, dust lane ve yıldız rengi aynı kalıyorsa yeni işlem eklemek yerine teslim kontrolüne geçin.
 
-## Uygulama adımları
+## Görsel kanıt planı
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+Master paneli, DBE model/sonuç, LRGB öncesi/sonrası, Ha maskesi, Ha öncesi/sonrası ve core/star %100 crop çiftleri. Ekran görüntülerinde process sürümü ile checkpoint adı görünmelidir.
 
-## Beklenen sonuç
+## İlgili kavramlar ve process sayfaları
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-- [WBPP](02-wbpp.md)
+[Signal ve Noise](../../02-pixinsight-temelleri/sinyal-ve-gurultu.md) · [Gradient Theory](../../04-gradient/gradient-theory.md) · [LRGB + Ha](../../15-workflows/lrgb-ha-galaxy.md) · [PixelMath](../../10-pixelmath/index.md)
 
 ## Önceki Bölüm
 
-[← Uygulamalar](../index.md)
+[← Uygulamalı Projeler](../index.md)
 
 ## Sonraki Bölüm
 
-[Veri ve Hedef →](01-veri-ve-hedef.md)
-
-## Kullanılan Süreçler
-
-- [WBPP](../../03-kalibrasyon/wbpp.md)
-- [DBE](../../04-gradient/dbe.md)
-- [SPCC](../../05-color-calibration/spcc.md)
-- [BlurXTerminator](../../06-ai-eklentileri/blurxterminator.md)
-- [NoiseXTerminator](../../06-ai-eklentileri/noisexterminator.md)
-- [HistogramTransformation](../../07-stretch/histogram-transformation.md)
-- [LRGBCombination](../../08-lrgb/lrgb-combination.md)
-- [PixelMath](../../10-pixelmath/kanal-karisimlari.md)
+[Veri ve hedef →](01-veri-ve-hedef.md)

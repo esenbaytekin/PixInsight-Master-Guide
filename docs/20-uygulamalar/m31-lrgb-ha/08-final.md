@@ -1,87 +1,45 @@
-# son işlemler
+# M31: Final Doğrulama ve Teslim
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Final` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Advanced · **Tahmini okuma:** 5 dk
+    **Anahtar kelimeler:** `M31 final` · `quality control` · `export` · `core` · `star color`
 
 ## Amaç
 
-Bu bölüm, Final konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Final contrast, saturation ve export kararlarını yeni artefakt üretmeden tamamlamak; sonucu tam görüntü ve %100 ölçekte doğrulamak.
 
-## Ne zaman kullanılır?
+## Adım adım karar noktaları
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+1. Full-frame ölçekte kompozisyon, background neutrality, halo ve global saturation değerlendirin.
+2. %100 ölçekte core transition, dust lane, yıldız halkası, chroma noise ve Ha sınırlarını inceleyin.
+3. Local contrast yalnız dust/arm yapısı görünür kanıtla yetersizse uygulanır; core ve background maskeyle korunur.
+4. Saturation artışı HII bölgelerini veya yıldızları neonlaştırıyorsa color architecture'a dönün; final Curves ile gizlemeyin.
+5. Starless branch kullanıldıysa recombination'ı siyah halo, açık renk kontur ve residual açısından kontrol edin.
+6. Master teslimi kayıpsız, çalışma color space/bit depth'i kayıtlı; web sürümü ayrı export olmalıdır.
 
-## Ne zaman kullanılmaz?
+## Final kalite kapısı
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+| Alan | Geçer | Başarısızlıkta dönüş |
+|---|---|---|
+| Core | Ton katmanları ve doğal geçiş | Stretch |
+| Dust lane | Sürekli, gevrek değil | LRGB / local contrast |
+| HII | Yerel, neon değil | Ha mask/blend |
+| Stars | Broadband renk, halo yok | Ha exclusion / recombination |
+| Background | Nötr, clipped değil | Gradient / black point |
+| Export | Profil, boyut ve bit depth kayıtlı | Export ayarı |
 
-## Ön koşullar
+## Ne zaman durmalı?
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Yeni bir işlem yalnız görüntüyü “daha güçlü” yapıyor, fakat belirlenmiş bir kusuru çözmüyorsa durun. Final dosyasını son işlem görünümüyle değil ölçüt tablosuyla kabul edin.
 
-## PixInsight menü yolu
+## Görsel kanıt planı
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+Final full-frame; core, dust, HII, yıldız ve background %100 crop paneli; histogram ve web/master export karşılaştırması.
 
-## Parametreler
+## İlgili process ve sorun giderme
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+[CurvesTransformation](../../13-final/curves-transformation.md) · [Saturation](../../13-final/saturation.md) · [Export](../../13-final/export.md) · [Hata Kütüphanesi](../../14-hata-kutuphanesi/index.md)
 
-## Uygulama adımları
+## Önceki / Sonraki
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
-
-## Beklenen sonuç
-
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [M31 LRGB + Ha](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← Ha Entegrasyonu](07-ha-entegrasyonu.md)
-
-## Sonraki Bölüm
-
-[NGC 6888 SHO →](../ngc6888-sho/index.md)
-
-## Kullanılan Süreçler
-
-- [CurvesTransformation](../../13-final/curves-transformation.md)
-- [Saturation](../../13-final/saturation.md)
-- [Export](../../13-final/export.md)
+[← Ha entegrasyonu](07-ha-entegrasyonu.md) · [NGC 6888 projesi →](../ngc6888-sho/index.md)

@@ -30,8 +30,8 @@ Kartlar kesin parametre reçetesi vermez. Sıra: input sınıfı → astrometry/
 
 ```mermaid
 flowchart LR
-    error["SPCC belirti veya log"] --> class["Hata sınıfı"]
-    class --> input["Input ve astrometry"]
+    error["SPCC belirti veya log"] --> classNode["Hata sınıfı"]
+    classNode --> input["Input ve astrometry"]
     input --> profiles["Catalog ve profiles"]
     profiles --> samples["Star samples"]
     samples --> output["Output ve display"]

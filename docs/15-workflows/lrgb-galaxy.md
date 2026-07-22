@@ -124,3 +124,7 @@ Process sırası **Verified Workflow**; luminance weight, exposure dağılımı 
 ## Sonraki Bölüm
 
 [LRGB + Ha Galaksi →](lrgb-ha-galaxy.md)
+
+## Uygulamalı Proje
+
+[M31 LRGB + Ha karar zinciri](../20-uygulamalar/m31-lrgb-ha/index.md), generic ilkeleri gerçek proje kapılarına dönüştürür.

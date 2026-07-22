@@ -1,87 +1,54 @@
-# Kanal Hazırlama
+# NGC 6888: Kanal Hazırlama
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Uygulamalar · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `Kanal Hazırlama` · `case study` · `uygulama` · `end-to-end workflow`
-
-**Durum: Taslak**
+    **Kategori:** Proje İş Akışı · **Düzey:** Expert · **Tahmini okuma:** 7 dk
+    **Anahtar kelimeler:** `channel preparation` · `LinearFit` · `normalization` · `weak OIII` · `NGC 6888`
 
 ## Amaç
 
-Bu bölüm, Kanal Hazırlama konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Ha, OIII ve varsa SII'yi ortak geometry ve anlaşılır ölçeğe getirirken zayıf kanalı beyaza yıkamamak veya noise'u signal gibi büyütmemek.
 
-## Ne zaman kullanılır?
+## Adım adım karar noktaları
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+1. Registration, crop ve gradient durumunu kanal bazında doğrulayın.
+2. Aynı STF ve sabit crop ile relative signal, background ve star profiles karşılaştırın.
+3. Ölçek farkı kombinasyonu bozuyorsa normalization değerlendirin; yalnız görüntüler farklı parlak göründüğü için LinearFit zorunlu değildir.
+4. Reference channel'ı en parlak olduğu için değil, güvenilir signal/background ve clipping durumu nedeniyle seçin.
+5. Normalization/LinearFit sonrası istatistiği ve unstretched görüntüyü kontrol edin; STF'nin otomatik yeniden hesaplanması “görüntü beyazladı” yanılsaması yaratabilir.
 
-## Ne zaman kullanılmaz?
+## Tanı dalı: LinearFit görüntüyü beyaz gösteriyor
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+```mermaid
+flowchart TD
+    A["LinearFit sonrası beyaz görünüm"] --> B{"Kalıcı veri clipping gösteriyor mu?"}
+    B -->|"Hayır"| C["STF'yi resetle ve histogramı ölç"]
+    B -->|"Evet"| D["Reference ve ölçek varsayımını incele"]
+    C --> E{"Yapı ve background korunuyor mu?"}
+    E -->|"Evet"| F["Görüntüleme farkı; devam"]
+    E -->|"Hayır"| D
+```
 
-## Ön koşullar
+## Kalite kapısı
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Kontrol | Geçer | Başarısızlıkta |
+|---|---|---|
+| Geometry | Star ve frame uyumlu | Registration'a dön |
+| Background | Kanal karakteri korunuyor | Gradient/normalization ayır |
+| OIII | Shell yapısı hâlâ seçiliyor | İşlemi azalt / checkpoint'e dön |
+| Display | STF ile veri değişimi ayrılmış | Histogram ve reset STF |
 
-## PixInsight menü yolu
+## Alternatif yollar
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+Normalization gerekli değilse kanalları fiziksel ölçüm ölçeğinde tutun. OIII gürültülü ise güçlü smooth yerine maskeli, kanal bazlı lineer noise reduction veya daha fazla veri düşünün.
 
-## Parametreler
+## Görsel kanıt planı
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+Öncesi/sonrası kanal paneli, histogram, aynı STF/reset STF, shell/background %100 crop ve reference seçimi kaydı.
 
-## Uygulama adımları
+## İlgili process ve sorun giderme
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+[Kanal Normalizasyonu ve LinearFit](../../09-narrowband/channel-normalization-and-weighting.md) · [OIII Kaybolması](../../14-hata-kutuphanesi/oiii-kaybolmasi.md)
 
-## Beklenen sonuç
+## Önceki / Sonraki
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
-
-## Sık yapılan hatalar
-
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## Ayrıca İnceleyin
-
-- [Ana Sayfa](../../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [NGC 6888 SHO](index.md)
-- [Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Önceki Bölüm
-
-[← Veri ve Hedef](01-veri-ve-hedef.md)
-
-## Sonraki Bölüm
-
-[SHO Kombinasyonu →](03-sho-kombinasyonu.md)
-
-## Kullanılan Süreçler
-
-- [DBE](../../04-gradient/dbe.md)
-- [BlurXTerminator](../../06-ai-eklentileri/blurxterminator.md)
-- [NoiseXTerminator](../../06-ai-eklentileri/noisexterminator.md)
+[← Veri ve hedef](01-veri-ve-hedef.md) · [HOO/SHO kombinasyonu →](03-sho-kombinasyonu.md)
