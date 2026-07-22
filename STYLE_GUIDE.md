@@ -201,6 +201,17 @@ Canonical sayfalardaki `Önceki Bölüm` ve `Sonraki Bölüm` bağlantıları al
 - Workflow metadatası yalnız gerçekten geçerli hedef, filter combination, camera type, sky quality veya signal quality terimlerini içerir.
 - Metadata teknik açıklamanın yerine geçmez, doğrulanmamış davranış iddiası taşımaz ve `Doğrulama bekliyor` gibi placeholder değer içermez.
 
+## Teknik Doğrulama Standardı
+
+- Major canonical process sayfaları `Teknik Doğrulama Durumu` tablosunda hedef sürüm, teknik inceleme, resmî kaynak, iş akışı tutarlılığı, kanıt düzeyi ve son inceleme alanlarını gösterir.
+- Conceptual/statik inceleme, UI screenshot doğrulaması, gerçek veri testi ve canlı PixInsight execution birbirinden ayrı kanıt türleridir; biri diğerinin yerine yazılmaz.
+- Kaynak önceliği PixInsight reference/process documentation, developer/staff açıklaması, official release notes, plugin developer manual ve açıkça sınıflandırılmış pratik kaynak sırasını izler.
+- Exact UI label, menu path, default, tooltip ve console message yalnız hedef build kanıtıyla kesin ifade edilir. Kanıt yoksa kavramsal ad kullanılır veya sürüm sınırlaması eklenir.
+- Exact sayısal değer resmî değilse örnek ya da veri setine bağlı karar olarak etiketlenir; sahte kesinlik üretilmez.
+- `✅ Verified` recipe sınıfı, syntax ve intended output savunulabilir biçimde doğrulanmadan kullanılmaz. Statik review, canlı PixInsight execution olarak raporlanmaz.
+- AI plugin davranışı PixInsight sürümünden ayrı olarak plugin ve model sürümüne de bağlı kabul edilir.
+- Process'in resmi adı ile ürettiği görüntünün topluluk adı ayrılır; örneğin process `RangeSelection`, üretilen görüntü “range mask” olabilir.
+
 ## Dosya ve Görsel Adlandırma
 
 - Dosya adları küçük harf ASCII ve tire biçimindedir.

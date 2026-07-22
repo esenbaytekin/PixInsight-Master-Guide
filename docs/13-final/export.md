@@ -13,7 +13,7 @@ Export, PixInsight çalışma verisini hedef ortama uygun bit depth, file format
 
 Bit depth, kanal başına temsil edilebilen kod değerlerini etkiler; color space ise bu değerlerin hangi renkleri temsil ettiğini tanımlar. ICC profile, dosyadaki sayıları renk yönetimli uygulamanın yorumlayacağı uzaya bağlar. Profile assign etmek ile bir profile convert etmek aynı işlem değildir.
 
-!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
+!!! info "Kanıt Düzeyi — Official Documentation"
     PixInsight staff tarafından yayımlanan web workflow'u, görüntüyü sRGB'ye dönüştürmeyi ve export sırasında ICC profile'ı gömmeyi önerir. Bu, farklı görüntüleyiciler arasındaki bütün farkları garantiyle ortadan kaldırmaz.
 
 ## Format karşılaştırması

@@ -195,7 +195,7 @@ flowchart TD
     signalq -- "Hayır" --> correction["Correction sonucunu clone üzerinde doğrula"]
 ```
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 | Sınıf | Durum |
 | --- | --- |
@@ -206,6 +206,19 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     ABE parametrelerinin kesin PixInsight 1.9.3 tooltip açıklamaları, varsayılan değerleri ve Replace seçeneklerinin output davranışı doğrulanmayı bekliyor.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## İlgili Süreçler
 

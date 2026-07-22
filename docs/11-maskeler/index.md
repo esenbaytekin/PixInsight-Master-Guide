@@ -8,7 +8,7 @@
 
 Maskeler, bir process'in etkisini görüntünün tamamına eşit uygulamak yerine yapısal, parlaklık veya renk temelli bölgelere dağıtır. Amaç yalnızca bir alanı “seçmek” değil; sinyal, gürültü ve geçiş bölgeleri arasında kontrollü bir etki haritası kurmaktır.
 
-!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
+!!! info "Kanıt Düzeyi — Official Documentation"
     PixInsight'ta herhangi bir uygun görüntü maske olarak kullanılabilir. Maske, hedef görüntüde korunacak ve işlenecek bölgeleri tanımlar; kırmızı overlay yalnızca bu dağılımın ekran gösterimidir.
 
 ## Bu bölümde ne var?

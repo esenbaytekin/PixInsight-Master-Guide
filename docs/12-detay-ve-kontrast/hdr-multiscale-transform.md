@@ -13,7 +13,7 @@ HDRMultiscaleTransform (HDRMT), parlak yapılardaki dinamik aralığı multiscal
 
 HDRMT, à trous wavelet ve multiscale median transform temelli bir yaklaşımla yapıları karakteristik ölçeklerine ayırır. Bir ölçekteki lokal kontrastı, daha büyük ölçekli parlaklık yapısından görece bağımsız yönetir. Bu nedenle global histogram sıkıştırmasından farklıdır.
 
-!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
+!!! info "Kanıt Düzeyi — Official Documentation"
     PixInsight workshop materyali HDRMT'yi dinamik aralık kontrolü için multiscale bir algoritma olarak tanımlar; layer'ların yapı ölçeklerini ayırdığını belirtir.
 
 ## Layers ve residual layer
@@ -113,7 +113,7 @@ flowchart TD
 
 Layer ve iteration arttıkça süre/bellek maliyeti yükselir. Representative preview ile seçim yapın; nihai sonucu tam görüntüde kontrol edin. Tek agresif geçiş yerine gerektiğinde farklı ölçeklerde iki hafif geçiş kullanın.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 Multiscale dynamic range yaklaşımı resmi PixInsight kaynağıyla desteklenir. Tam parametre adları, sınırları ve `To lightness`/mask seçeneklerinin PixInsight 1.9.3 davranışı UI kanıtıyla doğrulanmalıdır.
 
@@ -121,6 +121,19 @@ Multiscale dynamic range yaklaşımı resmi PixInsight kaynağıyla desteklenir.
 
 - [PixInsight Workshop — HDRMultiscaleTransform](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
 - [PixInsight Workshop — Delinearization and HDR](https://pixinsight.com/workshops/cfa-2014/03/index.html)
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## İlgili Süreçler
 

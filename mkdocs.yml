@@ -104,7 +104,7 @@ nav:
   - "Stretch":
     - "Stretch": 07-stretch/index.md
     - "HistogramTransformation": 07-stretch/histogram-transformation.md
-    - "Generalized Hyperbolic Stretch": 07-stretch/generalized-hyperbolic-stretch.md
+    - "GeneralizedHyperbolicStretch": 07-stretch/generalized-hyperbolic-stretch.md
     - "MaskedStretch": 07-stretch/masked-stretch.md
     - "ArcsinhStretch": 07-stretch/arcsinh-stretch.md
   - "LRGB":
@@ -128,7 +128,7 @@ nav:
     - "Hata Ayıklama": 10-pixelmath/hata-ayiklama.md
   - "Maskeler":
     - "Maskeler": 11-maskeler/index.md
-    - "RangeMask": 11-maskeler/range-mask.md
+    - "RangeSelection": 11-maskeler/range-mask.md
     - "StarMask": 11-maskeler/star-mask.md
     - "Luminance Mask": 11-maskeler/luminance-mask.md
     - "ColorMask": 11-maskeler/color-mask.md

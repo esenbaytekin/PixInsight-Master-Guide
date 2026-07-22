@@ -88,6 +88,19 @@ Dense star fields ve büyük drizzle görüntüleri daha fazla bellek ve incelem
 - İki dalın stretch/color dengesini kaydet
 - Finali başlangıç görüntüsüyle karşılaştır
 
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Tamamlandı |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
+
 ## Ayrıca İnceleyin
 
 - [BlurXTerminator](blurxterminator.md)

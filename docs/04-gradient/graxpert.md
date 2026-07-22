@@ -198,7 +198,7 @@ flowchart TD
     compare -- "Evet" --> accept["Kanıta göre kabul et"]
 ```
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 | Kimlik | Kategori | Durum |
 | --- | --- | --- |
@@ -206,6 +206,19 @@ flowchart TD
 | DOC-3 | Klasik/AI yöntem davranışı ve format desteği | Resmî sürüm dokümanı gerekli |
 | DATA-3 | Round-trip ve DBE karşılaştırması | Gerçek veri testi gerekli |
 | IMG-3 | Arayüz, model, corrected image | Görsel gerekli |
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Tamamlandı |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

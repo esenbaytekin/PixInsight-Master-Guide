@@ -1,4 +1,4 @@
-# Generalized Hyperbolic Stretch
+# GeneralizedHyperbolicStretch
 
 !!! info "Sayfa Bilgisi"
     **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
@@ -104,6 +104,19 @@ Preview histogramı mask etkisini her durumda tam temsil etmeyebilir; resmi GHS 
 - Preview mask tahminini kesin output histogramı saymak
 - Basit HT yeterliyken gereksiz parametre karmaşıklığı eklemek
 - Noise veya gradient’i contrast ile bastırmaya çalışmak
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

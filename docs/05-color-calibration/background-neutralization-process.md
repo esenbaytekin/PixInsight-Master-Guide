@@ -753,10 +753,23 @@ flowchart TD
     J --> H
 ```
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 !!! warning "Doğrulama bekliyor"
     Menü, section/control adları, range ve target background davranışı, exact statistics, clipping, default değerler, exact linear/nonlinear davranış ve output/log yayımdan önce 1.9.3 UI, birincil kaynak ve gerçek veriyle doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

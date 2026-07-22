@@ -13,7 +13,7 @@ DarkStructureEnhance (DSE), çevresine göre koyu kalan yapıları vurgulayarak 
 
 DSE “karanlık veri üretmez”. Lokal koyu yapı ile çevresi arasındaki kontrast ilişkisini değiştirir. Gerçek dust lane, background gradient, calibration kusuru ve dark halo benzer tonlarda olabilir; bu nedenle seçim maskesi ve veri doğruluğu process miktarından daha önemlidir.
 
-!!! warning "Kanıt Düzeyi — Topluluk Uzlaşısı"
+!!! warning "Kanıt Düzeyi — Community Consensus"
     DSE bir script olarak dağıtılır; kurulum kaynağı, sürümü, menü konumu ve kontrol adları PixInsight 1.9.3 ortamında doğrulanmalıdır. Core process davranışı varsayılmamalıdır.
 
 ## Ne zaman kullanılır?
@@ -109,12 +109,25 @@ flowchart TD
 
 Script'in ölçek/iteration maliyeti görüntü boyutuyla artar. Preview ile ayar arayın, tam görüntüde kenar ve büyük yapı davranışını yeniden doğrulayın. DSE'yi “son dokunuş” olarak bile maskesiz otomatik reçeteye dönüştürmeyin.
 
-!!! tip "Kanıt Düzeyi — Pratik Öneri"
+!!! tip "Kanıt Düzeyi — Practical Recommendation"
     Sonucu yalnız daha dramatik görünüp görünmediğine göre değil, koyu yapının özgün görüntüde süreklilik gösterip göstermediğine göre değerlendirin.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 Koyu lokal yapı enhancement yaklaşımı genel iş akışıdır. DSE script sürümü, repository kaynağı, parametre adları ve sayısal davranışı PixInsight 1.9.3 kurulumunda ayrıca doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

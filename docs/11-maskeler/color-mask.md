@@ -13,7 +13,7 @@ ColorMask, belirli bir hue aralığını saturation ve intensity koşullarıyla 
 
 ColorMask, PixInsight ekosisteminde yaygın kullanılan bir script iş akışıdır; core process olduğu varsayılmamalıdır. Kurulum kaynağı ve arayüzü dağıtıma göre değişebilir.
 
-!!! warning "Kanıt Düzeyi — Topluluk Uzlaşısı"
+!!! warning "Kanıt Düzeyi — Community Consensus"
     ColorMask script'inin bulunabilirliği ve tam UI kontrolleri PixInsight 1.9.3 kurulumunda doğrulanmalıdır. Bu sayfa sürüme bağlı menü konumu veya varsayılan değer iddiasında bulunmaz.
 
 ## Teori
@@ -108,9 +108,22 @@ flowchart TD
 - Yıldız ve arka plan contamination'ını kontrol et.
 - Curves/SCNR etkisini küçük iterasyonlarla uygula.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 Renk temelli maskeleme teorisi geneldir. ColorMask script'inin kaynağı, sürümü, menü konumu, kontrol adları ve hue wrap davranışı PixInsight 1.9.3 kurulumunda doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

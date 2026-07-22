@@ -30,7 +30,7 @@ Yıldız alanı tek ölçekli değildir. Küçük yıldızlar birkaç pikselde t
 
 `Process > MaskGeneration > StarMask`
 
-!!! warning "Kanıt Düzeyi — UI doğrulaması"
+!!! warning "Doğrulama Durumu — UI Kanıtı Gerekli"
     Menü grubu, kontrol adları ve varsayılan değerler PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır. Bu sayfa sabit varsayılan değer önermemektedir.
 
 ## Parametre yaklaşımı
@@ -80,7 +80,7 @@ StarMask, LHE'nin yıldız profillerinde keskin halo oluşturmasını engellemek
 
 Nonlinear stretch veya Curves öncesinde parlak yıldız çekirdekleri maskelenir. Clipping olmuş çekirdeklerde maske kayıp rengi geri getiremez; yalnız sonraki değişimi sınırlar.
 
-!!! example "Kanıt Düzeyi — Resmî Dokümantasyon"
+!!! example "Kanıt Düzeyi — Official Documentation"
     PixInsight'ın M31 Ha örneği, PixelMath işlemini bir star mask üzerinden uygulayarak yıldızların ve çevresindeki noise/halo etkilerinin ayrıca değerlendirilmesi gerektiğini gösterir.
 
 ## Pratik Karar Rehberi
@@ -122,9 +122,22 @@ Büyük görüntülerde çok sayıda scale ve geniş kernel kullanımı süre ve
 - Nebula seçimini PixelMath ile çıkar.
 - Star reduction'ı küçük iterasyonlarla uygula.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 Multiscale yıldız seçimi ve maske kullanım ilkeleri sürümden bağımsızdır. Tam kontrol adları, ölçek numaralandırması ve process menü yolu PixInsight 1.9.3 UI kanıtıyla doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

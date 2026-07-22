@@ -70,6 +70,19 @@ Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, s
 
 Process hızlıdır; clone matrisi ve quality check asıl maliyettir. RGB-only referansı her zaman saklayın. [PixelMath LRGB](pixelmath-lrgb.md), [ColorMask](../11-maskeler/color-mask.md) ve [RangeMask](../11-maskeler/range-mask.md) karmaşık durumlarda tamamlayıcıdır.
 
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
+
 ## İlgili Süreçler
 
 - [ChannelCombination](channel-combination.md)

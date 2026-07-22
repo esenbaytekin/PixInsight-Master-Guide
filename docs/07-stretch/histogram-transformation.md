@@ -109,6 +109,19 @@ HT hızlı bir point operation’dır; Real-Time Preview ve clone karşılaştı
 - Kanal histogramlarını kontrol etmeden RGB/K dışı düzeltme yapmak
 - Nonlinear sonucu yeniden lineer process girdisi sanmak
 
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
+
 ## Ayrıca İnceleyin
 
 - [Stretch teorisi](index.md)
