@@ -131,10 +131,30 @@ flowchart TD
 
 Multiscale katman felsefesi resmi PixInsight eğitim materyaliyle uyumludur. MMT'nin 1.9.3 UI kontrol adları, scaling function seçenekleri ve sayısal sınırları ekran kanıtıyla doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md) · [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md) · [Maskeler](../11-maskeler/index.md) · [LHE](local-histogram-equalization.md)
 
 ## Referanslar
 
 - [PixInsight Workshop — Multiscale processing](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
+
+## İlgili Süreçler
+
+- [HDRMultiscaleTransform](hdr-multiscale-transform.md)
+- [LocalHistogramEqualization](local-histogram-equalization.md)
+- [DarkStructureEnhance](dark-structure-enhance.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+
+## Önceki Bölüm
+
+[← LocalHistogramEqualization](local-histogram-equalization.md)
+
+## Sonraki Bölüm
+
+[DarkStructureEnhance →](dark-structure-enhance.md)

@@ -185,8 +185,16 @@ flowchart TD
 | DATA-5 | Mono LRGB ve OSC karşılaştırması bekliyor |
 | IMG-5 | Dört planlı görsel bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [White Balance](white-balance.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [PixInsight Temelleri — STF](../02-pixinsight-temelleri/stf.md)
+
+## Önceki Bölüm
+
+[← Renk Kalibrasyonuna Giriş](index.md)
+
+## Sonraki Bölüm
+
+[Beyaz Dengesi →](white-balance.md)

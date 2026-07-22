@@ -69,3 +69,17 @@ Her ara L clone’u ve ölçümü saklayın; final sharpness’i tek başarı ö
 - [LRGBCombination](lrgb-combination.md)
 - [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
 - [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+
+## Önceki Bölüm
+
+[← ChannelCombination](channel-combination.md)
+
+## Sonraki Bölüm
+
+[LRGBCombination →](lrgb-combination.md)

@@ -86,3 +86,21 @@ Calibration review 20–35 dk; gradient 20–45 dk; color/stretch 25–40 dk; de
 ## Kanıt Düzeyi
 
 Model-image ve residual kontrolü **Verified Workflow**; kernel, amount ve exposure kararları **Practical Recommendation** düzeyindedir.
+
+## Kullanılan Süreçler
+
+- [WBPP](../03-kalibrasyon/wbpp.md)
+- [DBE](../04-gradient/dbe.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md)
+- [GeneralizedHyperbolicStretch](../07-stretch/generalized-hyperbolic-stretch.md)
+- [RangeMask](../11-maskeler/range-mask.md)
+- [LocalHistogramEqualization](../12-detay-ve-kontrast/local-histogram-equalization.md)
+
+## Önceki Bölüm
+
+[← LRGB + Ha Galaksi](lrgb-ha-galaxy.md)
+
+## Sonraki Bölüm
+
+[Emisyon Nebulası →](emission-nebula.md)

@@ -380,3 +380,11 @@ flowchart TD
     **Karşılaştırılacak çıktılar:** Original, Model, Corrected ve gerektiğinde alternate correction  
     **Kanıtlanacak teknik nokta:** Her kartın belirti ve kök neden ayrımı  
     **Önerilen dosya adı:** `gradient-error-card-atlas-01`
+
+## Önceki Bölüm
+
+[← NGC 6888 Gradient İş Akışı](ngc6888-gradient-workflow.md)
+
+## Sonraki Bölüm
+
+[Gradient Hızlı Referansı →](gradient-quick-reference.md)

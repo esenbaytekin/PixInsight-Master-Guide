@@ -158,8 +158,16 @@ flowchart TD
 
 Bu sayfa A4 çıktıda başlık, tablo ve kontrol listeleriyle bağımsız okunacak biçimde tasarlanmıştır. Anlam yalnız renkli admonition kutularına bağlı değildir.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gerçek İş Akışları](real-workflows.md)
 - [Gradient Hata Kartları](error-cards.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
+
+## Önceki Bölüm
+
+[← Gradient Hata Kartları](error-cards.md)
+
+## Sonraki Bölüm
+
+[Renk Kalibrasyonuna Giriş →](../05-color-calibration/index.md)

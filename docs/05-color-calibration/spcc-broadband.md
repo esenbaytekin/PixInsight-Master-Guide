@@ -198,9 +198,33 @@ flowchart TD
 | DATA-6 | Sekiz test bekliyor |
 | IMG-6 | LRGB/OSC/M31 görselleri bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [SPCC Ana Referans](spcc.md)
 - [SPCC Ön Koşulları](spcc-prerequisites.md)
 - [SPCC Sorun Giderme](spcc-troubleshooting.md)
 - [Background Neutrality](background-neutrality.md)
+
+## İlgili Süreçler
+
+- [SPCC](spcc.md)
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Narrowband Kapsamı](spcc-narrowband.md)
+- [SPCC Sorun Giderme](spcc-troubleshooting.md)
+- [PCC](pcc.md)
+- [BackgroundNeutralization](background-neutralization-process.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← SPCC Ön Koşulları](spcc-prerequisites.md)
+
+## Sonraki Bölüm
+
+[SPCC Narrowband Kapsamı →](spcc-narrowband.md)

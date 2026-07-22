@@ -273,3 +273,31 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     UI etiketlerinin görünen kısmı validation kanıtlarıyla eşlendi. Screenshot içinde sürüm numarası, default/reset durumu, tooltip, console veya gerçek uygulama sonucu bulunmadığından bunlar process documentation ve kontrollü veriyle doğrulanmalıdır.
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GradientCorrection](gradient-correction.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [DBE: Less Than Three Samples](../14-hata-kutuphanesi/dbe-less-than-three-samples.md)
+
+## Önceki Bölüm
+
+[← AutomaticBackgroundExtractor](abe.md)
+
+## Sonraki Bölüm
+
+[Örnek Yerleşimi →](sample-placement.md)

@@ -124,3 +124,24 @@ Master üzerinde export işlemi yapmayın; türetilmiş kopya kullanın. Resampl
 
 - [PixInsight Forum — Saving for web, staff workflow](https://pixinsight.com/forum/index.php?threads/saving-for-web.6641/)
 - [PixInsight Forum — TIFF and ICC troubleshooting](https://pixinsight.com/forum/index.php?threads/best-format-for-publication-export.15394/)
+
+## İlgili Süreçler
+
+- [CurvesTransformation](curves-transformation.md)
+- [SCNR](scnr.md)
+- [Doygunluk](saturation.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← Doygunluk](saturation.md)
+
+## Sonraki Bölüm
+
+[Hata Kütüphanesi →](../14-hata-kutuphanesi/index.md)

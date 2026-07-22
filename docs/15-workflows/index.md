@@ -93,3 +93,14 @@ Bu bölümdeki process sıraları **Verified Workflow**, veri setine göre branc
 - [Gradient Correction](../04-gradient/index.md)
 - [Color Calibration](../05-color-calibration/index.md)
 - [Hata Kütüphanesi](../14-hata-kutuphanesi/index.md)
+
+!!! tip "Sonraki Önerilen Konular"
+    Doğal renkli mono veri için [LRGB Galaksi](lrgb-galaxy.md), dar bant veri için [SHO ve HOO Narrowband](sho-hoo.md), tek çekim renkli kamera verisi için [OSC İş Akışı](osc-workflow.md) ile başlayın.
+
+## Önceki Bölüm
+
+[← Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Sonraki Bölüm
+
+[LRGB Galaksi →](lrgb-galaxy.md)

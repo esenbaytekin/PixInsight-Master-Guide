@@ -122,7 +122,7 @@ flowchart TD
 
 Matematiksel model kavramsal ve process'ten bağımsızdır. PixInsight 1.9.3'te maske bağlama, görünürlük ve inversion kontrollerinin tam UI konumu kurulu platforma göre ekran kanıtıyla doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [RangeMask](range-mask.md)
 - [StarMask](star-mask.md)
@@ -134,3 +134,29 @@ Matematiksel model kavramsal ve process'ten bağımsızdır. PixInsight 1.9.3'te
 
 - [PixInsight — Introduction to PixInsight](https://pixinsight.com/astrophotocl/outreach/pixinsight_eccai_2006.pdf)
 - [PixInsight — M31 Ha processing example](https://www.pixinsight.com/examples/M31-Ha/)
+
+## İlgili Süreçler
+
+- [RangeMask](range-mask.md)
+- [StarMask](star-mask.md)
+- [Luminance Mask](luminance-mask.md)
+- [ColorMask](color-mask.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Önceki Bölüm
+
+[← ColorMask](color-mask.md)
+
+## Sonraki Bölüm
+
+[Detay ve Kontrast →](../12-detay-ve-kontrast/index.md)

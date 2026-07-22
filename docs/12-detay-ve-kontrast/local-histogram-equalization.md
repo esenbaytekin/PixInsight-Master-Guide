@@ -118,3 +118,23 @@ CLAHE yaklaşımı ve maskeli kullanım resmi PixInsight örneğiyle desteklenir
 
 - [PixInsight Forum — HDRMT and LHE workflow example](https://pixinsight.com/forum/index.php?threads/m101-hdr-processing-startools-vs-pixinsight.4286/)
 - [Multiscale processing overview](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
+
+## İlgili Süreçler
+
+- [HDRMultiscaleTransform](hdr-multiscale-transform.md)
+- [MultiscaleMedianTransform](multiscale-median-transform.md)
+- [DarkStructureEnhance](dark-structure-enhance.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+
+## Önceki Bölüm
+
+[← HDRMultiscaleTransform](hdr-multiscale-transform.md)
+
+## Sonraki Bölüm
+
+[MultiscaleMedianTransform →](multiscale-median-transform.md)

@@ -178,7 +178,7 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 
 - İç bağlantılar göreli Markdown bağlantısıdır.
 - Process açıklaması tekrar edilmek yerine canonical process sayfasına bağlanır.
-- `İlgili Süreçler`, `Önceki Bölüm`, `Sonraki Bölüm` veya `Ayrıca Bakınız` başlıkları Türkçedir.
+- Bağlamsal navigasyonda yalnız `İlgili Süreçler`, `İlgili İş Akışları`, `Kullanılan Süreçler`, `İlgili Sorun Giderme Başlıkları`, `Önceki Bölüm`, `Sonraki Bölüm` ve `Ayrıca İnceleyin` başlıkları kullanılır.
 - Aynı hedefe aynı bölümde gereksiz tekrar bağlantı verilmez.
 - Dosya taşınırsa gelen bağlantılar aynı değişiklikte güncellenir.
 - Legacy yönlendirme sayfaları navigasyona eklenmez; canonical içeriği tekrar etmez.
@@ -186,6 +186,8 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 ## Navigasyon ve Legacy Sayfalar
 
 Navigasyon yalnız canonical sayfaları içerir. `docs/05-renk-kalibrasyonu/` altındaki kısa yönlendirmeler eski URL'leri korumak için tutulur; ikinci bir Color Calibration ağacı değildir. Yeni içerik ve yeni bağlantılar yalnız `docs/05-color-calibration/` hedeflerine yazılır.
+
+Canonical sayfalardaki `Önceki Bölüm` ve `Sonraki Bölüm` bağlantıları alfabetik sırayı değil `mkdocs.yml` içindeki öğrenme sırasını izler. Process sayfaları ilgili canonical process, iş akışı ve hata kartlarına; iş akışı sayfaları ise kullandıkları canonical process sayfalarına bağlanır. Bağlantı listeleri teknik açıklamayı tekrarlamaz ve yalnız bağlamla doğrudan ilişkili hedefleri içerir.
 
 ## Dosya ve Görsel Adlandırma
 

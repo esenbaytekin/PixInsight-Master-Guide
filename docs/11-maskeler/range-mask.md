@@ -111,6 +111,32 @@ flowchart TD
 
 Yoğunluk aralığına dayalı maskeleme temel kavramdır. Menü yolu, parametre adları ve özellikle `Screening` davranışı PixInsight 1.9.3 UI kanıtıyla doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [Maske Mantığı](maske-mantigi.md) · [StarMask](star-mask.md) · [Luminance Mask](luminance-mask.md) · [PixelMath](../10-pixelmath/index.md)
+
+## İlgili Süreçler
+
+- [StarMask](star-mask.md)
+- [Luminance Mask](luminance-mask.md)
+- [ColorMask](color-mask.md)
+- [Maske Mantığı](maske-mantigi.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Önceki Bölüm
+
+[← Maskeler](index.md)
+
+## Sonraki Bölüm
+
+[StarMask →](star-mask.md)

@@ -115,3 +115,11 @@ flowchart LR
 - [PixInsight: ScreenTransferFunction ve HistogramTransformation temelleri](../02-pixinsight-temelleri/stf.md)
 - [GHS process reference](https://www.ghsastro.co.uk/doc/tools/GeneralizedHyperbolicStretch/GeneralizedHyperbolicStretch.html)
 - [PixInsight Staff: MaskedStretch tool](https://pixinsight.com/forum/index.php?threads/new-maskedstretch-tool.6420/)
+
+## Önceki Bölüm
+
+[← StarXTerminator](../06-ai-eklentileri/starxterminator.md)
+
+## Sonraki Bölüm
+
+[HistogramTransformation →](histogram-transformation.md)

@@ -242,3 +242,11 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     PixInsight 1.9.3’te ABE ve DBE’nin polynomial, interpolation, correction ve normalization uygulama ayrıntıları yerleşik process documentation ile doğrulanmayı bekliyor.
+
+## Önceki Bölüm
+
+[← Gradient Bölümüne Giriş](index.md)
+
+## Sonraki Bölüm
+
+[AutomaticBackgroundExtractor →](abe.md)

@@ -64,3 +64,27 @@ Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, s
 ## Performans, En İyi Uygulamalar ve ilgili processes
 
 Process hızlıdır; clone matrisi ve quality check asıl maliyettir. RGB-only referansı her zaman saklayın. [PixelMath LRGB](pixelmath-lrgb.md), [ColorMask](../11-maskeler/color-mask.md) ve [RangeMask](../11-maskeler/range-mask.md) karmaşık durumlarda tamamlayıcıdır.
+
+## İlgili Süreçler
+
+- [ChannelCombination](channel-combination.md)
+- [Luminance Hazırlama](luminance-hazirlama.md)
+- [PixelMath ile LRGB](pixelmath-lrgb.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [LRGB Source Image Not Found](../14-hata-kutuphanesi/lrgb-source-image-not-found.md)
+
+## Önceki Bölüm
+
+[← Luminance Hazırlama](luminance-hazirlama.md)
+
+## Sonraki Bölüm
+
+[PixelMath ile LRGB →](pixelmath-lrgb.md)

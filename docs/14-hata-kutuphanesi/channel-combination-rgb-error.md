@@ -77,3 +77,11 @@ flowchart TD
 ## İlgili Süreçler
 
 [PixelMath](../10-pixelmath/index.md) · [LRGB](../08-lrgb/index.md) · [Color Calibration](../05-color-calibration/index.md) · [Hata Kütüphanesi](index.md)
+
+## Önceki Bölüm
+
+[← DBE: Less Than Three Samples](dbe-less-than-three-samples.md)
+
+## Sonraki Bölüm
+
+[LRGB Source Image Not Found →](lrgb-source-image-not-found.md)

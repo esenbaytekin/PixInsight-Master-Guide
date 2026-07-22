@@ -150,9 +150,17 @@ flowchart TD
 | DATA-4 | Sekiz M31 testi gerçek veri bekliyor |
 | IMG-4 | Sample haritası ve üçlü çıktı görselleri bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Sample Placement](sample-placement.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
 - [Gerçek İş Akışları](real-workflows.md)
 - [Gradient Quick Reference](gradient-quick-reference.md)
+
+## Önceki Bölüm
+
+[← Gerçek İş Akışları](real-workflows.md)
+
+## Sonraki Bölüm
+
+[NGC 6888 Gradient İş Akışı →](ngc6888-gradient-workflow.md)

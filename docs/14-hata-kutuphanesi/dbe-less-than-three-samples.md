@@ -69,3 +69,11 @@ flowchart TD
 ## İlgili Süreçler
 
 [DBE](../04-gradient/dbe.md) · [Sample Placement](../04-gradient/sample-placement.md) · [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) · [Hata Kütüphanesi](index.md)
+
+## Önceki Bölüm
+
+[← Hata Kütüphanesi](index.md)
+
+## Sonraki Bölüm
+
+[ChannelCombination RGB Hatası →](channel-combination-rgb-error.md)

@@ -184,9 +184,33 @@ flowchart TD
 | DATA-3 | Renkli/mono gerçek veri karşılaştırması | Gerçek veri testi gerekli |
 | IMG-3 | Arayüz ve menü ekranları mevcut; model/residual ekranları | Kısmen doğrulandı |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [ABE](abe.md)
 - [DBE](dbe.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [DynamicBackgroundExtraction](dbe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← Gradient Tanısı](gradient-diagnostics.md)
+
+## Sonraki Bölüm
+
+[GraXpert →](graxpert.md)

@@ -202,9 +202,31 @@ flowchart TD
     snrq -- "Hayır" --> accept["Master kabul kontrolüne geç"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Pipeline](calibration-pipeline.md)
 - [WBPP](wbpp.md)
 - [StarAlignment](star-alignment.md)
 - [DBE](../04-gradient/dbe.md)
+
+## İlgili Süreçler
+
+- [Calibration Pipeline](calibration-pipeline.md)
+- [WBPP](wbpp.md)
+- [ImageCalibration](image-calibration.md)
+- [CosmeticCorrection](cosmetic-correction.md)
+- [StarAlignment](star-alignment.md)
+
+## İlgili İş Akışları
+
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+
+## Önceki Bölüm
+
+[← StarAlignment](star-alignment.md)
+
+## Sonraki Bölüm
+
+[Gradient Bölümüne Giriş →](../04-gradient/index.md)

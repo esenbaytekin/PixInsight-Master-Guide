@@ -60,3 +60,11 @@ flowchart LR
 ## Teknik doğrulama durumu
 
 Bu sayfa workflow özetidir. UI ve format ayrıntılarının doğrulama durumu ilgili process sayfalarında belirtilmiştir.
+
+## Önceki Bölüm
+
+[← DarkStructureEnhance](../12-detay-ve-kontrast/dark-structure-enhance.md)
+
+## Sonraki Bölüm
+
+[CurvesTransformation →](curves-transformation.md)

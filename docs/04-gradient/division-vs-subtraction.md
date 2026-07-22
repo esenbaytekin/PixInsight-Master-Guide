@@ -205,9 +205,33 @@ flowchart LR
 | DATA-1 | Aynı dataset üzerinde correction karşılaştırması |
 | IMG-1 | STF, histogram ve before/after ekranları |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Teorisi](gradient-theory.md)
 - [Sample Yerleşimi](sample-placement.md)
 - [DBE](dbe.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [DynamicBackgroundExtraction](dbe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GradientCorrection](gradient-correction.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← Örnek Yerleşimi](sample-placement.md)
+
+## Sonraki Bölüm
+
+[Gradient Tanısı →](gradient-diagnostics.md)

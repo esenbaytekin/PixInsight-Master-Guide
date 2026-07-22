@@ -102,7 +102,7 @@ Point transform hızlıdır; asıl maliyet A/B denemesi ve color denetimidir. Fa
 - Final contrast ihtiyacını tek Arcsinh adımına yüklemek
 - Stars/starless layer’ları uyumsuz stretch ile birleştirmek
 
-## İlgili Süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)
@@ -110,3 +110,23 @@ Point transform hızlıdır; asıl maliyet A/B denemesi ve color denetimidir. Fa
 - [SPCC](../05-color-calibration/spcc.md)
 - [StarXTerminator](../06-ai-eklentileri/starxterminator.md)
 - [GHS primer: arcsinh bağlamı](https://www.ghsastro.co.uk/doc/scripts/GeneralisedHyperbolicStretch/GeneralisedHyperbolicStretch.html)
+
+## İlgili Süreçler
+
+- [HistogramTransformation](histogram-transformation.md)
+- [Generalized Hyperbolic Stretch](generalized-hyperbolic-stretch.md)
+- [MaskedStretch](masked-stretch.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← MaskedStretch](masked-stretch.md)
+
+## Sonraki Bölüm
+
+[LRGB →](../08-lrgb/index.md)

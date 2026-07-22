@@ -90,3 +90,11 @@ Bu bölüm maskelerin temel kullanım modelini açıklar. Process arayüzündeki
 
 - [PixInsight — Introduction to PixInsight](https://pixinsight.com/astrophotocl/outreach/pixinsight_eccai_2006.pdf)
 - [PixInsight — M31 Ha processing example](https://www.pixinsight.com/examples/M31-Ha/)
+
+## Önceki Bölüm
+
+[← Hata Ayıklama](../10-pixelmath/hata-ayiklama.md)
+
+## Sonraki Bölüm
+
+[RangeMask →](range-mask.md)

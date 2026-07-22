@@ -153,7 +153,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **STF:** display, data değişmez. **HT:** image data değişir. HT öncesi lineer işlemleri tamamla; clone kullan; clipping’i kontrol et; uygulama sonrası STF’yi resetle.
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Dönüşümleri güvenli biçimde sınamak ve geri dönüş dalları oluşturmak için [Preview, Clone ve History Explorer](preview-clone-history.md) bölümüne geçin.
 
+## Önceki Bölüm
+
+[← STF](stf.md)

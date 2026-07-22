@@ -117,3 +117,24 @@ SCNR'nin green-removal kullanımı yaygın ve gözlemlenebilir bir workflow'dur.
 
 - [PixInsight Resources](https://www.pixinsight.com/resources/)
 - [Color calibration](../05-color-calibration/index.md)
+
+## İlgili Süreçler
+
+- [CurvesTransformation](curves-transformation.md)
+- [Doygunluk](saturation.md)
+- [Dışa Aktarım](export.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← CurvesTransformation](curves-transformation.md)
+
+## Sonraki Bölüm
+
+[Doygunluk →](saturation.md)

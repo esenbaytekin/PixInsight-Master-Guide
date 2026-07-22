@@ -195,10 +195,18 @@ flowchart TD
 | DATA-5 | Broadband star field testi bekliyor |
 | IMG-5 | Üç planlı görsel bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Astronomik Renk Teorisi](color-theory.md)
 - [White Balance](white-balance.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
 - [SPCC](spcc.md)
 - [PCC](pcc.md)
+
+## Önceki Bölüm
+
+[← Beyaz Dengesi](white-balance.md)
+
+## Sonraki Bölüm
+
+[Arka Plan Nötrlüğü →](background-neutrality.md)

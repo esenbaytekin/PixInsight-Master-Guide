@@ -155,8 +155,16 @@ flowchart TD
 | DATA-3 | Ay açısı, haze ve filtre serisi | Gerçek veri gerekli |
 | IMG-3 | Zaman serisi ve haze karşılaştırması | Görsel gerekli |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [Işık Kirliliği Gradientleri](light-pollution-gradients.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
+
+## Önceki Bölüm
+
+[← GraXpert](graxpert.md)
+
+## Sonraki Bölüm
+
+[Işık Kirliliği Gradientleri →](light-pollution-gradients.md)

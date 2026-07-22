@@ -203,9 +203,17 @@ flowchart TD
 | DATA-3 | Doğru/yanlış flat ve çevresel residual | Gerçek veri gerekli |
 | IMG-3 | Flat, dust, vignetting ve sky karşılaştırmaları | Görsel gerekli |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [ImageCalibration](../03-kalibrasyon/image-calibration.md)
 - [Gradient Teorisi](gradient-theory.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
+
+## Önceki Bölüm
+
+[← Işık Kirliliği Gradientleri](light-pollution-gradients.md)
+
+## Sonraki Bölüm
+
+[Gerçek İş Akışları →](real-workflows.md)

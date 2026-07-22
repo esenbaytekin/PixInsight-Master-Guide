@@ -113,3 +113,11 @@ flowchart TD
 ## Kanıt Düzeyi
 
 Bu katalogdaki teşhis akışı **Verified Workflow** ve muhafazakâr **Practical Recommendation** niteliğindedir. Tek bir belirti tek bir kök nedeni kanıtlamaz; verification adımları atlanmamalıdır.
+
+## Önceki Bölüm
+
+[← Dışa Aktarım](../13-final/export.md)
+
+## Sonraki Bölüm
+
+[DBE: Less Than Three Samples →](dbe-less-than-three-samples.md)

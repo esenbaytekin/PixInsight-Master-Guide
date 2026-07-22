@@ -107,10 +107,36 @@ flowchart TD
 
 Renk temelli maskeleme teorisi geneldir. ColorMask script'inin kaynağı, sürümü, menü konumu, kontrol adları ve hue wrap davranışı PixInsight 1.9.3 kurulumunda doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [Maske Mantığı](maske-mantigi.md) · [RangeMask](range-mask.md) · [StarMask](star-mask.md) · [CurvesTransformation](../13-final/curves-transformation.md) · [SCNR](../13-final/scnr.md)
 
 ## Referanslar
 
 - [PixInsight Forum — ColorMask script version discussion](https://pixinsight.com/forum/index.php?threads/pi-version-1-8-modefied-color-mask-script.21707/)
+
+## İlgili Süreçler
+
+- [RangeMask](range-mask.md)
+- [StarMask](star-mask.md)
+- [Luminance Mask](luminance-mask.md)
+- [Maske Mantığı](maske-mantigi.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Önceki Bölüm
+
+[← Luminance Mask](luminance-mask.md)
+
+## Sonraki Bölüm
+
+[Maske Mantığı →](maske-mantigi.md)

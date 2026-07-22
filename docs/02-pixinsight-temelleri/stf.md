@@ -161,6 +161,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **STF = display only.** Piksel data değişmez, image lineer kalır. Adil karşılaştırma için aynı STF instance’ını kullanın. Kalıcı stretch için parametreleri HistogramTransformation’a aktarın ve HT’yi hedefe uygulayın.
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Data dağılımını okumak ve screen stretch’i kalıcı dönüşümden ayırmak için [Histogram ve HistogramTransformation](histogram.md) bölümüne geçin.
+
+## Önceki Bölüm
+
+[← Workspace](workspace.md)

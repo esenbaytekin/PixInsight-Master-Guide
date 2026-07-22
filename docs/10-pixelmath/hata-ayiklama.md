@@ -69,3 +69,18 @@ Karmaşık expression, çok sayıda full-resolution image ve temporary output be
 - [Temeller](temeller.md)
 - [Koşullar ve Fonksiyonlar](kosullar-ve-fonksiyonlar.md)
 - [Kanal Karışımları](kanal-karisimlari.md)
+
+## İlgili İş Akışları
+
+- [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← Kanal Karışımları](kanal-karisimlari.md)
+
+## Sonraki Bölüm
+
+[Maskeler →](../11-maskeler/index.md)

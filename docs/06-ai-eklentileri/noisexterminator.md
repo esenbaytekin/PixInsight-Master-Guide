@@ -81,9 +81,29 @@ Iterations ve separation modları işlem süresini/bellek kullanımını artıra
 - Stretch sonrası görünümü önceden test et
 - AI/model sürümünü kaydet
 
-## İlgili süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [BlurXTerminator](blurxterminator.md)
 - [HistogramTransformation](../02-pixinsight-temelleri/histogram.md)
 - [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
 - [RC Astro NoiseXTerminator 2/AI3 User Manual](https://www.rc-astro.com/noisexterminator-2-ai3-user-manual-pixinsight/)
+
+## İlgili Süreçler
+
+- [BlurXTerminator](blurxterminator.md)
+- [StarXTerminator](starxterminator.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← BlurXTerminator](blurxterminator.md)
+
+## Sonraki Bölüm
+
+[StarXTerminator →](starxterminator.md)

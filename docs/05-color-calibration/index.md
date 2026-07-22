@@ -87,7 +87,7 @@ flowchart LR
     ai --> stretch["Stretch ve controlled grading"]
 ```
 
-## Quick Navigation
+## Hızlı Gezinme
 
 | Soru | Sayfa |
 | --- | --- |
@@ -110,3 +110,11 @@ flowchart LR
 | DOC-5 | Lineer workflow ve photometric algoritma kaynakları bekliyor |
 | DATA-5 | Broadband, mono LRGB ve OSC testleri bekliyor |
 | IMG-5 | Teori, workflow ve diagnostics görselleri bekliyor |
+
+## Önceki Bölüm
+
+[← Gradient Hızlı Referansı](../04-gradient/gradient-quick-reference.md)
+
+## Sonraki Bölüm
+
+[Astronomik Renk Teorisi →](color-theory.md)

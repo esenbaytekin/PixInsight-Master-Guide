@@ -193,10 +193,32 @@ flowchart TD
     integrate --> master["Lineer Master Image"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Bölüm ana sayfası](index.md)
 - [WBPP](wbpp.md)
 - [ImageCalibration](image-calibration.md)
 - [StarAlignment](star-alignment.md)
 - [ImageIntegration](image-integration.md)
+
+## İlgili Süreçler
+
+- [WBPP](wbpp.md)
+- [ImageCalibration](image-calibration.md)
+- [CosmeticCorrection](cosmetic-correction.md)
+- [StarAlignment](star-alignment.md)
+- [ImageIntegration](image-integration.md)
+
+## İlgili İş Akışları
+
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+
+## Önceki Bölüm
+
+[← Kalibrasyon](index.md)
+
+## Sonraki Bölüm
+
+[WBPP →](wbpp.md)

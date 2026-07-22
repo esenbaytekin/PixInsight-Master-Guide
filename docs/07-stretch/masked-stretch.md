@@ -98,9 +98,29 @@ Iteration sayısı süreyi etkiler; process parallelized olsa da büyük drizzle
 - NoiseXTerminator sırasını test etmeden sabitlemek
 - MaskedStretch’i explicit star mask ile aynı kavram sanmak
 
-## İlgili Süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)
 - [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md)
 - [PixInsight Staff: New MaskedStretch Tool](https://pixinsight.com/forum/index.php?threads/new-maskedstretch-tool.6420/)
+
+## İlgili Süreçler
+
+- [HistogramTransformation](histogram-transformation.md)
+- [Generalized Hyperbolic Stretch](generalized-hyperbolic-stretch.md)
+- [ArcsinhStretch](arcsinh-stretch.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← Generalized Hyperbolic Stretch](generalized-hyperbolic-stretch.md)
+
+## Sonraki Bölüm
+
+[ArcsinhStretch →](arcsinh-stretch.md)

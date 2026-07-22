@@ -179,8 +179,30 @@ flowchart TD
     cornerq -- "Hayır" --> residual["Reference kalitesi ve residual'ları incele"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Pipeline](calibration-pipeline.md)
 - [CosmeticCorrection](cosmetic-correction.md)
 - [ImageIntegration](image-integration.md)
+
+## İlgili Süreçler
+
+- [Calibration Pipeline](calibration-pipeline.md)
+- [WBPP](wbpp.md)
+- [ImageCalibration](image-calibration.md)
+- [CosmeticCorrection](cosmetic-correction.md)
+- [ImageIntegration](image-integration.md)
+
+## İlgili İş Akışları
+
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+
+## Önceki Bölüm
+
+[← CosmeticCorrection](cosmetic-correction.md)
+
+## Sonraki Bölüm
+
+[ImageIntegration →](image-integration.md)

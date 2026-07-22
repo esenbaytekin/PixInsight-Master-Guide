@@ -80,3 +80,11 @@ Kanal katkısı ve history karşılaştırması **Verified Workflow** düzeyinde
 ## İlgili Süreçler
 
 [PixelMath Kanal Karışımları](../10-pixelmath/kanal-karisimlari.md) · [SCNR](../13-final/scnr.md) · [Saturation](../13-final/saturation.md) · [Hata Kütüphanesi](index.md)
+
+## Önceki Bölüm
+
+[← LRGB Source Image Not Found](lrgb-source-image-not-found.md)
+
+## Sonraki Bölüm
+
+[Maske Tüm Görüntüyü Kaplıyor →](maske-tum-goruntuyu-kapliyor.md)

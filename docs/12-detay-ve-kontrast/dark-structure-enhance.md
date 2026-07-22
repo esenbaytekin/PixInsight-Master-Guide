@@ -111,6 +111,26 @@ Script'in ölçek/iteration maliyeti görüntü boyutuyla artar. Preview ile aya
 
 Koyu lokal yapı enhancement yaklaşımı genel iş akışıdır. DSE script sürümü, repository kaynağı, parametre adları ve sayısal davranışı PixInsight 1.9.3 kurulumunda ayrıca doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [LHE](local-histogram-equalization.md) · [HDRMT](hdr-multiscale-transform.md) · [MMT](multiscale-median-transform.md) · [Maskeler](../11-maskeler/index.md) · [CurvesTransformation](../13-final/curves-transformation.md)
+
+## İlgili Süreçler
+
+- [HDRMultiscaleTransform](hdr-multiscale-transform.md)
+- [LocalHistogramEqualization](local-histogram-equalization.md)
+- [MultiscaleMedianTransform](multiscale-median-transform.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+
+## Önceki Bölüm
+
+[← MultiscaleMedianTransform](multiscale-median-transform.md)
+
+## Sonraki Bölüm
+
+[Son İşlemler →](../13-final/index.md)

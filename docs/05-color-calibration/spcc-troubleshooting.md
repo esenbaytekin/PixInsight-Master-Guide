@@ -506,9 +506,33 @@ flowchart TD
 | DATA-6 | Otuz kartın yeniden üretimi bekliyor |
 | IMG-6 | Log/hata atlası bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [SPCC Ana Referans](spcc.md)
 - [SPCC Ön Koşulları](spcc-prerequisites.md)
 - [SPCC Broadband](spcc-broadband.md)
 - [SPCC Narrowband](spcc-narrowband.md)
+
+## İlgili Süreçler
+
+- [SPCC](spcc.md)
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Broadband İş Akışı](spcc-broadband.md)
+- [SPCC Narrowband Kapsamı](spcc-narrowband.md)
+- [PCC](pcc.md)
+- [BackgroundNeutralization](background-neutralization-process.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← SPCC Narrowband Kapsamı](spcc-narrowband.md)
+
+## Sonraki Bölüm
+
+[PCC →](pcc.md)

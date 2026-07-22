@@ -78,3 +78,21 @@ Calibration review 20–35 dk; gradient/color 20–40 dk; linear/stretch 25–40
 ## Kanıt Düzeyi
 
 CFA calibration ve debayer sırasının doğrulanması **Verified Workflow**; dual-band extraction/mapping seçimi **Practical Recommendation** düzeyindedir.
+
+## Kullanılan Süreçler
+
+- [WBPP](../03-kalibrasyon/wbpp.md)
+- [ImageCalibration](../03-kalibrasyon/image-calibration.md)
+- [DBE](../04-gradient/dbe.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
+- [HistogramTransformation](../07-stretch/histogram-transformation.md)
+- [CurvesTransformation](../13-final/curves-transformation.md)
+
+## Önceki Bölüm
+
+[← Gezegenimsi Nebula](planetary-nebula.md)
+
+## Sonraki Bölüm
+
+[Mono İş Akışı →](mono-workflow.md)

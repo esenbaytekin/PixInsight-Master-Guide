@@ -141,7 +141,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **Preview:** hızlı yerel test · **Clone:** bağımsız tam-frame dal · **History Explorer:** view işlem sırası/canlı undo · **Yedek:** bunlardan ayrı dosya ve depolama politikası
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Seçilen process ayarlarını tekrar kullanılabilir nesnelere dönüştürmek için [Process Icons ve ProcessContainer](process-icons.md) bölümüne geçin.
 
+## Önceki Bölüm
+
+[← Histogram](histogram.md)

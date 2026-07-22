@@ -74,3 +74,21 @@ Black/white output genellikle range veya identifier hatasıdır; color washout a
 - [LRGBCombination](lrgb-combination.md)
 - [StarXTerminator](../06-ai-eklentileri/starxterminator.md)
 - [RangeMask](../11-maskeler/range-mask.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [LRGB Source Image Not Found](../14-hata-kutuphanesi/lrgb-source-image-not-found.md)
+
+## Önceki Bölüm
+
+[← LRGBCombination](lrgb-combination.md)
+
+## Sonraki Bölüm
+
+[Narrowband →](../09-narrowband/index.md)
