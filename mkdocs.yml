@@ -152,6 +152,17 @@ nav:
     - "LRGB Source Image Not Found": 14-hata-kutuphanesi/lrgb-source-image-not-found.md
     - "OIII Kaybolması": 14-hata-kutuphanesi/oiii-kaybolmasi.md
     - "Maske Tüm Görüntüyü Kaplıyor": 14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md
+  - "Applied Workflows":
+    - "Workflow Rehberi": 15-workflows/index.md
+    - "LRGB Galaxy": 15-workflows/lrgb-galaxy.md
+    - "LRGB + Ha Galaxy": 15-workflows/lrgb-ha-galaxy.md
+    - "Broadband Reflection ve Dark Nebula": 15-workflows/broadband-nebula.md
+    - "Emission Nebula": 15-workflows/emission-nebula.md
+    - "SHO ve HOO Narrowband": 15-workflows/sho-hoo.md
+    - "Planetary Nebula": 15-workflows/planetary-nebula.md
+    - "OSC Workflow": 15-workflows/osc-workflow.md
+    - "Mono Workflow": 15-workflows/mono-workflow.md
+    - "Data Quality Strategies": 15-workflows/data-quality-strategies.md
   - "Uygulamalar":
     - "Uygulamalar": 20-uygulamalar/index.md
     - "M31 LRGB + Ha":
