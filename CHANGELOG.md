@@ -13,6 +13,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 - README ve katkı rehberi public release için yeniden düzenlendi.
 - Changelog geçmişi release odaklı ve sürdürülebilir başlıklar altında konsolide edildi.
 - v1.0.1 hazırlığı: header version/commit metadata'sı site adından ayrıldı ve sidebar branding sadeleştirildi.
+- Header logosu PMG görseliyle yenilendi; sürüm ve commit bilgisi başlığın altında sağa hizalandı.
 - Başlangıç onboarding rehberine, Terimler Sözlüğü aranabilir discovery katmanına, Hızlı Referans operasyonel işlem yardımcısına dönüştürüldü.
 
 ### Fixed

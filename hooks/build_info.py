@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
+VERSION_FILE = REPOSITORY_ROOT / "VERSION"
 
 
 def _git_value(*arguments: str, fallback: str) -> str:
@@ -26,7 +27,12 @@ def _git_value(*arguments: str, fallback: str) -> str:
 def on_config(config):
     """Build ortamı değerlerini tercih eder, local build'de Git'e geri döner."""
 
-    version = os.getenv("DOC_VERSION") or _git_value(
+    configured_version = (
+        VERSION_FILE.read_text(encoding="utf-8").strip()
+        if VERSION_FILE.is_file()
+        else ""
+    )
+    version = os.getenv("DOC_VERSION") or configured_version or _git_value(
         "describe", "--tags", "--abbrev=0", fallback="unversioned"
     )
     commit = os.getenv("DOC_COMMIT") or _git_value(
