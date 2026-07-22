@@ -28,7 +28,7 @@ plugins:
       lang: tr
 
 extra_css:
-  - stylesheets/extra.css?v=1.0.1
+  - stylesheets/extra.css?v=1.0.2
 
 extra:
   analytics:
