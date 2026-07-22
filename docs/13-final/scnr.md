@@ -1,83 +1,119 @@
 # SCNR
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+SCNR, seçilen chromatic bileşenin diğer kanallara göre aşırı katkısını azaltmak için kullanılır. Astrofotoğraf workflow'unda en yaygın kullanım residual green cast kontrolüdür; araç renk kalibrasyonunun yerine geçmez.
 
-Bu bölüm, SCNR konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Green removal philosophy
+
+Yeşil baskı; background neutralization eksikliği, gradient, filter response, OSC matrix, channel balance, stretch veya noise nedeniyle oluşabilir. Bununla birlikte gerçek OIII katkısı, yıldız rengi ve bazı broadband yapılar green/cyan bileşen taşıyabilir. SCNR uygulanmadan önce “yeşil neden var?” sorusu cevaplanmalıdır.
+
+!!! warning
+    “Astrofotoğrafta yeşil yoktur” mutlak bir kural değildir. SCNR meşru sinyali de değiştirebilir; özellikle OIII/cyan yapı ve yıldız renklerinde maske veya alternatif düzeltme gerekir.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Renk kalibrasyonu ve gradient düzeltmesi sonrası residual green cast ölçülebiliyorsa.
+- Background veya hedefin belirli bölgesi maskeyle ayrılabiliyorsa.
+- Final color refinement sırasında düşük amount yeterliyse.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- SPCC/PCC başarısızlığını gizlemek için.
+- Gradient farklı bölgelerde farklı renk baskısı üretiyorsa.
+- SHO/HOO mapping içinde yeşil bilimsel/estetik olarak korunacaksa.
+- Green channel clipping veya yanlış channel mapping varsa.
 
-## Ön koşullar
+## Linear vs nonlinear
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
-
-## PixInsight menü yolu
-
-`Process > NoiseReduction > SCNR`
-
-Process adı ve bu menü yolu PixInsight UI ekranında doğrudan okunmuştur. Ayrıntılı kanıt repository içindeki `validation/ui/pi-1.9.3/scnr/scnr-evidence-matrix.md` dosyasındadır.
-
-!!! warning "UI doğrulama sınırı"
-    Görseller resetlenmiş bir instance, tooltip, console veya ekran içi sürüm numarası göstermiyor. Seçili değerler fabrika varsayılanı sayılmamalı; renk giderme ve protection davranışı ayrıca doğrulanmalıdır.
+| Aşama | Avantaj | Risk | Yaklaşım |
+|---|---|---|---|
+| Lineer | Renk oranları stretch ile değişmemiştir | STF görüntüsü gerçek veriyi yanıltabilir | Ölçüm ve düşük amount; kalibrasyonu önce doğrula |
+| Nonlinear | Görsel cast kolay değerlendirilir | Saturation/clipping etkisi büyümüştür | Maske ve kanal histogramı ile kontrol |
 
 ## Parametreler
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+| Parametre | Amaç | Kullanım kararı | Risk |
+|---|---|---|---|
+| Color to remove | Azaltılacak chromatic bileşen | Sorun ölçümle doğrulandıktan sonra | Yanlış renk seçimi |
+| Amount | Düzeltme karışım gücü | En küçük yeterli değer | Meşru sinyal kaybı, magenta bias |
+| Protection method | Nötrleştirme sınırını belirler | Average Neutral ve Maximum Neutral preview ile kıyaslanır | Veri setine bağlı ton/renk değişimi |
+| Preserve lightness | Lightness davranışını sınırlar | Renk dışında parlaklık değişimi istenmiyorsa | Tam davranış UI kanıtı gerektirir |
 
-| UI etiketi | Doğrulanan seçenekler | Kanıt sınırı |
-| --- | --- | --- |
-| `Color to remove` | `Red`, `Green`, `Blue` | Etiket ve açık liste doğrulandı; renk giderme davranışı DATA/DOC-REQUIRED |
-| `Protection method` | `Maximum Mask`, `Additive Mask`, `Average Neutral`, `Maximum Neutral`, `Minimum Neutral` | Etiket ve açık liste doğrulandı; yöntem farkları DOC-REQUIRED |
-| `Amount` | Numeric alan ve slider görünür | Etki ve ölçek DATA/DOC-REQUIRED |
-| `Preserve lightness` | Checkbox görünür | Output davranışı DATA/DOC-REQUIRED |
+### Average Neutral ve Maximum Neutral
 
-Ana arayüz karesinde `Green`, `Average Neutral`, `Amount 1.00` ve işaretli `Preserve lightness` görünür. Bunlar yalnız ekran anındaki değerlerdir ve default olarak yorumlanmamalıdır.
+Bu seçenekler azaltılan bileşenin kalan kanallara göre nasıl sınırlandığını değiştirir. Biri her veri setinde “doğru” değildir. Background, hedef ve yıldız örneklerinde ayrı preview üretip kanal readout ve görsel renk sürekliliğini birlikte değerlendirin.
 
-## Uygulama adımları
+## Alternative approaches
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+| Sorun | Alternatif | Neden |
+|---|---|---|
+| Global green cast | SPCC/PCC ve BackgroundNeutralization'ı yeniden denetle | Kök nedeni düzeltir |
+| Lokal green contamination | [ColorMask](../11-maskeler/color-mask.md) + Curves | Yalnız problemli hue/alanı hedefler |
+| Kanal ilişkisi biliniyor | [PixelMath](../10-pixelmath/index.md) | Açık ve ölçülebilir ifade kurulabilir |
+| Gradient kaynaklı cast | GradientCorrection/DBE | Spatially varying problemi modeller |
 
-## Beklenen sonuç
+## Adım adım korumalı workflow
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+1. Gradient ve color calibration durumunu doğrulayın.
+2. Background, hedef ve yıldızlarda channel readout alın.
+3. Green/cyan sinyalin meşru olup olmadığını belirleyin.
+4. Gerekirse ColorMask/RangeMask ile sorunlu alanı sınırlayın.
+5. Average Neutral ve Maximum Neutral sonuçlarını düşük amount ile preview'da kıyaslayın.
+6. Magenta stars, OIII kaybı ve neutral background kontrolü yapın.
 
-## Sık yapılan hatalar
+## SCNR karşılaştırmaları
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Ölçüt | SCNR | ColorMask + Curves | PixelMath |
+|---|---|---|---|
+| Hız | Doğrudan | Daha seçici | İfade tasarımı gerekir |
+| Spatial control | Harici maskeye bağlı | Hue + maske | Tam ifade kontrolü |
+| Ana risk | Meşru green kaybı | Hue contamination | Yanlış formül/range |
+| Tercih | Basit residual cast | Lokal renk sorunu | Ölçülebilir kanal modeli |
 
-## Sorun giderme
+## Visual Result Expectation
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+| Durum | Görsel işaret |
+|---|---|
+| Beklenen iyileşme | Nötr bölgede residual cast azalır; yıldız ve OIII korunur |
+| Under-processing | Background/hale hâlâ yeşil baskılı |
+| Over-processing | Magenta yıldızlar, cyan/OIII kaybı, yapay nötrlük |
+| Tipik artefakt | Renk dengesizliği ve hue kopması |
 
-## Hızlı referans
+## Practical Decision Guide
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+| Situation | Recommended Process | Why |
+|---|---|---|
+| Ölçülmüş hafif green background | Maskeli SCNR | Residual bileşeni kontrollü azaltır |
+| Spatial green gradient | DBE/GradientCorrection | Sorun global chromatic excess değildir |
+| Meşru OIII yanında contamination | ColorMask + Curves | Hue/spatial seçim sağlar |
+| Yanlış color calibration | SPCC/PCC tekrar | Kök nedeni düzeltir |
 
-## İlgili bölümler
+```mermaid
+flowchart TD
+    A["Green cast görüldü"] --> B{"Gradient veya calibration hatası mı?"}
+    B -->|"Evet"| C["Kök nedeni düzelt"]
+    B -->|"Hayır"| D{"Meşru green/cyan sinyal var mı?"}
+    D -->|"Evet"| E["ColorMask ile koru"]
+    D -->|"Hayır"| F["Düşük amount SCNR testi"]
+    E --> F
+    F --> G{"Magenta yıldız veya OIII kaybı?"}
+    G -->|"Evet"| H["Amount azalt veya alternatif kullan"]
+    G -->|"Hayır"| I["Final kanal kontrolü"]
+```
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Final](index.md)
-- [CurvesTransformation](curves-transformation.md)
+## Common mistakes ve troubleshooting
+
+- Renk kalibrasyonundan önce SCNR uygulamak.
+- Amount değerini otomatik olarak maksimum kullanmak.
+- Green cast yerine green gradient'i hedeflemek.
+- OIII/cyan yapıyı korumamak.
+- Yıldızları ayrı kontrol etmemek.
+- SCNR sonrası magenta bias'ı görmezden gelmek.
+
+## Teknik doğrulama durumu ve referanslar
+
+SCNR'nin green-removal kullanımı yaygın ve gözlemlenebilir bir workflow'dur. Protection method ve preserve-lightness davranışının PixInsight 1.9.3 ayrıntıları UI/primary documentation ile doğrulanmalıdır.
+
+- [PixInsight Resources](https://www.pixinsight.com/resources/)
+- [Color calibration](../05-color-calibration/index.md)

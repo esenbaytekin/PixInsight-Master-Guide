@@ -1,70 +1,83 @@
 # Maske Tüm Görüntüyü Kaplıyor
 
-**Durum: Taslak**
+## Error severity summary
 
-## Amaç
+| Alan | Değer |
+|---|---|
+| Severity | 🟡 Moderate |
+| Detectability | Easy |
+| Recoverability | Fully Recoverable |
+| Typical Detection Stage | During Final Processing |
 
-Bu bölüm, Maske Tüm Görüntüyü Kaplıyor konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Symptoms
 
-## Ne zaman kullanılır?
+- Maske overlay'i görüntünün neredeyse tamamında aynı yoğunluktadır.
+- Process beklenenden çok az etki eder veya tüm görüntüye uygulanır.
+- Inversion sonrası sonuç tamamen ters davranır fakat seçicilik oluşmaz.
+- Maskenin histogramı siyah ya da beyaz uca yığılmıştır.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Visual appearance
 
-## Ne zaman kullanılmaz?
+Overlay tekdüze kırmızı veya neredeyse görünmez olabilir. Bu durum her zaman hata değildir: maskenin görünürlüğü kapalı olabilir. Asıl doğrulama, maske görüntüsünün grayscale dağılımı ve process'in hedef üzerindeki farkıdır.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Likely causes
 
-## Ön koşullar
+- RangeMask threshold'ları tüm histogramı kapsıyordur.
+- Maskeye aşırı stretch/clipping uygulanmıştır.
+- Yanlış image maske olarak bağlanmıştır.
+- Inversion/polarity yanlış yorumlanmıştır.
+- Maske ve hedef geometry'si veya processing stage'i uyuşmuyordur.
+- StarMask growth/smoothness seçimleri yapıları birleştirmiştir.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Verification steps
 
-## PixInsight menü yolu
+1. Maskeyi hedef bağlantısından bağımsız ayrı görüntü olarak açın.
+2. Histogramda minimum, maksimum ve ara ton dağılımını inceleyin.
+3. Overlay görünürlüğü ile mask activation durumunu ayırın.
+4. Inversion'ı değiştirip işlenen/korunan alanı küçük preview'da test edin.
+5. Maskenin target ile aynı boyut ve geometride olduğunu doğrulayın.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+```mermaid
+flowchart TD
+    A["Maske tüm görüntüyü kaplıyor"] --> B{"Maske görüntüsü de tekdüze mi?"}
+    B -->|"Hayır"| C["Overlay, activation ve inversion kontrolü"]
+    B -->|"Evet"| D{"Histogram clipped mı?"}
+    D -->|"Evet"| E["Maskeyi clipping olmadan yeniden stretch et"]
+    D -->|"Hayır"| F["Threshold/growth/selection ayarını daralt"]
+    C --> G["Düşük etkili preview testi"]
+    E --> G
+    F --> G
+```
 
-## Parametreler
+## Corrective workflow
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+1. Hedefteki process'i geri alın; maskeyi devre dışı bırakın.
+2. Maske source'u tek başına inceleyin.
+3. Range/Star/Color seçim parametrelerini hedef yapıya göre yeniden kurun.
+4. Grayscale ara tonları koruyun; binary clipping'den kaçının.
+5. Gerekirse [PixelMath](../10-pixelmath/index.md) ile iki maskeyi kesiştirin veya çıkarın.
+6. Overlay ve preview üzerinden polarity'yi doğrulayın.
 
-## Uygulama adımları
+## Prevention
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+- Maskeyi bağlamadan önce ayrı pencerede 1:1 inceleyin.
+- Histogram uçlarını kesmeyin.
+- Process icon ile birlikte maske üretim stage'ini kaydedin.
+- Her target/process için inversion durumunu tekrar kontrol edin.
+- Maske görünürlüğü ile aktifliği aynı kavram sanmayın.
 
-## Beklenen sonuç
+## Common traps
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+- Kırmızı overlay'i gerçek maske rengi sanmak.
+- Maskeyi gizleyince devre dışı kaldığını varsaymak.
+- Binary maskeyi her işlem için ideal görmek.
+- Gürültüyü grayscale ağırlığa taşımak.
+- Target değiştiğinde eski maskeyi yeniden kullanmak.
 
-## Sık yapılan hatalar
+## Evidence Level
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+**Verified Workflow:** Maske histogramı, overlay ve preview etkisi doğrudan doğrulanabilir. UI control konumları PixInsight 1.9.3 ekran kanıtı gerektirir.
 
-## Sorun giderme
+## Related processes
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Hata Kütüphanesi](index.md)
-- [DBE: Less Than Three Samples](dbe-less-than-three-samples.md)
-
+[Maske Mantığı](../11-maskeler/maske-mantigi.md) · [RangeMask](../11-maskeler/range-mask.md) · [StarMask](../11-maskeler/star-mask.md) · [Hata Kütüphanesi](index.md)

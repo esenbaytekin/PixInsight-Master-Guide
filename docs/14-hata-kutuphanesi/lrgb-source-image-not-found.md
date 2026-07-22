@@ -1,70 +1,80 @@
 # LRGB Source Image Not Found
 
-**Durum: Taslak**
+## Error severity summary
 
-## Amaç
+| Alan | Değer |
+|---|---|
+| Severity | 🟡 Moderate |
+| Detectability | Easy |
+| Recoverability | Fully Recoverable |
+| Typical Detection Stage | LRGB Combination / After PixelMath |
 
-Bu bölüm, LRGB Source Image Not Found konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Symptoms
 
-## Ne zaman kullanılır?
+- LRGBCombination veya PixelMath, belirtilen source view'ı bulamadığını bildirir.
+- Process icon başka session'da çalışırken mevcut workspace'te başarısız olur.
+- Expression içindeki symbol kırmızı/invalid görünür veya console missing identifier bildirir.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Visual appearance
 
-## Ne zaman kullanılmaz?
+Process çoğunlukla çıktı üretmeden durur. Benzer adlı yanlış source seçilirse hata mesajı yerine yanlış luminance blend, renk kayması veya geometry artefaktı oluşabilir; bu daha zor tespit edilir.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Likely causes
 
-## Ön koşullar
+- View ID değiştirilmiş, pencere kapatılmış veya image identifier farklıdır.
+- Process icon eski session'ın source adını taşır.
+- Source image preview ID'si ile main view ID'si karıştırılmıştır.
+- PixelMath symbol tanımlanmamıştır.
+- Kaynak başka container/workspace'te açık değildir.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Verification steps
 
-## PixInsight menü yolu
+1. Workspace'teki exact view ID'leri okuyun; dosya adıyla karıştırmayın.
+2. L, R, G, B kaynaklarının açık ve doğru main view olduğunu kontrol edin.
+3. PixelMath Symbols ve Expressions alanlarını birlikte inceleyin.
+4. Boyut, channel count ve registration eşleşmesini doğrulayın.
+5. Process icon'ın hangi session/view adlarına bağlı olduğunu kaydedin.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+```mermaid
+flowchart TD
+    A["Source image not found"] --> B{"View workspace'te açık mı?"}
+    B -->|"Hayır"| C["Doğru master'ı aç"]
+    B -->|"Evet"| D{"Exact View ID eşleşiyor mu?"}
+    D -->|"Hayır"| E["Source/symbol adını güncelle"]
+    D -->|"Evet"| F["Preview-main view ve symbol kontrolü"]
+    C --> G["Geometry/registration doğrulaması"]
+    E --> G
+    F --> G
+```
 
-## Parametreler
+## Corrective workflow
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+1. Hedeflenen master'ları yeniden açın.
+2. View ID'leri açık, kısa ve benzersiz hale getirin.
+3. Process source selector veya PixelMath symbol'larını güncelleyin.
+4. Registration ve geometry eşleşmesini doğrulayın.
+5. Küçük preview yerine clone üzerinde test combine üretin.
+6. Renk, luminance ağırlığı ve star profile sonucunu kontrol edin.
 
-## Uygulama adımları
+## Prevention
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+- Process icon'ları source-specific olduklarında isimlerine bağımlılığı yazın.
+- Workspace temizlemeden önce source view/process icon ilişkisini kaydedin.
+- Dosya adı, window ID ve preview ID kavramlarını ayırın.
+- Yeniden kullanılabilir PixelMath ifadelerinde explicit Symbols kullanın.
 
-## Beklenen sonuç
+## Common traps
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+- Benzer adlı ama farklı processing stage'deki master'ı seçmek.
+- Source bulundu diye geometry eşleşmesini varsaymak.
+- Preview ID'yi main view yerine kullanmak.
+- Starless ve stars katmanlarını ters bağlamak.
+- Hata sonrası expression'ı rastgele yeniden adlandırmak.
 
-## Sık yapılan hatalar
+## Evidence Level
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+**UI-Observed / Verified Workflow:** View ID bağımlılığı workspace ve process instance üzerinden doğrulanabilir. Exact console metni process ve sürüme göre UI kanıtı gerektirir.
 
-## Sorun giderme
+## Related processes
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Hata Kütüphanesi](index.md)
-- [DBE: Less Than Three Samples](dbe-less-than-three-samples.md)
-
+[LRGB](../08-lrgb/index.md) · [PixelMath](../10-pixelmath/index.md) · [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Hata Kütüphanesi](index.md)

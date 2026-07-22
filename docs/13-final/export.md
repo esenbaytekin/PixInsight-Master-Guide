@@ -1,70 +1,126 @@
 # Export
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+Export, PixInsight çalışma verisini hedef ortama uygun bit depth, file format, color space ve metadata ile teslim eder. Master arşivi, web görüntüsü ve print dosyası aynı gereksinimlere sahip değildir; tek export her kullanım için doğru değildir.
 
-Bu bölüm, Export konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Scientific background
 
-## Ne zaman kullanılır?
+Bit depth, kanal başına temsil edilebilen kod değerlerini etkiler; color space ise bu değerlerin hangi renkleri temsil ettiğini tanımlar. ICC profile, dosyadaki sayıları renk yönetimli uygulamanın yorumlayacağı uzaya bağlar. Profile assign etmek ile bir profile convert etmek aynı işlem değildir.
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+!!! info "Evidence Level — Official Documentation"
+    PixInsight staff tarafından yayımlanan web workflow'u, görüntüyü sRGB'ye dönüştürmeyi ve export sırasında ICC profile'ı gömmeyi önerir. Bu, farklı görüntüleyiciler arasındaki bütün farkları garantiyle ortadan kaldırmaz.
 
-## Ne zaman kullanılmaz?
+## Format karşılaştırması
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+| Format | Sık kullanım | Avantaj | Sınırlama |
+|---|---|---|---|
+| XISF/FITS | Çalışma master'ı ve yeniden işleme | Yüksek hassasiyet/astro metadata | Web veya genel görüntüleyici uyumu sınırlı |
+| TIFF | Print, edit interchange, yüksek kaliteli teslim | 16-bit ve ICC desteği yaygın | Büyük dosya, uygulama uyumluluğu test edilmeli |
+| PNG | Web ve lossless ekran teslimi | Lossless, 8/16-bit seçenekleri | Fotoğraf için dosya boyutu yüksek olabilir |
+| JPEG | Web/social media | Küçük ve yaygın | Lossy compression; yeniden kaydetme artefakt üretir |
 
-## Ön koşullar
+## 8-bit vs 16-bit
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Özellik | 8-bit | 16-bit |
+|---|---|---|
+| Kod değeri | Kanal başına 256 seviye | Kanal başına 65.536 seviye |
+| Kullanım | Final web/JPEG teslimi | TIFF/PNG interchange ve print hazırlığı |
+| Risk | Agresif sonraki düzenlemede banding | Daha büyük dosya/uyumluluk gereksinimi |
+| Karar | Son boyut ve tonlar hazırsa | Sonraki düzenleme veya hassas gradient varsa |
 
-## PixInsight menü yolu
+Bit depth gerçek sinyal kalitesini artırmaz. 8-bit'e dönüşümden önce resample ve final tonal işlemleri tamamlamak quantization riskini azaltır.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Color spaces ve ICC
 
-## Parametreler
+| Uzay | Kullanım | Güçlü yön | Risk |
+|---|---|---|---|
+| sRGB | Web, browser, social media | En geniş pratik uyumluluk | Gamut daha sınırlı |
+| Adobe RGB | Renk yönetimli print/edit workflow | Bazı cyan/green bölgelerde daha geniş gamut | Profil yok sayılırsa renkler sönük/yanlış görünür |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+Web için sRGB genellikle güvenli teslim uzayıdır. Print için matbaa/lab ICC gereksinimi esas alınmalıdır; rastgele Adobe RGB seçmek otomatik olarak daha iyi print üretmez.
 
-## Uygulama adımları
+## Web, print ve archive strategy
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+### Web/social media
 
-## Beklenen sonuç
+1. Çalışma master'ından kopya üretin.
+2. Hedef piksel boyutuna resample edin.
+3. Output sharpening'i küçültülmüş görüntüde değerlendirin.
+4. sRGB'ye **convert** edin ve profili embed edin.
+5. PNG veya yüksek kaliteli JPEG üretin.
+6. Browser ve en az bir ikinci color-managed viewer ile proof yapın.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+### Print
 
-## Sık yapılan hatalar
+1. Lab'ın color space, ICC ve bit-depth gereksinimini alın.
+2. Native çözünürlüğü ve hedef print boyutunu eşleştirin.
+3. Soft proof mümkünse output profile ile yapın.
+4. 16-bit TIFF gibi kabul edilen lossless formatı kullanın.
+5. Test print ile black point ve shadow detail kontrolü yapın.
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+### Archive
 
-## Sorun giderme
+XISF/FITS çalışma master'ını, process icon/history kayıtlarını ve final 16-bit/32-bit interchange kopyasını saklayın. Web JPEG'ini tek arşiv master'ı yapmayın.
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+## Metadata considerations
 
-## Hızlı referans
+Astrometric çözüm, acquisition notları, copyright ve ICC bilgisi farklı formatlarda farklı ölçüde korunabilir. Privacy gerektiren konum/kimlik metadata'sını paylaşım öncesi denetleyin. Export sonrası dosyayı yeniden açıp profile ve metadata varlığını doğrulayın.
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+## PNG vs TIFF ve Web vs Print
 
-## İlgili bölümler
+| İhtiyaç | PNG | TIFF |
+|---|---|---|
+| Lossless web | Uygun | Genellikle tarayıcı sunumu için gereksiz |
+| Print/edit interchange | Uygulama desteğine bağlı | Genellikle daha yerleşik |
+| ICC/bit-depth | Uygulama zinciriyle test edilmeli | Yaygın fakat reader uyumluluğu doğrulanmalı |
+| Dosya boyutu | Fotoğrafta büyük olabilir | Compression'a bağlı büyük olabilir |
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Final](index.md)
-- [CurvesTransformation](curves-transformation.md)
+## Visual Result Expectation
 
+| Durum | Görsel işaret |
+|---|---|
+| Beklenen sonuç | PixInsight ve hedef ortamda benzer ton/renk, korunmuş shadow detail |
+| Under-processing | Web boyutunda soft görünüm, yetersiz output sharpening |
+| Over-processing | JPEG ringing, oversharpening, clipped highlights |
+| Tipik artefakt | Color shift, banding, block artefact, metadata/profile kaybı |
+
+## Practical Decision Guide
+
+| Situation | Recommended Output | Why |
+|---|---|---|
+| Web/social media | sRGB + PNG veya yüksek kaliteli JPEG | Tarayıcı/platform uyumluluğu |
+| Print master | Lab profiline göre 16-bit TIFF | Ton ve renk yönetimi headroom'u |
+| Uzun süreli archive | XISF/FITS + yüksek bit-depth kopya | Yeniden işleme ve metadata |
+| Sonraki harici edit | 16-bit TIFF + embedded ICC | Quantization ve profil sürekliliği |
+
+```mermaid
+flowchart TD
+    A["Export hedefi"] --> B{"Web mi print mi archive mı?"}
+    B -->|"Web"| C["Resize → sRGB convert → ICC embed"]
+    B -->|"Print"| D["Lab profile ve 16-bit gereksinimi"]
+    B -->|"Archive"| E["XISF/FITS + process metadata"]
+    C --> F["Browser proof"]
+    D --> G["Soft proof/test print"]
+    E --> H["Checksum ve yedek"]
+```
+
+## Troubleshooting
+
+| Belirti | Olası neden | Düzeltme |
+|---|---|---|
+| Export siyah | Yalnız STF kullanılmış | Kalıcı stretch uygulayın |
+| Renk farklı | Yanlış/eksik ICC veya viewer | Convert/embed ve color-managed proof |
+| Social media shift | Platform recompression/profile handling | sRGB, hedef boyut ve test upload |
+| Banding | 8-bit erken dönüşüm | 16-bit workflow'u sona kadar koruyun |
+| JPEG block/ringing | Quality düşük/çoklu kayıt | Tek final encode, daha yüksek kalite |
+| Print shadow kaybı | Ekran çok parlak veya black point | Kalibre display ve test print |
+
+## Performance ve best practices
+
+Master üzerinde export işlemi yapmayın; türetilmiş kopya kullanın. Resample, profile conversion ve bit-depth dönüşüm sırasını kayıt altına alın. Export edilen dosyayı PixInsight dışında yeniden açarak gerçek teslimi doğrulayın.
+
+## Referanslar
+
+- [PixInsight Forum — Saving for web, staff workflow](https://pixinsight.com/forum/index.php?threads/saving-for-web.6641/)
+- [PixInsight Forum — TIFF and ICC troubleshooting](https://pixinsight.com/forum/index.php?threads/best-format-for-publication-export.15394/)

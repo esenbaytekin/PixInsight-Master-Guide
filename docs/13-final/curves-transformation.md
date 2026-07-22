@@ -1,83 +1,134 @@
 # CurvesTransformation
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+CurvesTransformation, giriş değerlerini kullanıcı tanımlı eğrilerle çıkış değerlerine eşleyerek final contrast ve color refinement sağlar. Gücü, global ton dönüşümünü maskelerle yapısal olarak sınırlandırabilmesidir.
 
-Bu bölüm, CurvesTransformation konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Theory ve bilimsel arka plan
+
+Eğri üzerindeki her nokta bir giriş değerinin hangi çıkış değerine taşınacağını belirler. Diyagonalin üstündeki bölüm ilgili aralığı yükseltir, altındaki bölüm azaltır. Eğrinin yerel eğimi kontrastı etkiler: eğim artarsa yakın değerler ayrışır; azalırsa sıkışır. Aşırı yatay veya dik bölgeler ton ayrımını kaybettirebilir.
+
+## Kanal felsefesi
+
+| Eğri | Temel işlev | Kullanım | Başlıca risk |
+|---|---|---|---|
+| RGB/K | RGB kanallarını birlikte tonal eşleme | Genel brightness/contrast | Black/white clipping, renk kayması |
+| Luminance | Algılanan parlaklık yapısı | Rengi daha sınırlı etkileyen contrast | Renk uzayı etkileşimi doğrulanmalı |
+| Saturation | Renk yoğunluğu | Seçici color refinement | Chroma noise ve color clipping |
+| Hue | Hue yeniden eşleme | Dar renk düzeltmeleri | Renk kimliğinin yapay değişmesi |
+| CIE a*, b*, c* | CIE renk bileşenleri | İnce color balance/chroma kontrolü | Renk uzayı davranışını yanlış yorumlama |
+
+!!! warning
+    Tam kanal adları ve CIE eğrilerinin PixInsight 1.9.3 davranışı UI kanıtıyla doğrulanmalıdır. Kanal eğrileri fiziksel renk kalibrasyonunun yerine geçmez.
+
+## Workflow position
+
+Curves çoğunlukla stretch, noise reduction ve ana lokal kontrast işlemlerinden sonra kullanılır. [SPCC](../05-color-calibration/spcc.md) veya PCC ile kurulan renk kalibrasyonunu estetik olarak rafine edebilir; kalibrasyon hatasını gizlemek için kullanılmamalıdır.
 
 ## Ne zaman kullanılır?
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+- Galaxy kolları ile çekirdek arasındaki tonal hiyerarşiyi düzenlerken.
+- Nebula sinyalini arka plandan kontrollü ayırırken.
+- Maskeli saturation veya belirli hue ailesi üzerinde çalışırken.
+- Final black point'e yaklaşmadan önce midtone kontrastı kurarken.
 
 ## Ne zaman kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+- Lineer veriyi ilk kez stretch etmek için HistogramTransformation daha ölçülebilir olabilir.
+- Gradient, calibration veya channel mapping hatasını düzeltmek için.
+- Clipped siyah/beyaz veriyi geri getirmek amacıyla.
+- Maskesiz güçlü S-curve ile düşük SNR arka planı zorlamak için.
 
-## Ön koşullar
+## Curves karşılaştırmaları
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Karşılaştırma | CurvesTransformation | Diğer araç |
+|---|---|---|
+| Curves vs HistogramTransformation | Serbest biçimli ve çok kanallı final eşleme | HT black point/midtone/white point için daha doğrudan |
+| Curves vs LHE | Global veya maskeyle bölgesel ton eşleme | LHE kernel tabanlı lokal contrast üretir |
+| Curves vs ColorMask | Process etkisini uygular | ColorMask yalnız seçim/ağırlık üretir |
 
-## PixInsight menü yolu
+## Input requirements ve parameter approach
 
-`Process > IntensityTransformations > CurvesTransformation`
+Girdi nonlinear, gradient-corrected ve renk kalibrasyonu tamamlanmış olmalıdır. Histogram uçlarında headroom bırakılmalı; maske hedefle aynı geometride olmalıdır.
 
-Process adı ve bu menü yolu PixInsight UI ekranında doğrudan okunmuştur. Ayrıntılı kanıt repository içindeki `validation/ui/pi-1.9.3/curves-transformation/curves-transformation-evidence-matrix.md` dosyasındadır.
+| Kontrol | Amaç | Muhafazakâr yaklaşım | Hata belirtisi |
+|---|---|---|---|
+| Curve control points | Ton eşlemesini şekillendirir | Az sayıda, yumuşak nokta | Ton kırılması veya posterization |
+| Channel selector | İşlenecek bileşeni belirler | İşlem amacına uygun tek kanal ailesi | Beklenmeyen renk/brightness değişimi |
+| Real-time preview | Sonucu iteratif izler | 1:1 ve uzak görünümü birlikte kullan | Preview ölçeğinde artefaktın kaçması |
+| Mask | Etki dağılımını sınırlar | Yumuşak grayscale maske | Halo ve sert sınır |
 
-!!! warning "UI doğrulama sınırı"
-    Mevcut görseller resetlenmiş bir instance, tooltip, console veya ekran içi sürüm numarası göstermiyor. Görünen değer ve eğri fabrika varsayılanı olarak yorumlanmamalı; kanal anlamları ve process davranışı ayrıca doğrulanmalıdır.
+## Galaxy ve nebula workflow'ları
 
-## Parametreler
+### Galaxy
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+1. Luminance/RangeMask ile arka planı ve parlak çekirdeği koruyun.
+2. RGB/K veya luminance üzerinde hafif S-curve ile kol kontrastını artırın.
+3. StarMask ile yıldızları koruyup saturation'ı küçük miktarda düzenleyin.
+4. Çekirdek sararması ve dış halo kaybını kontrol edin.
 
-| UI etiketi | Doğrulama durumu | Kanıt sınırı |
-| --- | --- | --- |
-| `R`, `G`, `B`, `RGB/K`, `A` | UI-VERIFIED | Etiketler doğrulandı; teknik anlamları DOC-REQUIRED |
-| `L`, `a`, `b`, `c`, `H`, `S` | UI-VERIFIED | Etiketler doğrulandı; teknik anlamları DOC-REQUIRED |
-| `Input` | UI-VERIFIED | Etiket doğrulandı; point-selection davranışı DATA/DOC-REQUIRED |
-| `Output` | UI-VERIFIED | Etiket doğrulandı; point-editing davranışı DATA/DOC-REQUIRED |
+### Nebula
 
-Ana arayüz karesinde `Input 0.00000`, `Output 0.00000` ve sol alttan sağ üste uzanan düz bir çizgi görünür. Bunlar yalnız ekran anındaki gözlemlerdir; reset/default veya matematiksel identity iddiası oluşturmaz.
+1. Hedef yapıyı [RangeMask](../11-maskeler/range-mask.md) ile ayırın.
+2. ColorMask gerekiyorsa belirli hue ailesini seçin.
+3. Luminance kontrastı ile saturation'ı ayrı geçişlerde yönetin.
+4. Background chroma noise ve yıldız rengi clipping'ini kontrol edin.
 
-## Uygulama adımları
+## Protective workflows
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+- StarMask: yıldız çekirdeği ve saturation koruması.
+- Luminance Mask: etkiyi SNR/parlaklığa göre dağıtma.
+- RangeMask: background veya çekirdek koruması.
+- ColorMask: saturation/hue işlemini belirli renk ailesine sınırlama.
 
-## Beklenen sonuç
+## Visual Result Expectation
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+| Durum | Görsel işaret |
+|---|---|
+| Beklenen iyileşme | Tonlar ayrışır; arka plan, yıldız ve hedef doğal sürekliliğini korur |
+| Under-processing | Görüntü hâlâ flat; hedef arka plandan ayrılmıyor |
+| Over-processing | Black/white clipping, sert S-curve, aşırı renk |
+| Tipik artefakt | Halo, posterization, magenta yıldız, chroma noise |
 
-## Sık yapılan hatalar
+## Practical Decision Guide
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Situation | Recommended Process | Why |
+|---|---|---|
+| Flat global contrast | Curves RGB/K veya Luminance | Midtone ilişkisini serbestçe düzenler |
+| Lokal nebula kontrastı | LHE | Komşuluk ölçeğini hedefler |
+| İlk nonlinear stretch | HistogramTransformation/GHS | Stretch davranışı daha sistematik yönetilir |
+| Oversaturated stars | Maskeli Saturation curve | Yıldızları ayrı korumaya izin verir |
 
-## Sorun giderme
+```mermaid
+flowchart TD
+    A["Final ton veya renk sorunu"] --> B{"Global mi lokal mi?"}
+    B -->|"Lokal"| C["Maske oluştur"]
+    B -->|"Global"| D["Uygun curve channel seç"]
+    C --> D
+    D --> E["Küçük eğri değişikliği"]
+    E --> F{"Clipping, halo veya color noise var mı?"}
+    F -->|"Evet"| G["Eğriyi azalt veya maskeyi düzelt"]
+    F -->|"Hayır"| H["Tam görüntü kontrolü"]
+```
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+## Sorun giderme ve best practices
 
-## Hızlı referans
+| Belirti | Olası neden | Düzeltme |
+|---|---|---|
+| Black clipping | Sol uç fazla aşağı çekilmiş | Black point headroom'u geri verin |
+| White clipping | Sağ uç/üst tonlar aşırı yükseltilmiş | Highlights'ı sıkıştırın |
+| Renk kayması | Kanal bazlı curve veya maske contamination | Kanalları ölçün, doğru maskeyi kullanın |
+| Crunchy görünüm | Fazla dik yerel eğim | Daha yumuşak ve az noktalı eğri |
+| Arka plan gürültüsü | Maskesiz contrast/saturation | Background koruma maskesi |
+| Halo | Sert maske sınırı | Maskeyi yumuşatın |
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+## Performance considerations
 
-## İlgili bölümler
+Curves hesaplama açısından genellikle hafiftir; asıl maliyet real-time preview ve büyük maskelerin yeniden değerlendirilmesidir. Representative preview kullanın, final kontrolü tam görüntüde yapın.
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Final](index.md)
-- [SCNR](scnr.md)
+## Teknik doğrulama durumu ve referanslar
+
+Eğri eşleme teorisi genel ve sürümden bağımsızdır. Kanal adları, CIE bileşenleri ve UI davranışı PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır.
+
+- [PixInsight Resources](https://www.pixinsight.com/resources/)
+- [Maskeler ve seçici işleme](../11-maskeler/index.md)

@@ -1,69 +1,115 @@
 # Hata Kütüphanesi
 
-**Durum: Taslak**
-
 ## Amaç
 
-Bu bölüm, Hata Kütüphanesi konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Bu kütüphane, görünen artefaktı rastgele process uygulayarak bastırmak yerine kök aşamaya bağlar. Teşhis sırası: belirtiyi sınıflandır, veride ölç, hatanın ilk göründüğü history adımını bul, en erken güvenilir checkpoint'e dön ve yalnız ilgili aşamayı yeniden işle.
 
-## Ne zaman kullanılır?
+## Severity standardı
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+| Severity | Tanım | Örnek |
+|---|---|---|
+| 🔴 Critical | Ciddi/geri döndürülemez veri kaybı veya geçersiz sonuç | Black/white clipping, yanlış channel mapping |
+| 🟠 Major | Kaliteyi önemli ölçüde düşürür; çoğu kez kısmi yeniden işleme gerekir | Güçlü gradient, luminance/recombination hatası, walking noise |
+| 🟡 Moderate | Lokal veya ek kontrollü işlemle düzeltilebilir | Flat contrast, hafif cast, aşırı sharpening |
+| 🔵 Minor | Sınırlı kozmetik/teslim etkisi | Küçük export artefaktı, hafif renk farkı |
 
-## Ne zaman kullanılmaz?
+Severity, görüntünün estetik etkisinden çok veri bütünlüğü ve gereken geri dönüş derinliğini anlatır.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Ana diagnostic tree
 
-## Ön koşullar
+```mermaid
+flowchart TD
+    A["Görüntü problemi"] --> B{"Baskın belirti"}
+    B -->|"Renk"| C{"Global mi lokal mi?"}
+    B -->|"Kontrast"| D{"Clipping var mı?"}
+    B -->|"Noise"| E{"Desen mi rastgele mi?"}
+    B -->|"Yıldız"| F{"Profil mi renk mi?"}
+    B -->|"Gradient"| G["Model ve flat diagnostic"]
+    B -->|"Export"| H["ICC, bit depth, viewer"]
+    C --> I["Calibration → SCNR/Curves"]
+    D --> J["Stretch checkpoint → Curves/LHE"]
+    E --> K["Calibration/dither → NR"]
+    F --> L["Registration/PSF → mask/recombination"]
+    G --> M["DBE/GradientCorrection"]
+    H --> N["sRGB conversion ve proof"]
+```
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Renk sorunları
 
-## PixInsight menü yolu
+| Belirti | Severity | Muhtemel kök | Verification | Corrective workflow |
+|---|---|---|---|---|
+| Green cast | 🟡/🟠 | Calibration, gradient, residual green | Kanal readout ve spatial dağılım | SPCC/PCC/gradient kontrolü; gerekirse [SCNR](../13-final/scnr.md) |
+| Magenta stars | 🟡 | SCNR, saturation, clipped green | Star core kanal değerleri | StarMask ile koru; SCNR/saturation adımına dön |
+| Yellow galaxy core | 🟠 | Luminance blend veya channel balance | RGB/L master blink | [LRGB](../08-lrgb/index.md) birleşimini yeniden kur |
+| Blue background | 🟠 | Background calibration veya gradient | Background preview ölçümleri | SPCC/BN ve gradient modelini kontrol et |
+| Cyan nebula | 🟡 | OIII dengesi, SCNR veya mapping | Kanal/hue dağılımı | [OIII kaybı](oiii-kaybolmasi.md) ve ColorMask kontrolü |
+| Residual color cast | 🟡/🟠 | Kalibrasyon sonrası spatial/nonspatial hata | Birden çok background ROI | Kök nedene göre calibration, gradient veya maskeli Curves |
+| Color contamination | 🟡 | Sert ColorMask, halo veya channel leakage | Maskeyi tek başına incele | Maskeyi yumuşat, kanal işlemini azalt |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Ton ve detay sorunları
 
-## Parametreler
+| Belirti | Severity | Verification | Corrective workflow |
+|---|---|---|---|
+| Flat-looking image | 🟡 | Histogram ve local contrast kıyası | [Curves](../13-final/curves-transformation.md) veya [LHE](../12-detay-ve-kontrast/local-histogram-equalization.md) |
+| Overprocessed image | 🟠 | Önceki checkpoint ile blink | En erken artefakt adımına dön; miktarı azalt |
+| Crunchy detail | 🟡 | 1:1'de granular texture | LHE/MMT/sharpening gücünü azalt |
+| Black clipping | 🔴 | Histogram sıfır yığılması, pixel readout | Stretch checkpoint'e dön |
+| White clipping | 🔴 | Kanal maksimum yığılması | Stretch/saturation öncesine dön |
+| Over-sharpening | 🟡 | Bright/dark edge halo | BXT/MMT/LHE miktarını azalt |
+| Soft image | 🟡 | PSF/FWHM ve 1:1 kıyas | Data quality, BXT veya scale-specific enhancement kontrolü |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Noise, gradient ve yıldız sorunları
 
-## Uygulama adımları
+| Belirti | Severity | Muhtemel kök | Corrective workflow |
+|---|---|---|---|
+| Banding | 🟠 | Sensor/readout veya calibration residual | Calibration master, rejection ve background modelini denetle |
+| Walking noise | 🟠 | Yetersiz dither/integration | Acquisition ve integration'a dön; final NR ile gizleme |
+| Noise amplification | 🟡 | Stretch, LHE, saturation | Maskeli NR ve enhancement azaltma |
+| Residual gradients | 🟠 | Yetersiz/yanlış model veya flat residual | [Gradient diagnostics](../04-gradient/gradient-diagnostics.md) |
+| Halo artifacts | 🟠 | Deconvolution, mask veya local contrast | İşlemi azalt; maske/PSF/scale düzelt |
+| Star halos | 🟡/🟠 | Optik, channel PSF, mask veya stretch | Kanal profili, StarMask ve BXT/recombination kontrolü |
+| Dark halos | 🟠 | Aşırı sharpening/HDR/DSE | İlgili structural process checkpoint'e dön |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Workflow ve matematik sorunları
 
-## Beklenen sonuç
+| Belirti | Severity | Diagnostic page/workflow |
+|---|---|---|
+| Incorrect luminance blend | 🟠 | [LRGB workflow](../08-lrgb/index.md), registration ve normalization |
+| Starless recombination artifact | 🟠 | Star/starless toplamını, range ve residual'ı kontrol et |
+| PixelMath mistakes | 🔴 | Expression, symbols, output range ve channel mapping'i kontrol et |
+| Mask failures | 🟡/🟠 | [Maske tüm görüntüyü kaplıyor](maske-tum-goruntuyu-kapliyor.md) |
+| Channel mapping error | 🔴 | [ChannelCombination RGB Hatası](channel-combination-rgb-error.md) |
+| Missing source view | 🟡 | [LRGB Source Image Not Found](lrgb-source-image-not-found.md) |
+| DBE sample failure | 🟡 | [Less Than Three Samples](dbe-less-than-three-samples.md) |
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Export sorunları
 
-## Sık yapılan hatalar
+| Belirti | Severity | Verification | Corrective workflow |
+|---|---|---|---|
+| Export color mismatch | 🟡 | ICC tag, conversion ve ikinci viewer | [Export](../13-final/export.md) sRGB/ICC workflow'u |
+| Social media color shift | 🔵/🟡 | Browser ve test upload kıyası | sRGB, hedef boyut, embedded profile |
+| Export banding | 🟡 | 8-bit ve 16-bit dosyayı kıyasla | Dönüşümü sona bırak, 16-bit master koru |
+| Export siyah | 🟠 | STF kapatıldığında görüntü | Kalıcı HistogramTransformation stretch uygula |
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+## Systematic corrective workflow
 
-## Sorun giderme
+1. Sorunun ilk göründüğü history adımını bulun.
+2. Aynı STF/zoom/color-managed viewer ile karşılaştırın.
+3. Histogram, channel readout, mask ve residual/model görüntüsünü inceleyin.
+4. Final process ile gizlemek yerine kök adıma dönün.
+5. Representative preview'da tek değişkenli test yapın.
+6. Düzeltmeyi tam görüntü ve export proof üzerinde doğrulayın.
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+## Practical Decision Guide
 
-## Hızlı referans
+| Situation | İlk kontrol | Neden |
+|---|---|---|
+| Renk hatası | Calibration → gradient → final color | En erken doğru aşamayı bulur |
+| Contrast hatası | Clipping → global → local | Kayıp veri ile düşük kontrastı ayırır |
+| Noise hatası | Pattern → scale → process | Acquisition/calibration kökünü ayırır |
+| Star hatası | Registration/PSF → mask → recombination | Profil, renk ve katman hatalarını ayırır |
+| Export hatası | Permanent stretch → ICC → bit depth | Veri ile viewer problemini ayırır |
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+## Evidence Level
 
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [DBE: Less Than Three Samples](dbe-less-than-three-samples.md)
-- [ChannelCombination RGB Hatası](channel-combination-rgb-error.md)
-
+Bu katalogdaki teşhis akışı **Verified Workflow** ve muhafazakâr **Practical Recommendation** niteliğindedir. Tek bir belirti tek bir kök nedeni kanıtlamaz; verification adımları atlanmamalıdır.
