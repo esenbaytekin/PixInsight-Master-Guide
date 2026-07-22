@@ -1,8 +1,22 @@
 # Changelog
 
-Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) yaklaşımını izler; proje henüz v1.0.0 etiketi yayımlamadığı için tarih **TBD** olarak korunur.
+Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) yaklaşımını izler.
 
 ## [Unreleased]
+
+### Added
+
+- Henüz kayıt yok.
+
+### Changed
+
+- Henüz kayıt yok.
+
+### Fixed
+
+- Henüz kayıt yok.
+
+## [1.1.0] - 2026-07-23
 
 ### Added
 
@@ -72,5 +86,6 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 
 - Production yapılandırması secret değerleri repository dışında tutacak biçimde düzenlendi.
 
-[Unreleased]: https://github.com/esenbaytekin/PixInsight-Master-Guide/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/esenbaytekin/PixInsight-Master-Guide/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/esenbaytekin/PixInsight-Master-Guide/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/esenbaytekin/PixInsight-Master-Guide/releases/tag/v1.0.0
