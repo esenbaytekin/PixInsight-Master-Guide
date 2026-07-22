@@ -1,71 +1,69 @@
 # PixelMath
 
-!!! info "PixInsight 1.9.3 UI doğrulaması"
-    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/pixelmath/pixelmath-evidence-matrix.md`.
+## Purpose
 
-**Durum: Taslak**
+Pixel ve channel değerlerini açık expressions ile üretmek, karıştırmak, seçmek veya yeni image oluşturmak; karmaşık workflows’u denetlenebilir matematiksel adımlara ayırmaktır.
 
-## Amaç
+## Theory ve evaluation intuition
 
-Bu bölüm, PixelMath konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+PixelMath her output pixel için expression’ı değerlendirir. Image identifier aynı koordinattaki pixel’i; scalar sabit tüm pixeller için aynı değeri; mask/weight image spatially varying coefficient’i temsil eder. Parentheses evaluation intent’ini açıklar.
 
-## Ne zaman kullanılır?
+```text
+inputs → expression + symbols → range/channel evaluation → output image
+```
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Safety rules
 
-## Ne zaman kullanılmaz?
+- Identifier, dimensions, channel count ve image state’i doğrulayın.
+- Division denominator için sıfır/çok küçük değer guard’ı kurun.
+- Output range ve clipping’i Statistics ile kontrol edin.
+- Replace target yerine önce new image üretin.
+- Expression, symbols ve process settings’i birlikte kaydedin.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## PixelMath vs dedicated process
 
-## Ön koşullar
+| İhtiyaç | PixelMath | Process tool |
+|---|---|---|
+| Basit RGB combine | Gereksiz esnek | ChannelCombination daha açık |
+| Masked/conditional blend | Güçlü | Sınırlı olabilir |
+| LRGB | Esnek ama riskli | LRGBCombination daha güvenli başlangıç |
+| Debuggability | Expression bilgisi gerekir | UI constraints yardımcı olur |
+| Reuse | Icon + symbols | Process instance |
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Practical Decision Guide
 
-## PixInsight menü yolu
+| Situation | Recommendation | Why |
+|---|---|---|
+| RGB-only | ChannelCombination | Basitlik |
+| SHO/HOO mapping | ChannelCombination veya PixelMath | Weight gerekiyorsa PixelMath |
+| HaRGB | PixelMath | Emission contribution kontrolü |
+| Starless recombination | PixelMath | Layer matematiği açıkça tanımlanır |
+| Selective replacement | PixelMath + mask | Spatial condition gerekir |
+| Basit LRGB | LRGBCombination | Daha az hata yüzeyi |
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Workflow position
 
-## Parametreler
+PixelMath tek bir aşamaya ait değildir. Lineer channel construction, continuum blend ve synthetic L; nonlinear star recombination veya color enhancement için kullanılabilir. Expression’ın beklediği image state açıkça yazılmalıdır.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Chapter map
 
-## Uygulama adımları
+- [Temeller](temeller.md): expressions, variables, images, identifiers, operators ve output
+- [Koşullar ve Fonksiyonlar](kosullar-ve-fonksiyonlar.md): boolean logic ve safe selection
+- [Kanal Karışımları](kanal-karisimlari.md): recipes ve validation statüleri
+- [Hata Ayıklama](hata-ayiklama.md): parser, range, NaN ve mapping hataları
+- [PixelMath ile LRGB](../08-lrgb/pixelmath-lrgb.md): luminance/layer uygulamaları
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Common mistakes ve best practices
 
-## Beklenen sonuç
+Operator precedence’e güvenmek, `$T` ile named image’ı karıştırmak, rescale/clamp davranışını bilmeden etkinleştirmek, farklı dimensions kullanmak ve community formula’yı kendi verisine uyarlamamak başlıca hatalardır.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+!!! warning "Mathematical safety"
+    Syntactically valid expression, scientifically veya visually doğru sonuç garantisi değildir.
 
-## Sık yapılan hatalar
+## Related processes
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
-
-## Sorun giderme
-
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Temeller](temeller.md)
-- [Koşullar ve Fonksiyonlar](kosullar-ve-fonksiyonlar.md)
+- [LRGB](../08-lrgb/index.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [Stretch](../07-stretch/index.md)
+- [ColorMask](../11-maskeler/color-mask.md)
+- [SCNR](../13-final/scnr.md)

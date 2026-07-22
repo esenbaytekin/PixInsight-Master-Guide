@@ -1,70 +1,75 @@
-# Temeller
+# PixelMath Temelleri
 
-**Durum: Taslak**
+## Purpose
 
-## Amaç
+Expression, identifier, variable, operator, channel ve output kavramlarını güvenli bir mental modelle öğretmektir.
 
-Bu bölüm, Temeller konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+## Concepts
 
-## Ne zaman kullanılır?
+| Kavram | Anlam | Risk |
+|---|---|---|
+| Image identifier | Açık image/window kaynağı | Rename/typo ile not found |
+| `$T` | Mevcut target bağlamı | New image/replace semantiğini karıştırma |
+| Symbol | Tekrar kullanılan scalar/expression | Tanımsız veya yanlış type |
+| Operator | Arithmetic/comparison/logic | Precedence hatası |
+| Function | Tanımlı matematik/selection işlemi | Undocumented function uydurma |
+| Channel expression | R/G/B veya tek output hesabı | Channel mismatch |
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+## Mathematical intuition
 
-## Ne zaman kullanılmaz?
+`a*A + b*B`, aynı koordinattaki A ve B pixel’lerini coefficients ile birleştirir. `M*A + (1-M)*B`, M bir `[0,1]` mask ise spatial blend üretir. Coefficients ve inputs aynı range/state’te değilse bu sezgi bozulur.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+## Input/output requirements
 
-## Ön koşullar
+Geometry eşleşmeli, required channels mevcut, identifier’lar benzersiz ve output range planı açık olmalıdır. Floating-point new image debug için güvenlidir; final bit depth workflow’a göre seçilir.
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+## Operators ve evaluation order
 
-## PixInsight menü yolu
+Arithmetic, comparison ve boolean operations nested expressions oluşturur. High-level güvenlik kuralı: intended grouping’i parentheses ile yazın; kısa ama belirsiz ifade yerine uzun ve açık ifade kullanın.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Parameters
 
-## Parametreler
+| Setting | Karar | Kontrol |
+|---|---|---|
+| Use single RGB/K expression | Aynı formula tüm channels | Channel semantics |
+| Separate channel expressions | Channel-specific mapping | Her kanal range’i |
+| Create new image | Test/debug | Identifier/bit depth |
+| Replace target | Yalnız doğrulanmış final | Clone/history |
+| Rescale | Output range’i yeniden eşleme | Relative photometry değişir |
+| Truncate/clamp | Range dışını sınırlama | Bilgi clipping’i |
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Practical Decision Guide
 
-## Uygulama adımları
+| Situation | Recommendation | Why |
+|---|---|---|
+| İlk formula testi | New image | Orijinal korunur |
+| RGB mapping | Separate R/G/B expressions | Mapping açık olur |
+| Masked blend | `M*A+(1-M)*B` kavramı | Spatial weight izlenir |
+| Range belirsiz | Rescale kapalı test + Statistics | Gerçek overflow görünür |
+| Karmaşık formula | Symbols ve ara images | Debug kolaylaşır |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Example: weighted average
 
-## Beklenen sonuç
+- **Validation Status:** 🟦 Community Practice
+- **Applicable data:** Eşleşen mono images `A`, `B`
+- **Purpose:** Basit ağırlıklı ortalama
+- **Workflow position:** Normalization doğrulandıktan sonra
+- **Inputs:** `A`, `B`, `w` in `[0,1]`
+- **Expression:** `w*A + (1-w)*B`
+- **Expected outcome:** İki image arasında convex blend
+- **Known limitations:** Noise/SNR-optimal weight değildir
+- **Potential risks:** State/scale mismatch
+- **Alternative approaches:** ImageIntegration weighting
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+## Common mistakes ve troubleshooting
 
-## Sık yapılan hatalar
+Identifier not found için window adı; black/white output için min/max; unexpected color için channel expressions; dimension mismatch için geometry kontrol edilir. [Hata Ayıklama](hata-ayiklama.md) tablosunu kullanın.
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+!!! tip "Ara sonuç"
+    Uzun expression’ı tek seferde çalıştırmak yerine alt ifadeleri geçici images olarak üretin.
 
-## Sorun giderme
+## Related processes
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [PixelMath](index.md)
 - [Koşullar ve Fonksiyonlar](kosullar-ve-fonksiyonlar.md)
-
+- [Kanal Karışımları](kanal-karisimlari.md)
+- [LRGB](../08-lrgb/index.md)

@@ -1,72 +1,66 @@
 # LRGBCombination
 
-!!! info "PixInsight 1.9.3 UI doğrulaması"
-    Menü yolu ile görünür section ve kontrol adları supplied ekran görüntüleri üzerinden doğrulandı. Görünen değerler fabrika varsayılanı sayılmadı; davranış ve algoritma iddiaları bu statik UI kanıtının dışındadır. Ayrıntılı kayıt: `validation/ui/pi-1.9.3/lrgb-combination/lrgb-combination-evidence-matrix.md`.
+## Purpose
 
-**Durum: Taslak**
+Hazırlanmış luminance’i RGB chrominance ile birleştirerek detail, contrast, saturation ve noise aktarımını kontrollü yönetmektir.
 
-## Amaç
+## Theory ve intuition
 
-Bu bölüm, LRGBCombination konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Luminance weight arttıkça output intensity L’ye yaklaşır; RGB color ilişkisi korunmaya çalışılsa da saturation ve local chroma L/RGB uyumuna bağlı değişebilir. Noise aktarımı da detail ile birlikte gelir.
 
-## Ne zaman kullanılır?
+## Input requirements ve workflow position
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+L/RGB aynı geometry ve uyumlu image state’te olmalıdır. RGB önce [SPCC](../05-color-calibration/spcc.md) ile kalibre edilir; L [hazırlanır](luminance-hazirlama.md). Birleşim stretch öncesi veya kontrollü nonlinear aşamada yapılabilir; iki yaklaşım A/B test edilmelidir.
 
-## Ne zaman kullanılmaz?
+## Ne zaman kullanılır / kullanılmaz?
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+Broadband galaxy ve yüksek kaliteli L verisinde kullanılır. L, RGB’den daha kötü seeing/noise/gradient taşıyorsa; passband hedef color’ını bozuyorsa veya RGB-only yeterliyse kullanılmaz.
 
-## Ön koşullar
+## Parameters
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+| Parametre/kavram | Amaç | Artırma gerekçesi | Risk |
+|---|---|---|---|
+| Luminance weight | L detail katkısı | L SNR/PSF açıkça üstün | Color washout/noise transfer |
+| Saturation | Chroma kaybını telafi | Ölçülmüş saturation düşüşü | Artificial color/clipping |
+| Noise reduction | Chrominance noise kontrolü | RGB chroma noise belirgin | Color detail kaybı |
+| Channel weights | Color katkısını ayarlama | Acquisition/filter gerekçesi | SPCC sonucunu bozma |
 
-## PixInsight menü yolu
+Sabit typical values yoktur. Düşük L weight ile başlanır; output, RGB-only ve full-weight clone ile karşılaştırılır.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+## Advantages ve limitations
 
-## Parametreler
+Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, starless recombination veya continuum-aware Ha ekleme için PixelMath kadar esnek değildir.
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+## Practical Decision Guide
 
-## Uygulama adımları
+| Situation | Recommendation | Why |
+|---|---|---|
+| Galaxy, iyi L | LRGBCombination | Doğal detail transferi |
+| Reflection nebula | Düşük weight veya RGB-only | Color fidelity korunur |
+| Emission nebula | A/B LRGB/HaRGB | L passband contrast’ı değiştirebilir |
+| HaRGB | PixelMath | Emission/continuum ayrı kontrol edilir |
+| Starless layer | PixelMath | Layer-specific birleşim gerekir |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+## Application ve expected output
 
-## Beklenen sonuç
+1. L/RGB geometry, state, FWHM ve histograms doğrulayın.
+2. Düşük L weight clone üretin.
+3. Galaxy/nebula detail, star color, halo, background noise ve saturation’ı karşılaştırın.
+4. Weight/saturation’ı tek değişkenli iterasyonlarla ayarlayın.
+5. Process instance ve acceptance notunu saklayın.
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Çıktıda detail artmalı; RGB hue ve faint color kaybolmamalı, stars harshlaşmamalıdır.
 
-## Sık yapılan hatalar
+## Common mistakes ve troubleshooting
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+| Belirti | Neden | Corrective workflow |
+|---|---|---|
+| Desaturated result | L weight fazla | Weight azalt; RGB saturation’ı ölç |
+| Color halo | Geometry/PSF mismatch | Registration/PSF match |
+| Noisy detail | L noise aktarımı | L hazırlama ve weight revizyonu |
+| Unnatural galaxy core | State/dynamic range mismatch | Histogram/stretch eşleştir |
+| Magenta/green stars | RGB calibration veya saturation | SPCC output’a dön; channel clipping kontrol et |
 
-## Sorun giderme
+## Performance, best practices ve related processes
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
-
-## Hızlı referans
-
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
-
-## İlgili bölümler
-
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [LRGB](index.md)
-- [ChannelCombination](channel-combination.md)
+Process hızlıdır; clone matrisi ve quality check asıl maliyettir. RGB-only referansı her zaman saklayın. [PixelMath LRGB](pixelmath-lrgb.md), [ColorMask](../11-maskeler/color-mask.md) ve [RangeMask](../11-maskeler/range-mask.md) karmaşık durumlarda tamamlayıcıdır.
