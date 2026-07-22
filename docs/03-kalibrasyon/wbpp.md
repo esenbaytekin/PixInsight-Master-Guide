@@ -133,7 +133,7 @@ Seçime bağlı masters, calibrated/registered frames, normalization/drizzle yar
 | Artefact tüm frame’lerde | Calibration/master zinciri | Eşleşmeleri ve logu inceleyin |
 | Artefact yalnız master’da | Registration/normalization/rejection | Maps ve residual’ları inceleyin |
 | Data clipped | Statistics ve pedestal | Önceki aşamaya dönün |
-| Process başarısız | Console log | İlk hata mesajını çözün |
+| İşlem başarısız | Console log | İlk hata mesajını çözün |
 
 ## SSS
 
@@ -152,7 +152,7 @@ Seçime bağlı masters, calibrated/registered frames, normalization/drizzle yar
 ??? question "Ne zaman manuel?"
     Özel calibration, hata izolasyonu veya kontrollü deney gerektiğinde.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Input metadata doğrulandı
@@ -161,7 +161,7 @@ Seçime bağlı masters, calibrated/registered frames, normalization/drizzle yar
     - [ ] Log incelendi
     - [ ] Yardımcı maps incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

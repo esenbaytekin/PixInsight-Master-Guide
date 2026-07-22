@@ -1,10 +1,10 @@
 # PixelMath Kanal Karışımları ve Tarifler
 
-## Purpose
+## Amaç
 
 Broadband ve narrowband channel construction, selective blend ve normalization tariflerini aynı validation standardıyla sunmaktır.
 
-## Recipe validation standard
+## Tarif Doğrulama Standardı
 
 - `✅ Verified`: PixInsight 1.9.3 syntax, process order ve output testleri tamamlanmış tarif.
 - `🟦 Community Practice`: Yaygın, birden fazla geçerli varyantı bulunan yaklaşım.
@@ -12,9 +12,9 @@ Broadband ve narrowband channel construction, selective blend ve normalization t
 
 Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki tarifler Verified olarak etiketlenmemiştir.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | RGB reconstruction | ChannelCombination veya PixelMath | Basit mapping process ile daha açık |
 | HaRGB | PixelMath community workflow | Emission weight kontrol edilir |
@@ -22,7 +22,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 | Natural SHO | Experimental matrix/mask | “Natural” hedef tanımı veriye bağlıdır |
 | Starless recombination | Layer-aware PixelMath | Additive/screen farkı önemlidir |
 
-## Recipe 1 — RGB reconstruction
+## Tarif 1 — RGB yeniden oluşturma
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Registered, normalized mono `R`, `G`, `B`
@@ -35,7 +35,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Mapping/dimension mismatch
 - **Alternative approaches:** ChannelCombination
 
-## Recipe 2 — Synthetic luminance
+## Tarif 2 — Sentetik luminance
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Linear calibrated RGB
@@ -48,7 +48,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Coefficients color/detail bias üretir
 - **Alternative approaches:** Extract CIE L* veya gerçek L
 
-## Recipe 3 — Ha enhancement
+## Tarif 3 — Ha iyileştirme
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Registered Ha ve broadband RGB
@@ -61,7 +61,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Salmon stars, halo, clipped red
 - **Alternative approaches:** NBRGBCombination veya continuum-aware method
 
-## Recipe 4 — HaRGB
+## Tarif 4 — HaRGB
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Broadband RGB + Ha
@@ -73,7 +73,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Star color ve continuum dominance
 - **Alternative approaches:** Starless Ha blend; dedicated narrowband combination
 
-## Recipe 5 — SHO mapping
+## Tarif 5 — SHO eşleme
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Registered/normalized SII, Ha, OIII
@@ -85,7 +85,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Green dominance ve channel noise imbalance
 - **Alternative approaches:** ChannelCombination; weighted SHO
 
-## Recipe 6 — HOO mapping
+## Tarif 6 — HOO eşleme
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Registered/normalized Ha ve OIII
@@ -97,7 +97,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Cyan noise ve monochromatic stars
 - **Alternative approaches:** Weighted HOO veya broadband stars
 
-## Recipe 7 — Natural SHO concept
+## Tarif 7 — Doğal SHO kavramı
 
 - **Validation Status:** 🟨 Experimental
 - **Applicable data:** Yüksek SNR SHO ve tanımlı color hedefi
@@ -109,7 +109,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Signal cross-talk ve false continuum
 - **Alternative approaches:** Standard SHO/HOO + Curves/ColorMask
 
-## Recipe 8 — Color enhancement
+## Tarif 8 — Renk iyileştirme
 
 - **Validation Status:** 🟨 Experimental
 - **Applicable data:** Calibrated nonlinear RGB
@@ -122,7 +122,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Clipping, posterization
 - **Alternative approaches:** CurvesTransformation + ColorMask
 
-## Recipe 9 — Selective replacement
+## Tarif 9 — Seçici değiştirme
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Geometry/state matched `A`, `B`, mask `M`
@@ -135,7 +135,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Seam ve brightness mismatch
 - **Alternative approaches:** CloneStamp veya process mask
 
-## Recipe 10 — Star protection
+## Tarif 10 — Yıldız koruma
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Target, processed clone ve star mask
@@ -148,7 +148,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Seams ve star surroundings mismatch
 - **Alternative approaches:** Process mask veya StarXTerminator layers
 
-## Recipe 11 — Continuum preservation
+## Tarif 11 — Süreklilik koruma
 
 - **Validation Status:** 🟨 Experimental
 - **Applicable data:** Narrowband + broadband continuum proxy
@@ -160,7 +160,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Negative values, halos, over-subtraction
 - **Alternative approaches:** Dedicated continuum subtraction workflow
 
-## Recipe 12 — Background protection
+## Tarif 12 — Arka plan koruma
 
 - **Validation Status:** 🟦 Community Practice
 - **Applicable data:** Processed/original images ve RangeMask
@@ -173,7 +173,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Edge/seam ve signal loss
 - **Alternative approaches:** Process-level RangeMask
 
-## Recipe 13 — Safe normalization
+## Tarif 13 — Güvenli normalizasyon
 
 - **Validation Status:** 🟨 Experimental
 - **Applicable data:** Positive, measured images
@@ -186,11 +186,11 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Potential risks:** Noise amplification, division by zero, color bias
 - **Alternative approaches:** LinearFit veya ImageIntegration normalization
 
-## Common mistakes ve best practices
+## Yaygın Hatalar ve En İyi Uygulamalar
 
 Coefficients’i toplam/range kontrolü olmadan kullanmak, SHO/HOO’yu color calibration saymak, masks polarity’sini test etmemek, continuum scale’i tahmin etmek ve community recipes’i universal sunmak başlıca hatalardır. Her recipe yeni image, Statistics ve channel inspection ile doğrulanır.
 
-## Related processes
+## İlgili Süreçler
 
 - [PixelMath Temelleri](temeller.md)
 - [Hata Ayıklama](hata-ayiklama.md)

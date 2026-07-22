@@ -1,14 +1,14 @@
 # MaskedStretch
 
-## Purpose
+## Amaç
 
 Bir dizi zayıf nonlinear transformu, önceki iteration sonucundan türetilen koruma ile uygulayarak highlights, bright stars ve nebula cores’un erken saturation riskini azaltmaktır.
 
-## Theory ve mathematical intuition
+## Kuramsal Arka Plan ve mathematical sezgisel açıklama
 
 PixInsight Staff açıklamasına göre MaskedStretch, güçlü tek MTF yerine çok sayıda zayıf MTF uygular; image geliştikçe ardışık maskeler bright structures’ı daha güçlü korur. Process point operation olarak tasarlanmıştır. Bu otomatik yaklaşım fiziksel object recognition değildir ve her hedefi doğru tanıdığı varsayılmaz.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Girdi lineer, color-calibrated, gradient açısından temiz ve uygun background reference içermelidir. BXT önce, NXT ise veri planına göre genellikle önce uygulanır. MaskedStretch sonrası görüntü nonlinear’dır.
 
@@ -16,7 +16,7 @@ Girdi lineer, color-calibrated, gradient açısından temiz ve uygun background 
 
 `Process → IntensityTransformations → MaskedStretch`
 
-!!! warning "Background reference"
+!!! warning "Arka Plan Referansı"
     Galaxy halo, cirrus veya diffuse nebula içeren ROI otomatik mask/stretch kararını gerçek sinyal aleyhine yönlendirebilir.
 
 ## Ne zaman kullanılır?
@@ -43,7 +43,7 @@ Girdi lineer, color-calibrated, gradient açısından temiz ve uygun background 
 
 Sabit target background veya iteration reçetesi verilmez. Image scale, noise, hedef ve display amacı birlikte belirleyicidir.
 
-## Advantages ve limitations
+## Avantajlar ve sınırlamalar
 
 | Avantaj | Sınır |
 |---|---|
@@ -52,9 +52,9 @@ Sabit target background veya iteration reçetesi verilmez. Image scale, noise, h
 | Tek process ile tekrar üretilebilir başlangıç | Tonal curve üzerinde GHS kadar doğrudan kontrol yoktur |
 | Parallelized implementation | Iteration arttıkça süre artar |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Dense bright stars | MaskedStretch | Iterative highlight protection |
 | Wide-field nebula | MaskedStretch + HT/GHS | Stars korunur, final contrast ayrıca kurulur |
@@ -62,7 +62,7 @@ Sabit target background veya iteration reçetesi verilmez. Image scale, noise, h
 | Low-SNR background | Küçük HT/GHS | MaskedStretch noise’u görünür kılabilir |
 | OSC color | Arcsinh veya MaskedStretch A/B | Color ve star protection önceliğine göre |
 
-## Application ve output expectations
+## Uygulama ve beklenen çıktılar
 
 1. Background için birden fazla temiz Preview adayını Statistics ile karşılaştırın.
 2. Clone üzerinde konservatif target background ve iteration testi yapın.
@@ -72,13 +72,13 @@ Sabit target background veya iteration reçetesi verilmez. Image scale, noise, h
 
 Çıktıda bright structures saturation’dan korunmalı; background aşırı açılmamalı ve faint signal otomatik maskeyle biçim değiştirmemelidir.
 
-## Interaction with color calibration ve NoiseXTerminator
+## Şunlarla etkileşim: color calibration ve NoiseXTerminator
 
 SPCC/BackgroundNeutralization önce tamamlanmalıdır; yanlış background reference, calibration sonucunu görsel olarak yeniden eğebilir. NXT’yi MaskedStretch öncesinde uygulamak stretch ile büyüyecek noise’u azaltabilir; fazla denoise ise otomatik maskenin signal dağılımını değiştirir. Her iki sıra clone üzerinde karşılaştırılmalıdır.
 
-## Troubleshooting
+## Sorun Giderme
 
-| Belirti | Neden | Verification | Corrective workflow |
+| Belirti | Neden | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Gray/flat output | Target background yüksek | Histogram ve background median | Daha düşük hedef; sonra kontrollü HT/GHS |
 | Black or too dark error | Input/background estimate uygun değil | Lineer histogram/ROI | Calibration ve ROI’yi düzelt |
@@ -86,11 +86,11 @@ SPCC/BackgroundNeutralization önce tamamlanmalıdır; yanlış background refer
 | Faint nebula kaybı | ROI/masking target içeriyor | Lineer STF kıyası | Temiz ROI ve yeni clone |
 | Noisy background | Stretch noise’u yükseltti | Linear noise estimate | NXT kararını ve target background’u revize et |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Iteration sayısı süreyi etkiler; process parallelized olsa da büyük drizzle görüntülerinde bellek/CPU yükü artabilir. Temsilî Preview/clone testleri yapın. Process log, ROI ve target background kaydedilmelidir.
 
-## Common mistakes
+## Yaygın Hatalar
 
 - Tek bir “boş görünen” ROI’yi ölçmeden kullanmak
 - Target background’u ekran parlaklığına göre yükseltmek
@@ -98,7 +98,7 @@ Iteration sayısı süreyi etkiler; process parallelized olsa da büyük drizzle
 - NoiseXTerminator sırasını test etmeden sabitlemek
 - MaskedStretch’i explicit star mask ile aynı kavram sanmak
 
-## Related processes ve references
+## İlgili Süreçler ve kaynaklar
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)

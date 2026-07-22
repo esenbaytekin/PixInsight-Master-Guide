@@ -195,7 +195,7 @@ Tanı çıktısı “gradient var” cümlesi değil; kaynak hipotezi, onu deste
 ??? question "Residual gradient ne demektir?"
     Correction sonrası kalan geniş ölçekli yapı olabilir; underfitting kadar gerçek signal korunumu da değerlendirilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Pattern raw/calibrated karşılaştırıldı
@@ -207,7 +207,7 @@ Tanı çıktısı “gradient var” cümlesi değil; kaynak hipotezi, onu deste
     - [ ] Model Image hedefe benzemiyor
     - [ ] Kök neden çözülmeden correction uygulanmadı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

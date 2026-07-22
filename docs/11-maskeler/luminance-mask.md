@@ -48,7 +48,7 @@ Maskenin histogramını düzenlemek, seçimin ağırlık dağılımını değiş
 6. Maskeyi hedefe bağlayın ve inversion yönünü kontrol edin.
 7. Preview üzerinde process miktarını ayarlayın.
 
-!!! tip "Evidence Level — Verified Workflow"
+!!! tip "Kanıt Düzeyi — Doğrulanmış İş Akışı"
     Noise reduction öncesinde maskeyi 1:1 zoom'da incelemek, maskenin gürültü desenini process ağırlığına taşıyıp taşımadığını gösterir.
 
 ## Gerçek kullanım senaryoları
@@ -61,7 +61,7 @@ Parlak nebula filamentlerini koyu/orta tonla koruyan, düşük SNR arka planı d
 
 Luminance Mask, düşük SNR arka planı koruyup orta-parlak yapıdaki kontrast etkisini kademeli dağıtır. Yıldızlar maskede çok parlaksa ayrıca StarMask çıkarımı değerlendirilir.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
 ```mermaid
 flowchart TD
@@ -88,7 +88,7 @@ flowchart TD
 | Etki ters bölgede | Inversion yanlış | Overlay ile polarity'yi doğrulayın |
 | Gradient seçimi bozuyor | Kaynak luminance kirli | Gradient düzeltmesini önce değerlendirin |
 
-## Quick Reference
+## Hızlı Referans
 
 - Geometri eşleşmesini doğrula.
 - Maskeyi clipping yapmadan stretch et.

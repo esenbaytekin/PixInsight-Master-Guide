@@ -50,7 +50,7 @@ Wavelet ve benzeri multiscale ayrıştırmalar, görüntüyü karakteristik boyu
 !!! warning
     Detail enhancement yeni sinyal üretmez. Düşük SNR veride gürültüyü yapıya benzetebilir; maske ve kontrollü miktar, güçlü parametreden daha değerlidir.
 
-## Workflow konumu
+## İş Akışı konumu
 
 Gradient ve renk kalibrasyonu tamamlanmadan lokal kontrast uygulamak artefaktları büyütür. Genellikle önce [noise reduction](../06-ai-eklentileri/noisexterminator.md), sonra stretch, ardından hedefe göre lokal kontrast değerlendirilir. MMT lineer aşamada da kullanılabilir; LHE, HDRMT ve DSE çoğunlukla görünür yapının değerlendirilebildiği nonlinear aşamada kullanılır.
 
@@ -82,7 +82,7 @@ flowchart TD
 | Düşük SNR/ışık kirliliği | Gürültü ve gradient güvenliği | Önce düzeltme ve maskeli NR; enhancement'ı sınırlı tut |
 | Yüksek SNR/karanlık gökyüzü | İnce yapı sürekliliği | Birden fazla hafif, ölçek odaklı geçiş |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
 1. Hedef yapının ölçeğini 1:1 görüntüde belirleyin.
 2. Gürültünün aynı ölçekte olup olmadığını kontrol edin.

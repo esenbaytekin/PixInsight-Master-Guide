@@ -1,14 +1,14 @@
 # ChannelCombination
 
-## Purpose
+## Amaç
 
 Ayrı monochrome görüntüleri RGB veya seçilen color space kanallarına açık eşleme ile birleştirmek; broadband RGB ve narrowband SHO/HOO başlangıç görüntüsü üretmektir.
 
-## Theory ve intuition
+## Kuramsal Arka Plan ve sezgisel açıklama
 
 Her output channel, seçilen input image’ın aynı koordinattaki pixel değerini alır. Process channel mapping yapar; exposure matching, normalization, SPCC veya continuum subtraction’ı kendiliğinden çözmez.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Inputs aynı dimensions, registration, crop, bit depth/image state ve açıklanabilir intensity scale’e sahip olmalıdır. Broadband lineer RGB, ChannelCombination sonrası SPCC’ye gider. Narrowband mapping color-calibration değil temsil seçimidir.
 
@@ -27,16 +27,16 @@ RGB/SHO/HOO’nun doğrudan ve okunabilir mapping’i için kullanılır. Weight
 
 Typical setting, her channel için doğru image identifier ve yeni output oluşturmadır; weight gerekiyorsa processin desteklemediği davranış varsayılmaz.
 
-## Linear vs nonlinear combination
+## Doğrusal ve doğrusal olmayan combination
 
 | State | Avantaj | Risk |
 |---|---|---|
 | Linear | SPCC ve ortak stretch için temiz başlangıç | Kanallar normalize değilse cast |
 | Nonlinear | Önceden ayrı stretch edilmiş mapping | Tonal eşleşme ve clipping zorlaşır |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | Broadband RGB | ChannelCombination | Basit ve izlenebilir mapping |
 | SHO/HOO başlangıcı | ChannelCombination | Mapping açıkça belgelenir |
@@ -44,7 +44,7 @@ Typical setting, her channel için doğru image identifier ve yeni output oluşt
 | Channel replacement | ChannelCombination veya PixelMath | Replace kapsamına göre |
 | Masked blend | PixelMath | Spatial seçim gerekir |
 
-## Application ve output
+## Uygulama ve çıktı
 
 1. Dimensions/registration ve image state’i doğrulayın.
 2. R, G, B identifier’larını açıkça kaydedin.
@@ -53,7 +53,7 @@ Typical setting, her channel için doğru image identifier ve yeni output oluşt
 
 Beklenen output doğru channel mapping’e sahip, clipping üretmemiş color image’dır.
 
-## Common mistakes ve troubleshooting
+## Yaygın Hatalar ve sorun giderme
 
 | Belirti | Neden | Düzeltme |
 |---|---|---|
@@ -63,11 +63,11 @@ Beklenen output doğru channel mapping’e sahip, clipping üretmemiş color ima
 | Black channel | Yanlış/boş identifier | Source image ve channel enable kontrolü |
 | Harsh color noise | Düşük SNR channel | Integration/NXT ve weighting’e dön |
 
-## Advantages, limitations ve best practices
+## Avantajlar, sınırlamalar ve En İyi Uygulamalar
 
 Basitliği ana avantajdır; conditional veya weighted blend yapmaması ana sınırdır. Process icon ve output identifier’ı saklayın. SHO/HOO mapping’i “doğal color” olarak adlandırmayın.
 
-## Related processes
+## İlgili Süreçler
 
 - [LRGB teorisi](index.md)
 - [LRGBCombination](lrgb-combination.md)

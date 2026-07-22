@@ -1,14 +1,14 @@
 # LocalHistogramEqualization
 
-## Purpose
+## Amaç
 
 LocalHistogramEqualization (LHE), komşuluk içindeki ton ayrımını artırarak orta ve büyük ölçekli yapıların algılanabilirliğini güçlendirir. Global histogramı yeniden kurmak yerine her bölgenin çevresine göre lokal kontrast üretir.
 
-## Theory ve bilimsel arka plan
+## Kuramsal Arka Plan ve bilimsel arka plan
 
 LHE, contrast-limited adaptive histogram equalization yaklaşımını kullanır. Kernel radius incelenen komşuluğun karakteristik boyutunu; contrast limit ise lokal histogramın ne ölçüde güçlendirilebileceğini belirler. Küçük kernel daha ince yapıları ve gürültüyü, büyük kernel daha geniş yapıları hedefleme eğilimindedir.
 
-!!! info "Evidence Level — Official Documentation"
+!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
     PixInsight'ın teknik iş akışı örneği, LHE'yi CLAHE uygulaması olarak tanımlar ve düşük SNR alanlarda noise intensification riskini azaltmak için maskeli kullanır.
 
 ## Ne zaman kullanılır?
@@ -25,7 +25,7 @@ LHE, contrast-limited adaptive histogram equalization yaklaşımını kullanır.
 - Global ton dağılımı henüz dengeli değilse.
 - Parlak çekirdek dinamik aralığı asıl sorunsa HDRMT daha doğrudan olabilir.
 
-## Workflow position ve input requirements
+## İş Akışındaki Yeri ve giriş gereksinimleri
 
 Girdi geometrik ve fotometrik sorunlardan arındırılmış, çoğunlukla nonlinear ve clipping içermeyen bir master olmalıdır. Noise reduction ile enhancement sırası veri setine bağlıdır; LHE'nin mevcut noise'u büyütme ihtimali nedeniyle düşük SNR veride önce kontrollü noise reduction genellikle daha güvenlidir.
 
@@ -68,9 +68,9 @@ Girdi geometrik ve fotometrik sorunlardan arındırılmış, çoğunlukla nonlin
 | LHE vs Curves | Komşuluk/ölçek tabanlı | Curves global veya maskeyle bölgesel ton eşlemesi yapar |
 | LHE vs DSE | Açık ve koyu yapı farkını birlikte etkiler | DSE koyu yapıları hedefler |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Galaxy kolu ve nebula filamenti | LHE | Orta ölçekli lokal kontrastı artırır |
 | Parlak çekirdek ayrıntısı | HDRMT | Dinamik aralığı daha doğrudan yönetir |
@@ -99,11 +99,11 @@ flowchart TD
 | Düzleşmiş kontrast | Çok büyük kernel | Farklı radius sonuçlarını kıyaslayın | Yapı ölçeğine yaklaşın |
 | Yapay texture | Noise yapı sanılıyor | Noise-only bölgede kontrol edin | Önce NR, sonra maskeli LHE uygulayın |
 
-## Performance considerations
+## Performans Değerlendirmesi
 
 Büyük kernel, yüksek çözünürlük ve geniş görüntü bellek/süre maliyetini artırır. Parametre seçimini representative preview'larda yapın; kenar koşulları nedeniyle final doğrulamayı tam görüntüde tekrarlayın.
 
-## Best practices ve output expectations
+## En İyi Uygulamalar ve beklenen çıktılar
 
 - Sonuç “detay eklenmiş” değil, mevcut detayın daha okunur olduğu görünmelidir.
 - Farklı ölçekleri düşük amount ile ayrı geçişlerde kullanın.

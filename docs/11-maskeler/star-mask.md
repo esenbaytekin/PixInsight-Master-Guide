@@ -25,7 +25,7 @@ Yıldız alanı tek ölçekli değildir. Küçük yıldızlar birkaç pikselde t
 
 `Process > MaskGeneration > StarMask`
 
-!!! warning "Evidence Level — UI verification"
+!!! warning "Kanıt Düzeyi — UI doğrulaması"
     Menü grubu, kontrol adları ve varsayılan değerler PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır. Bu sayfa sabit varsayılan değer önermemektedir.
 
 ## Parametre yaklaşımı
@@ -61,7 +61,7 @@ Yıldız alanı tek ölçekli değildir. Küçük yıldızlar birkaç pikselde t
 | Özellik | StarMask | StarXTerminator yıldız katmanı |
 |---|---|---|
 | Temel | Çok ölçekli yapı seçimi | Model tabanlı yıldız ayırma çıktısı |
-| Çıktı | Process ağırlık maskesi | Görüntü katmanı; maskeye dönüştürülebilir |
+| Çıktı | İşlem ağırlık maskesi | Görüntü katmanı; maskeye dönüştürülebilir |
 | Güçlü yön | Parametrik ölçek/growth kontrolü | Karmaşık yıldız alanını ayırabilme |
 | Risk | Nebula düğümlerini seçme | Residual, halo veya model hatasını maskeye taşıma |
 
@@ -75,10 +75,10 @@ StarMask, LHE'nin yıldız profillerinde keskin halo oluşturmasını engellemek
 
 Nonlinear stretch veya Curves öncesinde parlak yıldız çekirdekleri maskelenir. Clipping olmuş çekirdeklerde maske kayıp rengi geri getiremez; yalnız sonraki değişimi sınırlar.
 
-!!! example "Evidence Level — Official Documentation"
+!!! example "Kanıt Düzeyi — Resmî Dokümantasyon"
     PixInsight'ın M31 Ha örneği, PixelMath işlemini bir star mask üzerinden uygulayarak yıldızların ve çevresindeki noise/halo etkilerinin ayrıca değerlendirilmesi gerektiğini gösterir.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
 ```mermaid
 flowchart TD
@@ -104,11 +104,11 @@ flowchart TD
 | Yıldızlar birleşiyor | Growth fazla | Büyümeyi azaltın |
 | Star reduction sert görünüyor | Binary maske veya aşırı miktar | Grayscale geçiş ve daha düşük iterasyon kullanın |
 
-## Performance considerations
+## Performans Değerlendirmesi
 
 Büyük görüntülerde çok sayıda scale ve geniş kernel kullanımı süre ve bellek tüketimini artırabilir. Parametre aramasını representative preview veya downsample edilmiş tanı görüntüsünde yapmak mümkündür; nihai maskeyi tam çözünürlükte üretin.
 
-## Quick Reference
+## Hızlı Referans
 
 - Küçük yıldız, parlak halo ve yanlış pozitifleri ayrı kontrol et.
 - Threshold'u gürültü tabanına göre ayarla.

@@ -1,14 +1,14 @@
 # HDRMultiscaleTransform
 
-## Purpose
+## Amaç
 
 HDRMultiscaleTransform (HDRMT), parlak yapılardaki dinamik aralığı multiscale ayrıştırmayla sıkıştırır. Galaxy çekirdeği, planetary nebula merkezi veya parlak emission bölgesi gibi alanlarda büyük ölçekli parlaklık altında kalan lokal yapıyı görünür kılmayı amaçlar.
 
-## Theory ve bilimsel arka plan
+## Kuramsal Arka Plan ve bilimsel arka plan
 
 HDRMT, à trous wavelet ve multiscale median transform temelli bir yaklaşımla yapıları karakteristik ölçeklerine ayırır. Bir ölçekteki lokal kontrastı, daha büyük ölçekli parlaklık yapısından görece bağımsız yönetir. Bu nedenle global histogram sıkıştırmasından farklıdır.
 
-!!! info "Evidence Level — Official Documentation"
+!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
     PixInsight workshop materyali HDRMT'yi dinamik aralık kontrolü için multiscale bir algoritma olarak tanımlar; layer'ların yapı ölçeklerini ayırdığını belirtir.
 
 ## Layers ve residual layer
@@ -31,7 +31,7 @@ Sabit bir layer sayısı her görüntüye taşınamaz. Hedef çekirdeğin piksel
 - Gradient veya renk kalibrasyonu sorununu düzeltmek için.
 - Tüm görüntüde daha güçlü mikro-kontrast amacıyla.
 
-## Input, workflow ve mask interaction
+## Giriş, iş akışı ve maske etkileşimi
 
 Girdi çoğunlukla kontrollü nonlinear olmalı; çekirdekte veri clipping olmamalıdır. [RangeMask](../11-maskeler/range-mask.md) veya luminance tabanlı maske, HDRMT etkisini parlak hedefe sınırlar. Yıldızları ayrıca korumak, koyu halo ve yıldız profil bozulması riskini azaltır.
 
@@ -64,7 +64,7 @@ Girdi çoğunlukla kontrollü nonlinear olmalı; çekirdekte veri clipping olmam
 | Emission nebula/SHO | Yalnız parlak merkezde maskeli HDRMT | Renk ve zayıf filamentlerin global sıkışmasını önler |
 | Düşük SNR | HDRMT'yi sınırlı tut veya ertele | Sıkıştırma noise/artefakt görünürlüğünü artırabilir |
 
-## HDRMT vs LHE
+## HDRMT ve LHE
 
 | Ölçüt | HDRMT | LHE |
 |---|---|---|
@@ -73,9 +73,9 @@ Girdi çoğunlukla kontrollü nonlinear olmalı; çekirdekte veri clipping olmam
 | Ana kontrol | Layer sayısı | Kernel radius/contrast limit |
 | Başlıca risk | Flattened core, halo | Crunchy texture, noise |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Galaxy core | HDRMT | Büyük parlaklık yapısından bağımsız lokal ayrım sağlar |
 | Faint nebula | LHE | Orta ölçekli kontrastı hedefler |
@@ -93,7 +93,7 @@ flowchart TD
     F -->|"Hayır"| H["Lokal kontrast dengesini kontrol et"]
 ```
 
-## Failure diagnosis
+## Hata Tanısı
 
 | Belirti | Olası neden | Doğrulama | Düzeltme |
 |---|---|---|---|
@@ -104,7 +104,7 @@ flowchart TD
 | Faint detail kaybı | Global uygulama | Maskeli/maskesiz fark | Hedef maskesini daraltın |
 | Renk bozulması | Kanal/lightness etkileşimi | Kanalları ayrı inceleyin | Lightness odaklı workflow'u doğrulayın |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Layer ve iteration arttıkça süre/bellek maliyeti yükselir. Representative preview ile seçim yapın; nihai sonucu tam görüntüde kontrol edin. Tek agresif geçiş yerine gerektiğinde farklı ölçeklerde iki hafif geçiş kullanın.
 

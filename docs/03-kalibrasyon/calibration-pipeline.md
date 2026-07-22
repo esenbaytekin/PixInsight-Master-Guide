@@ -149,7 +149,7 @@ Lineer Master Image, rejection maps, loglar ve seçime bağlı normalization/dri
 | Artefact tüm frame’lerde | Calibration/master zinciri | Eşleşmeleri ve logu inceleyin |
 | Artefact yalnız master’da | Registration/normalization/rejection | Maps ve residual’ları inceleyin |
 | Data clipped | Statistics ve pedestal | Önceki aşamaya dönün |
-| Process başarısız | Console log | İlk hata mesajını çözün |
+| İşlem başarısız | Console log | İlk hata mesajını çözün |
 
 ## SSS
 
@@ -168,7 +168,7 @@ Lineer Master Image, rejection maps, loglar ve seçime bağlı normalization/dri
 ??? question "Master neden karanlık?"
     Lineerdir; STF ile görüntülenir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Input metadata doğrulandı
@@ -177,7 +177,7 @@ Lineer Master Image, rejection maps, loglar ve seçime bağlı normalization/dri
     - [ ] Log incelendi
     - [ ] Yardımcı maps incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

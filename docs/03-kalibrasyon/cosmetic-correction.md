@@ -127,7 +127,7 @@ Sabit yerel defect’leri azaltılmış lineer calibrated frames.
 | Artefact tüm frame’lerde | Calibration/master zinciri | Eşleşmeleri ve logu inceleyin |
 | Artefact yalnız master’da | Registration/normalization/rejection | Maps ve residual’ları inceleyin |
 | Data clipped | Statistics ve pedestal | Önceki aşamaya dönün |
-| Process başarısız | Console log | İlk hata mesajını çözün |
+| İşlem başarısız | Console log | İlk hata mesajını çözün |
 
 ## SSS
 
@@ -146,7 +146,7 @@ Sabit yerel defect’leri azaltılmış lineer calibrated frames.
 ??? question "Lineerlik bozulur mu?"
     Nonlinear stretch uygulanmaz.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Input metadata doğrulandı
@@ -155,7 +155,7 @@ Sabit yerel defect’leri azaltılmış lineer calibrated frames.
     - [ ] Log incelendi
     - [ ] Yardımcı maps incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

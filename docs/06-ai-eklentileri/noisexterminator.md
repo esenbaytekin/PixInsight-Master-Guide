@@ -48,7 +48,7 @@ AI2 `Detail` ile AI3 `Iterations` aynı işlev değildir. Kurulu model sürümü
 | Dense star field | Star color ve halo kontrolü | Chromatic reduction yıldız rengini azaltabilir |
 | Heavy light pollution | Önce gradient/calibration | Denoise geniş ölçekli background model değildir |
 
-## Uygulama ve workflow position
+## Uygulama ve iş akışı position
 
 1. BlurXTerminator/deconvolution aşamasının tamamlandığını doğrulayın.
 2. Background, faint signal ve star color için Preview’lar oluşturun.
@@ -73,7 +73,7 @@ Genel sıra: SPCC → BlurXTerminator → NoiseXTerminator → HistogramTransfor
 
 Iterations ve separation modları işlem süresini/bellek kullanımını artırabilir. GPU/CPU farkı kurulu plugin sürümü ve donanım desteğine bağlıdır. Denoise sonucu scientific measurement için kullanılacaksa orijinal lineer master korunmalı ve ölçüm politikası ayrıca belirlenmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 - Deconvolution’dan sonra
 - Önce en basit mod

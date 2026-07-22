@@ -159,7 +159,7 @@ Her iki correction, orijinal lineer master'dan ayrı dallar halinde test edilmel
 ??? question "Residual gradient kalabilir mi?"
     Evet. Gerçek signal’ı koruyan kontrollü residual, overcorrection’dan daha güvenilir olabilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Etki hipotezi tanımlı
@@ -171,7 +171,7 @@ Her iki correction, orijinal lineer master'dan ayrı dallar halinde test edilmel
     - [ ] Halo/nebula/yıldızlar korundu
     - [ ] Noise ve residual değerlendirildi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

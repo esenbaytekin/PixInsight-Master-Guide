@@ -75,7 +75,7 @@ SPCC yıldız renk ilişkisini kurduğu için star separation öncesi tamamlanma
 
 Dense star fields ve büyük drizzle görüntüleri daha fazla bellek ve inceleme süresi gerektirir. GPU desteği kurulu sürüm belgeleriyle doğrulanmalıdır. Ayrıştırma sonrası her iki katmanı saklayın; yalnız starless sonucu final kabul etmeyin. Star removal hataları için lokal manuel onarım model davranışını gizlememeli, kayıt altında tutulmalıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 - Recombination planını önceden seç
 - Stars layer’ı mutlaka üret ve sakla

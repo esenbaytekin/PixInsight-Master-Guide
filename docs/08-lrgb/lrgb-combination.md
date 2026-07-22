@@ -1,14 +1,14 @@
 # LRGBCombination
 
-## Purpose
+## Amaç
 
 Hazırlanmış luminance’i RGB chrominance ile birleştirerek detail, contrast, saturation ve noise aktarımını kontrollü yönetmektir.
 
-## Theory ve intuition
+## Kuramsal Arka Plan ve sezgisel açıklama
 
 Luminance weight arttıkça output intensity L’ye yaklaşır; RGB color ilişkisi korunmaya çalışılsa da saturation ve local chroma L/RGB uyumuna bağlı değişebilir. Noise aktarımı da detail ile birlikte gelir.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 L/RGB aynı geometry ve uyumlu image state’te olmalıdır. RGB önce [SPCC](../05-color-calibration/spcc.md) ile kalibre edilir; L [hazırlanır](luminance-hazirlama.md). Birleşim stretch öncesi veya kontrollü nonlinear aşamada yapılabilir; iki yaklaşım A/B test edilmelidir.
 
@@ -27,13 +27,13 @@ Broadband galaxy ve yüksek kaliteli L verisinde kullanılır. L, RGB’den daha
 
 Sabit typical values yoktur. Düşük L weight ile başlanır; output, RGB-only ve full-weight clone ile karşılaştırılır.
 
-## Advantages ve limitations
+## Avantajlar ve sınırlamalar
 
 Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, starless recombination veya continuum-aware Ha ekleme için PixelMath kadar esnek değildir.
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | Galaxy, iyi L | LRGBCombination | Doğal detail transferi |
 | Reflection nebula | Düşük weight veya RGB-only | Color fidelity korunur |
@@ -41,7 +41,7 @@ Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, s
 | HaRGB | PixelMath | Emission/continuum ayrı kontrol edilir |
 | Starless layer | PixelMath | Layer-specific birleşim gerekir |
 
-## Application ve expected output
+## Uygulama ve beklenen çıktı
 
 1. L/RGB geometry, state, FWHM ve histograms doğrulayın.
 2. Düşük L weight clone üretin.
@@ -51,9 +51,9 @@ Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, s
 
 Çıktıda detail artmalı; RGB hue ve faint color kaybolmamalı, stars harshlaşmamalıdır.
 
-## Common mistakes ve troubleshooting
+## Yaygın Hatalar ve sorun giderme
 
-| Belirti | Neden | Corrective workflow |
+| Belirti | Neden | Düzeltme İş Akışı |
 |---|---|---|
 | Desaturated result | L weight fazla | Weight azalt; RGB saturation’ı ölç |
 | Color halo | Geometry/PSF mismatch | Registration/PSF match |
@@ -61,6 +61,6 @@ Dedicated process hızlı ve tekrar üretilebilirdir. Spatially varying blend, s
 | Unnatural galaxy core | State/dynamic range mismatch | Histogram/stretch eşleştir |
 | Magenta/green stars | RGB calibration veya saturation | SPCC output’a dön; channel clipping kontrol et |
 
-## Performance, best practices ve related processes
+## Performans, En İyi Uygulamalar ve ilgili processes
 
 Process hızlıdır; clone matrisi ve quality check asıl maliyettir. RGB-only referansı her zaman saklayın. [PixelMath LRGB](pixelmath-lrgb.md), [ColorMask](../11-maskeler/color-mask.md) ve [RangeMask](../11-maskeler/range-mask.md) karmaşık durumlarda tamamlayıcıdır.

@@ -1,14 +1,14 @@
 # Luminance Hazırlama
 
-## Purpose
+## Amaç
 
 Luminance’i RGB’ye detail/contrast aktarabilecek geometry, PSF, noise ve dynamic range koşullarına getirmektir.
 
-## Theory
+## Kuramsal Arka Plan
 
 Luminance yalnız “daha parlak mono görüntü” değildir. RGB ile aynı sky signal’ı farklı passband ve SNR ile örnekler. Birleşimde L’nin small-scale structure, noise ve star profile’ı chrominance üzerine taşınır.
 
-## Input requirements
+## Giriş Gereksinimleri
 
 - L ve RGB aynı registration/crop/dimensions
 - Gradient ve calibration temiz
@@ -16,7 +16,7 @@ Luminance yalnız “daha parlak mono görüntü” değildir. RGB ile aynı sky
 - FWHM/PSF farkı ölçülmüş
 - Linear/nonlinear state ve normalization planı açık
 
-## Gerçek L vs synthetic L
+## Gerçek L ve sentetik L
 
 | Özellik | Gerçek L | Synthetic L |
 |---|---|---|
@@ -35,9 +35,9 @@ Luminance yalnız “daha parlak mono görüntü” değildir. RGB ile aynı sky
 | Stretch match | Histogram/core/background | Unnatural contrast |
 | Weight | L/RGB detail-color dengesi | Washed color |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Why |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | High-SNR sharp L | Kontrollü LRGB | Detail kazancı olası |
 | L seeing kötü | RGB-only veya PSF match | L stars sonucu bozar |
@@ -45,16 +45,16 @@ Luminance yalnız “daha parlak mono görüntü” değildir. RGB ile aynı sky
 | Reflection nebula | Düşük L weight | Chrominance korunur |
 | Galaxy | L detail öncelikli A/B | Dust lane ve halo dengesi gerekir |
 
-## Workflow
+## İş Akışı
 
 L integration → gradient control → BXT/NXT → PSF/noise ölçümü → RGB ile geometry/state match → LRGBCombination/PixelMath → color/detail acceptance.
 
 !!! warning "Aşırı hazırlama"
     L üzerinde agresif sharpening veya denoise, birleşimde RGB’den bağımsız yapay detail/doku oluşturabilir.
 
-## Troubleshooting ve best practices
+## Sorun Giderme ve En İyi Uygulamalar
 
-| Belirti | Neden | Corrective workflow |
+| Belirti | Neden | Düzeltme İş Akışı |
 |---|---|---|
 | Color halo | PSF/registration mismatch | Align ve PSF match |
 | Noise transfer | L background zayıf | L denoise/weight azalt |
@@ -63,7 +63,7 @@ L integration → gradient control → BXT/NXT → PSF/noise ölçümü → RGB 
 
 Her ara L clone’u ve ölçümü saklayın; final sharpness’i tek başarı ölçütü yapmayın.
 
-## Related processes
+## İlgili Süreçler
 
 - [LRGB teorisi](index.md)
 - [LRGBCombination](lrgb-combination.md)

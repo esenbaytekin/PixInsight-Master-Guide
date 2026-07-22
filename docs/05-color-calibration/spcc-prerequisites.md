@@ -20,7 +20,7 @@ flowchart LR
 
 | Kontrol | Neden önemlidir? | Eksikse olası sonuç | Doğrulama yöntemi |
 | --- | --- | --- | --- |
-| Linear/nonlinear state | Channel ilişkisinin yorumlanması | Workflow belirsizliği | History ve histogram; exact UI bekliyor |
+| Linear/nonlinear state | Channel ilişkisinin yorumlanması | İş Akışı belirsizliği | History ve histogram; exact UI bekliyor |
 | Debayer/CFA state | OSC channel üretimi | Yanlış channel interpretation | CFA metadata ve pipeline |
 | Mono RGB combination | SPCC input yapısı | Eksik/yanlış channels | Channel names/dimensions |
 | Stars included | Catalog sample olasılığı | Match/sample yetersizliği | Star population |
@@ -86,21 +86,21 @@ OSC broadband master için CFA/debayer geçmişi, WCS, clipping, gradient, senso
 
 ## Görsel planı
 
-!!! example "Görsel doğrulama ölçütü — astrometry ve WCS"
+!!! example "Görsel doğrulama ölçütü — astrometri ve WCS"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Solved broadband master  
     **Ekran veya çıktı:** WCS/metadata ve astrometry alanı  
     **Kanıtlanacak konu:** Exact astrometry UI ile geçerli solution kanıtı  
     **Önerilen dosya adı:** `spcc-193-astrometry-wcs-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — instrument profiles"
+!!! example "Görsel doğrulama ölçütü — cihaz profilleri"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** Mono LRGB ve OSC örnekleri  
     **Ekran veya çıktı:** Sensor ve filter profile seçim ekranları  
     **Kanıtlanacak konu:** Database/profile seçeneklerinin exact adları ve eşleşmesi  
     **Önerilen dosya adı:** `spcc-193-sensor-filter-profiles-v01.png`
 
-## Preflight kabul matrisi
+## Ön kontrol kabul matrisi
 
 | Girdi | Kabul kanıtı | Başarısızlıkta yapılacak |
 |---|---|---|
@@ -127,7 +127,7 @@ OSC broadband master için CFA/debayer geçmişi, WCS, clipping, gradient, senso
 | Profiles yok | Instrument kayıtları | UI/database doğrulaması |
 | Star sample az | Saturation/field | Log ve source population |
 | Color gradient | Background maps | Gradient diagnostics |
-| Starless input | Workflow hedefi | Stars-included alternatifini değerlendir |
+| Starless input | İş Akışı hedefi | Stars-included alternatifini değerlendir |
 
 ## SSS
 
@@ -142,7 +142,7 @@ OSC broadband master için CFA/debayer geçmişi, WCS, clipping, gradient, senso
 ??? question "Gradient SPCC ile giderilir mi?"
     Hayır; gradient modeling ayrı işlemdir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Image/CFA/RGB state kaydedildi
@@ -152,7 +152,7 @@ OSC broadband master için CFA/debayer geçmişi, WCS, clipping, gradient, senso
     - [ ] Star population değerlendirildi
     - [ ] Scope ayrıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

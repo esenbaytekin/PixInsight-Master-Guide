@@ -12,13 +12,13 @@ Tek process instance’larını Process Icons ile saklamak; sıralı çoklu işl
 
 **ProcessContainer**, birden çok process instance’ını belirli sırada tutan ve hedef üzerinde sıralı çalıştırabilen bir process’tir. “Bir sürü icon’ı görsel olarak yan yana dizmek” ile aynı değildir: sıra container’ın iç yapısındadır.
 
-| Özellik | Process Icon | ProcessContainer |
+| Özellik | İşlem Icon | ProcessContainer |
 | --- | --- | --- |
 | Kapsam | Tek process instance | Sıralı çoklu instance |
 | Amaç | Ayarı sakla/uygula/paylaş | Küçük pipeline yürüt |
 | Sıra bağımlılığı | Kendi başına yok | Temel özelliktir |
 | Hata izolasyonu | Tek adım kolay incelenir | Adımlar tek tek test edilmelidir |
-| Target bağımlılığı | Process’e göre değişir | İçindeki her process için geçerlidir |
+| Target bağımlılığı | İşlem’e göre değişir | İçindeki her process için geçerlidir |
 
 ```mermaid
 flowchart LR
@@ -156,7 +156,7 @@ flowchart TD
 ??? question "Icon seti nasıl paylaşılır?"
     Workspace Process Icons yönetiminden kaydedilebilir; gerekli modules, scripts ve sürüm bilgisi ayrıca belirtilmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **Tek ayar:** Process Icon · **Sıralı çoklu akış:** ProcessContainer · **Önce:** preview/clone testi · **Her zaman:** target + mask + lineerlik + sürüm notu · **Dynamic process:** hedefe özgü kabul et

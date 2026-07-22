@@ -1,18 +1,18 @@
-# Broadband Reflection and Dark Nebula Workflow
+# Broadband Yansıma ve Karanlık Nebula İş Akışı
 
-## Goal
+## Amaç
 
 Reflection nebula'nın yumuşak mavi continuum'unu ve dark nebula/molecular cloud yapısını background, gradient ve chroma noise ile karıştırmadan ortaya çıkarmak.
 
-## Dataset assumptions, calibration ve integration quality
+## Veri Seti Varsayımları, calibration ve entegrasyon kalitesi
 
 OSC veya mono RGB/LRGB broadband veri; matched dark/flat seti; dust/vignetting residual'ı düşük. Integration, geniş faint dust yapısını noise tabanından ayıracak SNR'a ve dither'a sahip olmalıdır. Poor flats varsa final DBE ile saklamak yerine calibration yeniden değerlendirilir.
 
-## Exposure strategy ve philosophy
+## Pozlama Stratejisi ve felsefe
 
 Subexposure, stars/core clipping olmadan sky background'u güvenilir örneklemelidir; toplam süre faint dust için belirleyicidir. Reflection/dark nebula geniş ve düşük frekanslı olduğundan background modelleme en kritik karardır.
 
-## Complete sequence
+## Tam İşlem Sırası
 
 1. [WBPP](../03-kalibrasyon/wbpp.md), rejection map ve walking-noise kontrolü.
 2. [Gradient diagnostic](../04-gradient/gradient-diagnostics.md); flat residual ile sky gradient'i ayırın.
@@ -23,7 +23,7 @@ Subexposure, stars/core clipping olmadan sky background'u güvenilir örneklemel
 7. Büyük-kernel düşük-amount LHE; yıldızlar maskeli.
 8. Curves, selective saturation ve sRGB/export proof.
 
-## Decision points ve alternative branches
+## Karar Noktaları ve alternatif dallar
 
 ```mermaid
 flowchart TD
@@ -42,47 +42,47 @@ flowchart TD
 - **Dark sky:** Gradient process zorunlu değildir; temiz background'u bozmayın.
 - **No calibration frames:** Scientific/technical güvenilirlik sınırlıdır; synthetic düzeltmeyi calibration eşdeğeri saymayın.
 
-## Mask, PixelMath, detail, final ve export
+## Maske, PixelMath, detay, son işlemler ve dışa aktarım
 
 Luminance/RangeMask faint dust'ı NR ve Curves'ten korur; StarMask LHE ve saturation sırasında yıldızları ayırır. PixelMath yalnız maskeleri birleştirmek veya doğrulanmış channel blend için kullanılır. Reflection nebula'da düşük amount ve büyük scale, dark nebula'da DSE yerine önce LHE/Curves kıyası tercih edilir.
 
-## Visual checkpoints
+## Görsel Kontrol Noktaları
 
-| Step | Expected | Normal variation | Warning/failure | Recovery |
+| Adım | Beklenen | Normal değişkenlik | Uyarı/hata | Düzeltme |
 |---|---|---|---|---|
 | Gradient | Background dengeli, dust korunmuş | Geniş gerçek sky variation | Model nebula gibi | Sample/model revizyonu |
 | Stretch | Dust belirir, black clipped değil | Faint contrast | Black crush | Stretch'e dön |
 | Detail | Yumuşak yapı okunur | Dataset SNR farkı | Crunchy/noisy dust | LHE/NR azalt |
 | Color | Reflection hue ve neutral background | Dust rengi değişebilir | Blue cast/cyan noise | Calibration/mask kontrolü |
 
-## Applied troubleshooting
+## Uygulamalı Sorun Giderme
 
-| Failure | Cause | Corrective action | Full reprocessing? |
+| Hata | Neden | Düzeltici eylem | Tam yeniden işleme? |
 |---|---|---|---|
 | Dust kayboldu | Gradient model target'ı çıkardı | Model öncesine dön | Partial |
 | Blue background | Calibration/gradient | SPCC/BN ve spatial model | Partial |
 | Walking noise | Dither/integration yetersiz | Integration/acquisition çözümü | Gerekebilir |
 | Dark halo | DSE/LHE fazla | Miktar/scale/maske azalt | Hayır |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Reason |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | Strong LP | Model image ve residual zorunlu | Faint dust kolay silinir |
 | Poor flats | Calibration'a dön | DBE multiplicative hatanın eşdeğeri değildir |
 | Low SNR | Sınırlı stretch/detail | Noise'u dust sanmayı önler |
 | Excellent calibration | Gereksiz DBE uygulama | Gerçek geniş yapıyı korur |
 
-## Visual Result Expectation
+## Beklenen Görsel Sonuç
 
 Intermediate: background smooth fakat steril değil; dust sürekliliği korunmuş. Final: reflection hue doğal, dark structures halo olmadan okunur. Under-processing flat/faint; over-processing mottled background, cyan noise ve crunchy dust üretir.
 
-## Effort estimate, limitations, related workflows, references
+## Tahmini Emek, sınırlamalar, ilgili iş akışları, kaynaklar
 
 Calibration review 20–35 dk; gradient 20–45 dk; color/stretch 25–40 dk; detail/final/export 25–45 dk. Temel sınırlamalar sky brightness, flat quality ve toplam SNR'dır.
 
 [OSC Workflow](osc-workflow.md) · [Data Quality Strategies](data-quality-strategies.md) · [Gradient Workflows](../04-gradient/real-workflows.md)
 
-## Evidence Level
+## Kanıt Düzeyi
 
 Model-image ve residual kontrolü **Verified Workflow**; kernel, amount ve exposure kararları **Practical Recommendation** düzeyindedir.

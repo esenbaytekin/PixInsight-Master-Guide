@@ -148,7 +148,7 @@ flowchart TD
 ??? question "HT işlemi geri alınabilir mi?"
     Canlı oturumda Undo/History mümkün olabilir; güvenli yöntem ayrıca clone ve aşamalı dosya kaydıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **STF:** display, data değişmez. **HT:** image data değişir. HT öncesi lineer işlemleri tamamla; clone kullan; clipping’i kontrol et; uygulama sonrası STF’yi resetle.

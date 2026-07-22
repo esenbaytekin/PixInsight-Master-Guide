@@ -1,16 +1,16 @@
 # MultiscaleMedianTransform
 
-## Purpose
+## Amaç
 
 MultiscaleMedianTransform (MMT), görüntüyü ölçek katmanlarına ayırarak noise reduction, detail attenuation veya enhancement işlemlerini yapı boyutuna göre kontrol eder. Gücü, tüm görüntüye tek bir “sharpness” uygulamak yerine küçük, orta ve büyük yapıları ayrı değerlendirmesidir.
 
-## Theory ve multiscale philosophy
+## Kuramsal Arka Plan ve çok ölçekli işleme felsefesi
 
 Multiscale ayrıştırmada ilk layer'lar en küçük yapıları; ilerleyen layer'lar giderek daha geniş yapıları; residual layer ise ayrıştırma dışında kalan en büyük ölçekli bileşeni taşır. Layer numarası fiziksel nesne sınıfı değildir: görüntü örneklemesi değiştiğinde aynı astronomik yapı farklı layer'a düşebilir.
 
 Noise çoğunlukla küçük ölçeklerde güçlüdür fakat yalnız ilk layer'da bulunmaz. Seeing, resampling, drizzle ve interpolation noise korelasyonunu ve layer dağılımını değiştirir. Bu nedenle bütün küçük layer'ları kapatmak gerçek yıldız profili ve ince filament sinyalini de silebilir.
 
-## Lineer ve nonlinear kullanım
+## Doğrusal ve doğrusal olmayan kullanım
 
 | Özellik | Lineer MMT | Nonlinear MMT |
 |---|---|---|
@@ -33,7 +33,7 @@ Noise çoğunlukla küçük ölçeklerde güçlüdür fakat yalnız ilk layer'da
 - Clipped veya undersampled yıldızları “onaracağı” varsayımıyla.
 - Düşük SNR veride maskesiz enhancement amacıyla.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Lineer MMT için görüntü kalibre, integrate ve gradient-corrected olmalıdır. Nonlinear enhancement için stretch kontrollü ve noise seviyesi değerlendirilmiş olmalıdır. Her durumda maskenin geometrisi hedefle eşleşmeli; aynı STF/zoom ile before-after kıyası yapılmalıdır.
 
@@ -60,7 +60,7 @@ Lineer MMT için görüntü kalibre, integrate ve gradient-corrected olmalıdır
 5. Tutarlı STF ile before-after kıyaslayın; otomatik STF farkını sonuç sanmayın.
 6. Background RMS görünümü, yıldız profili ve filament sürekliliğini birlikte kontrol edin.
 
-## Adım adım nonlinear detail enhancement
+## Adım adım nonlinear detay iyileştirme
 
 1. Hedef detayın hangi layer'larda bulunduğunu test görüntüleriyle belirleyin.
 2. Arka plan, yıldız ve düşük SNR alanları koruyan maske kullanın.
@@ -89,9 +89,9 @@ Lineer MMT için görüntü kalibre, integrate ve gradient-corrected olmalıdır
 | Galaxy | Küçük noise ve orta kol yapısını ayır | Dust lane sürekliliğini korur |
 | Emission nebula | Filament layer'larını koru | İnce gerçek sinyal küçük scale'dedir |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | Scale-specific linear noise | MMT | Threshold ve amount layer bazında yönetilir |
 | Genel model tabanlı NR | NoiseXTerminator | Daha doğrudan workflow sağlar |
@@ -123,7 +123,7 @@ flowchart TD
 | Background damage | Maskesiz veya gradient'li girdi | Arka plan farkını inceleyin | Önce gradient, sonra maskeli MMT |
 | Noise kalıyor | Yalnız ilk layer işlenmiş | Layer testlerini kıyaslayın | Noise'un yayıldığı diğer scale'i kontrollü ekleyin |
 
-## Performance ve best practices
+## Performans ve En İyi Uygulamalar
 
 Çok sayıda aktif layer, iteration ve büyük görüntü maliyeti artırır. Preview ile arama yapın; final ayarı tam çözünürlükte doğrulayın. Her layer değişikliğinin nedenini not edin ve process icon ile tekrarlanabilir hale getirin.
 

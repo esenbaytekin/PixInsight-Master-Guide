@@ -1,4 +1,4 @@
-# Natural SHO
+# Doğal SHO
 
 **Durum: Taslak**
 

@@ -70,7 +70,7 @@ Ana arayüzde şu section başlıkları okunur: `No target view`, `Model Paramet
 
 Kanıt dizini: `validation/ui/pi-1.9.3/dbe/screenshots/`. Ayrıntılı sınıflandırma: `validation/ui/pi-1.9.3/dbe/dbe-evidence-matrix.md`.
 
-!!! note "Mevcut değerler default değildir"
+!!! note "Mevcut değerler varsayılan değildir"
     Arayüzde görünen sayısal değerler ve checkbox durumları yalnız screenshot anını gösterir. Reset/yeni instance kanıtı olmadığı için default olarak kullanılamaz.
 
 ## Parametreler
@@ -133,7 +133,7 @@ Nebula üzerindeki sample, gerçek emission/reflection yapısını background mo
 !!! info "Görsel doğrulama ölçütü"
     Nebula üzerindeki hatalı sample dağılımı ve temizlenmiş sample seti karşılaştırması kayıt altında bulunmalıdır.
 
-### Model görüntüsünün nebulaya benzemesi
+### Model görüntüsünün nebulaya benzemesi { #model-goruntusunun-nebulaya-benzemesi }
 
 Model image’ın nebulaya benzemesi, modelin gerçek sinyali background olarak öğrendiğine dair güçlü bir uyarıdır. Model kabul edilmemeli; samples, coverage ve model karmaşıklığı yeniden incelenmelidir.
 
@@ -232,7 +232,7 @@ Subtraction additive bir background hipotezini; Division multiplicative bir alan
 ??? question "Gradient neden tamamen kaybolmadı?"
     Veri/model ayrımı sınırlı olabilir. Kontrollü residual, gerçek sinyal kaybından daha güvenilir olabilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Image lineer ve calibrated
@@ -247,7 +247,7 @@ Subtraction additive bir background hipotezini; Division multiplicative bir alan
     - [ ] STF yeniden hesaplandı
     - [ ] Residual ve signal preservation incelendi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

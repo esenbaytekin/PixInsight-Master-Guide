@@ -1,25 +1,25 @@
 # DBE: Less Than Three Samples
 
-## Error severity summary
+## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |
 |---|---|
-| Severity | 🟡 Moderate |
+| Önem Düzeyi | 🟡 Moderate |
 | Detectability | Easy |
 | Recoverability | Fully Recoverable |
-| Typical Detection Stage | Gradient Correction |
+| Typical Detection Aşama | Gradient Correction |
 
-## Symptoms
+## Belirtiler
 
 - DBE uygulaması `Less than three samples were generated` mesajıyla durur.
 - Otomatik sample generation hedef üzerinde yeterli geçerli sample üretmez.
 - Background model oluşturulamaz.
 
-## Visual appearance
+## Görsel Görünüm
 
 Hata çoğunlukla görüntüyü değiştirmeden process'i durdurur. Ancak hata mesajını aşmak için yanlış yerlere sample eklemek, daha sonra nebula benzeri model veya residual gradient üretebilir.
 
-## Likely causes
+## Olası Nedenler
 
 - Sample generation koşulları için uygun background alanı çok azdır.
 - Tolerance veya sample radius, görüntü istatistiğiyle uyuşmuyordur.
@@ -27,7 +27,7 @@ Hata çoğunlukla görüntüyü değiştirmeden process'i durdurur. Ancak hata m
 - Yoğun nebula/galaxy alanı güvenilir background noktalarını sınırlar.
 - Mevcut sample'lar silinmiş veya geçersiz konumdadır.
 
-## Verification steps
+## Doğrulama Adımları
 
 1. Hedefin tam görüntü mü preview mı olduğunu kontrol edin.
 2. DBE sample overlay'inde gerçekten kaç geçerli sample bulunduğunu sayın.
@@ -45,7 +45,7 @@ flowchart TD
     E -->|"Hayır"| G["Düşük etkili correction testi"]
 ```
 
-## Corrective workflow
+## Düzeltme İş Akışı
 
 1. Hata veren instance'ı sıfırlamak yerine sample koşullarını kaydedin.
 2. Tam görüntü üzerinde birkaç güvenilir manual sample ile başlayın.
@@ -54,7 +54,7 @@ flowchart TD
 5. [Division vs Subtraction](../04-gradient/division-vs-subtraction.md) kararını gradient tipine göre verin.
 6. Corrected image ve model/residual'ı birlikte değerlendirin.
 
-## Prevention
+## Önleme
 
 - DBE öncesinde gradient diagnostic yapın.
 - Sample'ları hedef dışı güvenilir background'a koyun.
@@ -62,10 +62,10 @@ flowchart TD
 - Tolerance ve radius için sabit reçete kullanmayın.
 - Model görüntüsünü her zaman saklayıp inceleyin.
 
-## Evidence Level
+## Kanıt Düzeyi
 
 **Verified Workflow:** Minimum sample hatası console mesajıyla doğrudan gözlenir. Tolerance/radius seçimi **Practical Recommendation** olarak veri setine bağlıdır.
 
-## Related processes
+## İlgili Süreçler
 
 [DBE](../04-gradient/dbe.md) · [Sample Placement](../04-gradient/sample-placement.md) · [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) · [Hata Kütüphanesi](index.md)

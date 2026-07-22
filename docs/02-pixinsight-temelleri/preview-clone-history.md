@@ -13,7 +13,7 @@ Yerel test (**Preview**), bağımsız alternatif (**Clone**) ve oturum içi geri
 - **History Explorer**: seçili view’a uygulanan işlemlerin ve mevcut undo durumlarının incelenmesini sağlar. Kaydedilmiş processing history ile canlı undo state aynı değildir.
 
 ```mermaid
-graph LR
+flowchart LR
     M["Main View"] --> P1["Preview: yıldız"]
     M --> P2["Preview: arka plan"]
     M --> C["Clone: alternatif tam görüntü"]
@@ -53,7 +53,7 @@ Kesin kısayollar işletim sistemi keymap’ine göre değişebileceğinden kuru
 | Clone | Identifier | Kaynak ve alternatif karışmamalı |
 | History Explorer | Target view | Her view’ın geçmişi ayrıdır |
 | History state | Canlı/kayıtlı oluşu | Görsel geri dönüş imkânını belirler |
-| Process extraction | Instance geçerliliği | Dynamic/script işlemlerinde yeniden kullanım sınırlı olabilir |
+| İşlem extraction | Instance geçerliliği | Dynamic/script işlemlerinde yeniden kullanım sınırlı olabilir |
 
 ## Uygulama Adımları
 
@@ -136,7 +136,7 @@ flowchart TD
 ??? question "Kaç preview kullanmalıyım?"
     Sabit sayı yoktur; yıldız, hedef yapısı ve arka plan gibi farklı risk bölgelerini temsil edecek kadar kullanın.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **Preview:** hızlı yerel test · **Clone:** bağımsız tam-frame dal · **History Explorer:** view işlem sırası/canlı undo · **Yedek:** bunlardan ayrı dosya ve depolama politikası

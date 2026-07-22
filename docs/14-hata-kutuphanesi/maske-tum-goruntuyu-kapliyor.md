@@ -1,26 +1,26 @@
 # Maske Tüm Görüntüyü Kaplıyor
 
-## Error severity summary
+## Hata Önem Düzeyi Özeti
 
 | Alan | Değer |
 |---|---|
-| Severity | 🟡 Moderate |
+| Önem Düzeyi | 🟡 Moderate |
 | Detectability | Easy |
 | Recoverability | Fully Recoverable |
-| Typical Detection Stage | During Final Processing |
+| Typical Detection Aşama | During Final Processing |
 
-## Symptoms
+## Belirtiler
 
 - Maske overlay'i görüntünün neredeyse tamamında aynı yoğunluktadır.
 - Process beklenenden çok az etki eder veya tüm görüntüye uygulanır.
 - Inversion sonrası sonuç tamamen ters davranır fakat seçicilik oluşmaz.
 - Maskenin histogramı siyah ya da beyaz uca yığılmıştır.
 
-## Visual appearance
+## Görsel Görünüm
 
 Overlay tekdüze kırmızı veya neredeyse görünmez olabilir. Bu durum her zaman hata değildir: maskenin görünürlüğü kapalı olabilir. Asıl doğrulama, maske görüntüsünün grayscale dağılımı ve process'in hedef üzerindeki farkıdır.
 
-## Likely causes
+## Olası Nedenler
 
 - RangeMask threshold'ları tüm histogramı kapsıyordur.
 - Maskeye aşırı stretch/clipping uygulanmıştır.
@@ -29,7 +29,7 @@ Overlay tekdüze kırmızı veya neredeyse görünmez olabilir. Bu durum her zam
 - Maske ve hedef geometry'si veya processing stage'i uyuşmuyordur.
 - StarMask growth/smoothness seçimleri yapıları birleştirmiştir.
 
-## Verification steps
+## Doğrulama Adımları
 
 1. Maskeyi hedef bağlantısından bağımsız ayrı görüntü olarak açın.
 2. Histogramda minimum, maksimum ve ara ton dağılımını inceleyin.
@@ -49,7 +49,7 @@ flowchart TD
     F --> G
 ```
 
-## Corrective workflow
+## Düzeltme İş Akışı
 
 1. Hedefteki process'i geri alın; maskeyi devre dışı bırakın.
 2. Maske source'u tek başına inceleyin.
@@ -58,7 +58,7 @@ flowchart TD
 5. Gerekirse [PixelMath](../10-pixelmath/index.md) ile iki maskeyi kesiştirin veya çıkarın.
 6. Overlay ve preview üzerinden polarity'yi doğrulayın.
 
-## Prevention
+## Önleme
 
 - Maskeyi bağlamadan önce ayrı pencerede 1:1 inceleyin.
 - Histogram uçlarını kesmeyin.
@@ -66,7 +66,7 @@ flowchart TD
 - Her target/process için inversion durumunu tekrar kontrol edin.
 - Maske görünürlüğü ile aktifliği aynı kavram sanmayın.
 
-## Common traps
+## Yaygın Tuzaklar
 
 - Kırmızı overlay'i gerçek maske rengi sanmak.
 - Maskeyi gizleyince devre dışı kaldığını varsaymak.
@@ -74,10 +74,10 @@ flowchart TD
 - Gürültüyü grayscale ağırlığa taşımak.
 - Target değiştiğinde eski maskeyi yeniden kullanmak.
 
-## Evidence Level
+## Kanıt Düzeyi
 
 **Verified Workflow:** Maske histogramı, overlay ve preview etkisi doğrudan doğrulanabilir. UI control konumları PixInsight 1.9.3 ekran kanıtı gerektirir.
 
-## Related processes
+## İlgili Süreçler
 
 [Maske Mantığı](../11-maskeler/maske-mantigi.md) · [RangeMask](../11-maskeler/range-mask.md) · [StarMask](../11-maskeler/star-mask.md) · [Hata Kütüphanesi](index.md)

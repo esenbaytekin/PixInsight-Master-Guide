@@ -107,7 +107,7 @@ Mono LRGB master'larda B kanalının daha zayıf görünmesi, hedefin yalnız fi
     **Kanıtlanacak teknik nokta:** OSC pixel'lerinin başlangıçta tüm renkleri doğrudan ölçmemesi.  
     **Önerilen dosya adı:** `color-osc-cfa-chain-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — linear ve nonlinear"
+!!! example "Görsel doğrulama ölçütü — doğrusal ve doğrusal olmayan"
     **Amaç:** Stretch'in color görünümünü nasıl değiştirebildiğini göstermek.  
     **Gerekli ekran veya veri:** Aynı lineer master'ın STF görünümü ve kalıcı stretched kopyası.  
     **Kanıtlanacak teknik nokta:** Display stretch ile pixel transformation ayrımı.  
@@ -156,7 +156,7 @@ Photometric calibration, ölçülen yıldız sinyalini tanımlı bir reference s
 ??? question "White point fiziksel beyaz mıdır?"
     Bir görüntüleme/referans seçimidir; evrensel astronomik beyaz değildir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Spectrum ile RGB ayrıldı
@@ -165,7 +165,7 @@ Photometric calibration, ölçülen yıldız sinyalini tanımlı bir reference s
     - [ ] Relative calibration ile color grading ayrıldı
     - [ ] Image data ile display rendering ayrıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD
@@ -180,7 +180,7 @@ flowchart TD
 
 | Kategori | Durum |
 | --- | --- |
-| UI-5 | Process UI iddiası yok |
+| UI-5 | İşlem UI iddiası yok |
 | DOC-5 | Response, linearity ve color space kaynakları bekliyor |
 | DATA-5 | Mono LRGB ve OSC karşılaştırması bekliyor |
 | IMG-5 | Dört planlı görsel bekliyor |

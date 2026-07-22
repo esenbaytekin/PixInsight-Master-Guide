@@ -119,16 +119,16 @@ M31 RGB master için `SPCC-BB-M31-01` planlanır; outer disk, core, stars ve bac
     **Kanıtlanacak konu:** CFA/profile ve star color karşılaştırması  
     **Önerilen dosya adı:** `spcc-193-broadband-osc-result-v01.png`
 
-!!! example "Görsel doğrulama ölçütü — M31 color preservation"
+!!! example "Görsel doğrulama ölçütü — M31 renk koruma"
     **PixInsight sürümü:** 1.9.3  
     **Target veya veri:** M31 LRGB  
     **Ekran veya çıktı:** Original/output/difference ve log  
     **Kanıtlanacak konu:** Core, outer disk ve halo color preservation  
     **Önerilen dosya adı:** `spcc-193-m31-color-preservation-v01.png`
 
-## Tam workflow karar matrisi
+## Tam iş akışı karar matrisi
 
-| Workflow | SPCC girdisi | Sonraki karar | Neden |
+| İş Akışı | SPCC girdisi | Sonraki karar | Neden |
 |---|---|---|---|
 | Mono LRGB | Linear combined RGB | Luminance’i sonra ekle | L channel color response çözmez |
 | LRGB + Ha | Önce broadband RGB | Ha’yı maskeli ekle | Emission star color fitini bozmamalı |
@@ -166,7 +166,7 @@ M31 RGB master için `SPCC-BB-M31-01` planlanır; outer disk, core, stars ve bac
 ??? question "Gradient önce mi?"
     General workflow'da gradient kök nedeni önce denetlenir; SPCC gradient modeling değildir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] OSC/LRGB zinciri kaydedildi
@@ -175,7 +175,7 @@ M31 RGB master için `SPCC-BB-M31-01` planlanır; outer disk, core, stars ve bac
     - [ ] Log ve metadata saklandı
     - [ ] Stars/target/background kıyaslandı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

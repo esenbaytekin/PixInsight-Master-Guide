@@ -1,16 +1,16 @@
 # Generalized Hyperbolic Stretch
 
-## Purpose
+## Amaç
 
 Global transfer curve’ün hangi tonal bölgede en fazla contrast üreteceğini ve shadows/highlights sıkıştırmasını HT’den daha esnek parametrelerle yönetmektir.
 
-## Theory, scientific background ve intuition
+## Kuramsal Arka Plan, bilimsel arka plan ve sezgisel açıklama
 
 GHS ailesi monoton intensity transformations kullanarak pixel sırasını korurken tonal aralıkları farklı oranlarda genişletir veya sıkıştırır. `Stretch factor`, `Local intensity` ve `Symmetry Point` birlikte curve şeklini belirler. Burada yayımlanmamış formül veya kontrol davranışı türetilmez; kurulu process sürümünün resmi dokümantasyonu esas alınır.
 
 `Symmetry Point`, etkinin merkezlendiği tonal bölgeyi; stretch gücü dönüşümün büyüklüğünü; local intensity ise curve’ün bu bölge çevresindeki karakterini etkiler. Bir parametreyi tek başına “daha fazla detay” kontrolü saymak yanlıştır.
 
-## Input requirements ve workflow position
+## Giriş Gereksinimleri ve iş akışı position
 
 Lineer veya kontrollü nonlinear image, geçerli histogram, unclipped channels ve mask durumu gerekir. BXT/NXT ve SPCC kararları başlangıçtan önce tamamlanmalıdır. GHS global bir process’tir; LHE gibi local contrast aracının yerine geçmez.
 
@@ -18,7 +18,7 @@ Lineer veya kontrollü nonlinear image, geçerli histogram, unclipped channels v
 
 Kurulu process module için `Process → IntensityTransformations → GeneralizedHyperbolicStretch`. Script ve process sürümleri aynı UI/parametre seti varsayılmamalıdır.
 
-!!! warning "Global transform sınırı"
+!!! warning "Genel Dönüşüm Sınırı"
     GHS object-aware bir local enhancement aracı değildir. Symmetry Point’i hedef üzerine koymak yalnız tonal aralığı seçer; nesneyi semantik olarak korumaz.
 
 ## Ne zaman kullanılır?
@@ -34,7 +34,7 @@ Kurulu process module için `Process → IntensityTransformations → Generalize
 - Gradient, clipping veya low-SNR eksikliğini gizlemek için
 - Basit HT’nin aynı sonucu daha açık ve tekrarlanabilir verdiği durumda
 
-## Parameters ve tuning strategy
+## Parametreler ve Ayarlama Stratejisi
 
 | Parametre/kavram | İşlev | Ayarlama gerekçesi | Yanlış kullanım |
 |---|---|---|---|
@@ -47,7 +47,7 @@ Kurulu process module için `Process → IntensityTransformations → Generalize
 
 Tipik strateji: histogramdan hedef tonal bölgeyi seç → küçük stretch factor → symmetry/local intensity etkileşimini preview’da karşılaştır → clipping yoksa uygula → yeni histogramla tekrar değerlendir.
 
-## GHS vs HT
+## GHS ve HT
 
 | Koşul | GHS | HT |
 |---|---|---|
@@ -57,9 +57,9 @@ Tipik strateji: histogramdan hedef tonal bölgeyi seç → küçük stretch fact
 | Black point kontrolü | Curve bağlamında | Doğrudan ve açık |
 | Öğrenme/denetim yükü | Yüksek | Düşük |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommended Process | Why |
+| Durum | Önerilen İşlem | Gerekçe |
 |---|---|---|
 | SHO/HOO starless | GHS | Emission tonal bölgelerine kontrollü contrast |
 | Galaxy core + faint halo | GHS veya iterative HT | Dinamik compression ihtiyacına göre |
@@ -67,7 +67,7 @@ Tipik strateji: histogramdan hedef tonal bölgeyi seç → küçük stretch fact
 | Bright-star wide field | MaskedStretch | Iterative highlight protection |
 | Color-critical OSC | Arcsinh + GHS/HT | Color başlangıcıyla tonal kontrol ayrılır |
 
-## Application ve output
+## Uygulama ve çıktı
 
 1. Clone üzerinde linear histogram ve target readout’larını kaydedin.
 2. Transformation type’ı hedefe göre seçin; küçük strength ile başlayın.
@@ -78,9 +78,9 @@ Tipik strateji: histogramdan hedef tonal bölgeyi seç → küçük stretch fact
 
 Beklenen çıktı, hedef tonal aralıkta contrast artarken shadow/highlight continuity’nin korunmasıdır. “Daha dramatik” görünüm tek başına başarı değildir.
 
-## Troubleshooting
+## Sorun Giderme
 
-| Belirti | Neden | Verification | Corrective workflow |
+| Belirti | Neden | Doğrulama | Düzeltme İş Akışı |
 |---|---|---|---|
 | Flat image | Compression fazla/geniş | Curve slope ve histogram | Etkiyi daralt veya HT kullan |
 | Excessive contrast | Strength/local intensity fazla | Before/after readout | Parametreyi azalt, küçük adımlar |
@@ -88,11 +88,11 @@ Beklenen çıktı, hedef tonal aralıkta contrast artarken shadow/highlight cont
 | Harsh halo/stars | Highlight davranışı agresif | Star profile | Stars ayrı veya maskeli stretch |
 | Noisy background | Background eğimi fazla | Background Preview | Etki odağını taşı, NXT geçmişini kontrol et |
 
-## Performance, limitations ve best practices
+## Performans, sınırlamalar ve En İyi Uygulamalar
 
 Preview histogramı mask etkisini her durumda tam temsil etmeyebilir; resmi GHS dokümantasyonu bu sınıra dikkat çeker. Global curve local contrast veya denoise üretmez. Parametre log’unu ve process instance’ı saklayın; aynı hedefe art arda kontrolsüz curve uygulamayın.
 
-## Common mistakes
+## Yaygın Hatalar
 
 - Symmetry Point’i object selection sanmak
 - Strength ile local intensity’yi bağımsız değerlendirmek
@@ -100,7 +100,7 @@ Preview histogramı mask etkisini her durumda tam temsil etmeyebilir; resmi GHS 
 - Basit HT yeterliyken gereksiz parametre karmaşıklığı eklemek
 - Noise veya gradient’i contrast ile bastırmaya çalışmak
 
-## Related processes ve references
+## İlgili Süreçler ve kaynaklar
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)

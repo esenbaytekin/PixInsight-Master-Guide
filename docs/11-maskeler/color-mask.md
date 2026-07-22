@@ -8,7 +8,7 @@ ColorMask, belirli bir hue aralığını saturation ve intensity koşullarıyla 
 
 ColorMask, PixInsight ekosisteminde yaygın kullanılan bir script iş akışıdır; core process olduğu varsayılmamalıdır. Kurulum kaynağı ve arayüzü dağıtıma göre değişebilir.
 
-!!! warning "Evidence Level — Community Consensus"
+!!! warning "Kanıt Düzeyi — Topluluk Uzlaşısı"
     ColorMask script'inin bulunabilirliği ve tam UI kontrolleri PixInsight 1.9.3 kurulumunda doğrulanmalıdır. Bu sayfa sürüme bağlı menü konumu veya varsayılan değer iddiasında bulunmaz.
 
 ## Teori
@@ -69,7 +69,7 @@ SCNR global uygulandığında bilimsel veya estetik olarak korunmak istenen yeş
 | PixelMath kanal/hue ifadesi | Tekrarlanabilir ve birleştirilebilir | Renk uzayı ve wrap-around mantığı doğru kurulmalı |
 | RangeMask + kanal maskesi | Basit yoğunluk/kanal kesişimi | Hue seçimi kadar sezgisel olmayabilir |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
 ```mermaid
 flowchart TD
@@ -91,10 +91,10 @@ flowchart TD
 | Arka plan benekli seçiliyor | Saturation eşiği düşük | Nötr/gürültülü alanları dışlayın |
 | Yıldız haloları etkileniyor | Halo hue aralığında | StarMask çıkarımı yapın |
 | Hedef rengin bir kısmı yok | Hue aralığı dar veya wrap-around | Hue dağılımını yeniden inceleyin |
-| Saturation clipping oluşuyor | Process miktarı yüksek | Daha küçük iterasyon ve kanal kontrolü kullanın |
+| Saturation clipping oluşuyor | İşlem miktarı yüksek | Daha küçük iterasyon ve kanal kontrolü kullanın |
 | Sonuç renk kalibrasyonunu bozuyor | İşlem çok erken/genel | Önce kalibrasyonu tamamlayın, seçimi daraltın |
 
-## Quick Reference
+## Hızlı Referans
 
 - Önce renk kalibrasyonunu doğrula.
 - Hue yanında saturation ve intensity'yi değerlendir.

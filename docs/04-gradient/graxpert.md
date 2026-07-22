@@ -63,7 +63,7 @@ GraXpert bağımsız uygulamadır; PixInsight menü yolu yoktur. Güncel uygulam
 | Galaxy halo riski | Var | Var | Var | Var |
 | Geniş alan görüntü | Test gerekir | Sample erişimine bağlı | Test gerekir | Test gerekir |
 | Mono narrowband kanal | Kanal bazlı doğrulama | Kanal bazlı doğrulama | Doğrulama bekliyor | Kanal bazlı doğrulama |
-| Tekrarlanabilirlik | Ayar kaydıyla | Sample kaydıyla | Process instance'a bağlı | Sürüm, yöntem ve ayar kaydıyla |
+| Tekrarlanabilirlik | Ayar kaydıyla | Sample kaydıyla | İşlem instance'a bağlı | Sürüm, yöntem ve ayar kaydıyla |
 | Gerçek veri testi gereksinimi | Zorunlu | Zorunlu | Zorunlu | Zorunlu |
 
 ## Uygulama veya tanı yaklaşımı
@@ -161,7 +161,7 @@ GraXpert, DBE ve işlenmemiş master aynı başlangıç verisinden üretilir. Ay
 ??? question "GraXpert DBE'nin yerine geçer mi?"
     Zorunlu bir ikame değildir; modeller aynı veri üzerinde karşılaştırılabilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Round-trip kontrol listesi"
     - [ ] Calibration tamamlandı
@@ -172,7 +172,7 @@ GraXpert, DBE ve işlenmemiş master aynı başlangıç verisinden üretilir. Ay
     - [ ] Denoising ayrı tutuldu
     - [ ] Orijinal ve DBE/ABE karşılaştırması yapıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

@@ -1,18 +1,18 @@
-# Data Quality and Integration Strategies
+# Veri Kalitesi ve Entegrasyon Stratejileri
 
-## Goal
+## Amaç
 
 Dark sky/urban, low/high SNR ve short/long integration koşullarında aynı process listesini tekrarlamak yerine pipeline'ın hangi kararlarının değişmesi gerektiğini göstermek.
 
-## Dataset assumptions ve calibration frames
+## Veri Seti Varsayımları ve kalibrasyon kareleri
 
 Bu workflow target türünden bağımsızdır. Matching calibration frames ve registration tamamlanmıştır. Expected integration quality, rejection map, noise pattern, gradient amplitude, star PSF ve faint structure continuity ile değerlendirilir.
 
-## Exposure ve integration philosophy
+## Pozlama ve entegrasyon felsefesi
 
 Subexposure clipping, tracking, sky background ve filter/camera davranışına bağlıdır. Total integration arttıkça random noise azalabilir ve rejection daha robust olabilir; systematic calibration, gradient veya walking-noise hatası yalnız süre ekleyerek garantiyle çözülmez.
 
-## Complete process sequence
+## Tam İşlem Sırası
 
 1. Subframe quality ve acquisition metadata incelemesi.
 2. Calibration/integration alternatives testleri; rejection maps.
@@ -23,9 +23,9 @@ Subexposure clipping, tracking, sky background ve filter/camera davranışına b
 7. SNR'a göre mask/detail budget.
 8. Final Curves, color ve export proof.
 
-## Condition comparison
+## Koşul Karşılaştırması
 
-| Condition | Priority | Avoid | Recovery |
+| Koşul | Öncelik | Kaçınılacak | Düzeltme |
 |---|---|---|---|
 | Dark sky | Faint structure preservation | Gereksiz background model | Clean master'ı koru |
 | Urban/heavy LP | Gradient ve color cast ayrımı | Global SCNR ile gradient gizleme | Channel/spatial model |
@@ -34,7 +34,7 @@ Subexposure clipping, tracking, sky background ve filter/camera davranışına b
 | Short integration | Noise/rejection sınırlarını kabul | Faint detail uydurma | Acquisition uzat veya muhafazakâr final |
 | Long integration | Faint signal ve robust test | “Uzun = hatasız” varsayımı | Systematic residual diagnostic |
 
-## Decision tree ve branches
+## Karar Ağacı ve dallar
 
 ```mermaid
 flowchart TD
@@ -49,7 +49,7 @@ flowchart TD
     G -->|"Hayır"| I["Faint structure validation"]
 ```
 
-## Alternative branches
+## Alternatif Dallar
 
 - **Strong moonlight:** Frame subset karşılaştırması; channel gradient güvenilir değilse reject/reacquire.
 - **Poor flats:** Flat master/optical train eşleşmesine dönün.
@@ -57,13 +57,13 @@ flowchart TD
 - **Weak signal:** PixelMath, AI detail ve saturation ertelenir.
 - **Excellent calibration/high SNR:** Process eklemek yerine daha az intervention kullanılabilir.
 
-## Mask, PixelMath, detail, final, export
+## Maske, PixelMath, detay, son işlemler, dışa aktarım
 
 Low SNR'da luminance/range masks korumacı; high SNR'da structure-specific maskeler daha hassas olabilir. PixelMath yalnız ölçülmüş source ilişkisinde. Multiscale detail low SNR'da minimal, high SNR'da layer/scale testleriyle. Curves her durumda clipping kontrolüyle; export bit depth ve ICC hedefe göre.
 
-## Visual checkpoints ve applied troubleshooting
+## Görsel Kontrol Noktaları ve uygulamalı sorun giderme
 
-| Failure | Symptom | Cause | Corrective action | Full? |
+| Hata | Belirti | Neden | Düzeltici eylem | Tam yeniden işleme? |
 |---|---|---|---|---|
 | Walking noise | Diagonal/structured pattern | Dither/integration | Acquisition/integration'a dön | Gerekebilir |
 | Over-NR | Plastic faint structure | Low SNR zorlanmış | NR checkpoint | Hayır |
@@ -71,33 +71,33 @@ Low SNR'da luminance/range masks korumacı; high SNR'da structure-specific maske
 | False detail | Crunchy/noise texture | AI/LHE/MMT fazla | Amount/scale azalt | Hayır |
 | Long stack hâlâ kötü | Systematic hata | Calibration/optics | Kök aşamayı yeniden işle | Gerekebilir |
 
-## Practical Decision Guide
+## Pratik Karar Rehberi
 
-| Situation | Recommendation | Reason |
+| Durum | Öneri | Gerekçe |
 |---|---|---|
 | Short + low SNR | Muhafazakâr stretch ve detail | Veri sınırını aşmaz |
 | Long + high SNR | Layer-specific hafif enhancement | Gerçek structure headroom'u vardır |
 | Urban gradient | Model/residual checkpoint | Target removal'ı önler |
 | Dark sky clean background | Gradient process atla | Gerçek faint signal korunur |
 
-## Case Study: urban broadband imaging
+## Vaka Çalışması: urban broadband imaging
 
 Calibration sonrası LP gradient'i additive/multiplicative olarak sınıflandırılır; model image target'a benzememelidir. Color calibration yalnız clean background sonrası yapılır. Chroma NR ve saturation maskeli uygulanır.
 
-## Case Study: weak narrowband data
+## Vaka Çalışması: weak narrowband data
 
 En zayıf channel'da structure validity test edilir; PixelMath weight artırmak yerine daha yumuşak stretch ve OIII/SII protection mask kullanılır. Güvenilir olmayan yapı finalde zorlanmaz.
 
-## Visual Result Expectation
+## Beklenen Görsel Sonuç
 
 Intermediate: systematic artefaktlar random noise'dan ayrılmıştır. Final: low-SNR sonuç daha sakin ve sınırlı; high-SNR sonuç daha ayrıntılı fakat doğal görünür. Under-processing ve over-processing kararı aynı hedefin checkpoint kıyasına dayanır.
 
-## Effort, limitations, related workflows, references
+## Tahmini Emek, sınırlamalar, ilgili iş akışları, kaynaklar
 
 Diagnostic 15–30 dk; integration review 20–45 dk; condition-specific linear/final 30–60 dk. Süreler aktif çalışmadır. Sınırlamalar acquisition'da çözülemeyen sistematik hatalar ve toplam photon budget'tır.
 
 [Calibration](../03-kalibrasyon/index.md) · [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md) · [Hata Kütüphanesi](../14-hata-kutuphanesi/index.md)
 
-## Evidence Level
+## Kanıt Düzeyi
 
 Rejection, residual ve checkpoint incelemesi **Verified Workflow**; SNR'a bağlı işlem bütçesi **Practical Recommendation** düzeyindedir.

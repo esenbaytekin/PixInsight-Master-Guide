@@ -1,4 +1,4 @@
-# Gradient Quick Reference
+# Gradient Hızlı Referans
 
 Yazdırılabilir kontrol sayfası. Sabit parametre reçetesi içermez; kararlar model ve gerçek veri kanıtına bağlanır.
 
@@ -77,7 +77,7 @@ flowchart LR
 | GradientCorrection | Alternatif PixInsight modeli | Model/output; 1.9.3 UI | Sürüm doğrulaması bekliyor |
 | GraXpert | Haricî model karşılaştırması | Background output ve round-trip | Metadata/bit depth testi gerekir |
 
-## Signal preservation
+## Sinyal koruma
 
 | Hedef türü | Kontrol |
 | --- | --- |
@@ -139,7 +139,7 @@ flowchart LR
 | Residual | Gerçek veri bekliyor |
 | Karar / görsel | |
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

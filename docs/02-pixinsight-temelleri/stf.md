@@ -156,7 +156,7 @@ flowchart TD
 ??? question "Linked STF her zaman doğru mudur?"
     Hayır. Amaç renk ilişkisini korumak veya kanalları ayrı görünür yapmak olabilir; seçim veriye ve değerlendirme amacına bağlıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Reference"
     **STF = display only.** Piksel data değişmez, image lineer kalır. Adil karşılaştırma için aynı STF instance’ını kullanın. Kalıcı stretch için parametreleri HistogramTransformation’a aktarın ve HT’yi hedefe uygulayın.

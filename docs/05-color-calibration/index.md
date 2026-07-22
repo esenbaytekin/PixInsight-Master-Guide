@@ -60,7 +60,7 @@ flowchart LR
 | LRGB + Ha | Önce broadband calibration, sonra kontrollü Ha | Ha katkısı broadband yıldız modelini bozmamalıdır |
 | SHO/HOO | Kanal mapping ve palette kararı | Dar band emisyonları broadband white balance değildir |
 
-## Uçtan uca workflow örnekleri
+## Uçtan uca iş akışı örnekleri
 
 | Veri seti | Önerilen karar zinciri | Neden farklı? |
 |---|---|---|

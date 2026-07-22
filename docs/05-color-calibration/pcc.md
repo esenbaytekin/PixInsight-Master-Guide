@@ -95,7 +95,7 @@ flowchart TD
 - Kanıt dizini: `validation/ui/pi-1.9.3/pcc/screenshots/`.
 - Evidence matrix: `validation/ui/pi-1.9.3/pcc/pcc-evidence-matrix.md`.
 
-!!! note "Mevcut değerler default değildir"
+!!! note "Mevcut değerler varsayılan değildir"
     Görsellerdeki seçimler ve checkbox durumları yalnız ekran anını kanıtlar. Processin yeni veya resetlenmiş olduğu gösterilmediğinden bu değerler default olarak kullanılamaz.
 
 ### UI doğrulama durumu
@@ -135,7 +135,7 @@ flowchart TD
 | version dependence | Legacy process davranışı sürüme bağlı olabilir | 1.9.3 davranışı ayrıca doğrulanır | Sürüm kaydı tutulur |
 | legacy compatibility | Eski iş akışlarıyla karşılaştırma sağlar | Yeni akışlarda alternatif değerlendirme | PCC otomatik olarak geçersiz değildir |
 | validation requirement | Log ve görüntü kanıtı gerekir | Log ve görüntü kanıtı gerekir | İsim tek başına sonuç garantisi değildir |
-| typical failure modes | WCS, katalog, kaynak ve referans | Profil, katalog, kaynak ve metadata | Kök neden logla ayrıştırılır |
+| typical hata modes | WCS, katalog, kaynak ve referans | Profil, katalog, kaynak ve metadata | Kök neden logla ayrıştırılır |
 
 ### PCC ve SPCC sonucu neden farklı olabilir?
 
@@ -268,16 +268,16 @@ Farklı reference model, instrument profile kapsamı, catalog/source seçimi, wh
 
 | Test ID | Veri türü | Girdi durumu | Test senaryosu | Karşılaştırılacak çıktılar | Gözlenecek kanıt | Durum |
 | --- | --- | --- | --- | --- | --- | --- |
-| PCC-BB-OSC-01 | OSC broadband | Lineer master | OSC temel akış | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-RGB-01 | Mono RGB | Ayrı RGB masterlar | kanal kalibrasyonu | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-LRGB-01 | Mono LRGB | RGB ve L ayrı | RGB öncesi/sonrası | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-M31-01 | Galaksi alanı | Halo içeren | background riski | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-STARFIELD-01 | Yıldız alanı | Crowded | source/rejection | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-REFLECTION-01 | Reflection nebula | Mavi gerçek sinyal | referans ayrımı | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-LOWSTAR-01 | Az yıldızlı alan | Düşük kaynak yoğunluğu | eşleşme sınırı | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-GRADIENT-01 | Gradientli broadband | Residual gradient | önce/sonra gradient | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-BB-METADATA-01 | Broadband | Eksik/yanlış metadata | metadata düzeltme | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
-| PCC-COMP-SPCC-01 | Broadband karşılaştırma | Aynı doğrulanmış master | PCC ve SPCC | Process öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-OSC-01 | OSC broadband | Lineer master | OSC temel akış | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-RGB-01 | Mono RGB | Ayrı RGB masterlar | kanal kalibrasyonu | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-LRGB-01 | Mono LRGB | RGB ve L ayrı | RGB öncesi/sonrası | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-M31-01 | Galaksi alanı | Halo içeren | background riski | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-STARFIELD-01 | Yıldız alanı | Crowded | source/rejection | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-REFLECTION-01 | Reflection nebula | Mavi gerçek sinyal | referans ayrımı | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-LOWSTAR-01 | Az yıldızlı alan | Düşük kaynak yoğunluğu | eşleşme sınırı | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-GRADIENT-01 | Gradientli broadband | Residual gradient | önce/sonra gradient | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-BB-METADATA-01 | Broadband | Eksik/yanlış metadata | metadata düzeltme | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
+| PCC-COMP-SPCC-01 | Broadband karşılaştırma | Aynı doğrulanmış master | PCC ve SPCC | İşlem öncesi/sonrası ve uygun karşılaştırma | Log, histogram, yıldız ve background | Gerçek veri bekliyor |
 
 ## Legacy konum, çıktı ve performans
 
@@ -297,7 +297,7 @@ PCC çıktısı; process log, matched/rejected sources, channel statistics ve ay
 
 ## Sorun giderme
 
-### PCC failure root-cause
+### PCC hata kök nedeni { #pcc-failure-root-cause }
 
 ```mermaid
 flowchart TD
@@ -810,7 +810,7 @@ Bu sayfa doğrulanmamış varsayılan değer yayımlamaz; temiz 1.9.3 instance v
 
 Log, WCS/catalog kanıtı, yıldız renkleri, background, clipping ve tekrarlanabilirlik birlikte incelenir.
 
-## Quick Reference
+## Hızlı Referans
 
 - [ ] Image state ve kanal yapısı kaydedildi.
 - [ ] WCS ve metadata doğrulandı.
@@ -820,7 +820,7 @@ Log, WCS/catalog kanıtı, yıldız renkleri, background, clipping ve tekrarlana
 - [ ] Yıldız, background ve hedef sinyali birlikte karşılaştırıldı.
 - [ ] PCC/SPCC farkı kanıtla yorumlandı.
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

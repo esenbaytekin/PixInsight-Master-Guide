@@ -1,4 +1,4 @@
-# Final
+# son işlemler
 
 **Durum: Taslak**
 

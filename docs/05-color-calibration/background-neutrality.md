@@ -84,7 +84,7 @@ M31 görüntüsünde kadraj köşesi karanlık görünür; ancak galactic cirrus
 
 ## Görsel planı
 
-!!! example "Görsel doğrulama ölçütü — doğru ve yanlış reference"
+!!! example "Görsel doğrulama ölçütü — doğru ve yanlış referans"
     **Amaç:** Güvenilir background ile star/gradient contaminated bölgeyi ayırmak.  
     **Gerekli ekran veya veri:** İşaretli Preview'lar ve channel statistics.  
     **Kanıtlanacak teknik nokta:** Reference geometrisinin neutrality sonucunu etkileyebilmesi.  
@@ -150,7 +150,7 @@ M31 görüntüsünde kadraj köşesi karanlık görünür; ancak galactic cirrus
 ??? question "Median tek başına yeterli mi?"
     Star/outlier/gradient contamination ve reference geometriyle birlikte değerlendirilmelidir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Gradient ve calibration artefact elendi
@@ -160,7 +160,7 @@ M31 görüntüsünde kadraj köşesi karanlık görünür; ancak galactic cirrus
     - [ ] Target ve chromatic noise kontrol edildi
     - [ ] Neutral, zero ve black ayrıldı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

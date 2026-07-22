@@ -207,7 +207,7 @@ Polynomial degree veya sample sayısı arttıkça model maliyeti ve overfit risk
 ??? question "Residual gradient başarısızlık mıdır?"
     Her zaman değil. Gerçek sinyali korumak için kontrollü residual bırakmak aşırı düzeltmeden daha güvenilir olabilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Tek sayfalık kontrol listesi"
     - [ ] Calibration zinciri doğrulandı
@@ -218,7 +218,7 @@ Polynomial degree veya sample sayısı arttıkça model maliyeti ve overfit risk
     - [ ] Model image gerçek sinyal içermiyor
     - [ ] Residual ve clipping kontrol edildi
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

@@ -79,7 +79,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
 | Model | Model image ve ayar kaydı | Gerçek hedef morfolojisi görünmez |
 | Correction | Önce/sonra Statistics ve aynı STF | Residual azalır, clipping oluşmaz |
 | Signal preservation | Halo/filament sınırı karşılaştırması | Diffuse sinyal korunur |
-| Devir | Process instance ve sonuç notu | Sonuç yeniden üretilebilir |
+| Devir | İşlem instance ve sonuç notu | Sonuç yeniden üretilebilir |
 
 ## Adım adım kullanım
 
@@ -136,7 +136,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
 ??? question "Gradient tamamen kaybolmalı mı?"
     Hayır. Veri, sample erişimi ve model varsayımları ayrımı sınırlar; güvenilir olmayan tam düzeltme yerine residual bırakmak daha doğru olabilir.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Quick Navigation ve kontrol listesi"
     - [ ] [Gradient Teorisi](gradient-theory.md): additive/multiplicative ve model sınırları
@@ -160,7 +160,7 @@ Tam menü grupları: **Doğrulama bekliyor**.
     - [ ] Model Image gerçek sinyal içermiyor
     - [ ] Düzeltme sonrası STF yeniden hesaplandı
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD

@@ -115,7 +115,7 @@ Geniş alan LRGB serisinde şehir yönündeki köşe L kanalında belirgin, RGB'
 ??? question "Kanallar ayrı düzeltilmeli mi?"
     Veri setine bağlıdır; ayrı modeller renk ve gerçek sinyal açısından karşılaştırılmalıdır.
 
-## Quick Reference
+## Hızlı Referans
 
 !!! tip "Kontrol listesi"
     - [ ] Flat/calibration kontrol edildi
@@ -125,7 +125,7 @@ Geniş alan LRGB serisinde şehir yönündeki köşe L kanalında belirgin, RGB'
     - [ ] Model gerçek diffuse sinyal içermiyor
     - [ ] Clipping ve residual ölçüldü
 
-## Decision Tree
+## Karar Ağacı
 
 ```mermaid
 flowchart TD
@@ -144,7 +144,7 @@ flowchart TD
 
 | Kimlik | Kategori | Durum |
 | --- | --- | --- |
-| UI-3 | Process arayüzleri | Sabit UI iddiası yok |
+| UI-3 | İşlem arayüzleri | Sabit UI iddiası yok |
 | DOC-3 | Correction ve color calibration ilişkisi | Birincil kaynak gerekli |
 | DATA-3 | Broadband/narrowband ve farklı gece örnekleri | Gerçek veri gerekli |
 | IMG-3 | Şehir-horizon tanı görüntüsü | Görsel gerekli |
