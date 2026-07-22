@@ -28,12 +28,15 @@ flowchart LR
     permanent --> nonlinear["Nonlineer piksel verisi"]
 ```
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Display ve data state"
+    **Kategori:** Comparison · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P0
     **Eğitim amacı:** Aynı lineer verinin normal ekran, geçici display stretch ve kalıcı stretch durumlarını ayırmak.
     **Gerekli kaynak:** Zayıf broadband veya narrowband gerçek entegrasyon.
     **Durumlar:** Lineer/unstretched, lineer/STF görünümü, kalıcı stretched.
     **İşaretleme:** Aynı pikselin kaydedilmiş değeri ve ekranda görünen değeri.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Aynı full-frame, aynı pixel readout noktası ve lineer histogram; STF görünümü ile kalıcı çıktının dosya state'i etiketlenir.
+    **Alt text özeti:** STF'nin görünümü değiştirdiği fakat kayıtlı pixel değerini değiştirmediği açıkça belirtilmelidir.
 
 ## Stretch sırasında ne değişir?
 

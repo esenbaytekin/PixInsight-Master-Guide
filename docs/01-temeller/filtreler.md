@@ -16,8 +16,13 @@ Bu sayfa filtrelerin fiziksel ve operasyonel rolünü açıklar. PixelMath kanal
 
 Bir filtrenin transmission eğrisi, dalga boyuna göre ışığın ne kadarını geçirdiğini gösterir. Bandpass, hedeflenen geçiş aralığıdır; merkezi dalga boyu ve bant genişliği bu aralığı tanımlar. Filtrenin yalnız tepe transmission değeri yeterli değildir. Bant dışı blocking, hızlı optik sistemdeki spectral shift ve sensörün aynı dalga boyundaki QE değeri de sistem sonucunu etkiler.
 
-!!! note "TODO Illustration"
-    L, R, G, B ile H-alpha, OIII ve SII filtrelerinin temsilî transmission eğrileri; dalga boyu ekseni ortak gösterilecek.
+!!! note "Planlanan görsel kanıt · Filter transmission"
+    **Kategori:** Comparison · **Durum:** Kaynak verisi gerekli · **Öncelik:** P1
+    **Soru:** Broadband LRGB ile narrowband Ha/OIII/SII geçiş aralıkları nasıl ayrılır?
+    **Girdi:** Aynı üretici veya açıkça kaynaklandırılmış ölçüm serisinden gerçek transmission verileri.
+    **Gösterim:** Ortak wavelength ve transmission ekseni; bandpass sınırları ve çizgi dalga boyları.
+    **Kısıt:** Farklı üreticilerin normalize edilmemiş eğrileri ölçüsel karşılaştırma gibi birleştirilmez.
+    **Öğrenme çıktısı:** Peak transmission ile bandpass genişliğinin farklı ölçütler olduğu okunabilmelidir.
 
 ### Broadband filtreler
 

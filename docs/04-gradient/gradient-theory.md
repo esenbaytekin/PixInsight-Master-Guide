@@ -103,12 +103,15 @@ Light pollution, Moonlight ve optical reflection çoğunlukla alana bağlı addi
 
 Background neutrality, seçilen arka plan örneğindeki kanal ilişkisini nötr referansa yaklaştırır; alan boyunca değişen gradient geometrisini kaldırmaz. Bu nedenle neutrality, gradient removal ve flat-field correction birbirinin yerine kullanılmamalıdır.
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Gerçek sinyal ve gradient"
+    **Kategori:** Workflow Evidence · **Durum:** Gerçek wide-field dataset gerekli · **Öncelik:** P0
     **Eğitim amacı:** Gerçek geniş ölçekli nebulosity ile istenmeyen gradienti ayırma güçlüğünü göstermek.
     **Gerekli kaynak:** IFN veya geniş emisyon içeren gerçek wide-field veri ve aynı alana ait background model.
     **Durumlar:** Doğrusal görüntü, aday model, düzeltilmiş görüntü.
     **İşaretleme:** Güvenilir background, gerçek sinyal, reflection ve overfit bölgesi.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Before, model ve after aynı orientation'da; model çıkarımından etkilenen sabit IFN/emission/background crop'ları.
+    **Alt text özeti:** Modelde görünmemesi gereken gerçek yapı ve overfit'in oluşturduğu koyu bölge konumlarıyla anlatılmalıdır.
 
 ### Gradient düzeltmenin sınırları
 

@@ -45,8 +45,13 @@ Basitleştirilmiş, elektron birimindeki tek kare modeli şu ilişkiyi gösterir
 
 Burada `S` hedef elektronları, `B` gökyüzü arka planı, `D` dark current katkısı ve `R` read noise’tur. Gerçek kamera ve entegrasyon modeli; flat-field belirsizliği, kare sayısı, normalization ve başka terimler içerebilir. Formül sabit poz reçetesi değil, hangi kaynakların birlikte değerlendirilmesi gerektiğini gösterir.
 
-!!! note "TODO Illustration"
-    Aynı zayıf nebula sinyalinin düşük, orta ve yüksek SNR durumlarında temsilî piksel dağılımı.
+!!! note "Planlanan görsel kanıt · SNR karşılaştırması"
+    **Kategori:** Histogram Evidence · **Durum:** Gerçek veya açıkça sentetik eğitim verisi gerekli · **Öncelik:** P1
+    **Soru:** Aynı zayıf yapı, artan integration ile background dağılımından nasıl ayrılır?
+    **Girdi:** Aynı hedef ve işleme state'inde düşük, orta ve yüksek integration temsilleri.
+    **Gösterim:** Aynı STF/stretch ve aynı histogram ekseni; sabit koordinatlı nebula/background crop'ları.
+    **İşaretleme:** Background dağılımı, signal dağılımı ve örtüşen bölge.
+    **Öğrenme çıktısı:** SNR artışının yalnız daha parlak görüntü olmadığı görülebilmelidir.
 
 ### Integration time ve stacking
 

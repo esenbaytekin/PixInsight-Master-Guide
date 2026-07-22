@@ -44,12 +44,15 @@ Noise estimation, yıldız ve hedef yapısından mümkün olduğunca arındırı
 
 Stretch düşük değerleri genişlettiğinde daha önce zor görülen noise görünür olur. Bu, stretch’in yeni noise ürettiği anlamına gelmez; mevcut değişimi görünür aralığa taşır. Aşırı local contrast ise gerçekten noise amplitüdünü ve yapı algısını artırabilir.
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Signal ve noise ayrımı"
+    **Kategori:** Comparison · **Durum:** Eşleşmiş gerçek dataset gerekli · **Öncelik:** P0
     **Eğitim amacı:** Rastlantısal fine noise, walking noise ve gerçek filament yapısını ayırmak.
     **Gerekli kaynak:** Dither uygulanmış ve uygulanmamış aynı hedef veri seti.
     **Durumlar:** Tek subframe, entegrasyon, stretched entegrasyon.
     **İşaretleme:** Noise ölçeği, yönlü pattern ve korunması gereken sinyal.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Dither/no-dither source, entegrasyon ve stretch panelleri; aynı background ve filament crop koordinatları.
+    **Alt text özeti:** Rastlantısal grain, yönlü walking pattern ve crop'lar arasında devam eden gerçek filament ayrı ayrı tarif edilmelidir.
 
 ## Yaygın yanlış anlamalar
 

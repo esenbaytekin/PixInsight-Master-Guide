@@ -22,8 +22,13 @@ Ufuk engelleri, güvenli mount limitleri ve meridian flip zamanı gerçek kullan
 
 Ay’ın fazı tek başına yeterli ölçüt değildir. Ay’ın hedefe açısal uzaklığı, gökyüzündeki yüksekliği, atmosferik saçılma, haze ve kullanılan filtre birlikte arka planı etkiler. Geniş bant toz veya yansıma hedefleri parlak Ay’dan daha çok etkilenebilir; narrowband veri de Ay etkisinden tamamen bağımsız değildir.
 
-!!! note "TODO Illustration"
-    Hedef, Ay ve ufuk geometrisi: transit, açısal ayrım ve kullanılabilir çekim penceresi.
+!!! note "Planlanan görsel kanıt · Konum geometrisi"
+    **Kategori:** Concept Illustration · **Durum:** Açıklayıcı diyagram üretilecek · **Öncelik:** P2
+    **Soru:** Hedef yüksekliği, Ay–hedef açısal ayrımı ve transit kullanılabilir pencereyi nasıl değiştirir?
+    **Girdi:** Gerçek oturum iddiası taşımayan şematik gök geometrisi.
+    **Gösterim:** Ufuk, meridyen, hedef ve Ay; üç zaman noktası ve ortak açı ölçeği.
+    **Öğrenme çıktısı:** Ay fazının tek başına çekim uygunluğunu belirlemediği gözlenebilmelidir.
+    **Erişilebilirlik:** Alt text tüm nesneleri ve zaman sırasını söylemeli; renk tek ayırt edici olmamalıdır.
 
 ### Seeing ve transparency
 
@@ -153,8 +158,13 @@ Kanallara eşit süre vermek yerine test karelerinde hedef çizgisinin gücü de
 - [ ] Verinin en az bir doğrulanmış kopyası oluşturuldu.
 - [ ] Sonraki gecenin framing ve rotation referansı saklandı.
 
-!!! note "TODO Illustration"
-    Acquisition gecesi zaman çizelgesi: hedef yüksekliği, Ay, filtre blokları, meridian flip, autofocus ve dither overhead.
+!!! note "Planlanan görsel kanıt · Acquisition zaman çizelgesi"
+    **Kategori:** Workflow Evidence · **Durum:** Gerçek session log gerekli · **Öncelik:** P1
+    **Soru:** Overhead ve çevresel koşullar net integration süresini nerede azaltır?
+    **Girdi:** Zaman damgalı kullanıcı session log'u; hedef yüksekliği ve Ay geometrisi.
+    **Before/After:** Planlanan bloklar / gerçekleşen filtre, autofocus, dither ve meridian flip blokları.
+    **İşaretleme:** Kesintiler, reddedilen subframe aralıkları ve net integration süresi.
+    **Öğrenme çıktısı:** Toplam gece süresi ile kullanılabilir integration süresi ayrılabilmelidir.
 
 ## PixInsight ile ilişkisi
 

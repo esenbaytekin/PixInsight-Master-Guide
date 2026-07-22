@@ -18,8 +18,13 @@ Bir CMOS sensör, ışığa duyarlı piksel dizisi ile bu piksellerde biriken el
 
 Poz tamamlandığında pikseldeki yük analog sinyal zincirinden geçirilir ve ADC tarafından sayısal bir değere dönüştürülür. Kaydedilen ADU değeri; hedef sinyali, gökyüzü arka planı, karanlık akım, okuma belirsizliği ve elektronik ofsetin birleşimidir.
 
-!!! note "TODO Illustration"
-    CMOS sensör mimarisi: foton, piksel kuyusu, analog okuma, ADC ve sayısal çıktı ilişkisi.
+!!! note "Planlanan görsel kanıt · CMOS sinyal zinciri"
+    **Kategori:** Concept Illustration · **Durum:** Açıklayıcı diyagram üretilecek · **Öncelik:** P2
+    **Soru:** Foton olayı hangi aşamalardan geçerek sayısal ADU değerine dönüşür?
+    **Girdi:** Üreticiye özgü olmayan şematik pixel well, analog readout, offset ve ADC.
+    **Gösterim:** Foton → elektron → analog sinyal → ADC → ADU; noise ve offset girişleri ayrı işaretlenir.
+    **Öğrenme çıktısı:** ADU'nun doğrudan foton veya renk olmadığı anlaşılmalıdır.
+    **Erişilebilirlik:** Ok yönleri metinle desteklenmeli; bütün etiketler büyütmede okunmalıdır.
 
 ### Monokrom ve OSC
 
@@ -69,8 +74,13 @@ Binning, komşu piksel örneklerinin birlikte temsil edilmesidir. Modern CMOS ka
 
 Pixel size, odak uzaklığıyla birlikte pixel scale’i; pixel scale ise seeing ve optik kaliteyle birlikte sampling durumunu etkiler. Çok ince örnekleme her zaman daha fazla gerçek ayrıntı sağlamaz, çok kaba örnekleme de küçük yapıları kaybedebilir. Bu sprintte konu yalnız bağlantı düzeyinde tutulmuştur; sampling ve seeing bağımsız foundations sayfaları için adaydır.
 
-!!! note "TODO Illustration"
-    Aynı yıldız profilinin kaba, dengeli ve aşırı ince sampling altında piksel ızgarasında görünümü.
+!!! note "Planlanan görsel kanıt · Sampling karşılaştırması"
+    **Kategori:** Comparison · **Durum:** Kontrollü açıklayıcı örnek üretilecek · **Öncelik:** P2
+    **Soru:** Aynı optik yıldız profili farklı pixel scale altında nasıl örneklenir?
+    **Girdi:** Aynı normalize PSF'nin kaba, dengeli ve aşırı ince üç pixel grid temsili.
+    **Before/After:** Dönüşüm sırası değil; yan yana aynı ölçekli üç karşılaştırma.
+    **İşaretleme:** Pixel sınırı, profile merkezi ve ölçülen FWHM; değerler “temsili” etiketlenir.
+    **Öğrenme çıktısı:** Daha çok pixel'in otomatik olarak daha çok gerçek ayrıntı olmadığı görülmelidir.
 
 ## Kavramlar nasıl ilişkilidir?
 

@@ -48,12 +48,15 @@ Bir stretch şu işaretlerde aşırı kabul edilebilir:
 - Kanal dengesinin bozulması veya doygunluğun tek kanalda kırpılması.
 - Çekirdek ve halo arasında doğal olmayan sert sınır.
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Kontrollü stretch"
+    **Kategori:** Histogram Evidence · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P0
     **Eğitim amacı:** Kontrollü ve aşırı stretch arasındaki clipping, yıldız ve zayıf sinyal farkını göstermek.
     **Gerekli kaynak:** Parlak yıldız ve zayıf nebula içeren doğrusal entegrasyon.
     **Durumlar:** Geçici display stretch, kontrollü permanent stretch, aşırı stretch.
     **İşaretleme:** Siyah/beyaz clipping, yıldız çekirdeği, zayıf sinyal sınırı.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Full-frame, histogram ve star/background crop üçlüsü; aynı display ölçeği ve channel görünümü.
+    **Alt text özeti:** Kontrollü stretch'te korunan kuyruklarla aşırı stretch'te clipped black point ve star core açıkça karşılaştırılmalıdır.
 
 ## Yaygın yanlış anlamalar
 
