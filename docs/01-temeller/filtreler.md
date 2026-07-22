@@ -1,78 +1,142 @@
 # Filtreler
 
 !!! info "Sayfa Bilgisi"
-    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 3 dk
-    **Anahtar kelimeler:** `filtreler` · `LRGB` · `narrowband` · `bandpass` · `transmission` · `broadband` · `SHO` · `HOO`
+    **Kategori:** Görüntüleme Temelleri · **Düzey:** Beginner · **Tahmini okuma:** 15 dk
+    **Anahtar kelimeler:** `filtre` · `LRGB` · `broadband` · `narrowband` · `H-alpha` · `OIII` · `SII` · `bandpass`
 
-**Durum: Taslak**
+## Bu konu neden önemlidir?
 
-## Amaç
+Filtre, sensöre hangi dalga boylarının ulaşacağını seçer. Bu seçim yalnız görüntünün rengini değil; hedef sinyalinin gücünü, gökyüzü arka planını, gerekli toplam süreyi, yıldız profilini ve daha sonra uygulanabilecek renk kalibrasyonu yöntemini de etkiler. Bu nedenle filtre kararı “hangi paleti seviyorum?” sorusundan önce hedefin hangi ışığı yaydığıyla başlar.
 
-Bu bölüm, Filtreler konusunun PixInsight tabanlı monokrom astrofotoğraf işleme akışındaki yerini ve temel karar noktalarını açıklamak için hazırlanmıştır.
+Bu sayfa filtrelerin fiziksel ve operasyonel rolünü açıklar. PixelMath kanal formülleri burada anlatılmaz; kanal birleştirme için canonical [PixelMath ve Kanal Karışımları](../10-pixelmath/kanal-karisimlari.md) sayfasına geçilir.
 
-## Ne zaman kullanılır?
+## Temel kavramlar
 
-Bu işlem veya yaklaşım iş akışında gerekli olduğunda kullanılır. Ayrıntılı kullanım ölçütleri **Doğrulama bekliyor**.
+### Bandpass ve transmission
 
-## Ne zaman kullanılmaz?
+Bir filtrenin transmission eğrisi, dalga boyuna göre ışığın ne kadarını geçirdiğini gösterir. Bandpass, hedeflenen geçiş aralığıdır; merkezi dalga boyu ve bant genişliği bu aralığı tanımlar. Filtrenin yalnız tepe transmission değeri yeterli değildir. Bant dışı blocking, hızlı optik sistemdeki spectral shift ve sensörün aynı dalga boyundaki QE değeri de sistem sonucunu etkiler.
 
-Veri ya da hedef koşulları uygun olmadığında kullanılmaz. Kesin dışlama ölçütleri **Doğrulama bekliyor**.
+!!! note "TODO Illustration"
+    L, R, G, B ile H-alpha, OIII ve SII filtrelerinin temsilî transmission eğrileri; dalga boyu ekseni ortak gösterilecek.
 
-## Ön koşullar
+### Broadband filtreler
 
-- Kalibre edilmiş veriler veya ilgili önceki adım
-- Lineer/nonlineer durumunun bilinmesi
-- İşlem öncesinde çalışma kopyası ya da uygun geri dönüş noktası
+Broadband filtreler görünür spektrumun görece geniş bir bölümünü geçirir. LRGB sisteminde:
 
-## PixInsight menü yolu
+- `L` geniş bir luminance aralığından yapısal sinyal toplar.
+- `R`, `G` ve `B` renk bilgisini ayrı bantlarda örnekler.
+- Renk filtrelerinin spektral sınırları ve aralarındaki örtüşme üretici setine göre değişir.
 
-**Doğrulama bekliyor.** Process ve parametre adları özgün İngilizce adlarıyla eklenecektir.
+Broadband veri; galaksiler, yıldız kümeleri, yansıma nebulaları, karanlık nebulalar ve doğal yıldız rengi için önemlidir. Aynı zamanda Ay ışığı, hava parlaması ve yapay ışık kaynaklarından gelen geniş spektrumlu arka plana daha açıktır.
 
-## Parametreler
+### Narrowband filtreler
 
-!!! warning "Doğrulama bekliyor"
-    Kesin parametre değerleri kaynaklarla ve örnek veriyle doğrulanmadan yayımlanmayacaktır.
+Narrowband filtreler belirli emisyon çizgelerinin çevresindeki dar bir aralığı geçirir. Yaygın bantlar şunlardır:
 
-## Uygulama adımları
+| Filtre | Hedeflenen çizgi | Genellikle görünür olduğu yapılar |
+|---|---|---|
+| H-alpha (`Ha`) | İyonize hidrojen emisyonu | H II bölgeleri ve emisyon nebulaları |
+| OIII | Çift iyonize oksijen emisyonu | Gezegenimsi nebula, süpernova kalıntısı ve bazı emisyon nebulaları |
+| SII | İyonize sülfür emisyonu | Emisyon bölgelerindeki tamamlayıcı yapılar |
 
-1. Girdilerin uygunluğunu kontrol edin.
-2. İşlemi bir önizleme veya çalışma kopyasında değerlendirin.
-3. Sonucu yıldızlar, arka plan ve hedef yapıları üzerinde karşılaştırın.
+Bir hedefin katalog türü, her çizgide güçlü sinyal bulunduğunu garanti etmez. Aynı toplam süre H-alpha ve OIII kanallarında farklı SNR üretebilir. Filtre seçimi hedefin spektral içeriği ve istenen bilimsel/görsel amaçla eşleştirilir.
 
-## Beklenen sonuç
+### Light pollution filtreleri
 
-Kontrollü ve tekrarlanabilir bir sonuç elde edilmesi beklenir. Görsel kabul ölçütleri **Doğrulama bekliyor**.
+Işık kirliliği filtresi belirli yapay emisyon bölgelerini bastırmayı amaçlayabilir; ancak modern aydınlatmanın geniş spektrumu nedeniyle bütün ışık kirliliğini ayıran evrensel bir filtre yoktur. Filtre, hedef sinyalinin bir kısmını da kesebilir ve renk yanıtını değiştirebilir. Gradient correction ile filtreleme de aynı şey değildir: filtre acquisition sırasında spektrumu seçer, gradient correction kaydedilmiş görüntüdeki uzamsal arka plan modelini ele alır.
 
-## Sık yapılan hatalar
+### Parfocal davranış
 
-- Lineer ve nonlinear aşamaları karıştırmak
-- Parametreleri veri ölçeğine göre değerlendirmemek
-- Maske etkisini kontrol etmeden işlemi uygulamak
+Parfocal olarak pazarlanan filtreler odak konumunu birbirine yakın tutmayı amaçlar. Gerçek sistemde filtre kalınlığına ek olarak teleskobun chromatic correction davranışı, sıcaklık ve mekanik toleranslar da odağı etkiler. “Parfocal” etiketi autofocus ihtiyacını otomatik olarak ortadan kaldırmaz; filtre değişiminden sonra yıldız ölçümüyle doğrulanmalıdır.
 
-## Sorun giderme
+### Halo ve spectral leakage
 
-| Belirti | Olası neden | İlk kontrol |
-| --- | --- | --- |
-| Sonuç aşırı güçlü | Parametre veya maske uygunsuz | Öncesi/sonrası karşılaştırması |
-| Ayrıntı kaybı | Gürültü ve yapı ayrımı yetersiz | Yakınlaştırılmış önizleme |
-| Renk/ton sapması | Kanal veya çalışma uzayı sorunu | Kanal ve profil denetimi |
+Parlak yıldız çevresindeki halo; filtre kaplamaları, sensör koruyucu camı, optik yüzeyler ve bunlar arasındaki yansımaların birlikte oluşturduğu bir sistem artefaktı olabilir. Tek başına filtreyi suçlamadan hangi kanal, yıldız rengi, odak durumu ve optik konfigürasyonda oluştuğu karşılaştırılır.
 
-## Hızlı referans
+Spectral leakage, filtrenin hedef bant dışında istenmeyen ışığı yeterince engelleyememesidir. Üretici transmission/blocking verileri incelenmeli; özellikle güçlü yakın kızılötesi duyarlılığı olan sensörlerde sistemin toplam spektral yanıtı dikkate alınmalıdır.
 
-| Konu | Durum |
-| --- | --- |
-| Menü yolu | Doğrulama bekliyor |
-| Önerilen parametreler | Doğrulama bekliyor |
-| Örnek veri | Planlandı |
+## Kavramlar nasıl ilişkilidir?
 
-## Ayrıca İnceleyin
+```mermaid
+flowchart LR
+    target["Hedefin spektrumu"] --> filter["Filtre transmission eğrisi"]
+    sky["Gökyüzü ve Ay spektrumu"] --> filter
+    filter --> optics["Optik sistem"]
+    optics --> qe["Sensör QE eğrisi"]
+    qe --> data["Kaydedilen kanal sinyali"]
+    data --> plan["Poz ve entegrasyon planı"]
+```
 
-- [Ana Sayfa](../index.md)
-- [Bölüm Genel Bakışı](index.md)
-- [Temeller](index.md)
-- [CMOS ve Monokrom Kamera](cmos-ve-monokrom-kamera.md)
-- [Renk Kalibrasyonuna Giriş](../05-color-calibration/index.md)
-- [SHO ve HOO Narrowband İş Akışı](../15-workflows/sho-hoo.md)
+Filtre bant genişliği daraldıkça istenmeyen arka planın bir kısmı azalabilir, fakat hedef fotonlarının yalnız çizgi çevresindeki bölümü kaydedilir. Bu yüzden daha dar bandpass her veri setinde otomatik olarak daha iyi değildir. Hızlı optiklerde geliş açısı dağılımı transmission eğrisini kaydırabilir; üreticinin f-ratio verisi varsa sistemle birlikte değerlendirilir.
+
+## Gerçek astrofotoğraf örnekleri
+
+### Broadband galaksi
+
+Galaksi yıldız popülasyonları ve sürekli spektrum bileşenleri içerir. LRGB yaklaşımı doğal renk ve geniş bant yapıyı korur. Güçlü ışık kirliliğinde yalnız filtreye güvenmek yerine hedef yüksekliği, Ay ayrımı, toplam entegrasyon ve [gradient tanısı](../04-gradient/gradient-diagnostics.md) birlikte planlanır.
+
+### H II emisyon nebulası
+
+H-alpha güçlü olabilirken OIII daha zayıf veya farklı bölgelerde yoğunlaşmış olabilir. Eşit kanal süresi yerine test karelerinin arka planı, yıldız doygunluğu ve hedef yapısı incelenerek kanal başına entegrasyon dağıtılır.
+
+### Yansıma nebulası
+
+Yansıma nebulası yıldız ışığının tozdan saçılmasıyla görünür ve dar emisyon çizgisine indirgenemez. Yalnız narrowband çekim, broadband yansıma ve toz bilgisini temsil etmeyebilir. Hedef türü yanlış sınıflandırılırsa uzun süre toplanmasına rağmen beklenen yapı oluşmaz.
+
+## Yaygın kavram yanılgıları
+
+- Daha dar filtrenin her hedefte daha yüksek SNR sağladığı düşüncesi.
+- Narrowband filtrenin broadband toz ve yansıma sinyalini koruduğu varsayımı.
+- Işık kirliliği filtresinin gradient correction ihtiyacını ortadan kaldırdığı inancı.
+- Parfocal filtrenin autofocus gerektirmediğinin kabul edilmesi.
+- Yüksek tepe transmission değerinin tek başına filtre kalitesini belirlediği düşüncesi.
+- Halo’nun her durumda yalnız filtre kusuru sayılması.
+
+## Başlangıçta yapılan hatalar
+
+- Hedefin emisyon veya sürekli spektrum karakterini araştırmadan filtre seçmek.
+- Filtre değişiminden sonra odak ve tilt kontrolünü atlamak.
+- Her filtre için aynı alt poz ve toplam süreyi zorunlu kabul etmek.
+- Filter wheel yuvası ve optik konfigürasyon değiştiği halde eski flat karelerini kullanmak.
+- Hızlı optik sistem için bandpass shift verisini kontrol etmemek.
+- OSC narrowband verisinde kanal dengesizliğini sensör Bayer yanıtından bağımsız yorumlamak.
+
+## Pratik karar rehberi
+
+| Hedef veya koşul | Başlangıç yaklaşımı | Neden |
+|---|---|---|
+| Galaksi veya yıldız kümesi | Broadband/renk setini değerlendirin | Sürekli spektrum ve yıldız rengi korunur. |
+| H II emisyon nebulası | H-alpha ile hedef sinyalini doğrulayın | İyonize hidrojen yapısı baskın olabilir. |
+| OIII kabuğu beklenen hedef | OIII test karesini ayrı değerlendirin | OIII dağılımı H-alpha ile aynı olmak zorunda değildir. |
+| Yansıma veya karanlık nebula | Broadband veriyi önceliklendirin | Toz yapısı dar emisyon çizgisi değildir. |
+| Hızlı optik sistem | Üreticinin f-ratio transmission verisini inceleyin | Geliş açısı bandpass’i kaydırabilir. |
+| Parlak yıldızlarda halo | Kanalları ve optik yüzeyleri karşılaştırın | Artefakt çoğu zaman sistem etkileşimidir. |
+| Güçlü Ay veya ışık kirliliği | Spektral filtreyi zamanlama ve gradient planıyla birleştirin | Filtre bütün arka plan bileşenlerini kaldıramaz. |
+
+## PixInsight ile ilişkisi
+
+Filtre seçimi PixInsight içinde sonradan değiştirilemez; process’ler yalnız kaydedilmiş kanallarla çalışır. Filtre bilgisi şu alanlarda önem kazanır:
+
+- [Calibration Pipeline](../03-kalibrasyon/calibration-pipeline.md): filter metadata ve doğru master flat eşleştirmesi.
+- [Color Calibration](../05-color-calibration/index.md): broadband ve narrowband verinin farklı kalibrasyon kapsamı.
+- [BackgroundNeutralization](../05-color-calibration/background-neutralization-process.md): arka plan örneğinin hedef yapısından ayrılması.
+- [Narrowband](../09-narrowband/index.md): kanal kombinasyonu ve palet seçenekleri.
+- [Gradient Tanısı](../04-gradient/gradient-diagnostics.md): filtre geçişi ile uzamsal gradientin ayrılması.
+
+PixelMath kombinasyonları için [Kanal Karışımları](../10-pixelmath/kanal-karisimlari.md), hedefe dayalı akış için [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md) kullanılmalıdır.
+
+## Nereden devam edilmeli?
+
+1. Filtreyle gelen sinyalin ölçüm kalitesi için [SNR ve Dinamik Aralık](snr-ve-dinamik-aralik.md).
+2. Ay, hedef yüksekliği ve kanal süresi için [Çekim Planlama](cekim-planlama.md).
+3. Renk verisinin kapsamını seçmek için [Renk Kalibrasyonuna Giriş](../05-color-calibration/index.md).
+4. Hedef türüne göre uçtan uca seçimler için [İş Akışı Rehberi](../15-workflows/index.md).
+5. Beklenmedik sonuçları sınıflandırmak için [Sorun Giderme](../14-hata-kutuphanesi/index.md).
+
+## Kaynaklar
+
+- [Chroma Technology — Astronomy and Astrophotography Filters](https://www.chroma.com/applications/astronomy-and-astrophotography/): broadband, narrowband ve transmission kapsamı.
+- [Chroma Technology — Narrowband Filter f-number Data](https://www.chroma.com/resources/technical-library/narrowband-astronomy-filter-f-number-data/): optik hızla transmission eğrisi ilişkisinin ölçülmüş örnekleri.
 
 ## Önceki Bölüm
 

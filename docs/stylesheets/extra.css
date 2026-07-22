@@ -48,6 +48,16 @@
   opacity: 0.7;
 }
 
+/* Distinguish second-level categories without changing Material's link behavior. */
+.md-nav--primary
+  nav[data-md-level="1"]
+  > .md-nav__list
+  > .md-nav__item--nested
+  > .md-nav__link
+  > .md-ellipsis {
+  margin-inline-start: 0.8rem;
+}
+
 @media screen and (max-width: 76.234375em) {
   .pmg-release-meta {
     font-size: 0.56rem;
