@@ -132,9 +132,22 @@ flowchart TD
 
 Çok sayıda aktif layer, iteration ve büyük görüntü maliyeti artırır. Preview ile arama yapın; final ayarı tam çözünürlükte doğrulayın. Her layer değişikliğinin nedenini not edin ve process icon ile tekrarlanabilir hale getirin.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 Multiscale katman felsefesi resmi PixInsight eğitim materyaliyle uyumludur. MMT'nin 1.9.3 UI kontrol adları, scaling function seçenekleri ve sayısal sınırları ekran kanıtıyla doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## Ayrıca İnceleyin
 

@@ -176,7 +176,7 @@ Bu sprintte kontrollü PixInsight execution yapılmadığı için aşağıdaki t
 - **Expected outcome:** Target değişir, background daha az değişir
 - **Known limitations:** Faint target mask dışında kalabilir
 - **Potential risks:** Edge/seam ve signal loss
-- **Alternative approaches:** Process-level RangeMask
+- **Alternative approaches:** RangeSelection ile üretilen process maskesi
 
 ## Tarif 13 — Güvenli normalizasyon
 

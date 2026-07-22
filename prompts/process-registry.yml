@@ -112,13 +112,13 @@ processes:
     confidence: high
     notes: Dedicated process guide; established validation slug.
   generalized-hyperbolic-stretch:
-    display_name: Generalized Hyperbolic Stretch
+    display_name: GeneralizedHyperbolicStretch
     type: script
     canonical_doc: docs/07-stretch/generalized-hyperbolic-stretch.md
     aliases:
       - GHS
       - GeneralizedHyperbolicStretch
-    mkdocs_nav_title: Generalized Hyperbolic Stretch
+    mkdocs_nav_title: GeneralizedHyperbolicStretch
     status: documented
     confidence: medium
     notes: Dedicated script guide draft.
@@ -265,16 +265,17 @@ processes:
     confidence: high
     notes: Section index is the canonical PixelMath process guide and links its subtopics.
   range-mask:
-    display_name: RangeMask
+    display_name: RangeSelection
     type: core-process
     canonical_doc: docs/11-maskeler/range-mask.md
     aliases:
+      - RangeMask
       - Range Mask
       - rangemask
-    mkdocs_nav_title: RangeMask
+    mkdocs_nav_title: RangeSelection
     status: documented
     confidence: medium
-    notes: Dedicated process guide draft.
+    notes: Dedicated RangeSelection process guide; range-mask is the stable validation slug and common output-mask term.
   scnr:
     display_name: SCNR
     type: core-process
@@ -351,4 +352,3 @@ processes:
     status: documented
     confidence: high
     notes: Dedicated script guide.
-

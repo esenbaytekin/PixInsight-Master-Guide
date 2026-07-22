@@ -72,6 +72,19 @@ Beklenen output doğru channel mapping’e sahip, clipping üretmemiş color ima
 
 Basitliği ana avantajdır; conditional veya weighted blend yapmaması ana sınırdır. Process icon ve output identifier’ı saklayın. SHO/HOO mapping’i “doğal color” olarak adlandırmayın.
 
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
+
 ## İlgili Süreçler
 
 - [LRGB teorisi](index.md)

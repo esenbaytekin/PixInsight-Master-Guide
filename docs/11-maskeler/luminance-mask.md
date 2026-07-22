@@ -53,7 +53,7 @@ Maskenin histogramını düzenlemek, seçimin ağırlık dağılımını değiş
 6. Maskeyi hedefe bağlayın ve inversion yönünü kontrol edin.
 7. Preview üzerinde process miktarını ayarlayın.
 
-!!! tip "Kanıt Düzeyi — Doğrulanmış İş Akışı"
+!!! tip "Kanıt Düzeyi — Verified Workflow"
     Noise reduction öncesinde maskeyi 1:1 zoom'da incelemek, maskenin gürültü desenini process ağırlığına taşıyıp taşımadığını gösterir.
 
 ## Gerçek kullanım senaryoları

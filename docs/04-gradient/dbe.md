@@ -267,7 +267,7 @@ flowchart TD
     correctionq -- "Hayır" --> accept["Model ve sonucu kabul kontrolüne geçir"]
 ```
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 | Sınıf | Durum |
 | --- | --- |
@@ -278,6 +278,19 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     UI etiketlerinin görünen kısmı validation kanıtlarıyla eşlendi. Screenshot içinde sürüm numarası, default/reset durumu, tooltip, console veya gerçek uygulama sonucu bulunmadığından bunlar process documentation ve kontrollü veriyle doğrulanmalıdır.
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## İlgili Süreçler
 

@@ -13,7 +13,7 @@ LocalHistogramEqualization (LHE), komşuluk içindeki ton ayrımını artırarak
 
 LHE, contrast-limited adaptive histogram equalization yaklaşımını kullanır. Kernel radius incelenen komşuluğun karakteristik boyutunu; contrast limit ise lokal histogramın ne ölçüde güçlendirilebileceğini belirler. Küçük kernel daha ince yapıları ve gürültüyü, büyük kernel daha geniş yapıları hedefleme eğilimindedir.
 
-!!! info "Kanıt Düzeyi — Resmî Dokümantasyon"
+!!! info "Kanıt Düzeyi — Official Documentation"
     PixInsight'ın teknik iş akışı örneği, LHE'yi CLAHE uygulaması olarak tanımlar ve düşük SNR alanlarda noise intensification riskini azaltmak için maskeli kullanır.
 
 ## Ne zaman kullanılır?
@@ -115,7 +115,7 @@ Büyük kernel, yüksek çözünürlük ve geniş görüntü bellek/süre maliye
 - Yıldız, arka plan ve hedef yapıyı üç ayrı kontrol bölgesinde inceleyin.
 - [CurvesTransformation](../13-final/curves-transformation.md) ile son global dengeyi LHE'den sonra kurun.
 
-## Teknik doğrulama durumu
+## Teknik Doğrulama Notları
 
 CLAHE yaklaşımı ve maskeli kullanım resmi PixInsight örneğiyle desteklenir. Parametrelerin tam UI adları, sınırları ve varsayılanları PixInsight 1.9.3 ekran kanıtıyla doğrulanmalıdır.
 
@@ -123,6 +123,19 @@ CLAHE yaklaşımı ve maskeli kullanım resmi PixInsight örneğiyle desteklenir
 
 - [PixInsight Forum — HDRMT and LHE workflow example](https://pixinsight.com/forum/index.php?threads/m101-hdr-processing-startools-vs-pixinsight.4286/)
 - [Multiscale processing overview](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
+
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Kısmen Doğrulandı |
+| Resmî Kaynak Kontrolü | Kısmi |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
 
 ## İlgili Süreçler
 

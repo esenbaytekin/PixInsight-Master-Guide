@@ -86,6 +86,19 @@ Iterations ve separation modları işlem süresini/bellek kullanımını artıra
 - Stretch sonrası görünümü önceden test et
 - AI/model sürümünü kaydet
 
+## Teknik Doğrulama Durumu
+
+| Alan | Durum |
+| --- | --- |
+| Hedeflenen PixInsight Sürümü | 1.9.3 |
+| Teknik İnceleme Durumu | Sürüm Bağımlı |
+| Resmî Kaynak Kontrolü | Tamamlandı |
+| İş Akışı Tutarlılığı | Doğrulandı |
+| Kanıt Düzeyi İncelemesi | Güncellendi |
+| Son Teknik İnceleme | Phase 6.4 |
+
+Canlı PixInsight uygulama testi yapılmadı. UI ekran kanıtı, statik ifade/iş akışı incelemesi ve yayımlanmış birincil kaynak kontrolü birbirinin yerine kullanılmamıştır.
+
 ## Ayrıca İnceleyin
 
 - [BlurXTerminator](blurxterminator.md)
