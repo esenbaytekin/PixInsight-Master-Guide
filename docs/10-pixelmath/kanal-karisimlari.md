@@ -9,6 +9,8 @@
 
 Broadband ve narrowband channel construction, selective blend ve normalization tariflerini aynı validation standardıyla sunmaktır.
 
+Palette'in fiziksel ve görsel mimarisi bu tarif sayfasının kapsamında değildir. Önce [Dar Bant Temelleri](../09-narrowband/index.md), [SHO](../09-narrowband/sho.md), [HOO](../09-narrowband/hoo.md), [Kanal Normalizasyonu ve Ağırlıklandırma](../09-narrowband/channel-normalization-and-weighting.md) ve [Sentetik Parlaklık](../09-narrowband/synthetic-luminance.md) sayfalarında amaç ve varsayımı belirleyin; burada yalnız uygulanabilir expression bağlamını kullanın.
+
 ## Tarif Doğrulama Standardı
 
 - `✅ Verified`: PixInsight 1.9.3 syntax, process order ve output testleri tamamlanmış tarif.

@@ -193,6 +193,12 @@ Hızlı özet, sayfadaki doğrulanmış bilgiyi tek sayfalık kontrol listesine 
 - Troubleshooting sayfaları **“Ne yanlış gitti?”** sorusunu belirti, neden, doğrulama ve recovery sırasıyla ele alır.
 - Astrofotoğraf Temelleri yazılımdan bağımsız veri üretimi kavramlarını; Görüntü İşleme Temelleri evrensel sayısal görüntü kavramlarını; PixInsight Temelleri ise yazılımın çalışma modelini kapsar.
 - Bir sayfa birden fazla eğitim domain'ini önemli ölçüde içeriyorsa yeni canonical kopya oluşturulmaz; audit kaydıyla ayrıştırma planlanır ve mevcut URL, redirect kararı verilene kadar korunur.
+- Narrowband concept sayfası palette mimarisini açıklar; sabit PixelMath tarif kataloğuna dönüşmez.
+- Her palette physical channel meaning ile displayed color ayrımını açıkça belirtir.
+- PixelMath formülü; input, output intent, image state, normalization varsayımı, dynamic-range davranışı ve clipping riskini belirtmeden yayımlanmaz.
+- Broadband color calibration ile narrowband palette balancing ayrı kavramlardır.
+- Starless processing bir workflow stratejisidir; fiziksel sahnenin literal decomposition'ı olarak sunulmaz.
+- Her narrowband kavramının tek canonical owner'ı bulunur.
 
 ## Navigasyon ve Legacy Sayfalar
 

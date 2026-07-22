@@ -150,6 +150,7 @@ Matematiksel model kavramsal ve process'ten bağımsızdır. PixInsight 1.9.3'te
 - [ColorMask](color-mask.md)
 - [Luminance Mask](luminance-mask.md)
 - [PixelMath](../10-pixelmath/index.md)
+- [Narrowband Maske Stratejisi](../09-narrowband/mask-strategy.md)
 
 ## Referanslar
 
