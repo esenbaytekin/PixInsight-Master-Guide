@@ -8,6 +8,8 @@
 
 Bu bölüm, görüntüdeki yapıları uzamsal ölçeklerine göre ayırıp kontrollü biçimde güçlendirmeyi anlatır. Hedef “daha keskin” bir görünüm değil; gerçek sinyali korurken lokal kontrastı, dinamik aralığı ve algılanabilir yapıyı yönetmektir.
 
+Global/local dinamik aralık, compression, highlight protection ve overprocessing teorisinin canonical açıklaması [Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md) sayfasındadır. Bu bölüm process seçimi ve iş akışı konumuna odaklanır.
+
 ## Multiscale felsefesi
 
 Bir görüntü, farklı uzamsal frekansların toplamı gibi düşünülebilir:
@@ -97,7 +99,7 @@ flowchart TD
 
 ## Ayrıca İnceleyin
 
-[HistogramTransformation](../02-pixinsight-temelleri/histogram.md) · [Generalized Hyperbolic Stretch](../07-stretch/generalized-hyperbolic-stretch.md) · [CurvesTransformation](../13-final/curves-transformation.md) · [Maskeler](../11-maskeler/index.md) · [PixelMath](../10-pixelmath/index.md)
+[Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md) · [Histogram ve Ton Dağılımı](../02-pixinsight-temelleri/histogram.md) · [Generalized Hyperbolic Stretch](../07-stretch/generalized-hyperbolic-stretch.md) · [CurvesTransformation](../13-final/curves-transformation.md) · [Maskeler](../11-maskeler/index.md)
 
 ## Referanslar
 

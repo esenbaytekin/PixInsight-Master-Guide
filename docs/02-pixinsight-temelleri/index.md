@@ -156,4 +156,4 @@ flowchart TD
 
 ## Önceki Bölüm
 
-[← Histogram ve Tonal Dönüşüm](histogram.md)
+[← Dinamik Aralık ve Yerel Kontrast](dinamik-aralik-ve-yerel-kontrast.md)

@@ -80,6 +80,11 @@ nav:
       - "Çekim Planlama": 01-temeller/cekim-planlama.md
     - "Görüntü İşleme Temelleri":
       - "Histogram ve Tonal Dönüşüm": 02-pixinsight-temelleri/histogram.md
+      - "Lineer ve Nonlineer Görüntü": 02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md
+      - "Stretch Temelleri": 02-pixinsight-temelleri/stretch-temelleri.md
+      - "Sinyal ve Gürültü": 02-pixinsight-temelleri/sinyal-ve-gurultu.md
+      - "Renk ve Kanallar": 02-pixinsight-temelleri/renk-ve-kanallar.md
+      - "Dinamik Aralık ve Yerel Kontrast": 02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md
     - "PixInsight Temelleri":
       - "PixInsight Temelleri": 02-pixinsight-temelleri/index.md
       - "Workspace": 02-pixinsight-temelleri/workspace.md

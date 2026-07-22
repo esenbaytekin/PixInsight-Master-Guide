@@ -3,7 +3,7 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Detay ve Kontrast · **Düzey:** Advanced · **Tahmini okuma:** 3 dk
     **Anahtar kelimeler:** `HDRMultiscaleTransform` · `HDRMT` · `detail enhancement` · `contrast` · `detay`
-    **Önerilen ön bilgiler:** [Stretch](../07-stretch/index.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
+    **Önerilen ön bilgiler:** [Dinamik Aralık ve Yerel Kontrast](../02-pixinsight-temelleri/dinamik-aralik-ve-yerel-kontrast.md) · [Maske Mantığı](../11-maskeler/maske-mantigi.md)
 
 ## Amaç
 

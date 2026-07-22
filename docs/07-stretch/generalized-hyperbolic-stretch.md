@@ -3,7 +3,7 @@
 !!! info "Sayfa Bilgisi"
     **Kategori:** Stretch · **Düzey:** Intermediate · **Tahmini okuma:** 3 dk
     **Anahtar kelimeler:** `Generalized Hyperbolic Stretch` · `GeneralizedHyperbolicStretch` · `GHS` · `stretch` · `nonlinear processing` · `histogram stretch`
-    **Önerilen ön bilgiler:** [STF](../02-pixinsight-temelleri/stf.md) · [Histogram](../02-pixinsight-temelleri/histogram.md)
+    **Önerilen ön bilgiler:** [Lineer ve Nonlineer Görüntü](../02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) · [Stretch Temelleri](../02-pixinsight-temelleri/stretch-temelleri.md)
 
 ## Amaç
 

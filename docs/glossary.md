@@ -25,6 +25,7 @@ Official process ve parametre adları İngilizce bırakılır; Türkçe karşıl
 | CFA; Color Filter Array | Renk filtre dizisi | OSC sensörde piksellerin farklı renk filtreleri altında örneklendiği düzen. | [ImageCalibration](03-kalibrasyon/image-calibration.md) |
 | Channel expression | Kanal ifadesi | PixelMath içinde output kanalını tanımlayan ifade. | [PixelMath Temelleri](10-pixelmath/temeller.md) |
 | Channel mapping | Kanal eşleme | Kaynak kanalların output R, G ve B kanallarına atanması. | [Kanal Karışımları](10-pixelmath/kanal-karisimlari.md) |
+| Chrominance | Renk bilgisi | Parlaklıktan ayrıştırılmış renk farkı bileşeni; tanımı renk uzayına bağlıdır. | [Renk ve Kanallar](02-pixinsight-temelleri/renk-ve-kanallar.md) |
 | Chrominance noise | Renk gürültüsü | Renk kanalları arasındaki rastlantısal değişim olarak görünen noise. | [NoiseXTerminator](06-ai-eklentileri/noisexterminator.md) |
 | Clipping | Kırpılma | Piksel bilgisinin alt veya üst sınıra yığılmasıyla ton ayrımının kaybolması. | [Histogram](02-pixinsight-temelleri/histogram.md) |
 | Cold pixel | Soğuk piksel | Komşularına göre sistematik olarak düşük yanıt veren kusurlu piksel. | [CosmeticCorrection](03-kalibrasyon/cosmetic-correction.md) |
@@ -51,23 +52,24 @@ Official process ve parametre adları İngilizce bırakılır; Türkçe karşıl
 | Image identifier | Görüntü tanımlayıcısı | PixelMath ifadelerinde açık görüntü veya view'ı adlandıran kimlik. | [PixelMath Temelleri](10-pixelmath/temeller.md) |
 | Integration | Entegrasyon | Registered subframe'leri birleştirerek SNR ve veri güvenilirliğini artıran aşama. | [ImageIntegration](03-kalibrasyon/image-integration.md) |
 | LHE; LocalHistogramEqualization | Yerel histogram eşitleme | Belirli ölçeklerde local contrast düzenleyen process. | [LocalHistogramEqualization](12-detay-ve-kontrast/local-histogram-equalization.md) |
-| Linear image | Lineer görüntü | Piksel değerleri kaydedilen sinyalle doğrusal ilişkiyi koruyan görüntü durumu. | [STF](02-pixinsight-temelleri/stf.md) |
+| Linear image | Lineer görüntü | Piksel değerleri kaydedilen sinyalle doğrusal ilişkiyi koruyan görüntü durumu. | [Lineer ve Nonlineer Görüntü](02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) |
 | Linear normalization | Lineer normalizasyon | Integration/rejection öncesi frame ölçek ve offset ilişkilerini uyumlama yaklaşımı. | [ImageIntegration](03-kalibrasyon/image-integration.md) |
 | LRGB | Luminance–Red–Green–Blue | Luminance ayrıntısını RGB renk verisiyle birleştiren mono iş akışı. | [LRGB](08-lrgb/index.md) |
+| Luminance | Parlaklık | Bir renk temsilindeki parlaklık/yapı bileşeni; ağırlık tanımı renk uzayına bağlıdır. | [Renk ve Kanallar](02-pixinsight-temelleri/renk-ve-kanallar.md) |
 | Luminance mask | Luminance maskesi | Parlaklık yapısından üretilen seçici etki maskesi. | [Luminance Mask](11-maskeler/luminance-mask.md) |
 | Luminance noise | Parlaklık gürültüsü | Ton/parlaklık kanalında görülen rastlantısal değişim. | [NoiseXTerminator](06-ai-eklentileri/noisexterminator.md) |
 | Mask | Maske | Process etkisini piksel bazında geçiren veya sınırlayan grayscale kontrol görüntüsü. | [Maske Mantığı](11-maskeler/maske-mantigi.md) |
 | Mask inversion | Maske tersleme | Beyaz ve siyah etki yönünü tersine çevirme. | [Maske Mantığı](11-maskeler/maske-mantigi.md) |
 | Master frame | Ana kalibrasyon frame'i | Aynı tür calibration frame'lerinin integration ile üretilen referansı. | [Calibration Pipeline](03-kalibrasyon/calibration-pipeline.md) |
-| Midtones | Orta tonlar | Black ve white point arasındaki tonal bölge. | [HistogramTransformation](07-stretch/histogram-transformation.md) |
+| Midtones | Orta tonlar | Black ve white point arasındaki tonal bölge. | [Histogram ve Ton Dağılımı](02-pixinsight-temelleri/histogram.md) |
 | MLT; MultiscaleLinearTransform | Çok ölçekli lineer dönüşüm | Wavelet katmanları üzerinden ölçek seçici işlem yapan process; bu sürümde ayrı canonical sayfası yoktur. | — |
 | MMT; MultiscaleMedianTransform | Çok ölçekli medyan dönüşümü | Median tabanlı katman ayrımıyla ölçek seçici işlem yapan process. | [MultiscaleMedianTransform](12-detay-ve-kontrast/multiscale-median-transform.md) |
 | Model-based reconstruction | Model tabanlı yeniden yapılandırma | Öğrenilmiş veya matematiksel modelle görüntü bileşenini tahmin eden yaklaşım; bilimsel doğruluk garantisi değildir. | [AI Eklentileri](06-ai-eklentileri/index.md) |
 | Multiplicative gradient | Çarpımsal gradient | Flat-field veya illumination yanıtıyla ilişkili konuma bağlı ölçek değişimi. | [Flat ve Gradient](04-gradient/flat-field-vs-gradient.md) |
 | Narrowband | Dar bant | Belirli emission çizgeleri çevresindeki dar spektral aralığı kaydeden görüntüleme. | [Narrowband](09-narrowband/index.md) |
-| Noise | Gürültü | Ölçümde gerçek sinyali belirsizleştiren rastlantısal değişim. | [SNR ve Dinamik Aralık](01-temeller/snr-ve-dinamik-aralik.md) |
+| Noise | Gürültü | Ölçümde gerçek sinyali belirsizleştiren rastlantısal değişim. | [Sinyal ve Gürültü](02-pixinsight-temelleri/sinyal-ve-gurultu.md) |
 | NoiseXTerminator; NXT | Model tabanlı noise reduction eklentisi | Noise görünümünü azaltan, sürüme duyarlı RC Astro process'i. | [NoiseXTerminator](06-ai-eklentileri/noisexterminator.md) |
-| Nonlinear image | Nonlineer görüntü | Kalıcı tonal dönüşüm uygulanmış, sinyalle doğrusal ilişkiyi artık korumayan görüntü. | [Stretch](07-stretch/index.md) |
+| Nonlinear image | Nonlineer görüntü | Kalıcı tonal dönüşüm uygulanmış, sinyalle doğrusal ilişkiyi artık korumayan görüntü. | [Lineer ve Nonlineer Görüntü](02-pixinsight-temelleri/lineer-ve-nonlineer-goruntu.md) |
 | Normalize | Normalleştirme | Değerleri tanımlı bir ölçek veya referans ilişkisine uyarlama; anlamı process'e bağlıdır. | [PixelMath Temelleri](10-pixelmath/temeller.md) |
 | OIII | Çift iyonize oksijen | Oksijen emission çizgelerini temsil eden narrowband kanal adı. | [Narrowband](09-narrowband/index.md) |
 | OSC; One-Shot Color | Tek çekimde renkli kamera | CFA üzerinden renk kanallarını aynı sensörde örnekleyen kamera/veri türü. | [OSC İş Akışı](15-workflows/osc-workflow.md) |
@@ -82,16 +84,16 @@ Official process ve parametre adları İngilizce bırakılır; Türkçe karşıl
 | Rescale | Yeniden ölçekleme | PixelMath output değerlerini seçilen aralığa eşleme seçeneği. | [PixelMath Temelleri](10-pixelmath/temeller.md) |
 | SII | İyonize kükürt | Kükürt emission çizgelerini temsil eden narrowband kanal adı. | [Narrowband](09-narrowband/index.md) |
 | SHO | SII–Ha–OIII paleti | Üç narrowband kanalın RGB output'a eşlendiği false-color yaklaşımı. | [SHO](09-narrowband/sho.md) |
-| Signal | Sinyal | Hedef veya ölçülmek istenen fiziksel kaynaktan gelen veri bileşeni. | [SNR ve Dinamik Aralık](01-temeller/snr-ve-dinamik-aralik.md) |
+| Signal | Sinyal | Hedef veya ölçülmek istenen fiziksel kaynaktan gelen veri bileşeni. | [Sinyal ve Gürültü](02-pixinsight-temelleri/sinyal-ve-gurultu.md) |
 | SNR; Signal-to-Noise Ratio | Sinyal-gürültü oranı | Ölçülebilir sinyalin noise belirsizliğine göre gücü. | [SNR ve Dinamik Aralık](01-temeller/snr-ve-dinamik-aralik.md) |
 | SPCC; SpectrophotometricColorCalibration | Spektrofotometrik renk kalibrasyonu | Katalog, plate solution ve sensor/filter response bilgileriyle renk kalibrasyonu yapan process. | [SPCC](05-color-calibration/spcc.md) |
 | Star mask; StarMask | Yıldız maskesi | Yıldızları seçici işlem için ayıran maske ve ilgili process. | [StarMask](11-maskeler/star-mask.md) |
 | Star recombination | Yıldız yeniden birleştirme | Starless ve stars bileşenlerini kontrollü biçimde tekrar bir araya getirme. | [StarXTerminator](06-ai-eklentileri/starxterminator.md) |
 | Starless image | Yıldızsız görüntü | Yıldız bileşeni ayrılmış görüntü katmanı; kusursuz fiziksel ayrım olduğu varsayılmaz. | [StarXTerminator](06-ai-eklentileri/starxterminator.md) |
 | StarXTerminator; SXT | Yıldız ayırma eklentisi | Yıldız ve starless bileşenleri üretebilen, sürüme duyarlı RC Astro process'i. | [StarXTerminator](06-ai-eklentileri/starxterminator.md) |
-| Stretch | Tonal genişletme | Lineer veriyi görünür nonlinear tonal dağılıma kalıcı biçimde dönüştürme. | [Stretch](07-stretch/index.md) |
+| Stretch | Tonal genişletme | Lineer veriyi görünür nonlinear tonal dağılıma kalıcı biçimde dönüştürme. | [Stretch Temelleri](02-pixinsight-temelleri/stretch-temelleri.md) |
 | Synthetic luminance | Sentetik luminance | Birden fazla kanaldan matematiksel olarak üretilen parlaklık bileşeni. | [Luminance Hazırlama](08-lrgb/luminance-hazirlama.md) |
-| White point | Beyaz nokta | Histogramın parlak sınırı; yanlış taşınması highlight clipping oluşturabilir. | [HistogramTransformation](07-stretch/histogram-transformation.md) |
+| White point | Beyaz nokta | Histogramın parlak sınırı; yanlış taşınması highlight clipping oluşturabilir. | [Histogram ve Ton Dağılımı](02-pixinsight-temelleri/histogram.md) |
 
 ## İlgili Başvuru Sayfaları
 
