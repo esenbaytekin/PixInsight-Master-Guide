@@ -70,7 +70,7 @@ CPU/GPU hızı kullanılan işletim sistemi, donanım, plugin sürümü, model v
 - Strength değerini hedef türüne göre sabit reçete yapmayın.
 - AI sonucunu calibration, registration veya gradient hatasını gizlemek için kullanmayın.
 
-## İlgili bölümler ve kaynaklar
+## Ayrıca İnceleyin ve kaynaklar
 
 - [ImageIntegration](../03-kalibrasyon/image-integration.md)
 - [SPCC](../05-color-calibration/spcc.md)
@@ -78,3 +78,11 @@ CPU/GPU hızı kullanılan işletim sistemi, donanım, plugin sürümü, model v
 - [RC Astro BlurXTerminator Technical Manual](https://www.rc-astro.com/blurxterminator-technical-manual/)
 - [RC Astro NoiseXTerminator User Manual](https://www.rc-astro.com/noisexterminator-2-ai3-user-manual-pixinsight/)
 - [RC Astro StarXTerminator Usage Notes](https://www.rc-astro.com/starxterminator-usage-notes/)
+
+## Önceki Bölüm
+
+[← BackgroundNeutralization](../05-color-calibration/background-neutralization-process.md)
+
+## Sonraki Bölüm
+
+[BlurXTerminator →](blurxterminator.md)

@@ -91,7 +91,7 @@ flowchart TD
 5. Yalnız koyu yapı hedefleniyorsa DSE'yi maskeli ve düşük miktarda test edin.
 6. Maskeli/maskesiz sonucu aynı zoom ve aynı screen stretch ile karşılaştırın.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [HistogramTransformation](../02-pixinsight-temelleri/histogram.md) · [Generalized Hyperbolic Stretch](../07-stretch/generalized-hyperbolic-stretch.md) · [CurvesTransformation](../13-final/curves-transformation.md) · [Maskeler](../11-maskeler/index.md) · [PixelMath](../10-pixelmath/index.md)
 
@@ -99,3 +99,11 @@ flowchart TD
 
 - [PixInsight Workshop — HDRMultiscaleTransform and multiscale processing](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
 - [PixInsight Forum — HDRMT and LHE workflow example](https://pixinsight.com/forum/index.php?threads/m101-hdr-processing-startools-vs-pixinsight.4286/)
+
+## Önceki Bölüm
+
+[← Maske Mantığı](../11-maskeler/maske-mantigi.md)
+
+## Sonraki Bölüm
+
+[HDRMultiscaleTransform →](hdr-multiscale-transform.md)

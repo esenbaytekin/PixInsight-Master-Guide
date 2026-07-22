@@ -182,9 +182,17 @@ flowchart TD
 | DATA-5 | Galaxy ve diffuse nebula reference testleri bekliyor |
 | IMG-5 | Dört planlı görsel bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Diagnostics](../04-gradient/gradient-diagnostics.md)
 - [White Balance](white-balance.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
 - [BackgroundNeutralization](background-neutralization-process.md)
+
+## Önceki Bölüm
+
+[← Fotometrik Kalibrasyon Teorisi](photometric-calibration-theory.md)
+
+## Sonraki Bölüm
+
+[Renk Kalibrasyonu Tanısı →](color-calibration-diagnostics.md)

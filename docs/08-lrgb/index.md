@@ -84,10 +84,18 @@ L ve RGB aynı geometry, crop, registration ve image state’e sahip olmalıdır
 | Noise arttı | L noise doğrudan aktarıldı | L background estimate | L denoise/weight revizyonu |
 | Core unnatural | Dynamic range uyuşmazlığı | L/RGB core histogram | Stretch/normalization eşleştir |
 
-## İlgili Süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [ChannelCombination](channel-combination.md)
 - [Luminance Hazırlama](luminance-hazirlama.md)
 - [SPCC](../05-color-calibration/spcc.md)
 - [Stretch](../07-stretch/index.md)
 - [PixelMath](../10-pixelmath/index.md)
+
+## Önceki Bölüm
+
+[← ArcsinhStretch](../07-stretch/arcsinh-stretch.md)
+
+## Sonraki Bölüm
+
+[ChannelCombination →](channel-combination.md)

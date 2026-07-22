@@ -186,3 +186,11 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     AutomaticBackgroundExtractor ve DynamicBackgroundExtraction kontrollerinin PixInsight 1.9.3 arayüzündeki tam adları ve davranışları doğrulanmayı bekliyor.
+
+## Önceki Bölüm
+
+[← ImageIntegration](../03-kalibrasyon/image-integration.md)
+
+## Sonraki Bölüm
+
+[Gradient Teorisi →](gradient-theory.md)

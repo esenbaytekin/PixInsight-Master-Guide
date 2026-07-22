@@ -83,9 +83,29 @@ Dense star fields ve büyük drizzle görüntüleri daha fazla bellek ve incelem
 - İki dalın stretch/color dengesini kaydet
 - Finali başlangıç görüntüsüyle karşılaştır
 
-## İlgili süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [BlurXTerminator](blurxterminator.md)
 - [SPCC](../05-color-calibration/spcc.md)
 - [Color Calibration Diagnostics](../05-color-calibration/color-calibration-diagnostics.md)
 - [RC Astro StarXTerminator Usage Notes](https://www.rc-astro.com/starxterminator-usage-notes/)
+
+## İlgili Süreçler
+
+- [BlurXTerminator](blurxterminator.md)
+- [NoiseXTerminator](noisexterminator.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← NoiseXTerminator](noisexterminator.md)
+
+## Sonraki Bölüm
+
+[Stretch →](../07-stretch/index.md)

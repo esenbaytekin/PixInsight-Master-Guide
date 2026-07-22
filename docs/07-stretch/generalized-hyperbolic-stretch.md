@@ -100,9 +100,29 @@ Preview histogramı mask etkisini her durumda tam temsil etmeyebilir; resmi GHS 
 - Basit HT yeterliyken gereksiz parametre karmaşıklığı eklemek
 - Noise veya gradient’i contrast ile bastırmaya çalışmak
 
-## İlgili Süreçler ve kaynaklar
+## Ayrıca İnceleyin
 
 - [Stretch teorisi](index.md)
 - [HistogramTransformation](histogram-transformation.md)
 - [GHS process documentation](https://www.ghsastro.co.uk/doc/tools/GeneralizedHyperbolicStretch/GeneralizedHyperbolicStretch.html)
 - [GHS primer](https://www.ghsastro.co.uk/doc/scripts/GeneralisedHyperbolicStretch/GeneralisedHyperbolicStretch.html)
+
+## İlgili Süreçler
+
+- [HistogramTransformation](histogram-transformation.md)
+- [MaskedStretch](masked-stretch.md)
+- [ArcsinhStretch](arcsinh-stretch.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← HistogramTransformation](histogram-transformation.md)
+
+## Sonraki Bölüm
+
+[MaskedStretch →](masked-stretch.md)

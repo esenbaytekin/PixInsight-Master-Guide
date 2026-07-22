@@ -116,3 +116,23 @@ Multiscale dynamic range yaklaşımı resmi PixInsight kaynağıyla desteklenir.
 
 - [PixInsight Workshop — HDRMultiscaleTransform](https://pixinsight.com/workshops/atlanta-201603/VPeris_Astrophoto.pdf)
 - [PixInsight Workshop — Delinearization and HDR](https://pixinsight.com/workshops/cfa-2014/03/index.html)
+
+## İlgili Süreçler
+
+- [LocalHistogramEqualization](local-histogram-equalization.md)
+- [MultiscaleMedianTransform](multiscale-median-transform.md)
+- [DarkStructureEnhance](dark-structure-enhance.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+
+## Önceki Bölüm
+
+[← Detay ve Kontrast](index.md)
+
+## Sonraki Bölüm
+
+[LocalHistogramEqualization →](local-histogram-equalization.md)

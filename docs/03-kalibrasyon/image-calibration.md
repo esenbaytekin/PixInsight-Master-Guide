@@ -195,8 +195,30 @@ flowchart TD
     clipq -- "Evet" --> clipcheck["Pedestal ve tekrar subtraction riskini kontrol et"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Pipeline](calibration-pipeline.md)
 - [WBPP](wbpp.md)
 - [CosmeticCorrection](cosmetic-correction.md)
+
+## İlgili Süreçler
+
+- [Calibration Pipeline](calibration-pipeline.md)
+- [WBPP](wbpp.md)
+- [CosmeticCorrection](cosmetic-correction.md)
+- [StarAlignment](star-alignment.md)
+- [ImageIntegration](image-integration.md)
+
+## İlgili İş Akışları
+
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+
+## Önceki Bölüm
+
+[← WBPP](wbpp.md)
+
+## Sonraki Bölüm
+
+[CosmeticCorrection →](cosmetic-correction.md)

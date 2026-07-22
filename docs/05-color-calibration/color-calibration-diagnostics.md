@@ -189,7 +189,7 @@ flowchart TD
 | DATA-5 | Broadband, LRGB, OSC ve narrowband tanı setleri bekliyor |
 | IMG-5 | İki planlı görsel bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [Background Neutrality](background-neutrality.md)
@@ -197,3 +197,11 @@ flowchart TD
 - [SPCC](spcc.md)
 - [PCC](pcc.md)
 - [BackgroundNeutralization](background-neutralization-process.md)
+
+## Önceki Bölüm
+
+[← Arka Plan Nötrlüğü](background-neutrality.md)
+
+## Sonraki Bölüm
+
+[SPCC →](spcc.md)

@@ -202,9 +202,33 @@ flowchart TD
 | DATA-3 | Round-trip ve DBE karşılaştırması | Gerçek veri testi gerekli |
 | IMG-3 | Arayüz, model, corrected image | Görsel gerekli |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [DBE](dbe.md)
 - [GradientCorrection](gradient-correction.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [DynamicBackgroundExtraction](dbe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GradientCorrection](gradient-correction.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← GradientCorrection](gradient-correction.md)
+
+## Sonraki Bölüm
+
+[Ay Işığı Gradientleri →](moonlight-gradients.md)

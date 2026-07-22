@@ -149,8 +149,16 @@ flowchart TD
 | DATA-3 | Broadband/narrowband ve farklı gece örnekleri | Gerçek veri gerekli |
 | IMG-3 | Şehir-horizon tanı görüntüsü | Görsel gerekli |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Ay Işığı Gradientleri](moonlight-gradients.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [Flat-field ve Gradient](flat-field-vs-gradient.md)
+
+## Önceki Bölüm
+
+[← Ay Işığı Gradientleri](moonlight-gradients.md)
+
+## Sonraki Bölüm
+
+[Flat-Field ve Gradient Ayrımı →](flat-field-vs-gradient.md)

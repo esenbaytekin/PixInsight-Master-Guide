@@ -161,7 +161,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **Tek ayar:** Process Icon · **Sıralı çoklu akış:** ProcessContainer · **Önce:** preview/clone testi · **Her zaman:** target + mask + lineerlik + sürüm notu · **Dynamic process:** hedefe özgü kabul et
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Arayüz temeli tamamlandı. Kalibrasyon akışına başlamak için [Kalibrasyon ve WBPP](../03-kalibrasyon/index.md) bölümüne; stretch yöntemleri için [Stretch](../07-stretch/index.md) bölümüne geçin.
 
+## Önceki Bölüm
+
+[← Preview, Clone ve History](preview-clone-history.md)

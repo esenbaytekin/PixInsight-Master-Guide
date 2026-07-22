@@ -101,6 +101,32 @@ flowchart TD
 
 Luminance Mask ayrı bir zorunlu process adı değil, farklı araçlarla üretilebilen iş akışı varlığıdır. Extraction ve renk uzayı ayrıntıları kullanılan process'in PixInsight 1.9.3 arayüzüyle doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [Maske Mantığı](maske-mantigi.md) · [RangeMask](range-mask.md) · [StarMask](star-mask.md) · [LocalHistogramEqualization](../12-detay-ve-kontrast/local-histogram-equalization.md)
+
+## İlgili Süreçler
+
+- [RangeMask](range-mask.md)
+- [StarMask](star-mask.md)
+- [ColorMask](color-mask.md)
+- [Maske Mantığı](maske-mantigi.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Önceki Bölüm
+
+[← StarMask](star-mask.md)
+
+## Sonraki Bölüm
+
+[ColorMask →](color-mask.md)

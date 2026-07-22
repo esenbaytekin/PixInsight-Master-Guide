@@ -101,3 +101,19 @@ Diagnostic 15–30 dk; integration review 20–45 dk; condition-specific linear/
 ## Kanıt Düzeyi
 
 Rejection, residual ve checkpoint incelemesi **Verified Workflow**; SNR'a bağlı işlem bütçesi **Practical Recommendation** düzeyindedir.
+
+## Kullanılan Süreçler
+
+- [WBPP](../03-kalibrasyon/wbpp.md)
+- [CosmeticCorrection](../03-kalibrasyon/cosmetic-correction.md)
+- [StarAlignment](../03-kalibrasyon/star-alignment.md)
+- [ImageIntegration](../03-kalibrasyon/image-integration.md)
+- [NoiseXTerminator](../06-ai-eklentileri/noisexterminator.md)
+
+## Önceki Bölüm
+
+[← Mono İş Akışı](mono-workflow.md)
+
+## Sonraki Bölüm
+
+[Uygulamalar →](../20-uygulamalar/index.md)

@@ -753,7 +753,7 @@ flowchart TD
 !!! warning "Doğrulama bekliyor"
     Menü, section/control adları, range ve target background davranışı, exact statistics, clipping, default değerler, exact linear/nonlinear davranış ve output/log yayımdan önce 1.9.3 UI, birincil kaynak ve gerçek veriyle doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Color Calibration Giriş](index.md)
 - [Background Neutrality](background-neutrality.md)
@@ -761,3 +761,27 @@ flowchart TD
 - [PCC](pcc.md)
 - [SPCC](spcc.md)
 - [Gradient Removal](../04-gradient/index.md)
+
+## İlgili Süreçler
+
+- [SPCC](spcc.md)
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Broadband İş Akışı](spcc-broadband.md)
+- [SPCC Narrowband Kapsamı](spcc-narrowband.md)
+- [SPCC Sorun Giderme](spcc-troubleshooting.md)
+- [PCC](pcc.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← PCC](pcc.md)
+
+## Sonraki Bölüm
+
+[AI Eklentileri →](../06-ai-eklentileri/index.md)

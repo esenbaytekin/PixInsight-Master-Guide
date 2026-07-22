@@ -137,7 +137,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **Adlandır:** hedef_kanal_aşama · **Uygulamadan önce:** target + mask + lineerlik · **Yerel test:** Preview · **Bağımsız dal:** Clone · **Arayüz erişimi:** View/Process/Window
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Workspace üzerinde lineer data’yı güvenle görünür kılmak için [ScreenTransferFunction](stf.md) bölümüne geçin.
 
+## Önceki Bölüm
+
+[← PixInsight Temelleri](index.md)

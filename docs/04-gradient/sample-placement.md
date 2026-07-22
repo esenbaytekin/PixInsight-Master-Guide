@@ -227,9 +227,37 @@ flowchart TD
 | DATA-1 | Hedef türlerinde sample coverage testleri |
 | IMG-1 | Hatalı/doğru samples ve Model Image ekranları |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Teorisi](gradient-theory.md)
 - [DBE](dbe.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
 - [Gradient Diagnostics](gradient-diagnostics.md)
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [DynamicBackgroundExtraction](dbe.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GradientCorrection](gradient-correction.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [DBE: Less Than Three Samples](../14-hata-kutuphanesi/dbe-less-than-three-samples.md)
+
+## Önceki Bölüm
+
+[← DynamicBackgroundExtraction](dbe.md)
+
+## Sonraki Bölüm
+
+[Subtraction ve Division →](division-vs-subtraction.md)

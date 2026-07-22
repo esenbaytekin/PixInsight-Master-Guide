@@ -271,10 +271,34 @@ flowchart TD
 | DATA-6 | Broadband/narrowband testleri bekliyor |
 | IMG-6 | Ana UI ve alt alan görselleri bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [SPCC Ön Koşulları](spcc-prerequisites.md)
 - [SPCC Broadband](spcc-broadband.md)
 - [SPCC Narrowband](spcc-narrowband.md)
 - [SPCC Sorun Giderme](spcc-troubleshooting.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
+
+## İlgili Süreçler
+
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Broadband İş Akışı](spcc-broadband.md)
+- [SPCC Narrowband Kapsamı](spcc-narrowband.md)
+- [SPCC Sorun Giderme](spcc-troubleshooting.md)
+- [PCC](pcc.md)
+- [BackgroundNeutralization](background-neutralization-process.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← Renk Kalibrasyonu Tanısı](color-calibration-diagnostics.md)
+
+## Sonraki Bölüm
+
+[SPCC Ön Koşulları →](spcc-prerequisites.md)

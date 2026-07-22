@@ -149,10 +149,18 @@ flowchart TD
 | DATA-5 | OSC ve mono LRGB testleri bekliyor |
 | IMG-5 | Ayrı görsel planı yok; diğer sayfalardaki zincirler kullanılacak |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Astronomik Renk Teorisi](color-theory.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
 - [Background Neutrality](background-neutrality.md)
 - [SPCC](spcc.md)
 - [PCC](pcc.md)
+
+## Önceki Bölüm
+
+[← Astronomik Renk Teorisi](color-theory.md)
+
+## Sonraki Bölüm
+
+[Fotometrik Kalibrasyon Teorisi →](photometric-calibration-theory.md)

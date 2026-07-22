@@ -175,9 +175,31 @@ flowchart TD
     warningq -- "Hayır" --> run["WBPP çalıştır ve çıktıları doğrula"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Pipeline](calibration-pipeline.md)
 - [ImageCalibration](image-calibration.md)
 - [StarAlignment](star-alignment.md)
 - [ImageIntegration](image-integration.md)
+
+## İlgili Süreçler
+
+- [Calibration Pipeline](calibration-pipeline.md)
+- [ImageCalibration](image-calibration.md)
+- [CosmeticCorrection](cosmetic-correction.md)
+- [StarAlignment](star-alignment.md)
+- [ImageIntegration](image-integration.md)
+
+## İlgili İş Akışları
+
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Veri Kalitesi Stratejileri](../15-workflows/data-quality-strategies.md)
+
+## Önceki Bölüm
+
+[← Calibration Pipeline](calibration-pipeline.md)
+
+## Sonraki Bölüm
+
+[ImageCalibration →](image-calibration.md)

@@ -146,7 +146,10 @@ flowchart TD
 !!! tip "Quick Reference"
     **Görmek:** STF · **Data’yı değiştirmek:** process uygulaması · **Yerel test:** Preview · **Bağımsız karşılaştırma:** Clone · **Tek ayarı saklamak:** Process Icon · **Sıralı akış:** ProcessContainer
 
-## Sonraki Bölüme Geçiş
+## Sonraki Bölüm
 
 Çalışma alanı, target seçimi ve interface düzeni için [Workspace](workspace.md) bölümüne geçin. Sonraki teknik akış: [STF](stf.md) → [Histogram](histogram.md) → [Preview, Clone ve History](preview-clone-history.md) → [Process Icons](process-icons.md).
 
+## Önceki Bölüm
+
+[← Çekim Planlama](../01-temeller/cekim-planlama.md)

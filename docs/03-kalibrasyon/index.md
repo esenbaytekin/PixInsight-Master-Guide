@@ -156,7 +156,7 @@ flowchart TD
     mapq -- "Evet" --> background["LocalNormalization ve gradient ayrımını incele"]
 ```
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Ana referans](calibration-pipeline.md)
 - [WBPP](wbpp.md)
@@ -164,3 +164,11 @@ flowchart TD
 - [CosmeticCorrection](cosmetic-correction.md)
 - [StarAlignment](star-alignment.md)
 - [ImageIntegration](image-integration.md)
+
+## Önceki Bölüm
+
+[← Process Icons](../02-pixinsight-temelleri/process-icons.md)
+
+## Sonraki Bölüm
+
+[Calibration Pipeline →](calibration-pipeline.md)

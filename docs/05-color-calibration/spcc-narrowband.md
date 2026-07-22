@@ -191,9 +191,33 @@ flowchart TD
 | DATA-6 | Sekiz test bekliyor |
 | IMG-6 | Narrowband UI/scenario görseli bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [SPCC Ana Referans](spcc.md)
 - [SPCC Ön Koşulları](spcc-prerequisites.md)
 - [SPCC Broadband](spcc-broadband.md)
 - [NGC 6888 Gradient İş Akışı](../04-gradient/ngc6888-gradient-workflow.md)
+
+## İlgili Süreçler
+
+- [SPCC](spcc.md)
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Broadband İş Akışı](spcc-broadband.md)
+- [SPCC Sorun Giderme](spcc-troubleshooting.md)
+- [PCC](pcc.md)
+- [BackgroundNeutralization](background-neutralization-process.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← SPCC Broadband İş Akışı](spcc-broadband.md)
+
+## Sonraki Bölüm
+
+[SPCC Sorun Giderme →](spcc-troubleshooting.md)

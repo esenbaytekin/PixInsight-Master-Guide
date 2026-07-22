@@ -94,3 +94,22 @@ Channel prep 30–50 dk; mapping/stretch 25–45 dk; masks/detail 30–50 dk; fi
 ## Kanıt Düzeyi
 
 Channel identity, registration ve expression kaydı **Verified Workflow**; palette ve channel weight seçimleri **Practical Recommendation** düzeyindedir.
+
+## Kullanılan Süreçler
+
+- [WBPP](../03-kalibrasyon/wbpp.md)
+- [DBE](../04-gradient/dbe.md)
+- [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
+- [HistogramTransformation](../07-stretch/histogram-transformation.md)
+- [SHO](../09-narrowband/sho.md)
+- [HOO](../09-narrowband/hoo.md)
+- [PixelMath](../10-pixelmath/kanal-karisimlari.md)
+- [ColorMask](../11-maskeler/color-mask.md)
+
+## Önceki Bölüm
+
+[← Emisyon Nebulası](emission-nebula.md)
+
+## Sonraki Bölüm
+
+[Gezegenimsi Nebula →](planetary-nebula.md)

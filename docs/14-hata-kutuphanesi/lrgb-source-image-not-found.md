@@ -78,3 +78,11 @@ flowchart TD
 ## İlgili Süreçler
 
 [LRGB](../08-lrgb/index.md) · [PixelMath](../10-pixelmath/index.md) · [Process Icons](../02-pixinsight-temelleri/process-icons.md) · [Hata Kütüphanesi](index.md)
+
+## Önceki Bölüm
+
+[← ChannelCombination RGB Hatası](channel-combination-rgb-error.md)
+
+## Sonraki Bölüm
+
+[OIII Kaybolması →](oiii-kaybolmasi.md)

@@ -201,3 +201,27 @@ flowchart TD
 
 !!! warning "Doğrulama durumu"
     ABE parametrelerinin kesin PixInsight 1.9.3 tooltip açıklamaları, varsayılan değerleri ve Replace seçeneklerinin output davranışı doğrulanmayı bekliyor.
+
+## İlgili Süreçler
+
+- [DynamicBackgroundExtraction](dbe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [Gradient Tanısı](gradient-diagnostics.md)
+- [GradientCorrection](gradient-correction.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← Gradient Teorisi](gradient-theory.md)
+
+## Sonraki Bölüm
+
+[DynamicBackgroundExtraction →](dbe.md)

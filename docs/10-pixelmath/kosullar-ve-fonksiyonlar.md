@@ -63,3 +63,18 @@ Koşullar spatially selective replacement sağlar; ancak object-aware değildir.
 - [Kanal Karışımları](kanal-karisimlari.md)
 - [RangeMask](../11-maskeler/range-mask.md)
 - [ColorMask](../11-maskeler/color-mask.md)
+
+## İlgili İş Akışları
+
+- [LRGB + Ha Galaksi](../15-workflows/lrgb-ha-galaxy.md)
+- [SHO ve HOO Narrowband](../15-workflows/sho-hoo.md)
+- [M31 LRGB + Ha](../20-uygulamalar/m31-lrgb-ha/index.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## Önceki Bölüm
+
+[← Temeller](temeller.md)
+
+## Sonraki Bölüm
+
+[Kanal Karışımları →](kanal-karisimlari.md)

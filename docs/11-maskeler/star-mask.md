@@ -121,10 +121,36 @@ Büyük görüntülerde çok sayıda scale ve geniş kernel kullanımı süre ve
 
 Multiscale yıldız seçimi ve maske kullanım ilkeleri sürümden bağımsızdır. Tam kontrol adları, ölçek numaralandırması ve process menü yolu PixInsight 1.9.3 UI kanıtıyla doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 [Maske Mantığı](maske-mantigi.md) · [RangeMask](range-mask.md) · [StarXTerminator](../06-ai-eklentileri/starxterminator.md) · [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
 
 ## Referanslar
 
 - [PixInsight — M31 Ha processing example](https://www.pixinsight.com/examples/M31-Ha/)
+
+## İlgili Süreçler
+
+- [RangeMask](range-mask.md)
+- [Luminance Mask](luminance-mask.md)
+- [ColorMask](color-mask.md)
+- [Maske Mantığı](maske-mantigi.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [Gezegenimsi Nebula](../15-workflows/planetary-nebula.md)
+- [NGC 6888 SHO](../20-uygulamalar/ngc6888-sho/index.md)
+
+## İlgili Sorun Giderme Başlıkları
+
+- [Maske Tüm Görüntüyü Kaplıyor](../14-hata-kutuphanesi/maske-tum-goruntuyu-kapliyor.md)
+
+## Önceki Bölüm
+
+[← RangeMask](range-mask.md)
+
+## Sonraki Bölüm
+
+[Luminance Mask →](luminance-mask.md)

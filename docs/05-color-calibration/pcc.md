@@ -842,7 +842,7 @@ flowchart TD
 !!! warning "Doğrulama bekliyor"
     Menü, gerçek section/control adları, catalog seçenekleri, default değerler, metadata fallback, algoritmik PCC/SPCC ayrımı ve exact linear/nonlinear davranış yayımdan önce PixInsight 1.9.3 UI, birincil process dokümantasyonu ve gerçek veriyle doğrulanmalıdır.
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Color Calibration Giriş](index.md)
 - [Photometric Calibration Teorisi](photometric-calibration-theory.md)
@@ -850,3 +850,27 @@ flowchart TD
 - [Background Neutrality](background-neutrality.md)
 - [BackgroundNeutralization](background-neutralization-process.md)
 - [Color Calibration Diagnostics](color-calibration-diagnostics.md)
+
+## İlgili Süreçler
+
+- [SPCC](spcc.md)
+- [SPCC Ön Koşulları](spcc-prerequisites.md)
+- [SPCC Broadband İş Akışı](spcc-broadband.md)
+- [SPCC Narrowband Kapsamı](spcc-narrowband.md)
+- [SPCC Sorun Giderme](spcc-troubleshooting.md)
+- [BackgroundNeutralization](background-neutralization-process.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+- [Mono İş Akışı](../15-workflows/mono-workflow.md)
+
+## Önceki Bölüm
+
+[← SPCC Sorun Giderme](spcc-troubleshooting.md)
+
+## Sonraki Bölüm
+
+[BackgroundNeutralization →](background-neutralization-process.md)

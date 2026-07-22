@@ -67,3 +67,11 @@ Operator precedence’e güvenmek, `$T` ile named image’ı karıştırmak, res
 - [Stretch](../07-stretch/index.md)
 - [ColorMask](../11-maskeler/color-mask.md)
 - [SCNR](../13-final/scnr.md)
+
+## Önceki Bölüm
+
+[← Natural SHO](../09-narrowband/natural-sho.md)
+
+## Sonraki Bölüm
+
+[Temeller →](temeller.md)

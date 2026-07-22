@@ -147,9 +147,17 @@ flowchart TD
 | DATA-4 | Sekiz NGC 6888 testi gerçek veri bekliyor |
 | IMG-4 | Sample/model/correction görselleri bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Sample Placement](sample-placement.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
 - [Gradient Hata Kartları](error-cards.md)
 - [Gerçek İş Akışları](real-workflows.md)
+
+## Önceki Bölüm
+
+[← M31 Gradient İş Akışı](m31-gradient-workflow.md)
+
+## Sonraki Bölüm
+
+[Gradient Hata Kartları →](error-cards.md)

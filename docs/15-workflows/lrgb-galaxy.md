@@ -101,3 +101,22 @@ Beklenen sonuç doğal renkli, detail-rich fakat clipped olmayan galaxy'dir. L v
 ## Kanıt Düzeyi
 
 Process sırası **Verified Workflow**; luminance weight, exposure dağılımı ve detail miktarı **Practical Recommendation** düzeyindedir.
+
+## Kullanılan Süreçler
+
+- [WBPP](../03-kalibrasyon/wbpp.md)
+- [DBE](../04-gradient/dbe.md)
+- [SPCC](../05-color-calibration/spcc.md)
+- [BlurXTerminator](../06-ai-eklentileri/blurxterminator.md)
+- [HistogramTransformation](../07-stretch/histogram-transformation.md)
+- [LRGBCombination](../08-lrgb/lrgb-combination.md)
+- [RangeMask](../11-maskeler/range-mask.md)
+- [CurvesTransformation](../13-final/curves-transformation.md)
+
+## Önceki Bölüm
+
+[← İş Akışı Rehberi](index.md)
+
+## Sonraki Bölüm
+
+[LRGB + Ha Galaksi →](lrgb-ha-galaxy.md)

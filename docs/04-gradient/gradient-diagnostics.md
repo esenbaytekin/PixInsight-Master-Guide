@@ -230,9 +230,33 @@ flowchart TD
 | DATA-1 | Rotate/filter/night ve raw/calibrated testleri |
 | IMG-1 | Her artefact sınıfı için gerçek örnek |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Teorisi](gradient-theory.md)
 - [Sample Yerleşimi](sample-placement.md)
 - [Subtraction ve Division](division-vs-subtraction.md)
 - [ImageCalibration](../03-kalibrasyon/image-calibration.md)
+
+## İlgili Süreçler
+
+- [AutomaticBackgroundExtractor](abe.md)
+- [DynamicBackgroundExtraction](dbe.md)
+- [Örnek Yerleşimi](sample-placement.md)
+- [Subtraction ve Division](division-vs-subtraction.md)
+- [GradientCorrection](gradient-correction.md)
+- [GraXpert](graxpert.md)
+
+## İlgili İş Akışları
+
+- [LRGB Galaksi](../15-workflows/lrgb-galaxy.md)
+- [Broadband Nebula](../15-workflows/broadband-nebula.md)
+- [Emisyon Nebulası](../15-workflows/emission-nebula.md)
+- [OSC İş Akışı](../15-workflows/osc-workflow.md)
+
+## Önceki Bölüm
+
+[← Subtraction ve Division](division-vs-subtraction.md)
+
+## Sonraki Bölüm
+
+[GradientCorrection →](gradient-correction.md)

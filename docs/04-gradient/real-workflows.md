@@ -178,9 +178,17 @@ flowchart TD
 | DATA-4 | M31 ve NGC 6888 testleri bekliyor |
 | IMG-4 | Model/correction karşılaştırma görseli bekliyor |
 
-## İlgili bölümler
+## Ayrıca İnceleyin
 
 - [Gradient Diagnostics](gradient-diagnostics.md)
 - [M31 Gradient İş Akışı](m31-gradient-workflow.md)
 - [NGC 6888 Gradient İş Akışı](ngc6888-gradient-workflow.md)
 - [Gradient Hata Kartları](error-cards.md)
+
+## Önceki Bölüm
+
+[← Flat-Field ve Gradient Ayrımı](flat-field-vs-gradient.md)
+
+## Sonraki Bölüm
+
+[M31 Gradient İş Akışı →](m31-gradient-workflow.md)
