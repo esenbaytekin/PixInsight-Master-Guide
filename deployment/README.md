@@ -118,6 +118,39 @@ curl --fail --location https://allsky.com.tr/docs/
 
 `/healthz` yanıtı plain text `ok` ve HTTP 200 olmalıdır.
 
+## SEO, robots.txt ve Search Console
+
+MkDocs, `site_url: https://allsky.com.tr/docs/` değerinden canonical bağlantıları ve `sitemap.xml` dosyasını üretir. Repository'deki `docs/robots.txt`, build sonrasında `/docs/robots.txt` altında yer alır. Nginx aynı dosyayı origin kökündeki `/robots.txt` isteğine de sunar; iki konum aynı sitemap hedefini bildirir.
+
+Google Search Console doğrulamasında tercih edilen yöntem **Domain Property / DNS TXT** yöntemidir. Maintainer, Google'ın ürettiği gerçek TXT kaydını Cloudflare DNS'e eklemelidir. Repository'ye doğrulama token'ı veya sahte HTML verification dosyası eklenmemelidir. Google daha sonra gerçek bir HTML verification dosyası verirse dosya adı ve içeriği değiştirilmeden `docs/` altına konur.
+
+Search Console sitemap işlemleri production deploy sonrasında manuel yürütülür:
+
+1. `allsky.com.tr` sahipliğini Google'ın verdiği DNS TXT kaydıyla doğrulayın.
+2. Search Console içindeki **Sitemaps** raporunu açın.
+3. `https://allsky.com.tr/docs/sitemap.xml` adresini gönderin.
+4. Sitemap'in okunabildiğini ve `/docs/` URL'leri içerdiğini doğrulayın.
+5. Indexed ve excluded URL raporlarını izleyin.
+6. `https://allsky.com.tr/docs/` adresini URL Inspection ile inceleyin.
+7. Yalnız production deploy ve son kontrollerden sonra indexing isteyin.
+
+## Google Analytics 4 maintainer kontrolü
+
+Repository, GA4 Measurement ID'yi yalnız `mkdocs.yml` içindeki native Material entegrasyonunda tutar. Google hesabındaki aşağıdaki ayarlar repository tarafından değiştirilemez ve tamamlanmış sayılmaz:
+
+- Web data stream URL: `https://allsky.com.tr/docs/`
+- Enhanced Measurement ve page views
+- Scroll ve outbound click ölçümü
+- Site search ölçümü
+- Internal traffic filtering
+- Data retention
+- Google Signals; bilinçli ihtiyaç yoksa kapalı olmalıdır
+- Ads personalization; bilinçli ihtiyaç yoksa kapalı olmalıdır
+- Unwanted referrals
+- Cross-domain tracking; zorunlu değilse etkinleştirilmemelidir
+
+Production doğrulamasında consent öncesi GA4 isteği ve `_ga` çerezi oluşmadığı; kabul sonrası tekil page view akışı; tercih kaldırıldıktan sonra yeni analytics gönderiminin durduğu tarayıcı network araçları ve GA4 Realtime ile kontrol edilmelidir.
+
 ## Rollback
 
 Rollback için daha önce doğrulanmış tam commit SHA'sını kullanın. Bu işlem dedicated deployment checkout'ta manuel yapılır:

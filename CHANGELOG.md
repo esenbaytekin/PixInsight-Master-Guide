@@ -7,6 +7,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 ### Added
 
 - v1.0.0 yayın notları, proje durum özeti, operasyonel release checklist ve GitHub Release taslağı.
+- v1.0.2 hazırlığı kapsamında native Google Analytics 4 entegrasyonu, açık analitik onayı, `robots.txt`, Çerez ve Analitik Bilgilendirmesi sayfası ve Search Console işletim rehberi eklendi.
 
 ### Changed
 
@@ -15,6 +16,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 - v1.0.1 hazırlığı: header version/commit metadata'sı site adından ayrıldı ve sidebar branding sadeleştirildi.
 - Header logosu PMG görseliyle yenilendi; sürüm ve commit bilgisi başlığın altında sağa hizalandı.
 - Başlangıç onboarding rehberine, Terimler Sözlüğü aranabilir discovery katmanına, Hızlı Referans operasyonel işlem yardımcısına dönüştürüldü.
+- Canonical URL, sitemap ve SEO doğrulama akışı v1.0.2 yayın hazırlığı için genişletildi.
 
 ### Fixed
 
@@ -35,6 +37,11 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 ### Security
 
 - Henüz kayıt yok.
+
+### Privacy
+
+- Google Analytics, açık kullanıcı onayı verilene kadar devre dışıdır.
+- Analitik tercihi ilk seçimden sonra footer bağlantısıyla yeniden açılıp değiştirilebilir.
 
 ## [1.0.0] - TBD
 

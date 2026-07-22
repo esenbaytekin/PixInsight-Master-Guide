@@ -2,6 +2,9 @@ site_name: PixInsight Master Guide
 site_description: PixInsight 1.9.3 ve RC Astro eklentileri için Türkçe monokrom astrofotoğraf işleme el kitabı
 site_url: https://allsky.com.tr/docs/
 use_directory_urls: true
+copyright: >-
+  PixInsight Master Guide —
+  <a href="#__consent">Çerez tercihlerini değiştir</a>
 hooks:
   - hooks/build_info.py
 theme:
@@ -24,6 +27,27 @@ plugins:
 
 extra_css:
   - stylesheets/extra.css?v=1.0.1
+
+extra:
+  analytics:
+    provider: google
+    property: G-50DME5PLFF
+  consent:
+    title: Çerez ve analitik tercihleri
+    description: >-
+      Bu site, dokümantasyonun kullanımını ölçmek ve içeriği geliştirmek
+      amacıyla Google Analytics kullanır. Analitik çerezler yalnızca
+      onayınızdan sonra etkinleştirilir. Ayrıntılı bilgi için
+      <a href="/docs/privacy-and-analytics/">Çerez ve Analitik Bilgilendirmesi</a>
+      sayfasını inceleyebilirsiniz.
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: false
+    actions:
+      - accept
+      - reject
+      - manage
 
 markdown_extensions:
   - admonition
@@ -188,3 +212,5 @@ nav:
       - "Maskeler": 20-uygulamalar/ngc6888-sho/04-maskeler.md
       - "OIII Koruma": 20-uygulamalar/ngc6888-sho/05-oiii-koruma.md
       - "Final": 20-uygulamalar/ngc6888-sho/06-final.md
+  - "Proje":
+    - "Çerez ve Analitik Bilgilendirmesi": privacy-and-analytics.md
