@@ -4,10 +4,10 @@
 
 | Alan | Durum |
 | --- | --- |
-| Hedef release | v1.0.0 |
-| GitHub tag/release | Henüz oluşturulmadı |
-| Hazırlık aşaması | Phase 6 — Sprint 6.5 |
-| İçerik durumu | Freeze; yalnız release-blocking düzeltmeler |
+| Yayımlanan release | v1.0.0 |
+| Sonraki hedef | v1.0.1 bakım sürümü |
+| Hazırlık aşaması | Documentation Entry Points & Header UX |
+| İçerik durumu | Bakım; yeni major teknik kapsam yok |
 | Hedef PixInsight | 1.9.3 |
 | Canonical yayın | <https://allsky.com.tr/docs/> |
 | Release sınıflandırması | Ready with Non-Blocking Limitations |

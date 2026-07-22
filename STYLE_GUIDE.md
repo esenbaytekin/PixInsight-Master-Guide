@@ -197,6 +197,13 @@ Canonical sayfalardaki `Önceki Bölüm` ve `Sonraki Bölüm` bağlantıları al
 - Düzey yalnız `Beginner`, `Intermediate`, `Advanced` veya `Expert` değerlerinden biridir.
 - Okuma süresi, kod ve diyagram bloklarının okunma yükü göz önünde bulundurularak 3, 5, 7, 10, 15, 20, 25 veya 30 dakika biçiminde yuvarlanır.
 - Anahtar kelime listesi official process adı, yaygın kısaltma, anlamlı Türkçe/İngilizce karşılık ve gerektiğinde toplulukta kullanılan adı kapsar; sayfa başına sekiz girdiyi aşmaz.
+
+## Header ve release metadata
+
+- `site_name` yalnız proje adını içerir; version ve commit bilgisi site adına eklenmez.
+- Release metadata build sırasında tek kaynaktan theme context'ine aktarılır ve yalnız ana header'da gösterilir.
+- Proje adı görsel olarak birincildir. Release metadata daha küçük, normal ağırlıkta ve ikincil vurgudadır.
+- Dar ekranlarda commit önce, gerekirse tüm metadata sonra gizlenir; drawer ve sidebar yalnız proje adını gösterir.
 - Alias değerleri aynı yazımın büyük/küçük harf varyantlarını tekrarlamaz. Parametre veya process olmayan uydurma kısaltmalar eklenmez.
 - Workflow metadatası yalnız gerçekten geçerli hedef, filter combination, camera type, sky quality veya signal quality terimlerini içerir.
 - Metadata teknik açıklamanın yerine geçmez, doğrulanmamış davranış iddiası taşımaz ve `Doğrulama bekliyor` gibi placeholder değer içermez.

@@ -1,4 +1,4 @@
-"""MkDocs başlığını release ve Git revision bilgisiyle zenginleştirir."""
+"""Release ve Git revision bilgisini MkDocs theme context'ine aktarır."""
 
 from __future__ import annotations
 
@@ -32,5 +32,6 @@ def on_config(config):
     commit = os.getenv("DOC_COMMIT") or _git_value(
         "rev-parse", "--short=7", "HEAD", fallback="unknown"
     )
-    config.site_name = f"PixInsight Master Guide · {version} · {commit}"
+    config.extra["release_version"] = version
+    config.extra["release_commit"] = commit
     return config

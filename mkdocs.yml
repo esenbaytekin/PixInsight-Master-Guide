@@ -6,6 +6,7 @@ hooks:
   - hooks/build_info.py
 theme:
   name: material
+  custom_dir: overrides
   language: tr
   features:
     - navigation.sections
@@ -19,6 +20,9 @@ theme:
 plugins:
   - search:
       lang: tr
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -40,7 +44,7 @@ markdown_extensions:
 
 nav:
   - "Başlangıç":
-    - "Ana Sayfa": index.md
+    - "Başlangıç": index.md
     - "Terimler Sözlüğü": glossary.md
     - "Hızlı Referans": quick-reference.md
   - "Temeller":
