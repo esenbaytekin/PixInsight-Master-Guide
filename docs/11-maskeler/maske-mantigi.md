@@ -33,12 +33,15 @@ flowchart LR
     invert["Inversion"] --> swap["Etki ve koruma yönü yer değiştirir"]
 ```
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Mask polarity"
+    **Kategori:** Mask Evidence · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P0
     **Eğitim amacı:** Maske polarity, partial protection ve sert/yumuşak geçiş farkını göstermek.
     **Gerekli kaynak:** Aynı hedef görüntü üzerinde luminance/range tabanlı gerçek maske.
     **Durumlar:** Maske görüntüsü, overlay, normal etki, inverted etki.
     **İşaretleme:** Beyaz, gri, siyah bölgeler; clipping ve gürültülü maske sınırı.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Mask image, overlay, normal ve inverted sonuç; aynı transition/noise crop'ları.
+    **Alt text özeti:** Beyaz, gri ve siyah alanların etki düzeyi ile yanlış polarity'nin değiştirdiği bölge açıklanmalıdır.
 
 ## Binary ve grayscale maske
 

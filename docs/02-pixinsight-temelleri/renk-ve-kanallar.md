@@ -36,12 +36,15 @@ Bir kanal alt veya üst sınıra kırpılırsa hue ve saturation bilgisi bozulab
 
 Synthetic luminance, mevcut renk kanallarından tanımlı ağırlıklarla üretilen parlaklık temsilidir. Gerçek ayrı L filtresiyle çekilmiş luminance ile aynı acquisition ürünü değildir. Ağırlık seçimi SNR, kanal çözünürlüğü ve renk ilişkisini etkiler; evrensel tek formül yoktur.
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · RGB, luminance ve chrominance"
+    **Kategori:** Comparison · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P1
     **Eğitim amacı:** RGB, luminance ve chrominance bileşenlerinin aynı hedefte farklı bilgi taşıdığını göstermek.
     **Gerekli kaynak:** Renk kalibrasyonu yapılmış gerçek broadband görüntü.
     **Durumlar:** RGB, R/G/B ayrımı, luminance, chrominance ve tek-kanal clipping örneği.
     **İşaretleme:** Ortak yapı, renk farkı ve kırpılmış yıldız çekirdeği.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Ortak geometry ve zoom; RGB ile channel panelleri aynı orientation'da, histogramlar aynı eksende.
+    **Alt text özeti:** Ortak yapının luminance'ta, renk farkının chrominance'ta ve tek-channel clipping'in yıldız çekirdeğinde nerede görüldüğü anlatılmalıdır.
 
 ## Kavramlar arasındaki ilişki
 

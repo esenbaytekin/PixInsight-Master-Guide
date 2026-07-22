@@ -34,12 +34,15 @@ Parlak çekirdek daha önce acquisition veya stretch sırasında kırpıldıysa 
 | Zayıf halo | Büyük ölçek geçiş görünür kalır | Background’dan kopuk sınır |
 | Düşük-SNR bölge | Kontrollü korunur | Noise’un detay gibi güçlenmesi |
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Dynamic range ve local contrast"
+    **Kategori:** Comparison · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P0
     **Eğitim amacı:** Global stretch, dynamic-range compression ve local contrast farkını göstermek.
     **Gerekli kaynak:** Parlak çekirdek ve zayıf dış halo içeren gerçek galaksi.
     **Durumlar:** Global stretch, kontrollü compression, aşırı local contrast.
     **İşaretleme:** Core structure, halo sınırı, yıldız çevresi ve noise amplification.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Aynı full-frame ve sabit core/halo/noise crop'ları; histogram her varyantta aynı eksende.
+    **Alt text özeti:** Compression'ın core ayrımını koruduğu, aşırı local contrast'ın halo ve noise'u güçlendirdiği belirtilmelidir.
 
 ## Overprocessing ve halo riski
 

@@ -35,12 +35,15 @@ Siyah nokta (black point), en düşük çıktı sınırına; beyaz nokta (white 
 
 Histogramın sol veya sağ kenara değmesi tek başına clipping kanıtı değildir. Sensörün doğal sıfırları, kalibrasyon, doygun pikseller ve seçilen görüntüleme ölçeği birlikte incelenmelidir. Histogramla birlikte sayısal readout, kanal kontrolü ve görüntü konumu gerekir.
 
-!!! note "TODO Illustration"
+!!! note "Planlanan görsel kanıt · Clipping"
+    **Kategori:** Histogram Evidence · **Durum:** Gerçek proje verisi gerekli · **Öncelik:** P0
     **Eğitim amacı:** Sağlıklı histogram kuyruğu ile alt/üst clipping farkını göstermek.
     **Gerekli kaynak:** Aynı doğrusal astro görüntünün kontrollü kopyaları.
     **Durumlar:** Orijinal, shadow-clipped ve highlight-clipped.
     **İşaretleme:** Siyah nokta, beyaz nokta, kaybolan kuyruk ve etkilenen görüntü bölgeleri.
     **Gerçek proje verisi:** Evet.
+    **Kanıt düzeni:** Görüntü ve histogram yan yana; bütün varyantlarda aynı eksen, zoom ve channel görünümü.
+    **Alt text özeti:** Hangi kuyruk değerlerinin tek çıktı değerine yığıldığı ve hangi görüntü ayrıntısının kaybolduğu söylenmelidir.
 
 ## Kanal histogramları, luminance ve RGB
 

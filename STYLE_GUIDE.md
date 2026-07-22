@@ -251,9 +251,60 @@ Canonical sayfalardaki `Önceki Bölüm` ve `Sonraki Bölüm` bağlantıları al
 ## Dosya ve Görsel Adlandırma
 
 - Dosya adları küçük harf ASCII ve tire biçimindedir.
-- Görseller `process-konu-asama-v01.png` kalıbını kullanır.
+- Eğitim görselleri `dataset-konu-durum-v01.webp` kalıbını; lossless UI kanıtı gerektiğinde `process-kontrol-durum-v01.png` kalıbını kullanır.
 - Boşluk, Türkçe karakter ve belirsiz `final-final` benzeri adlar kullanılmaz.
 - Mevcut numaralı bölüm mimarisi korunur.
+
+## Eğitim Görsel Kanıt Standardı
+
+Her görsel tam olarak bir kategoriye atanır: **Concept Illustration**, **Process Screenshot**, **Workflow Evidence**, **Failure Example**, **Comparison**, **Histogram Evidence**, **Mask Evidence**, **Crop Detail** veya **Validation Example**. Bir görsel birden çok amaç taşıyorsa baskın öğrenme amacı kategori olur; diğer amaçlar caption içinde belirtilir.
+
+### Kanıt sözleşmesi
+
+- Görsel şu işlerden en az birini yapar: açıklar, karşılaştırır, ortaya çıkarır, doğrular, tanı koydurur veya workflow kararını destekler.
+- Her görsel “hangi soruyu yanıtlıyor?” ifadesi, açıklayıcı alt text, görünür caption ve bir cümlelik eğitim özeti taşır.
+- Gerçek project data, UI screenshot, açıklayıcı diyagram ve açıkça synthetic eğitim verisi birbirinden ayrılır. AI-generated astrofotoğraf gerçek veri kanıtı olarak kullanılmaz.
+- Metadata bilinmiyorsa target, kamera, optical system, filter, exposure veya integration değeri tahmin edilmez.
+- Henüz üretilmemiş görsel `Planlanan görsel kanıt` kutusuyla tanımlanır; kanıt mevcutmuş gibi sonuç cümlesi yazılmaz.
+
+### Boyut, format ve yerleşim
+
+- Fotoğrafik before/after ve crop panellerinde WebP tercih edilir. Pixel-exact UI text, alpha channel veya kayıpsız tanı kanıtı gerekiyorsa PNG kullanılabilir.
+- Görsel, içerik sütununu aşmaz; doğal aspect ratio korunur. Tek panel için hedef genişlik 1200–1600 px, iki panelli comparison için toplam 1800–2400 px'dir.
+- 1 MiB üzerindeki dosya gerekçelendirilir ve optimize edilir; bilimsel karşılaştırmayı bozan aggressive compression kullanılmaz.
+- Before/after düzeninde orientation, crop koordinatı, zoom, STF/stretch, channel görünümü ve histogram ekseni sabit tutulur. Değişen koşul caption'da tek tek yazılır.
+- Dar ekranda paneller okunamayacak kadar küçülüyorsa yan yana grid yerine dikey sıra kullanılır; sayfa yatay scroll üretmez.
+
+### Caption, alt text ve annotation
+
+- Caption şu sırayı izler: **Before → After → Observed difference → What changed → Why → Common mistake**. Uygun olmayan alan atlanabilir, gözlem ve neden atlanmaz.
+- Alt text dosya adını veya “ekran görüntüsü” sözünü tekrarlamaz; hedefi, karşılaştırılan state'leri ve ana gözlenebilir farkı kısa biçimde anlatır.
+- Arrow çizgileri tek tip ve yüksek kontrastlıdır; ok ucu hedef ayrıntıyı kapatmaz. Highlight için yarı saydam alan ve sınır birlikte kullanılır.
+- Renk tek kodlama değildir. Etiket, line pattern veya numara ile ikinci bir ayrım sağlanır; light/dark theme üzerinde metin ve annotation kontrastı sınanır.
+
+### Histogram kanıtı
+
+- Linear, nonlinear, channel, clipping, stretch, background veya dynamic-range amacı caption'da belirtilir.
+- X/Y eksen anlamı, channel seçimi, image state ve display stretch ilişkisi yazılır. Karşılaştırma histogramları aynı eksen ve normalization bağlamını kullanır.
+- Black point, white point, signal peak, background dağılımı veya clipped kuyruk yalnız gerçekten ölçüldüğünde işaretlenir.
+
+### Mask ve crop kanıtı
+
+- Mask kanıtı mask image, protected region, affected region, polarity, soft transition ve tipik hata bilgisini taşır.
+- Crop; full-frame üzerindeki konumu, yüzde/pixel scale'i, seçilme nedeni, öğrenme amacı ve beklenen gözlemi tanımlar.
+- Before/after crop'ları aynı koordinat ve ölçektedir; yeniden örnekleme veya registration farkı varsa açıklanır.
+
+### PixInsight UI screenshot
+
+- Yalnız ilgili process paneli ve gerekli context gösterilir; giant full-screen capture kullanılmaz.
+- Process adı, hedef PixInsight sürümü ve kanıtlanan control görünür olmalıdır. Gizli dropdown seçeneği veya static screenshot'tan davranış çıkarılmaz.
+- UI screenshot bilimsel output kanıtı değildir; gerçek-data before/after panelinin yerine geçmez.
+
+### Dataset ve workflow kaydı
+
+- Workflow kanıtı dataset, stage, before state, after state, expected result ve validation ölçütünü birlikte tanımlar.
+- Canonical dataset kartı target, equipment, filters, exposure, integration, processing goal, known limitations, data owner ve kullanım iznini içerir.
+- Aynı dataset farklı sayfalarda kullanılıyorsa metadata tek canonical kayıttan alınır; kopyalarda yalnız dataset kimliği verilir.
 
 ## Editoryal Kontrol Listesi
 
