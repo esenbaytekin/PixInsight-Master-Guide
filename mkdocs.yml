@@ -72,19 +72,21 @@ nav:
     - "Başlangıç": index.md
     - "Terimler Sözlüğü": glossary.md
     - "Hızlı Referans": quick-reference.md
-  - "Temeller":
-    - "Temeller": 01-temeller/index.md
-    - "CMOS ve Monokrom Kamera": 01-temeller/cmos-ve-monokrom-kamera.md
-    - "Filtreler": 01-temeller/filtreler.md
-    - "SNR ve Dinamik Aralık": 01-temeller/snr-ve-dinamik-aralik.md
-    - "Çekim Planlama": 01-temeller/cekim-planlama.md
-  - "PixInsight Temelleri":
-    - "PixInsight Temelleri": 02-pixinsight-temelleri/index.md
-    - "Workspace": 02-pixinsight-temelleri/workspace.md
-    - "STF": 02-pixinsight-temelleri/stf.md
-    - "Histogram": 02-pixinsight-temelleri/histogram.md
-    - "Preview, Clone ve History": 02-pixinsight-temelleri/preview-clone-history.md
-    - "Process Icons": 02-pixinsight-temelleri/process-icons.md
+  - "Foundations":
+    - "Foundations": 01-temeller/index.md
+    - "Astrofotoğraf Temelleri":
+      - "CMOS ve Monokrom Kamera": 01-temeller/cmos-ve-monokrom-kamera.md
+      - "Filtreler": 01-temeller/filtreler.md
+      - "SNR ve Dinamik Aralık": 01-temeller/snr-ve-dinamik-aralik.md
+      - "Çekim Planlama": 01-temeller/cekim-planlama.md
+    - "Görüntü İşleme Temelleri":
+      - "Histogram ve Tonal Dönüşüm": 02-pixinsight-temelleri/histogram.md
+    - "PixInsight Temelleri":
+      - "PixInsight Temelleri": 02-pixinsight-temelleri/index.md
+      - "Workspace": 02-pixinsight-temelleri/workspace.md
+      - "ScreenTransferFunction (STF)": 02-pixinsight-temelleri/stf.md
+      - "Preview, Clone ve History": 02-pixinsight-temelleri/preview-clone-history.md
+      - "Process Icons ve ProcessContainer": 02-pixinsight-temelleri/process-icons.md
   - "Kalibrasyon":
     - "Kalibrasyon": 03-kalibrasyon/index.md
     - "Calibration Pipeline": 03-kalibrasyon/calibration-pipeline.md

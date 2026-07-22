@@ -318,3 +318,14 @@
 - [ ] StarAlignment ve ImageIntegration malformed admonition düzeltmesi
 - [ ] Generic draft Quick Reference/UI status tutarlılık düzeltmesi
 - [ ] Sprint 4.1 quality gate: **REVIEW REQUIRED**
+
+## Phase 7.1 — Knowledge Architecture & Foundations
+
+- [x] 11 Foundations sayfası için domain ve olgunluk audit'i
+- [x] Astrofotoğraf, Görüntü İşleme ve PixInsight domain navigasyonu
+- [x] Foundations öğrenme yolu ve eğitim katmanı standardı
+- [x] Canonical URL koruması; dosya taşıma veya redirect yok
+- [x] Katmanlar arası process, workflow ve troubleshooting bağlantıları
+- [x] Diagram, screenshot ve yeni sayfa öneri öncelikleri
+- [ ] Dört Astrofotoğraf Temelleri taslağının Phase 7.2 yeniden yazımı
+- [ ] Histogram concept/process sınırının Phase 7.2 ayrıştırılması

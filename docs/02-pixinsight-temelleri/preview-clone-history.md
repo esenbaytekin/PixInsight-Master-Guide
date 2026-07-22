@@ -151,4 +151,4 @@ Seçilen process ayarlarını tekrar kullanılabilir nesnelere dönüştürmek i
 
 ## Önceki Bölüm
 
-[← Histogram](histogram.md)
+[← STF](stf.md)

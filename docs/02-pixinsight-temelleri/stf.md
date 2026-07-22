@@ -167,7 +167,7 @@ flowchart TD
 
 ## Sonraki Bölüm
 
-Data dağılımını okumak ve screen stretch’i kalıcı dönüşümden ayırmak için [Histogram ve HistogramTransformation](histogram.md) bölümüne geçin.
+Yerel test, bağımsız karşılaştırma ve geri dönüş dalları için [Preview, Clone ve History Explorer](preview-clone-history.md) bölümüne geçin.
 
 ## Teknik Doğrulama Durumu
 

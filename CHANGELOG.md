@@ -8,6 +8,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 
 - v1.0.0 yayın notları, proje durum özeti, operasyonel release checklist ve GitHub Release taslağı.
 - v1.0.2 hazırlığı kapsamında native Google Analytics 4 entegrasyonu, açık analitik onayı, `robots.txt`, Çerez ve Analitik Bilgilendirmesi sayfası ve Search Console işletim rehberi eklendi.
+- Phase 7.1 Foundations domain sınıflandırması, draft audit'i ve diagram/görsel öncelik kaydı eklendi.
 
 ### Changed
 
@@ -17,6 +18,7 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 - Header logosu PMG görseliyle yenilendi; sürüm ve commit bilgisi başlığın altında sağa hizalandı.
 - Başlangıç onboarding rehberine, Terimler Sözlüğü aranabilir discovery katmanına, Hızlı Referans operasyonel işlem yardımcısına dönüştürüldü.
 - Canonical URL, sitemap ve SEO doğrulama akışı v1.0.2 yayın hazırlığı için genişletildi.
+- Foundations navigasyonu Astrofotoğraf, Görüntü İşleme ve PixInsight eğitim domain'leri altında yeniden gruplandı; mevcut canonical URL'ler korundu.
 
 ### Fixed
 
