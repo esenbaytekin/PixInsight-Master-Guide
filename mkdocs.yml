@@ -85,7 +85,9 @@ markdown_extensions:
       anchor_linenums: true
 
 nav:
-  - "Başlangıç": index.md
+  - "Başlarken":
+    - "Hoş Geldiniz": index.md
+    - "⭐ Katkıda Bulunun": katkida-bulunun.md
   - "Foundations":
     - "Foundations": 01-temeller/index.md
     - "Astrofotoğraf Temelleri":
