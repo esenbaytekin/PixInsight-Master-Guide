@@ -1,5 +1,57 @@
 # Yol Haritası
 
+## Allsky Türkiye Astronomi Portalı
+
+### Faz 1 — Portal çekirdeği ve güvenli entegrasyon
+
+- [x] Mevcut Docker, Nginx, Traefik ve `/docs` route mimarisinin analizi
+- [x] Aynı image içinde bağımsız portal ve MkDocs build çıktıları
+- [x] Türkçe bilgi mimarisi, responsive navigasyon ve açık/koyu/sistem teması
+- [x] Başlangıç, gözlem, astrofotoğrafçılık, katalog, ekipman, araçlar, sözlük ve yazılar route'ları
+- [x] Büyütme, çıkış bebeği, görüş alanı ve piksel ölçeği hesaplayıcıları
+- [x] Türkçe arama indeksi ve filtreleme
+- [x] Portal sitemap, metadata, 404 ve temel yapılandırılmış veri
+- [x] Otomatik hesaplama, arama, route ve iç bağlantı testleri
+- [x] `/docs/` route ve asset izolasyon kontrolleri
+
+### Faz 2 — Gözlem rehberleri ve teleskop bilgi merkezi
+
+- [ ] Başlangıç ve ekipman rehberlerini kaynaklı karşılaştırmalarla genişletme
+- [ ] Gözlem koşulları, planlama ve kayıt tutma rehberleri
+
+### Faz 3 — Astrofotoğrafçılık içeriği ve hesaplayıcılar
+
+- [ ] Gezegen ve derin uzay astrofotoğrafçılığı öğrenme yolları
+- [ ] İleri ekipman ve çekim planlama hesaplayıcıları
+
+### Faz 4 — Gök cisimleri kataloğu
+
+- [ ] Gök cismi katalog alanları için doğrulanmış veri kaynakları
+
+### Faz 5 — Dinamik gökyüzü takvimi ve konum bazlı planlama
+
+- [ ] Konum ve zaman dilimi tabanlı gökyüzü görünümü
+- [ ] Ay evresi ve doğrulanmış önemli gök olayları
+- [ ] Veri kaynağı, güncellik ve hata durumu görünürlüğü
+
+### Faz 6 — Kullanıcı hesapları, favoriler ve gözlem listeleri
+
+- [ ] Gizlilik odaklı kullanıcı hesabı ve veri modeli
+- [ ] Favori hedefler ve kişisel gözlem listeleri
+
+### Faz 7 — Topluluk, galeri ve katkı sistemi
+
+- [ ] Portal içerikleri için katkı şablonları ve teknik review akışı
+- [ ] Gerçek gözlem ve görüntüleme örnekleri
+- [ ] Kaynak, lisans ve katkıcı tanıma kayıtları
+
+### Faz 8 — Akıllı hedef önerileri ve kişisel ekipman profili
+
+- [ ] Konum, zaman ve ekipmanla açıklanabilir hedef filtreleme
+- [ ] Kullanıcı tarafından yönetilen kişisel ekipman profili
+
+## PixInsight Master Guide
+
 - [x] Faz 0: Repository ve dokümantasyon altyapısı — Tamamlandı
 - [x] Faz 1A: PixInsight Temelleri — Tamamlandı
 - [x] Faz 1B: Image Calibration Pipeline — Tamamlandı

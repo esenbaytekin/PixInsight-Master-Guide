@@ -12,6 +12,7 @@ env/
 
 # MkDocs çıktısı
 site/
+portal/dist/
 
 # Büyük astro veri formatları
 *.xisf
