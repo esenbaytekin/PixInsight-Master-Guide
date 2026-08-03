@@ -8,14 +8,9 @@ __pycache__/
 venv/
 env/
 .env
-!.env.example
 
 # MkDocs çıktısı
 site/
-portal/dist/
-
-# Node.js bağımlılıkları
-node_modules/
 
 # Büyük astro veri formatları
 *.xisf

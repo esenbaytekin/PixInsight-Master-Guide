@@ -61,7 +61,7 @@ Bu liste v1.0.0 yayınının operasyonel kontrol kaydıdır. Otomatik ve yerel k
 ## Geri alma hazırlığı
 
 - [ ] Önceki production image/commit kimliği kaydedildi
-- [ ] Rollback adımları [deployment rehberinden](deployment/README.md) doğrulandı
+- [ ] Yayınlanan dokümantasyon commit kimliği kaydedildi
 - [ ] Sağlık kontrolü ve log erişimi doğrulandı
 
 ## v1.0.2 — Google Analytics

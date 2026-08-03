@@ -10,7 +10,9 @@ Bu projedeki önemli değişiklikler bu dosyada kaydedilir. Yapı [Keep a Change
 
 ### Changed
 
-- Henüz kayıt yok.
+- Allsky portal uygulaması ve production operasyonu özel `Allsky-Portal` deposuna ayrıldı.
+- Bu açık depo yalnız PixInsight Master Guide dokümantasyonu, doğrulama kayıtları ve katkı altyapısını içeriyor.
+- GitHub Actions akışı deployment yerine strict dokümantasyon doğrulamasına dönüştürüldü.
 
 ### Fixed
 
